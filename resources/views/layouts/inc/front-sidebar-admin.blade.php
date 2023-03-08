@@ -1,0 +1,53 @@
+<ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+        <a class="nav-link " href="/dashboard-admin">
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
+        </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-people"></i><span>Manajemen Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/kelolapengguna">
+                    <i class="bi bi-person-gear fs-5"></i><span>Kelola Pengguna</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="bi bi-person-fill-x fs-5"></i><span>Pengguna Non-Aktif</span>
+                </a>
+            </li>
+
+        </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-boxes"></i><span>Manajemen Produk</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/produk">
+                    <i class="bi bi-box2-fill fs-5"></i><span>Kelola Produk</span>
+                </a>
+            </li>
+            <li>
+                <a href="/produk/non-aktif">
+                    <i class="bi bi-box2 fs-5"></i><span>Produk Non-Aktif</span>
+                </a>
+            </li>
+            <li>
+                <a href="/kategoriproduk">
+                    <i class="bi bi-box-seam-fill fs-5"></i><span>Kelola Kategori Produk</span>
+                </a>
+            </li>
+
+        </ul>
+    </li><!-- End Components Nav -->
+
+</ul>
