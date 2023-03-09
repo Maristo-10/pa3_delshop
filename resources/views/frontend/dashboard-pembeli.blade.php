@@ -18,7 +18,7 @@
                 <div class="col-lg-3 col-md-3 pb-1">
                     <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                         <!-- <p class="text-right">15 Products</p> -->
-                        <a href="" class="cat-img text-center overflow-hidden mb-3">
+                        <a href="/produk/{{$data->kategori}}" class="cat-img text-center overflow-hidden mb-3">
                             <img class="img-fluid" height="290px" src="/category-images/{{ $data->gambar_kategori }}"
                                 alt="">
                         </a>

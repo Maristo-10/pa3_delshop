@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,13 @@ Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli
 Auth::routes();
 
 
-
 Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/home', [HomeController::class, 'index'])->name('frontend.dashboard-pembeli');
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
+    Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewproduk');
+
+    Route::post('/produk/tambah-keranjang/{id}',[PesananController::class, 'tambahkeranjang'])->name('pembeli.tambahkeranjang');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {

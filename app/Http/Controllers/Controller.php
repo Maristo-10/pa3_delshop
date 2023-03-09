@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\KategoriProdukModel;
+use App\Models\Produk;
 
 class Controller extends BaseController
 {
@@ -14,7 +15,11 @@ class Controller extends BaseController
 
     public function index2()
     {
+        $unggulan=Produk::all()->where('produk_unggulan','Unggulan');
         $kategori = KategoriProdukModel::all();
-        return view('frontend.dashboard-pembeli',compact('kategori'));
+        return view('frontend.dashboard-pembeli',[
+            'kategori'=>$kategori,
+            'unggulan'=>$unggulan
+        ]);
     }
 }

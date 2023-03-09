@@ -223,13 +223,21 @@
                                 <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}"
                                     alt="" style="height: 200px;">
                             </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h3 class="text-truncate mb-3">{{ $item->nama_produk }}</h3>
-                                <div class="d-flex justify-content-center">
-                                    <h5>Rp. <?php
-                                        $angka =$item->harga;
-                                            echo  number_format( $angka , 0, ",", ".");
+                            <div class="row card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <div class="col-6 ml-4" style="text-align: left">
+                                    <h3 class="text-truncate mb-3">{{ $item->nama_produk }}</h3>
+                                    <div class="d-flex justify-content-left">
+                                        <h5>Rp. <?php
+                                        $angka = $item->harga;
+                                        echo number_format($angka, 0, ',', '.');
                                         ?></h5>
+                                    </div>
+                                </div>
+                                <div class="col-5 mt-5" style="text-align: right;color:green">
+                                    <div>
+                                        <small class="text-truncate"><b>Tersisa : </b> </small>
+                                        <small><b> {{ $item->jumlah_produk }}</b></small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
