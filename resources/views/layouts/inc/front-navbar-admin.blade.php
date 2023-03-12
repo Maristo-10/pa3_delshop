@@ -58,7 +58,7 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"
                         href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         v-pre>
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        {{-- <img src="img/profile1.jpg" alt="Profile" class="rounded-circle"> --}}
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -71,7 +71,7 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>{{ __('Logout') }}</span>
                             </a>

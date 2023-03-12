@@ -128,7 +128,6 @@
                                     <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
                                 </a><!-- End Profile Iamge Icon -->
-
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
                                     aria-labelledby="navbarDropdown" style="font-size: 15px">
                                     <div class="container">
@@ -138,11 +137,10 @@
                                         </a>
                                         <a class="dropdown-item d-flex align-items-center m-2" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                             <i class="bi bi-box-arrow-right m-2"></i>
                                             <span>{{ __('Logout') }}</span>
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
@@ -164,7 +162,6 @@
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
