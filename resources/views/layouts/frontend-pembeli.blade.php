@@ -184,13 +184,9 @@
                                             <i class="bi bi-box-arrow-right m-2"></i>
                                             <span>{{ __('Logout') }}</span>
                                         </a>
-<<<<<<< HEAD
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
-=======
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
->>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
                                             @csrf
                                         </form>
                                     </div>
@@ -210,13 +206,7 @@
             <div class="col-lg-11">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-<<<<<<< HEAD
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                                class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-
-=======
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
->>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse"
                         data-target="#navbarCollapse">
