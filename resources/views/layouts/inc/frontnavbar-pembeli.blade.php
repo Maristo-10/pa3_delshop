@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <div class="d-flex align-items-center justify-content-between">
     <a href="/dashboard" class="logo d-flex align-items-center">
         <div class="col-3">
@@ -91,4 +89,3 @@
         </div>
 </nav>
 <!-- Navbar -->
->>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
