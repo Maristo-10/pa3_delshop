@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.frontend-auth')
+=======
+@extends('layouts.frontend-login')
+>>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
 
 {{-- @section('content')
 <section style="padding-top: 84px;">
@@ -93,7 +97,11 @@
                                 <div class="card-body">
                                     <div class="row mb-3 text-center">
                                         <div class="col">
+<<<<<<< HEAD
                                             <a href="/"><img src={{ asset('imageStatis/del-shop.png') }} alt=""
+=======
+                                            <a href="{{route('index2')}}"><img src={{ asset('imageStatis/del-shop.png') }} alt=""
+>>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
                                                 style="width: 150px; "></a>
                                         </div>
                                         {{-- <div class="col-md-7 mt-3">

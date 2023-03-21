@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.frontend-auth')
+=======
+@extends('layouts.frontend-login')
+>>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
 
 @section('content')
     <section class="section register d-flex flex-column align-items-center justify-content-center py-4 mt-3">
@@ -12,7 +16,11 @@
 
                                     <div class="row mb-3 text-center">
                                         <div class="col">
+<<<<<<< HEAD
                                             <a href="{{asset('/')}}"><img src={{ asset('imageStatis/del-shop.png') }} alt=""
+=======
+                                            <a href="{{asset('/home')}}"><img src={{ asset('imageStatis/del-shop.png') }} alt=""
+>>>>>>> 4ce68c756b3583c79abb7178a98490991f606519
                                                 style="width: 150px; "></a>
                                         </div>
                                         {{-- <div class="col-md-7 mt-3">
@@ -68,7 +76,7 @@
                                                 </label>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-secondary w-100">
                                                 {{ __('Login') }}
