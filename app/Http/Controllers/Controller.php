@@ -18,17 +18,15 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index2()
     {
-        if(route('login') && route('register')){
-            $pesanan= 0;
-            $pengguna_prof =0;
-        }else{
-            $pengguna_prof = User::where('id', Auth::user()->id)->get();
-            $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
-        // $pesanan = DetailPesanan::select("*", DB::raw('count("id") as total'))->groupBy("id")->where('pesanan_id',$pesanan_baru->id)->get();
-            $pesanan =DetailPesanan::all()->where('pesanan_id',$pesanan_baru->id)->count();
-        }
+            $pesanan = [0];
+            $pengguna_prof =[0];
 
         $unggulan=Produk::all()->where('produk_unggulan','Unggulan');
         $kategori = KategoriProdukModel::all();

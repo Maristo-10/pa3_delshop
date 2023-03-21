@@ -4,7 +4,7 @@
         <div class="col-lg">
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Keranjang</li>
                 </ol>
             </nav>
@@ -154,7 +154,7 @@
                                 ?>
                             @endforeach
                         <th class="align-middle">
-                            <a href="btn btn-secondary px-5">Pesan</a>
+                            <a href="/checkout" class="btn btn-secondary px-5">Pesan</a>
                         </th>
                     </tr>
                 </thead>

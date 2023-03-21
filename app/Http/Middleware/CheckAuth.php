@@ -19,8 +19,6 @@ class CheckAuth
     {
         if ($request->session()->get('Auth', null) === null) {
             return redirect()->route('login');
-        } else {
-            StaticVariable::$user = $request->session()->get('Auth', null);
         }
         return $next($request);
 

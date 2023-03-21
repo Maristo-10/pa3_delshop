@@ -39,6 +39,8 @@ Route::middleware(['auth','isPembeli'])->group( function() {
 
     Route::get('/profile', [UserController::class,'vprofile'])->name('pembeli.profile');
     Route::post('/profile/update',[UserController::class, 'uprofile'])->name('pembeli.updateprofile');
+
+    Route::get('/checkout', [PesananController::class,'vcheckout'])->name('pembeli.checkout');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {

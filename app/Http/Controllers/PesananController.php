@@ -14,6 +14,11 @@ use App\Models\User;
 
 class PesananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function tambahkeranjang(Request $request,$id){
         $produk = Produk::where('id_produk',$id);
         $tanggal = Carbon::now();
@@ -120,5 +125,25 @@ class PesananController extends Controller
 
         return redirect()->route('pembeli.keranjang');
     }
+
+    public function vcheckout(){
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan = DetailPesanan::select(DB::raw('count("id") as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        $pesanan_harga = DetailPesanan::select(DB::raw('SUM(jumlah_harga) as totalh'))->where('pesanan_id',$pesanan_baru->id)->get();
+        $pesanan_detail = DB::table('pesanandetails')
+        ->join('produk', 'produk.id_produk', '=', 'pesanandetails.produk_id')
+        ->where('pesanan_id',$pesanan_baru->id)
+        ->where('produk.status_produk','Aktif')
+        ->get();
+        $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
+        return view('pembeli.checkout',[
+            'pesanan_baru'=> $pesanan_baru,
+            'pesanan'=>$pesanan,
+            'pengguna_prof'=>$pengguna_prof,
+            'pesanan_harga'=>$pesanan_harga,
+            'pesanan_detail'=>$pesanan_detail,
+            'total'=> $total,
+        ]);
+    }
 }
-?>
