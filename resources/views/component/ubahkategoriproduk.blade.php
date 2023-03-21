@@ -23,10 +23,10 @@
                                     <thead>
                                         <tr>
                                             <!-- <th scope="col">Pilihan</th> -->
-                                            <th scope="col"class="col-md-2">No</th>
+                                            <th scope="col"class="col-md-1">No</th>
                                             <th scope="col" class="col-md-4">Gambar Kategori</th>
                                             <th scope="col" class="col-md-4">Nama Kategori</th>
-                                            <th scope="col"class="col-md-2">Aksi</th>
+                                            <th scope="col"class="col-md-3">Aksi</th>
                                             <!-- <th scope="col">Lampiran</th> -->
                                         </tr>
                                     </thead>

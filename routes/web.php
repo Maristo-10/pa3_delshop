@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PesananController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,19 @@ Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli
 Auth::routes();
 
 
+
 Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/home', [HomeController::class, 'index'])->name('frontend.dashboard-pembeli');
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
-    Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewproduk');
+    Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewprodukid');
 
-    Route::post('/produk/tambah-keranjang/{id}',[PesananController::class, 'tambahkeranjang'])->name('pembeli.tambahkeranjang');
+    Route::post('/produk/tambah-keranjang/{id}',[PesananController::class, 'keranjang'])->name('pembeli.tambahkeranjang');
+    Route::get('/keranjang',[PesananController::class, 'vkeranjang'])->name('pembeli.keranjang');
+    Route::get('/hapus/pesanan-keranjang/{id}', [PesananController::class, 'hapuskeranjang'])->name('admin.hapuspesanan');
+
+    Route::get('/profile', [UserController::class,'vprofile'])->name('pembeli.profile');
+    Route::post('/profile/update',[UserController::class, 'uprofile'])->name('pembeli.updateprofile');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {

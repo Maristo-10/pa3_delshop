@@ -75,12 +75,37 @@ class ProdukController extends Controller
 
     public function ubahproduk(Request $request, $id){
         $produk = Produk::find($id);
-        $produk->update($request->all());
+
+        $nama_produk = $request->nama_produk;
+        $harga = $request->harga;
+        $jumlah_produk = $request->jumlah_produk;
+        $role_pembeli = $request->role_pembeli;
+        $kategori_produk = $request->kategori_produk;
+        $produk_unggulan = $request->produk_unggulan;
+        $deskripsi = $request->deskripsi;
+        if($request->file('gambar_produk')){
+            if ($request->hasfile('gambar_produk')) {
+                $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar_produk')->getClientOriginalName());
+                $request->file('gambar_produk')->move(public_path('product-images'), $filename);
+                $produk->update(['gambar_produk'=>$filename]);
+            }
+            // $validatedData['gambar_produk'] = $request->file('gambar_produk')->store('product-images');
+            // $tambahproduk->gambar_produk = $request->gambar_produk;
+        }
+        $produk->update([
+            'nama_produk'=>$nama_produk,
+            'harga'=>$harga,
+            'jumlah_produk'=>$jumlah_produk,
+            'role_pembeli'=>$role_pembeli,
+            'kategori_produk'=>$kategori_produk,
+            'produk_unggulan'=>$produk_unggulan,
+            'deskripsi'=>$deskripsi
+        ]);
 
         return redirect()->route('admin.kelolaproduk');
     }
 
-    public function ubahstatusproduknon($id){
+    public function ubahstatusproduknon($id, Request $request){
         $produk = Produk::find($id);
         $produk->update(['status_produk'=>'Non-Aktif']);
 

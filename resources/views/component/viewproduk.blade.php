@@ -31,7 +31,7 @@
 <div class="container-fluid pt-4">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
-        <div class="col-lg-3 col-md-12">
+        <div class="col-lg-2 col-md-12">
             <!-- Size Start -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Ukuran</h5>
@@ -188,7 +188,7 @@
         <!-- Shop Sidebar End -->
 
         <!-- Shop Product Start -->
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-10 col-md-12">
             <div class="row pb-3">
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -216,24 +216,24 @@
                     </div>
                 </div>
                 @foreach ($produk as $item)
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                    <div class="col-lg-3 col-md-2 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-3">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}"
-                                    alt="" style="height: 200px;">
+                                    alt="" style="height: 250px">
                             </div>
-                            <div class="row card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <div class="col-6 ml-4" style="text-align: left">
-                                    <h3 class="text-truncate mb-3">{{ $item->nama_produk }}</h3>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <div class="col-12 ml-4" style="text-align: left">
+                                    <small class="text-truncate mb-3">{{ $item->nama_produk }}</small>
                                     <div class="d-flex justify-content-left">
-                                        <h5>Rp. <?php
+                                        <h6>Rp. <?php
                                         $angka = $item->harga;
                                         echo number_format($angka, 0, ',', '.');
-                                        ?></h5>
+                                        ?></h6>
                                     </div>
                                 </div>
-                                <div class="col-5 mt-5" style="text-align: right;color:green">
+                                <div class="col-12 mt-1" style="text-align: right;color:green">
                                     <div>
                                         <small class="text-truncate"><b>Tersisa : </b> </small>
                                         <small><b> {{ $item->jumlah_produk }}</b></small>
@@ -241,10 +241,8 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-secondary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-secondary mr-1"></i>Add To Cart</a>
+                                <small><a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0"><i
+                                    class="fas fa-eye text-secondary mr-1"></i>View Detail</a></small>
                             </div>
                         </div>
                     </div>

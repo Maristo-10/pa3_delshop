@@ -28,16 +28,24 @@
 
         <div class="col-lg-7 pb-5">
             <div class="row">
-                <h3>Nama Produk : </h3>
-                <h3 class="font-weight-semi-bold mb-3 ml-2"> {{ $item->nama_produk }}</h3>
+                <h6>Nama Produk : </h6>
+                <h6 class="font-weight-semi-bold mb-3 ml-2"> {{ $item->nama_produk }}</h6>
             </div>
             <div class="border-bottom mb-3"></div>
             <div class="row">
-                <h3>Harga Produk : </h3>
-                <h3 class="font-weight-semi-bold mb-4 ml-2">Rp. <?php
+                <h6>Harga Produk : </h6>
+                <h6 class="font-weight-semi-bold mb-4 ml-2">Rp. <?php
                     $angka =$item->harga;
                         echo  number_format( $angka , 0, ",", ".");
-                    ?></h3>
+                    ?></h6>
+            </div>
+            <div class="border-bottom mb-3"></div>
+            <div class="row mb-5">
+                <h6>Stok Barang : </h6>
+                <h6 class="font-weight-semi-bold mb-3 ml-2"><?php
+                    $angka =$item->jumlah_produk;
+                        echo  number_format( $angka , 0, ",", ".");
+                    ?></h6>
             </div>
             <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea.
                 Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus
@@ -93,7 +101,8 @@
                     </div>
                 </form>
             </div>
-            <form action="#" method="post">
+            <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
+                @csrf
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -101,14 +110,14 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="text" class="form-control bg-light text-center" value="1">
+                        <input type="text" class="form-control bg-light text-center" value="1" id="jumlah" name="jumlah">
                         <div class="input-group-btn">
                             <button class="btn btn-secondary btn-plus">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-secondary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button type="submit" class="btn btn-secondary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>
             </form>
 

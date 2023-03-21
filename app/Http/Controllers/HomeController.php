@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\KategoriProdukModel;
 use Illuminate\Support\Facades\DB;
+use App\Models\DetailPesanan;
+use App\Models\Pesanan;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -27,34 +32,76 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first('id');
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+
         $produk = Produk::all()->where('status_produk','Aktif');
         $unggulan=Produk::all()->where('produk_unggulan','Unggulan');
         $kategori = KategoriProdukModel::all();
         return view('frontend.dashboard-pembeli',[
             'kategori'=>$kategori,
             'produk'=>$produk,
-            'unggulan'=>$unggulan
+            'unggulan'=>$unggulan,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
         ]);
     }
 
     public function produk()
     {
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
         $produk = Produk::all()->where('status_produk','Aktif');
         $kategori = KategoriProdukModel::all();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
         return view('pembeli.viewproduk',[
             'produk'=>$produk,
-            'kategori'=>$kategori
+            'kategori'=>$kategori,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
         ]);
     }
 
     public function detail_produk($id)
     {
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
         $produk = Produk::all()->where('id_produk',$id)->where('status_produk','Aktif');
-        return view('pembeli.detailproduk',compact('produk'));
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        return view('pembeli.detailproduk',[
+            'produk'=>$produk,
+            'pesanan'=>$pesanan,
+            'pengguna_prof'=>$pengguna_prof,
+            'pesanan_baru'=>$pesanan_baru,
+        ]);
     }
 
     public function produk_kategori($id)
     {
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
         $kategori = KategoriProdukModel::all();
         $produk = DB::table('produk')
         ->join('kategoriproduk', 'kategoriproduk.kategori', '=', 'produk.kategori_produk')
@@ -62,12 +109,12 @@ class HomeController extends Controller
         ->where('produk.status_produk','Aktif')
         ->get();
         return view('pembeli.viewproduk',[
+            'pesanan'=>$pesanan,
             'produk'=>$produk,
-            'kategori'=>$kategori
+            'kategori'=>$kategori,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
         ]);
-
-
-
     }
 }
 

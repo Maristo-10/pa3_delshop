@@ -58,8 +58,8 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"
                         href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         v-pre>
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+                        <img src="/img/profile-1.jpeg" alt="Profile" class="rounded-circle" style="width: 40px; height:45px">
+                        <span class="d-none d-md-block dropdown-toggle ps-2 ml-3">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
