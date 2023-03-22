@@ -135,29 +135,28 @@
             <table class="table mb-0">
                 <thead class="text-dark text-center">
                     <tr>
-                        <th class="align-middle">Pilih Semua</th>
+                        <!-- <th>Pilih Semua</th> -->
                         <th></th>
-                        <th></th>
-                        <th></th>
-<th></th><th></th><th></th>
-                        <th class="align-middle">
-                            @foreach ($total as $a)
-                                <th class="text-right">Total Produk: {{ $a->total }}
-                            @endforeach
+                        <th class="text-right">
                         </th>
-                        <th></th><th></th>
-                        <th class="align-middle">
+                        <th class="text-right">
+                            @foreach ($pesanan as $a)
+                                <span class="h5">Total ( {{ $a->total }} Produk): </span>
+                            @endforeach
                             @foreach ($pesanan_harga as $h)
-                                Total Harga : Rp. <?php
+                                <span class="h3"><b>Rp. <?php
                                 $angka = $h->totalh;
                                 echo number_format($angka, 0, ',', '.');
-                                ?>
+                                ?></b></span>
                             @endforeach
-                        <th class="align-middle">
-                            <a href="/checkout" class="btn btn-secondary px-5">Pesan</a>
+                            <a href="/checkout" class="btn btn-secondary px-5 ml-5">Pesan</a>
                         </th>
+                        <!-- <th>
+                            <a href="btn btn-secondary px-5">Pesan</a>
+                        </th> -->
                     </tr>
                 </thead>
+
             </table>
         </div>
     </div>

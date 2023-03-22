@@ -8,7 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PesananController;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\MetodePembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +67,10 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/hapus/pengguna/{id}', [UserController::class, 'hapuspengguna'])->name('admin.hapuspengguna');
     Route::get('/ubahpengguna/{id}', [UserController::class,'viewubahuser'])->name('admin.ubahpengguna');
     Route::post('/updatepengguna/{id}', [UserController::class,'ubahpengguna'])->name('admin.updatepengguna');
+
+    Route::get('/kelola-metode-pembayaran', [MetodePembayaranController::class, 'kemetpem'])->name('admin.kelolametodepembayaran');
+    Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class,'tametpem'])->name('admin.tambahmetodepembayaran');
+    Route::post('/prosestambahmetodepembayaran', [MetodePembayaranController::class,'tambahmetpem'])->name('admin.storemetodepembayaran');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

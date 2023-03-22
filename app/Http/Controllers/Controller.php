@@ -30,11 +30,13 @@ class Controller extends BaseController
 
         $unggulan=Produk::all()->where('produk_unggulan','Unggulan');
         $kategori = KategoriProdukModel::all();
+        $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan','Unggulan')->get();
         return view('frontend.dashboard-pembeli',[
             'kategori'=>$kategori,
             'unggulan'=>$unggulan,
             'pesanan'=>$pesanan,
-            'pengguna_prof'=>$pengguna_prof
+            'pengguna_prof'=>$pengguna_prof,
+            'total_ung'=>$total_ung
         ]);
     }
 }

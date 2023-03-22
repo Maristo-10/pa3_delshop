@@ -8,10 +8,10 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav-1" data-bs-toggle="collapse" href="#">
             <i class="bi bi-people"></i><span>Manajemen Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav-1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
                 <a href="/kelolapengguna">
                     <i class="bi bi-person-gear fs-5"></i><span>Kelola Pengguna</span>
@@ -27,10 +27,10 @@
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav-2" data-bs-toggle="collapse" href="#">
             <i class="bi bi-boxes"></i><span>Manajemen Produk</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav-2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
                 <a href="/produk">
                     <i class="bi bi-box2-fill fs-5"></i><span>Kelola Produk</span>
@@ -46,8 +46,24 @@
                     <i class="bi bi-box-seam-fill fs-5"></i><span>Kelola Kategori Produk</span>
                 </a>
             </li>
-
         </ul>
     </li><!-- End Components Nav -->
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav-3" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-boxes"></i><span>Manajemen Metode Pembayaran</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/kelola-metode-pembayaran">
+                    <i class="bi bi-wallet2 fs-5"></i><span>Kelola Metode Pembayaran</span>
+                </a>
+            </li>
+            <li>
+                <a href="/kelola-metode-pembayaran">
+                    <i class="bi bi-wallet-fill fs-5"></i><span>Kelola Kategori Pembayaran</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 </ul>

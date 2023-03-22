@@ -9,6 +9,11 @@ use App\Models\Role;
 
 class ProdukController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function produk(){
         $produk = Produk::all()->where('status_produk','Aktif');
         return view('admin.kelolaproduk',compact('produk'));
