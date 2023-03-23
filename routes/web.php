@@ -71,6 +71,12 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/kelola-metode-pembayaran', [MetodePembayaranController::class, 'kemetpem'])->name('admin.kelolametodepembayaran');
     Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class,'tametpem'])->name('admin.tambahmetodepembayaran');
     Route::post('/prosestambahmetodepembayaran', [MetodePembayaranController::class,'tambahmetpem'])->name('admin.storemetodepembayaran');
+    Route::get('/ubah-metode-pembayaran/{id}', [MetodePembayaranController::class,'ubmetpem'])->name('admin.ubahmetodepembayaran');
+    Route::post('/prosesubahmetodepembayaran/{id}', [MetodePembayaranController::class,'ubahmetpem'])->name('admin.updatemetodepembayaran');
+    Route::post('/prosestambahkategoripembayaran', [MetodePembayaranController::class,'tambahkapem'])->name('admin.storekategoripembayaran');
+    Route::get('/hapus/kategoripembayaran/{id}', [MetodePembayaranController::class, 'hapuskapem'])->name('admin.hapuskategoripengguna');
+    Route::get('/ubah-kategori-pembayaran/{id}', [MetodePembayaranController::class,'ubkapem'])->name('admin.ubahkategoripembayaran');
+    Route::post('/proses-ubah-kategori-pembayaran/{id}', [MetodePembayaranController::class,'ubahkapem'])->name('admin.prosesubahkategoripembayaran');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

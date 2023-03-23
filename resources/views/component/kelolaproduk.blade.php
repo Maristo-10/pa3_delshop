@@ -38,7 +38,7 @@
                                     <th scope="col" class="col-md-1">Produk Unggulan</th>
                                     <th scope="col" class="col-md-1">Status Produk</th>
                                     <th scope="col" class="col-md-3">Keterangan</th>
-                                    <th scope="col" class="col-md-1">Aksi</th>
+                                    <th scope="col" class="col-md-3">Aksi</th>
                                     <!-- <th scope="col">Lampiran</th> -->
                                 </tr>
                             </thead>
@@ -65,13 +65,14 @@
                                         <td>{{ $data->deskripsi }}</td>
                                         <td>
                                             <a href="/ubahproduk/{{ $data->id_produk }}" title="Ubah Data"
-                                                class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
+                                                class="bi bi-pencil-square btn btn-warning " style="font-size: 8px"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/{{ $data->id_produk }}"
                                                 title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger col-md-5 py-2"></a>
+                                                class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px"></a>
                                         </td>
                                 @endforeach
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>

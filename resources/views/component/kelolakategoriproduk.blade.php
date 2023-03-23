@@ -24,7 +24,7 @@
                                         <tr>
                                             <!-- <th scope="col">Pilihan</th> -->
                                             <th scope="col"class="col-md-1">No</th>
-                                            <th scope="col" class="col-md-4">Gambar Kategori</th>
+                                            <th scope="col" class="col-md-3">Gambar Kategori</th>
                                             <th scope="col" class="col-md-4">Nama Kategori</th>
                                             <th scope="col"class="col-md-3">Aksi</th>
                                             <!-- <th scope="col">Lampiran</th> -->
@@ -44,10 +44,10 @@
                                                 <td>
                                                     <a href="/ubahkategoriproduk/{{ $data->kategori }}"
                                                         title="Ubah Data"
-                                                        class=" bi bi-pencil-square btn btn-warning col-md-4 ml-3 py-2"></a>
+                                                        class=" bi bi-pencil-square btn btn-warning col-md-4 ml-1 py-2"></a>
                                                     <a href="/hapuskategoriproduk/{{ $data->kategori }}"
                                                         title="Hapus Data"
-                                                        class="bi bi-trash-fill btn btn-danger col-md-4 ml-3 py-2 "></a>
+                                                        class="bi bi-trash-fill btn btn-danger col-md-4 ml-1 py-2 "></a>
                                                 </td>
                                         @endforeach
                                     </tbody>
