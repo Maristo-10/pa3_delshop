@@ -63,7 +63,7 @@
                         <h5 class="card-title ml-3">Ubah Data Kategori Produk</h5>
                         @foreach ($kategoriproduk as $data)
                         <!-- Horizontal Form -->
-                        <form class="mt-3" action="/prosesubahkategori/{{ $data->kategori }}" method="post"enctype="multipart/form-data">
+                        <form class="mt-3" action="/prosesubahkategori/{{ $data->kategori }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="kategori" class="col-sm-5 col-form-label">

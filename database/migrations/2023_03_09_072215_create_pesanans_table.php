@@ -19,6 +19,7 @@ class CreatePesanansTable extends Migration
             $table->integer('jumlah_harga');
             $table->string('status')->default('keranjang');
             $table->string('nama_pengambil')->nullable();
+            $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id");

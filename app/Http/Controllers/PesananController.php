@@ -89,8 +89,7 @@ class PesananController extends Controller
         $pesanan->update();
 
 
-        // $jumlah_pro = $produk->jumlah_produk - $request->jumlah;
-        // $produk->update(['jumlah_produk'=>$jumlah_pro]);
+
 
         return redirect()->route("pembeli.viewproduk");
     }
@@ -158,8 +157,27 @@ class PesananController extends Controller
         ]);
     }
 
-    public function getData($id) {
-        $metode_pembayaran = MetodePembayaran::where('kategori_layanan', $id)->get();
-        return response()->json($metode_pembayaran);
+
+    public function pcheckout(Request $request){
+        $arrName = [];
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        if($request->file('bukti_pembayaran')){
+            if ($request->hasfile('bukti_pembayaran')) {
+                $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('bukti_pembayaran')->getClientOriginalName());
+                $request->file('bukti_pembayaran')->move(public_path('pembayaran-images'), $filename);
+                $pesanan_baru->update(['bukti_pembayaran'=>$filename]);
+            }
+            // $validatedData['gambar_produk'] = $request->file('gambar_produk')->store('product-images');
+            // $tambahproduk->gambar_produk = $request->gambar_produk;
+        }
+        // $jumlah_pro = $produk->jumlah_produk - $request->jumlah;
+        // $produk->update(['jumlah_produk'=>$jumlah_pro]);
+        $pesanan_baru->update([
+            'status'=>'Diproses',
+            'nama_pengambil'=>$request->nama_pengambil
+        ]);
+
+        return redirect()->route('frontend.dashboard-pembeli');
     }
 }

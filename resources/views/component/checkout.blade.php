@@ -169,8 +169,8 @@
                 </b>
             </div>
         </div>
-        <form action="">
-
+        <form action="/proses-checkout" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="row px-xl-5">
                 <div class="col-lg table-responsive mb-5">
                     <div class="text-left">

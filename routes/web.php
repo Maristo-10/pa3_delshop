@@ -43,6 +43,7 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::post('/profile/update',[UserController::class, 'uprofile'])->name('pembeli.updateprofile');
 
     Route::get('/checkout', [PesananController::class,'vcheckout'])->name('pembeli.checkout');
+    Route::post('/proses-checkout', [PesananController::class,'pcheckout'])->name('pembeli.pcheckout');
 
     Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
     Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
