@@ -38,7 +38,11 @@ class MetodePembayaranController extends Controller
         $tambahmetpem->nama_layanan = $request->nama_layanan;
         $tambahmetpem->no_layanan = $request->no_layanan;
         $tambahmetpem->nama_pemilik = $request->nama_pemilik;
-        $tambahmetpem->kategori_layanan = $request->kategori_layanan;
+        $id_kapem = $request->kategori_layanan;
+        $tambahmetpem->kategori_layanan = $id_kapem;
+        $kapem = KategoriPembayaran::where('id',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
+
+        $tambahmetpem->kapem = $kapem;
         if (!$tambahmetpem->save()) {
             if (count($arrName) > 1) {
                 foreach ($arrName as $path) {
@@ -110,5 +114,32 @@ class MetodePembayaranController extends Controller
         $kapem->update($request->except(['_token']));
 
         return redirect()->route('admin.kelolametodepembayaran');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     /**
+     * return metode_pembayaran list.
+     *
+     * @return json
+     */
+    // public function metpem($id){
+
+    //     $metpem = MetodePembayaran::where('kategori_layanan',$id)->get();
+
+    //     return response()->json($metpem);
+    // }
+
+    public function metpem(Request $request){
+        $metpem = MetodePembayaran::where('kategori_layanan', $request->kapem_id)->get();
+        return response()->json($metpem);
+    }
+
+    public function layanan(Request $request){
+        $metpem = MetodePembayaran::where('id', $request->metpem_id)->get();
+        return response()->json($metpem);
     }
 }

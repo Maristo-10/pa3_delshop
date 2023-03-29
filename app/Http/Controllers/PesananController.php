@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DetailPesanan;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\MetodePembayaran;
+use App\Models\KategoriPembayaran;
 
 
 class PesananController extends Controller
@@ -125,7 +127,11 @@ class PesananController extends Controller
 
         return redirect()->route('pembeli.keranjang');
     }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function vcheckout(){
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
@@ -137,6 +143,9 @@ class PesananController extends Controller
         ->where('produk.status_produk','Aktif')
         ->get();
         $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
+        $metpem = MetodePembayaran::all();
+        $kapem = KategoriPembayaran::all();
+
         return view('pembeli.checkout',[
             'pesanan_baru'=> $pesanan_baru,
             'pesanan'=>$pesanan,
@@ -144,6 +153,13 @@ class PesananController extends Controller
             'pesanan_harga'=>$pesanan_harga,
             'pesanan_detail'=>$pesanan_detail,
             'total'=> $total,
+            'metpem'=>$metpem,
+            'kapem'=>$kapem
         ]);
+    }
+
+    public function getData($id) {
+        $metode_pembayaran = MetodePembayaran::where('kategori_layanan', $id)->get();
+        return response()->json($metode_pembayaran);
     }
 }

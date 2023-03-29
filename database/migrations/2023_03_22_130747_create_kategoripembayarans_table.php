@@ -14,7 +14,8 @@ class CreateKategoripembayaransTable extends Migration
     public function up()
     {
         Schema::create('kategoripembayarans', function (Blueprint $table) {
-            $table->string('kategori_pembayaran')->primary();
+            $table->id();
+            $table->string('kategori_pembayaran');
             $table->timestamps();
         });
     }

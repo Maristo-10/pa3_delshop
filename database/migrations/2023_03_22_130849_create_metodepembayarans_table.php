@@ -18,7 +18,8 @@ class CreateMetodepembayaransTable extends Migration
             $table->string('nama_layanan');
             $table->string('no_layanan');
             $table->string('nama_pemilik');
-            $table->string('kategori_layanan');
+            $table->unsignedBigInteger('kategori_layanan');
+            $table->string('kapem')->nullable();
             $table->timestamps();
         });
     }

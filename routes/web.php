@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\MetodePembayaranController;
+use App\Models\MetodePembayaran;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,9 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::post('/profile/update',[UserController::class, 'uprofile'])->name('pembeli.updateprofile');
 
     Route::get('/checkout', [PesananController::class,'vcheckout'])->name('pembeli.checkout');
+
+    Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
+    Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {

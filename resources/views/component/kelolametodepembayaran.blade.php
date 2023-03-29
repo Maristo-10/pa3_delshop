@@ -60,7 +60,7 @@
                                         <td>{{ $data->nama_layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
-                                        <td>{{ $data->kategori_layanan }}</td>
+                                        <td>{{ $data->kapem }}</td>
                                         <td>
                                             <a href="/ubah-metode-pembayaran/{{ $data->id }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
