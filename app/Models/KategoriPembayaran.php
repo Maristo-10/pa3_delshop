@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class KategoriPembayaran extends Model
 {
     protected $table = "kategoripembayarans";
-    protected $guarded = [];
+    protected $fillable =['id','kategori_pembayaran'];
 
 }

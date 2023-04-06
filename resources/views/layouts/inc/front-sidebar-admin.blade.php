@@ -66,4 +66,22 @@
             </li>
         </ul>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav-4" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bag"></i><span>Manajemen Pesanan</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/kelola-pesanan">
+                    <i class="bi bi-wallet2 fs-5"></i><span>Kelola Pesanan</span>
+                </a>
+            </li>
+            {{-- <li>
+                <a href="/kelola-metode-pembayaran">
+                    <i class="bi bi-wallet-fill fs-5"></i><span>Kelola Kategori Pembayaran</span>
+                </a>
+            </li> --}}
+        </ul>
+    </li>
 </ul>

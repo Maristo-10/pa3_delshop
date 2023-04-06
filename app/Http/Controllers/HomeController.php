@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first('id');
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if(empty($pesanan_baru)){
             $pesanan = 0;
@@ -58,7 +58,7 @@ class HomeController extends Controller
 
     public function produk()
     {
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if(empty($pesanan_baru)){
             $pesanan = 0;
@@ -79,7 +79,7 @@ class HomeController extends Controller
 
     public function detail_produk($id)
     {
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if(empty($pesanan_baru)){
             $pesanan = 0;
@@ -98,7 +98,7 @@ class HomeController extends Controller
 
     public function produk_kategori($id)
     {
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if(empty($pesanan_baru)){
             $pesanan = 0;

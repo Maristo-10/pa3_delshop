@@ -4,7 +4,7 @@
     <h1>Dashboard</h1>
 @endsection
 
-@section('content')
+{{-- @section('content')
     <section class="section dashboard">
         <div class="row">
 
@@ -407,4 +407,4 @@
                 </div><!-- End News & Updates -->
 
               </div><!-- End Right side columns -->s
-        @endsection
+        @endsection --}}

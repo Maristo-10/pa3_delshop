@@ -45,8 +45,16 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/checkout', [PesananController::class,'vcheckout'])->name('pembeli.checkout');
     Route::post('/proses-checkout', [PesananController::class,'pcheckout'])->name('pembeli.pcheckout');
 
+    Route::get('/pesanan', [PesananController::class,'vpesanan'])->name('pembeli.pesanan');
+    Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.pesanan');
+
     Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
     Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
+
+    Route::get('/get-diproses', [PesananController::class, 'diproses'])->name('getDiproses');
+    Route::get('/get-ditangguhkan', [PesananController::class, 'ditangguhkan'])->name('getDitangguhkan');
+    Route::get('/get-belum', [PesananController::class, 'belumDiambil'])->name('getBelum');
+    Route::get('/get-selesai', [PesananController::class, 'selesai'])->name('getSelesai');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {
@@ -83,6 +91,9 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/hapus/kategoripembayaran/{id}', [MetodePembayaranController::class, 'hapuskapem'])->name('admin.hapuskategoripengguna');
     Route::get('/ubah-kategori-pembayaran/{id}', [MetodePembayaranController::class,'ubkapem'])->name('admin.ubahkategoripembayaran');
     Route::post('/proses-ubah-kategori-pembayaran/{id}', [MetodePembayaranController::class,'ubahkapem'])->name('admin.prosesubahkategoripembayaran');
+
+    Route::get('/kelola-pesanan', [PesananController::class,'kelolapesanan'])->name('admin.kelolapesanan');
+    Route::get('/detail/pesanan/{id}', [PesananController::class,'detailpesanan'])->name('admin.detailpesanan');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

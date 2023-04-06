@@ -184,7 +184,7 @@
                             <select name="kategori_pembayaran" id="kategori_pembayaran" class="form-control">
                                 <option value="0" selected><b>Silahkan Pilih Metode Pembayaran</b></option>
                                 @foreach ($kapem as $data)
-                                    <option value="{{ $data->id }}">{{ $data->kategori_pembayaran }}
+                                    <option value="{{ $data->id_kapem }}">{{ $data->kategori_pembayaran }}
                                     </option>
                                 @endforeach
                             </select>
@@ -286,7 +286,7 @@
                             '<option value="0">Pilih Layanan Pembayaran</option>');
                         $.each(res, function(key, value) {
                             $('#metode_pembayaran').append('<option value="' + value
-                                .id + '">' + value.nama_layanan + '</option>');
+                                .id_metpem + '">' + value.nama_layanan + '</option>');
                         });
                         $('#f-metpem').prop('hidden', false);
                     }

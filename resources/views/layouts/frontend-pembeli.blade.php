@@ -292,7 +292,7 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script> --}}
     <script src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
@@ -302,7 +302,7 @@
     <!-- Contact Javascript File -->
     {{-- <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
     <script src="{{ asset('mail/contact.js') }}"></script> --}}
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
     <!-- Swiper JS -->
@@ -314,7 +314,7 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main2.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
@@ -322,7 +322,7 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script> --}}
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->

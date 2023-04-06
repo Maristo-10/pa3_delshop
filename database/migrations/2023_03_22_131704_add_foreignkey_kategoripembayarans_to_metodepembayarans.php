@@ -14,7 +14,7 @@ class AddForeignkeyKategoripembayaransToMetodepembayarans extends Migration
     public function up()
     {
         Schema::table('metodepembayarans', function (Blueprint $table) {
-            $table->foreign("kategori_layanan")->references("id")->on("kategoripembayarans")->onDelete('cascade');
+            $table->foreign("kategori_layanan")->references("id_kapem")->on("kategoripembayarans")->onDelete('cascade');
         });
     }
 

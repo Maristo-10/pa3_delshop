@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Pesanan extends Model
 {
     protected $table = "pesanans";
-    protected $guarded = [];
+    protected $fillable = ['tanggal','jumlah_harga','status','nama_pengambil','bukti_pembayaran','user_id','id_layanan','metode_pembayaran'];
 }

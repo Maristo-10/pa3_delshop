@@ -80,7 +80,7 @@ class UserController extends Controller
     }
 
     public function vprofile(){
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         if(empty($pesanan_baru)){
             $pesanan = 0;
         }else{

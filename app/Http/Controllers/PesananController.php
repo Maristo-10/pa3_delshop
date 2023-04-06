@@ -28,11 +28,11 @@ class PesananController extends Controller
         $pesanan = new Pesanan;
         $pesanan->user_id = Auth::user()->id;
         $pesanan->tanggal = $tanggal;
-        $pesanan->status = "0";
         $pesanan->jumlah_harga = 0;
+
         $pesanan->save();
 
-        $pesanan_baru = Pesanan::where('user_id',Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
 
         $pesanan_detail = new DetailPesanan();
         $pesanan_detail->produk_id = $produk->id;
@@ -52,18 +52,17 @@ class PesananController extends Controller
             return redirect('detail-produk/'.$id);
         }
 
-        $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
 
         if(empty($cek_pesanan)){
             $pesanan = new Pesanan;
             $pesanan->user_id = Auth::user()->id;
             $pesanan->tanggal = $tanggal;
-            $pesanan->status = "0";
             $pesanan->jumlah_harga = 0;
             $pesanan->save();
         }
 
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
 
         $cek_pesanan_detail = DetailPesanan::where('produk_id', $produk->id_produk)->where('pesanan_id',$pesanan_baru->id)->first();
 
@@ -84,7 +83,7 @@ class PesananController extends Controller
             $pesanan_detail->update();
         }
 
-        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pesanan->jumlah_harga = $pesanan->jumlah_harga+$produk->harga*$request->jumlah;
         $pesanan->update();
 
@@ -95,8 +94,13 @@ class PesananController extends Controller
     }
 
     public function vkeranjang(){
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
         if(empty($pesanan_baru)){
             return redirect()->route('frontend.dashboard-pembeli');
         }else{
@@ -132,8 +136,13 @@ class PesananController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function vcheckout(){
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
         $pesanan = DetailPesanan::select(DB::raw('count("id") as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
         $pesanan_harga = DetailPesanan::select(DB::raw('SUM(jumlah_harga) as totalh'))->where('pesanan_id',$pesanan_baru->id)->get();
         $pesanan_detail = DB::table('pesanandetails')
@@ -161,7 +170,7 @@ class PesananController extends Controller
     public function pcheckout(Request $request){
         $arrName = [];
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         if($request->file('bukti_pembayaran')){
             if ($request->hasfile('bukti_pembayaran')) {
                 $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('bukti_pembayaran')->getClientOriginalName());
@@ -174,10 +183,149 @@ class PesananController extends Controller
         // $jumlah_pro = $produk->jumlah_produk - $request->jumlah;
         // $produk->update(['jumlah_produk'=>$jumlah_pro]);
         $pesanan_baru->update([
-            'status'=>'Diproses',
-            'nama_pengambil'=>$request->nama_pengambil
+            'status'=>'Sedang Diproses',
+            'nama_pengambil'=>$request->nama_pengambil,
+            'metode_pembayaran'=>$request->kategori_pembayaran,
+            'id_layanan'=>$request->metode_pembayaran
+
         ]);
 
         return redirect()->route('frontend.dashboard-pembeli');
+    }
+
+    public function vpesanan(){
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('pesanans.user_id', Auth::user()->id)
+        ->where('status','!=','keranjang')
+        ->get();
+
+
+        return view('pembeli.pesanan',[
+            'pengguna_prof'=>$pengguna_prof,
+            'pesanan_baru'=>$pesanan_baru,
+            'pesanan'=>$pesanan,
+            'pesanan_kapem'=>$pesanan_kapem
+        ]);
+    }
+
+    public function detail_pesanan($id){
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+
+        $harga = Pesanan::where('id',$id)->first();
+        $pembayaran = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('id', $id)
+        ->get();
+
+        $detail_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->where('pesanan_id',$id)
+        ->get();
+
+        return view('pembeli.detailpesanan',[
+            'pengguna_prof'=>$pengguna_prof,
+            'pesanan_baru'=>$pesanan_baru,
+            'pesanan'=>$pesanan,
+            'harga'=>$harga,
+            'detail_pesanan'=>$detail_pesanan,
+            'pembayaran'=>$pembayaran
+        ]);
+    }
+
+    public function kelolapesanan(){
+
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('status','!=','keranjang')
+        ->get();
+
+
+        return view('admin.kelolapesanan',[
+            'pengguna_prof'=>$pengguna_prof,
+            'pesanan_kapem'=>$pesanan_kapem
+        ]);
+    }
+
+    public function detailpesanan($id){
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+
+        $harga = Pesanan::where('id',$id)->first();
+        $pembayaran = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('id', $id)
+        ->get();
+
+        $detail_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->where('pesanan_id',$id)
+        ->get();
+
+        return view('admin.detailpesanan',[
+            'pengguna_prof'=>$pengguna_prof,
+            'harga'=>$harga,
+            'detail_pesanan'=>$detail_pesanan,
+            'pembayaran'=>$pembayaran
+        ]);
+    }
+
+    public function ditangguhkan(){
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('pesanans.user_id', Auth::user()->id)
+        ->where('status', 'Belum Dibayar')
+        ->get();
+        return response()->json($pesanan_kapem);
+    }
+
+    public function belumDiambil(){
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('pesanans.user_id', Auth::user()->id)
+        ->where('status', 'Siap Diambil')
+        ->get();
+        return response()->json($pesanan_kapem);
+    }
+
+    public function selesai(){
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('pesanans.user_id', Auth::user()->id)
+        ->where('status', 'Selesai')
+        ->get();
+        return response()->json($pesanan_kapem);
+    }
+
+    public function diproses(){
+        $pesanan_kapem = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('pesanans.user_id', Auth::user()->id)
+        ->where('status', 'Sedang Diproses')
+        ->get();
+        return response()->json($pesanan_kapem);
     }
 }

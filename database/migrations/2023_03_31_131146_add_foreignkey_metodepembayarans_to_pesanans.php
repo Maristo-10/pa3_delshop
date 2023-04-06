@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoripembayaransTable extends Migration
+class AddForeignkeyMetodepembayaransToPesanans extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateKategoripembayaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategoripembayarans', function (Blueprint $table) {
-            $table->increments('id_kapem')->primary();
-            $table->string('kategori_pembayaran');
-            $table->timestamps();
+        Schema::table('pesanans', function (Blueprint $table) {
+            $table->foreign("nama_layanan")->references("id_metpem")->on("metodepembayarans")->onDelete('cascade');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateKategoripembayaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategoripembayarans');
+        Schema::table('pesanans', function (Blueprint $table) {
+            //
+        });
     }
 }

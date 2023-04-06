@@ -65,7 +65,7 @@ class MetodePembayaranController extends Controller
     }
 
     public function ubahmetpem(Request $request, $id){
-        $metpem=MetodePembayaran::find($id);
+        $metpem=MetodePembayaran::where('id_metpem',$id);;
 
         $metpem->update($request->all());
 
@@ -139,7 +139,7 @@ class MetodePembayaranController extends Controller
     }
 
     public function layanan(Request $request){
-        $metpem = MetodePembayaran::where('id', $request->metpem_id)->get();
+        $metpem = MetodePembayaran::where('id_metpem', $request->metpem_id)->get();
         return response()->json($metpem);
     }
 }
