@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
@@ -159,13 +160,13 @@
                                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                                     data-bs-toggle="dropdown" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @foreach ($pengguna_prof as $profile)
-                                    @php
-                                        $profile = $profile->gambar_pengguna;
-                                    @endphp
-                                        <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
+                                    {{-- @foreach ($pengguna_prof as $profile)
+                                        @php
+                                            $profile = $profile->gambar_pengguna;
+                                        @endphp
+                                        <img src="{{ asset('/profile-images/' . $profile) }}" alt="Profile"
                                             class="rounded-circle" style="width: 40px; height:40px">
-                                    @endforeach
+                                    @endforeach --}}
 
                                     <span
                                         class="d-none d-md-block dropdown-toggle ps-2 ml-3">{{ Auth::user()->name }}</span>
@@ -206,7 +207,8 @@
             <div class="col-lg-11">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                                class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse"
                         data-target="#navbarCollapse">
@@ -290,18 +292,18 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script> --}}
 
 
     <!-- Contact Javascript File -->
-    <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
+    {{-- <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
     <script src="{{ asset('mail/contact.js') }}"></script>
     <script src="{{ asset('ja/jquery.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script> --}}
 
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
@@ -312,7 +314,7 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main2.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
@@ -320,9 +322,15 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('https://code.jquery.com/jquery-3.5.1.slim.min.js') }}"
+    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.5.1.slim.min.js') }}"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    </script> --}}
+
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> {{-- custom js --}}
+
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->
@@ -337,6 +345,16 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- jquery --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js --}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
+
+    {{-- custom.js adding to cart ajax --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- end custom.js --}}
+    {{-- end - jquery --}}
 </body>
 
 </html>

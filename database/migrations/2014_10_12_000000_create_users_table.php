@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat')->default('-');
             $table->string('no_telp')->default('-');
             $table->string('gambar_pengguna')->default('profile.png');
-            $table->longText('tentang')->default('-');
+            $table->longText('tentang')->nullable();
             $table->string('email')->unique();
             $table->string('twitter')->default('https://twitter.com/');
             $table->string('facebook')->default('https://facebook.com/');

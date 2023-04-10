@@ -36,6 +36,8 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::post('/produk/tambah-keranjang/{id}',[PesananController::class, 'keranjang'])->name('pembeli.tambahkeranjang');
     Route::get('/keranjang',[PesananController::class, 'vkeranjang'])->name('pembeli.keranjang');
     Route::get('/hapus/pesanan-keranjang/{id}', [PesananController::class, 'hapuskeranjang'])->name('admin.hapuspesanan');
+    // update quantity di cart
+    Route::post('/update-to-cart', [PesananController::class, 'updatetocart'])->name('cart.update');
 
     Route::get('/profile', [UserController::class,'vprofile'])->name('pembeli.profile');
     Route::post('/profile/update',[UserController::class, 'uprofile'])->name('pembeli.updateprofile');

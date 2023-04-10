@@ -14,6 +14,31 @@ use App\Models\User;
 
 class PesananController extends Controller
 {
+    public function updatetocart(Request $request) {
+        $prod_id = $request->input('produk_id');
+        $newQuantity = $request->input('quantity');
+
+        $produk = Produk::where('id_produk',$prod_id)->first();
+        // dd($produk);
+        // DB::table('pesanandetails')->where('produk_id', $prod_id)->update([
+        //     'jumlah' => $newQuantity,
+        //     'jumlah_harga' => $produk->harga * $newQuantity,
+        // ]);
+
+        $detailPesanan = DetailPesanan::where('produk_id', $prod_id)->firstOrFail();
+        $detailPesanan->jumlah = $newQuantity;
+        $detailPesanan->jumlah_harga = $produk->harga * $newQuantity;
+        $detailPesanan->save();
+
+        // $cartItem = Cart::where('product_id', $productId)->firstOrFail();
+        // $cartItem->quantity = $newQuantity;
+        // $cartItem->save();
+
+        return response()->json([
+            'gtprice' => $produk->harga * $newQuantity,
+        ]);
+    }
+
     public function tambahkeranjang(Request $request,$id){
         $produk = Produk::where('id_produk',$id);
         $tanggal = Carbon::now();
@@ -89,7 +114,9 @@ class PesananController extends Controller
     }
 
     public function vkeranjang(){
+        // get user id
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
         if(empty($pesanan_baru)){
             return redirect()->route('frontend.dashboard-pembeli');
@@ -103,7 +130,8 @@ class PesananController extends Controller
             ->get();
         }
         $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
-
+        // return $pesanan_detail;
+        // dd($total);
         return view('pembeli.keranjang',[
             'pesanan'=>$pesanan,
             'pesanan_baru'=> $pesanan_baru,
