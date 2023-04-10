@@ -33,7 +33,7 @@
                                 <th scope="col" class="col-md-3">Nama Pengguna</th>
                                 <th scope="col" class="col-md-3">Email</th>
                                 <th scope="col" class="col-md-2">Role Pengguna</th>
-                                <th scope="col" class="col-md-1">Aksi</th>
+                                <th scope="col" class="col-md-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,9 +46,9 @@
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->role_pengguna }}</td>
-                                    <td>
-                                        <a href="/ubahpengguna/{{ $data->id}}" title="Ubah Data" class="bi bi-pencil-square btn btn-warning col-md-5 py-2 "></a>
-                                        <a href="/hapus/pengguna/{{ $data->id}}" title="Hapus Data"class="bi bi-trash-fill btn btn-danger col-md-5 py-2 ml-2"></a>
+                                    <td style="text-align: center">
+                                        <a href="/ubahpengguna/{{ $data->id}}" title="Ubah Data" class="bi bi-pencil-square btn btn-warning " style="font-size: 15px"></a>
+                                        <a href="/hapus/pengguna/{{ $data->id}}" title="Hapus Data"class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px"></a>
                                     </td>
                             @endforeach
                         </tbody>

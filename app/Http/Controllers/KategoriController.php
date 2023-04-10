@@ -7,6 +7,11 @@ use App\Models\KategoriProdukModel;
 
 class KategoriController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function kategoriproduk(){
         $kategoriproduk = KategoriProdukModel::all();
         return view('admin.kelolakategoriproduk',compact('kategoriproduk'));

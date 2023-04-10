@@ -17,10 +17,14 @@ class CreatePesanansTable extends Migration
             $table->id('id');
             $table->date('tanggal');
             $table->integer('jumlah_harga');
-            $table->string('status');
+            $table->string('status')->default('keranjang');
+            $table->string('nama_pengambil')->nullable();
+            $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("nama_layanan")->nullable();
+            $table->unsignedBigInteger("metode_pembayaran")->nullable();
         });
     }
 
