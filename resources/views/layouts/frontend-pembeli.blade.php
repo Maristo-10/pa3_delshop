@@ -14,27 +14,23 @@
 
     <!-- Google Web Fonts -->
     <link rel="{{ asset('preconnect" href="https://fonts.gstatic.com') }}">
-    <link
-        href="{{ asset('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap') }}"
-        rel="stylesheet">
+    <link href="{{ asset('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap') }}" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet"
-        href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
-    <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}"
-        rel="stylesheet">
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/slick/slick.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/slick/slick-theme.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
+    
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
@@ -44,122 +40,136 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
+    <!--Navbar Start-->
     <div class="start">
-        <div class="row bg-primary py-2 px-xl-5">
-            <div class="col-lg-6 d-none d-lg-block">
-                <!-- <div class="d-inline-flex align-items-center">
-                    <a class="text-light" href="">FAQs</a>
-                    <span class="text-muted px-2">|</span>
-                    <a class="text-light" href="">Help</a>
-                    <span class="text-muted px-2">|</span>
-                    <a class="text-light" href="">Support</a>
-                </div> -->
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-light px-2" href="https://id-id.facebook.com/">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-light px-2" href="https://twitter.com/?lang=id">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-light px-2" href="https://id.linkedin.com/">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-light px-2" href="https://www.instagram.com/">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-light pl-2" href="https://www.youtube.com/">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+        <!--Navbar Top-->
+        <div class="text-right bg-top align-items-center py-2 px-3">
+            <a class="text-light px-2" href="">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="text-light px-2" href="">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a class="text-light px-2" href="">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="text-light px-2" href="">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="text-light pl-2" href="">
+                <i class="fab fa-youtube"></i>
+            </a>
         </div>
-        <div class="row align-items-center py-3 px-xl-5 ">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-2 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
-                    <!-- <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1> -->
+        <!--Navbar Utama-->
+        <div class="container-fluid mt-3 mb-3">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-3">
                     <div class="logo">
-                        <a href="/home">
-                            <img src="{{ asset('img/logo.png') }}" alt="Logo" width="150px">
+                        <a href="index.html">
+                            <img src="{{asset('img/logo.png')}}" alt="Logo" width="150px">
                         </a>
                     </div>
-                </a>
-            </div>
-            <div class="col-lg-5 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products"
-                            style="height: 30px">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-1 col-2">
-                @guest
-                    <a href="/keranjang" class="btn" style="font-size: 20px">
-                        <i class="fas fa-shopping-cart text-primary"></i>
-                        <span class="badge">0</span>
-                    </a>
-                @else
-                    @empty($pesanan_baru)
-                        <a href="/keranjang" class="btn" style="font-size: 20px">
-                            <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge">0</span>
-                        </a>
-                    @else
-                        <a href="/keranjang" class="btn" style="font-size: 20px">
-                            <i class="fas fa-shopping-cart text-primary"></i>
-                            @foreach ($pesanan as $a)
-                                <span class="badge">{{ $a->total }} </span>
-                            @endforeach
-                        </a>
-                    @endempty
-                @endguest
-
-
-            </div>
-            <div class="col-lg-3 col-4 text-right">
-                <!-- <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
-                <a href="" class="btn border">
-                    <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
-                </a> -->
-                <ul class="d-flex align-items-center" style="font-size: 15px">
-                    <!-- Right -->
-                    <ul class="navbar-nav nav-flex-icons ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login') && Route::has('register'))
-                                <div class="col-md-12">
-                                    <li class="nav-item pe-3">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary m-3"
-                                            style="font-size: 15px">
-                                            <a href="{{ route('login') }}">Masuk</a>
-                                        </button>
-                                        {{-- <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a> --}}
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            style="font-size: 15px">
-                                            <a href="{{ route('register') }}">Register</a>
-                                        </button>
-                                        {{-- <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
-                                    </li>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <div class="search">
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for products">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-transparent text-primary">
+                                        <i class="fa fa-search"></i>
+                                    </span>
                                 </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <div class="login mb-4">
+                        @guest
+                            
+                        @else
+                            <!-- Example single danger button -->
+                            <div class="btn-group">
+                                <a type="button" class="text-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <h6 class="dropdown-header">
+                                        Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 12, 2019</div>
+                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-success">
+                                                <i class="fas fa-donate text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 7, 2019</div>
+                                            $290.29 has been deposited into your account!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 2, 2019</div>
+                                            Spending Alert: We've noticed unusually high spending for your account.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                </ul>
+                            </div>
+                        @endguest
+                        
+                        @guest
+                            <a href="/keranjang" class="btn mr-3" style="font-size: 20px">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                {{-- <span class="badge">0</span> --}}
+                            </a>
+                        @else
+                            @empty($pesanan_baru)
+                                <a href="/keranjang" class="btn" style="font-size: 20px">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                    <span class="badge">0</span>
+                                </a>
+                            @else
+                                <a href="/keranjang" class="btn" style="font-size: 20px">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                    @foreach ($pesanan as $a)
+                                        <span class="badge">{{ $a->total }} </span>
+                                    @endforeach
+                                </a>
+                            @endempty
+                        @endguest
+                            @guest
+                            @if (Route::has('login') && Route::has('register'))
+                            <button type="button" class="btn btn-sm btn-outline-secondary ">
+                                <a href="{{ route('login') }}">Masuk</a>
+                            </button>
+                            {{-- <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a> --}}
+                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                <a href="{{ route('register') }}">Register</a>
+                            </button>
                             @endif
                         @else
-                            <li class="nav-item dropdown pe-3">
-                                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-                                    data-bs-toggle="dropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!-- Example single danger button -->
+                            <div class="btn-group">
+                                <a type="button" class="text-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     @foreach ($pengguna_prof as $profile)
                                     @php
                                         $profile = $profile->gambar_pengguna;
@@ -168,68 +178,42 @@
                                             class="rounded-circle" style="width: 40px; height:40px">
                                     @endforeach
 
-                                    <span
-                                        class="d-none d-md-block dropdown-toggle ps-2 ml-3">{{ Auth::user()->name }}</span>
-                                </a><!-- End Profile Iamge Icon -->
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-                                    aria-labelledby="navbarDropdown" style="font-size: 15px">
-                                    <div class="container">
-                                        <a class="dropdown-item d-flex align-items-center m-2" href="/profile">
-                                            <i class="bi bi-person m-2"></i>
-                                            <span>My Profile</span>
-                                        </a>
-                                        <a class="dropdown-item d-flex align-items-center m-2"
-                                            href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            <i class="bi bi-box-arrow-right m-2"></i>
-                                            <span>{{ __('Logout') }}</span>
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
+                                    <span class="d-none ">{{ Auth::user()->name }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item d-flex align-items-center" href="/profile">
+                                        <i class="bi bi-person m-2"></i>
+                                        <span>My Profile</span>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-box-arrow-right m-2"></i>
+                                        <span>{{ __('Logout') }}</span>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </ul>
-                            </li>
+                            </div>
                         @endguest
-
-                    </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <div class="mb-1">
-        <div class="row border-top justify-content-center">
-            <div class="col-lg-11">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse"
-                        data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            @yield('navbar')
-                        </div>
                     </div>
-                </nav>
-                @yield('carousel')
+                </div>
             </div>
         </div>
+        <!--Navbar Menu-->
+        <div class="container-fluid border-top">
+            <nav class="nav mt-3">
+                @yield('navbar')
+            </nav>
+        </div>
     </div>
-    <!-- Navbar End -->
+
+    @yield('carousel')
 
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="container-fluid bg-secondary text-light mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-5 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
@@ -239,7 +223,7 @@
                         </a>
                     </div>
                 </a>
-                <h5 class="font-weight-bold text-dark mb-4 mt-4">Quick Links</h5>
+                <h5 class="font-weight-bold text-light mb-4 mt-4">Quick Links</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>
                     Institut Teknologi Del
                     Jl. Sisingamangaraja, Sitoluama Laguboti, Toba Samosir Sumatera Utara, Indonesia</p>
@@ -250,23 +234,23 @@
             <div class="col-lg-7 col-md-12">
                 <div class="row">
                     <div class="col-md-6 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-light mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="/produk"><i class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-dark mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                            <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-light mb-2" href="/produk"><i class="fa fa-angle-right mr-2"></i>Produk</a>
+                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
                                 Kita</a>
-                            <a class="text-dark mb-2" href="/keranjang"><i
+                            <a class="text-light mb-2" href="/keranjang"><i
                                     class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Partner Del</h5>
+                        <h5 class="font-weight-bold text-light mb-4">Partner Del</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>IT Del</a>
-                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
+                            <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>IT Del</a>
+                            <a class="text-light mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
                                 Del</a>
                         </div>
                     </div>
@@ -275,8 +259,8 @@
         </div>
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md px-xl-0">
-                <p class="mb-md-0 text-center text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Del Shop</a>. All Rights
+                <p class="mb-md-0 text-center text-light">
+                    &copy; <a class="text-light font-weight-semi-bold" href="#">Del Shop</a>. All Rights
                     Reserved.
                     <!-- <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a> -->
                 </p>
@@ -292,17 +276,11 @@
 
 
     <!-- JavaScript Libraries -->
-    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script> --}}
+    <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-
-
-    <!-- Contact Javascript File -->
-    {{-- <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
-    <script src="{{ asset('mail/contact.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
     <!-- Swiper JS -->

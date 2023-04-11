@@ -36,7 +36,7 @@
                         <div class="">{{ $no++ }}.</div>
                         <div class="col-md-4">
                             <img class="col-12" src="/product-images/{{ $data->gambar_produk }}" alt=""
-                                style="border: solid 3px;height:130px">
+                                style="height:130px">
                         </div>
                         <div class="col col-7">
                             <table style="height: 100px">
