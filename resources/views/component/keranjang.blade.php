@@ -29,7 +29,16 @@
                 </thead>
                 <tbody class="text-center">
                     @if (empty($pesanan))
-                        <tr class="align-middle">
+                    <div class="row">
+                        <div class="col-md-12 mycard py-5 text-center">
+                            <div class="mycards">
+                                <h4>Your cart is currently empty.</h4>
+                                {{-- <a href="{{ url('collections') }}"
+                                    class="btn btn-upper btn-primary outer-left-xs mt-5">Continue Shopping</a> --}}
+                            </div>
+                        </div>
+                    </div>
+                        {{-- <tr class="align-middle">
                             <th></th>
                             <th></th>
                             <th></th>
@@ -44,10 +53,10 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                        </tr>
+                        </tr> --}}
                     @elseif(!empty($pesanan))
                         @foreach ($pesanan_detail as $item)
-                            <tr>
+                            <tr class="cartpage">
                                 <td>
                                     <div class="form-check mx-auto">
                                         <input class="form-check-input" type="checkbox" value=""
@@ -60,28 +69,27 @@
                                     <h5 class="mt-3">{{ $item->nama_produk }}</h5>
                                 </td>
                                 <td class="align-middle">
-                                    <div class="input-group quantity mx-auto" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control- text-center"
-                                            value="{{ $item->jumlah }}">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                    <div class="input-group quantity" style="width: 130px;">
+                                        <input type="hidden" class="produk_id" value="{{ $item->id_produk }}">
+                                        <div class="input-group quantity">
+                                            <div class="decrement-btn changeQuantity" style="cursor: pointer">
+                                                <button type="button" class="input-group-text">-</button>
+                                            </div>
+                                            {{-- <input type="number" value="1" > --}}
+                                            <input type="text" class="qty-input" name="jumlah" id="jumlah"
+                                                class="qty-input form-control" value="{{ $item->jumlah }}">
+                                            <div class="increment-btn changeQuantity" style="cursor: pointer">
+                                                <button type="button" class="input-group-text">+</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle">Rp. <?php
-                                $angka = $item->jumlah_harga;
-                                echo number_format($angka, 0, ',', '.');
-                                ?></h5>
+                                <td class="cart-grand-total-price align-middle itotal">Rp. <?php $angka = $item->jumlah_harga;
+                                echo number_format($angka, 0, ',', '.'); ?>
                                 </td>
                                 <!-- <td class="align-middle"><button class="btn btn-sm"><i class="fa fa-times"></i></button></td> -->
-                                <td class="align-middle"><a href="/hapus/pesanan-keranjang/{{$item->id}}"class="btn btn-sm">
+                                <td class="align-middle"><a
+                                        href="/hapus/pesanan-keranjang/{{ $item->id }}"class="btn btn-sm">
                                         <h5 class=" text-danger">Hapus</h5>
                                     </a></td>
                             </tr>
@@ -134,27 +142,34 @@
         <div class="col-lg table-responsive mb-5">
             <table class="table mb-0">
                 <thead class="text-dark text-center">
-                    <tr>
-                        <!-- <th>Pilih Semua</th> -->
-                        <th></th>
-                        <th class="text-right">
-                        </th>
-                        <th class="text-right">
-                            @foreach ($pesanan as $a)
-                                <span class="h5">Total ( {{ $a->total }} Produk): </span>
-                            @endforeach
-                            @foreach ($pesanan_harga as $h)
-                                <span class="h3"><b>Rp. <?php
-                                $angka = $h->totalh;
-                                echo number_format($angka, 0, ',', '.');
-                                ?></b></span>
-                            @endforeach
-                            <a href="/checkout" class="btn btn-secondary px-5 ml-5">Pesan</a>
-                        </th>
-                        <!-- <th>
-                            <a href="btn btn-secondary px-5">Pesan</a>
-                        </th> -->
-                    </tr>
+                    <div id="totalajaxcall">
+                        <tr class="totalpricingload">
+                            <th class="align-middle">Pilih Semua</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="align-middle">
+                                @foreach ($total as $a)
+                            <th class="totalproduk text-right">Total Produk: {{ $a->total }}
+                                @endforeach
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th class="totalallprice align-middle">
+                                @foreach ($pesanan_harga as $h)
+                                    Total Harga : Rp. <?php
+                                    $angka = $h->totalh;
+                                    echo number_format($angka, 0, ',', '.');
+                                    ?>
+                                @endforeach
+                            <th class="align-middle">
+                                <a href="btn btn-secondary px-5">Pesan</a>
+                            </th>
+                        </tr>
+                    </div>
                 </thead>
 
             </table>
