@@ -137,38 +137,42 @@
 <!-- Cart End -->
 
 <!--Chekout-->
+
+
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <div class="col-lg table-responsive mb-5">
             <table class="table mb-0">
                 <thead class="text-dark text-center">
                     <div id="totalajaxcall">
-                        <tr class="totalpricingload">
-                            <th class="align-middle">Pilih Semua</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th class="align-middle">
-                                @foreach ($total as $a)
-                            <th class="totalproduk text-right">Total Produk: {{ $a->total }}
-                                @endforeach
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th class="totalallprice align-middle">
-                                @foreach ($pesanan_harga as $h)
-                                    Total Harga : Rp. <?php
-                                    $angka = $h->totalh;
-                                    echo number_format($angka, 0, ',', '.');
-                                    ?>
-                                @endforeach
-                            <th class="align-middle">
-                                <a href="btn btn-secondary px-5">Pesan</a>
-                            </th>
-                        </tr>
+                        <div class="totalpricingload">
+                            <tr class="total">
+                                <th class="align-middle">Pilih Semua</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class="align-middle">
+                                    @foreach ($total as $a)
+                                <th class="totalproduk text-right">Total Produk: {{ $a->total }}
+                                    @endforeach
+                                </th>
+                                <th></th>
+                                <th></th>
+                                <th class="totalallprice align-middle">
+                                    @foreach ($pesanan_harga as $h)
+                                        Total Harga : Rp. <?php
+                                        $angka = $h->totalh;
+                                        echo number_format($angka, 0, ',', '.');
+                                        ?>
+                                    @endforeach
+                                <th class="align-middle">
+                                    <a href="btn btn-secondary px-5">Pesan</a>
+                                </th>
+                            </tr>
+                        </div>
                     </div>
                 </thead>
 

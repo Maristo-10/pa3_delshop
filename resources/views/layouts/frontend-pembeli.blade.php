@@ -7,11 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-<<<<<<< HEAD
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-=======
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
->>>>>>> origin/master
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
@@ -93,9 +90,9 @@
                 </a>
             </div>
             <div class="col-lg-5 col-6 text-left">
-                <form action="">
+                <form action="/produk/cari" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products"
+                        <input type="text" class="form-control" name="cari" placeholder="Search for products"
                             style="height: 30px">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
@@ -297,11 +294,8 @@
 
 
     <!-- JavaScript Libraries -->
-<<<<<<< HEAD
-    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
-=======
+
     {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script> --}}
->>>>>>> origin/master
     <script src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
@@ -310,15 +304,10 @@
 
     <!-- Contact Javascript File -->
     {{-- <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
-<<<<<<< HEAD
-    <script src="{{ asset('mail/contact.js') }}"></script>
-    <script src="{{ asset('ja/jquery.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script> --}}
-=======
+
     <script src="{{ asset('mail/contact.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
->>>>>>> origin/master
 
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
@@ -337,7 +326,6 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-<<<<<<< HEAD
     {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.5.1.slim.min.js') }}"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script> --}}
@@ -347,9 +335,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> {{-- custom js --}}
 
-=======
     {{-- <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script> --}}
->>>>>>> origin/master
+
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->

@@ -31,7 +31,9 @@ Auth::routes();
 
 Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/home', [HomeController::class, 'index'])->name('frontend.dashboard-pembeli');
+    Route::get('/produk/cari', [HomeController::class, 'cariProduk']);
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');
+    Route::get('/list-produk/cari', [HomeController::class, 'cariProduk2']);
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
     Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewprodukid');
 
@@ -83,7 +85,10 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/hapus/pengguna/{id}', [UserController::class, 'hapuspengguna'])->name('admin.hapuspengguna');
     Route::get('/ubahpengguna/{id}', [UserController::class,'viewubahuser'])->name('admin.ubahpengguna');
     Route::post('/updatepengguna/{id}', [UserController::class,'ubahpengguna'])->name('admin.updatepengguna');
-
+    // add import file
+    Route::get('/tambahpengguna/import', [UserController::class, 'viewimport']);
+    Route::post('/prosestambahpengguna/import', [UserController::class, 'import'])->name('tambahpengguna.import');
+    // end import file
     Route::get('/kelola-metode-pembayaran', [MetodePembayaranController::class, 'kemetpem'])->name('admin.kelolametodepembayaran');
     Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class,'tametpem'])->name('admin.tambahmetodepembayaran');
     Route::post('/prosestambahmetodepembayaran', [MetodePembayaranController::class,'tambahmetpem'])->name('admin.storemetodepembayaran');

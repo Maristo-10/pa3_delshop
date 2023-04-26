@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\DetailPesanan;
 use App\Models\Pesanan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -16,13 +18,28 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    // function to import data excel
+    public function import(Request $request) {
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        $file->move('UsersData', $fileName);
+        Excel::import(new UsersImport, \public_path('/UsersData/'.$fileName));
+
+        return redirect()->route("admin.kelolapengguna");
+        // return redirect()->back()->with('success', 'Data imported successfully!');
+    }
+
     public function user(){
-        $pengguna = User::all();
+        $pengguna = User::paginate(10);
         return view('admin.kelolapengguna',compact('pengguna'));
     }
 
     public function viewtambahuser(){
         return view('admin.tambahpengguna');
+    }
+
+    public function viewimport() {
+        return view('admin.tambahpenggunaimport');
     }
 
     public function tambahuser(Request $request){

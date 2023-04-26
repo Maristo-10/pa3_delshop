@@ -81,7 +81,7 @@ $(document).ready(function () {
                 // window.location.reload();
                 // console.log(response.gtprice)
                 thisClick.closest(".cartpage").find('.cart-grand-total-price').text(response.gtprice);
-                // $('#totalajaxcall').load(location.href + ' .totalpricingload');
+                $('#totalajaxcall').load(location.href + ' .totalpricingload').load(location.href + ' .total');
                 // this.closest(".totalajaxcall").find('.totalpricingload').load(location.href + '');
                 // $('.totalpricingload').html(response.totalpricingload);
 

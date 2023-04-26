@@ -113,10 +113,6 @@ class PesananController extends Controller
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pesanan->jumlah_harga = $pesanan->jumlah_harga+$produk->harga*$request->jumlah;
         $pesanan->update();
-
-
-
-
         return redirect()->route("pembeli.viewproduk");
     }
 

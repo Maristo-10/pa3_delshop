@@ -14,11 +14,11 @@ class CreateMetodepembayaransTable extends Migration
     public function up()
     {
         Schema::create('metodepembayarans', function (Blueprint $table) {
-            $table->increments('id_metpem')->primary();
+            $table->increments('id_metpem');
             $table->string('nama_layanan');
             $table->string('no_layanan');
             $table->string('nama_pemilik');
-            $table->unsignedBigInteger('kategori_layanan');
+            $table->unsignedInteger('kategori_layanan');
             $table->string('kapem')->nullable();
             $table->timestamps();
         });
