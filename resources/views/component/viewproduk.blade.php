@@ -1,17 +1,3 @@
-{{-- <!-- Page Header Start -->
-<div class="container-fluid ">
-    <div class="row px-xl-5 mt-3">
-        <div class="col-lg">
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Produk</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- Page Header End --> --}}
 <!-- Page Header Start -->
 <div class="container-fluid ">
     <div class="row px-xl-5 mt-3">
@@ -216,33 +202,26 @@
                     </div>
                 </div>
                 @foreach ($produk as $item)
-                    <div class="col-lg-3 col-md-2 col-sm-12 pb-1">
+                    <div class="col-sm-4 pb-1 view">
                         <div class="card product-item border-0 mb-3">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}"
-                                    alt="" style="height: 250px">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}">
                             </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <div class="col-12 ml-4" style="text-align: left">
+                            <div class="card-body border-left border-right text-center p-0 ">
+                                <div class="col-12 mt-3" style="text-align: center">
                                     <small class="text-truncate mb-3">{{ $item->nama_produk }}</small>
-                                    <div class="d-flex justify-content-left">
+                                    <div class="d-flex justify-content-center">
                                         <h6>Rp. <?php
                                         $angka = $item->harga;
                                         echo number_format($angka, 0, ',', '.');
                                         ?></h6>
                                     </div>
                                 </div>
-                                <div class="col-12 mt-1" style="text-align: right;color:green">
-                                    <div>
-                                        <small class="text-truncate"><b>Tersisa : </b> </small>
-                                        <small><b> {{ $item->jumlah_produk }}</b></small>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <small><a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-eye text-secondary mr-1"></i>View Detail</a></small>
+                            <div class="card-footer d-flex bg-light border justify-content-center">
+                                <small><a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-secondary mr-1"></i>View Detail</a>
+                                </small>
                             </div>
                         </div>
                     </div>
