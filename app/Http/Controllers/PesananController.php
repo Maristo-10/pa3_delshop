@@ -28,7 +28,7 @@ class PesananController extends Controller
         $pesanan = new Pesanan;
         $pesanan->user_id = Auth::user()->id;
         $pesanan->tanggal = $tanggal;
-        $pesanan->jumlah_harga = 0;
+        $pesanan->total_harga = 0;
 
         $pesanan->save();
 
@@ -58,7 +58,7 @@ class PesananController extends Controller
             $pesanan = new Pesanan;
             $pesanan->user_id = Auth::user()->id;
             $pesanan->tanggal = $tanggal;
-            $pesanan->jumlah_harga = 0;
+            $pesanan->total_harga = 0;
             $pesanan->save();
         }
 
@@ -84,7 +84,7 @@ class PesananController extends Controller
         }
 
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
-        $pesanan->jumlah_harga = $pesanan->jumlah_harga+$produk->harga*$request->jumlah;
+        $pesanan->total_harga = $pesanan->total_harga+$produk->harga*$request->jumlah;
         $pesanan->update();
 
 
@@ -98,10 +98,6 @@ class PesananController extends Controller
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if(empty($pesanan_baru)){
             $pesanan = 0;
-        }else{
-            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
-        }
-        if(empty($pesanan_baru)){
             return redirect()->route('frontend.dashboard-pembeli');
         }else{
             $pesanan = DetailPesanan::select(DB::raw('count("id") as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
@@ -143,6 +139,7 @@ class PesananController extends Controller
         }else{
             $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
         }
+
         $pesanan = DetailPesanan::select(DB::raw('count("id") as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
         $pesanan_harga = DetailPesanan::select(DB::raw('SUM(jumlah_harga) as totalh'))->where('pesanan_id',$pesanan_baru->id)->get();
         $pesanan_detail = DB::table('pesanandetails')
@@ -236,8 +233,17 @@ class PesananController extends Controller
 
         $detail_pesanan = DB::table('pesanandetails')
         ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
         ->where('pesanan_id',$id)
         ->get();
+
+        $jumlah_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
+        ->where('pesanan_id',$id)
+        ->select(DB::raw('SUM(pesanandetails.jumlah) as total'))
+        ->groupBy("pesanandetails.pesanan_id")
+        ->first();
 
         return view('pembeli.detailpesanan',[
             'pengguna_prof'=>$pengguna_prof,
@@ -245,8 +251,10 @@ class PesananController extends Controller
             'pesanan'=>$pesanan,
             'harga'=>$harga,
             'detail_pesanan'=>$detail_pesanan,
-            'pembayaran'=>$pembayaran
+            'pembayaran'=>$pembayaran,
+            'jumlah_pesanan'=>$jumlah_pesanan
         ]);
+
     }
 
     public function kelolapesanan(){
@@ -278,15 +286,67 @@ class PesananController extends Controller
 
         $detail_pesanan = DB::table('pesanandetails')
         ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
         ->where('pesanan_id',$id)
         ->get();
+
+        $jumlah_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
+        ->where('pesanan_id',$id)
+        ->select(DB::raw('SUM(pesanandetails.jumlah) as total'))
+        ->groupBy("pesanandetails.pesanan_id")
+        ->first();
 
         return view('admin.detailpesanan',[
             'pengguna_prof'=>$pengguna_prof,
             'harga'=>$harga,
             'detail_pesanan'=>$detail_pesanan,
-            'pembayaran'=>$pembayaran
+            'pembayaran'=>$pembayaran,
+            'jumlah_pesanan'=>$jumlah_pesanan
         ]);
+    }
+    public function ubahstatus($id){
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+
+        $harga = Pesanan::where('id',$id)->first();
+        $pembayaran = DB::table('pesanans')
+        ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->where('id', $id)
+        ->get();
+
+        $detail_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
+        ->where('pesanan_id',$id)
+        ->get();
+
+        $jumlah_pesanan = DB::table('pesanandetails')
+        ->join('produk','produk.id_produk','=','pesanandetails.produk_id')
+        ->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')
+        ->where('pesanan_id',$id)
+        ->select(DB::raw('SUM(pesanandetails.jumlah) as total'))
+        ->groupBy("pesanandetails.pesanan_id")
+        ->first();
+
+        return view('admin.ubahstatus',[
+            'pengguna_prof'=>$pengguna_prof,
+            'harga'=>$harga,
+            'detail_pesanan'=>$detail_pesanan,
+            'pembayaran'=>$pembayaran,
+            'jumlah_pesanan'=>$jumlah_pesanan
+        ]);
+    }
+
+    public function updatestatus(Request $request, $id){
+        $pesanan = Pesanan::find($id);
+
+        $pesanan->update([
+            'status'=>$request->status,
+        ]);
+
+        return redirect()->route('admin.kelolapesanan');
     }
 
     public function ditangguhkan(){

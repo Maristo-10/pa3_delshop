@@ -17,7 +17,7 @@
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped table-bordered" id="list">
+                    <table class="table table-bordered" id="list">
                         <thead>
                             <tr>
                                 <!-- <th scope="col">Pilihan</th> -->
@@ -42,7 +42,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $data->tanggal }}</td>
                                     <td>Rp. <?php
-                                    $angka = $data->jumlah_harga;
+                                    $angka = $data->total_harga;
                                     echo number_format($angka, 0, ',', '.');
                                     ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
@@ -52,12 +52,26 @@
                                         <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
                                             style="max-height: 50px">
                                     </td>
-                                    <td><b>{{ $data->status }}</b></td>
+                                    <td style="font-weight: bold">
+                                        <div class="row">
+                                            <div class="col col-12">
+                                                <select class="form-control form-select-sm text-center"
+                                                    style="border: none;font-weight: bold" name="f-status" id="f-status">
+                                                    <option selected>{{ $data->status }}</option>
+                                                    <option value="1">Selesai</option>
+                                                    <option value="2">Belum Dibayar</option>
+                                                    <option value="3">Sedang Diproses</option>
+                                                    <option value="4">Siap Diambil</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td class="text-center">
                                         <a href="/detail/pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                             class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
                                         <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
+                                        <a href="/ubah/status/{{$data->id}}" class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
                                     </td>
                             @endforeach
                         </tbody>
@@ -69,3 +83,11 @@
     </div>
 </div>
 </div>
+
+<script type="text/javascript">
+    function eventStatus() {
+        $('#f-status').prop('disabled', false);
+    }
+</script>
+
+

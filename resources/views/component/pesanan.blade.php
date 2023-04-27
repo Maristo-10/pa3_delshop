@@ -48,7 +48,7 @@
                                 <th scope="col" class="">No</th>
                                 <th scope="col" class="col-md-2">Tanggal Pesanan</th>
                                 <th scope="col" class="col-md-2">Total Harga</th>
-                                <th scope="col" class="col-md-3">Nama Pengambil</th>
+                                <th scope="col" class="col-md-2">Nama Pengambil</th>
                                 <th scope="col" class="col-md-1">Metode Pembayaran</th>
                                 <th scope="col" class="col-md-1">Nama Layanan</th>
                                 <th scope="col" class="col-md-1">Bukti Pembayaran</th>
@@ -94,39 +94,6 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-    // const btnOke = document.getElementById("btn-oke");
-    // btnOke.addEventListener("click", function() {
-    //     // $('#table-pesanan').html('');
-    //     // $.ajax({
-    //     //     url: '{{ route('getDiproses') }}',
-    //     //     type: 'get',
-    //     //     success: function(res) {
-    //     //         $.each(res, function(key, value) {
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>1</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+ $value . tanggal + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+$value . jumlah_harga + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+ $value . nama_pengambil + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+$value . kategori_pembayaran + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+ $value . nama_layanan + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 "<td><img src='/pembayaran-images/" + $data - >
-    //     //                 bukti_pembayaran + "style='max-height: 50px'></td>");
-    //     //             $('#table-pesanan').append(
-    //     //                 '<td>'+ $value . status + '</td>');
-    //     //             $('#table-pesanan').append(
-    //     //                 "<td><a href='/detail-pesanan/"+$value.id " title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
-    //     //                 );
-    //     //         });
-    //     //     }
-    //     // });
-    // });
-
     $(document).ready(function() {
         $('#btn-ditangguhkan').on('click', function() {
             $('#table-pesanan').html('');
@@ -140,8 +107,17 @@
                         $('#table-pesanan').append('<tr>');
                         $('#table-pesanan').append('<td>' + $no++ + '</td>');
                         $('#table-pesanan').append('<td>' + value.tanggal +
-                        '</td>');
-                        $('#table-pesanan').append('<td>' + value.jumlah_harga +
+                            '</td>');
+                        var number_string = value.total_harga.toString(),
+                            sisa = number_string.length % 3,
+                            rupiah = number_string.substr(0, sisa),
+                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                        }
+                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
                             '</td>');
                         $('#table-pesanan').append(
                             '<td>' + value.nama_pengambil + '</td>');
@@ -162,6 +138,7 @@
                 }
             });
         });
+
         $('#btn-diproses').on('click', function() {
             $('#table-pesanan').html('');
             $.ajax({
@@ -174,8 +151,17 @@
                         $('#table-pesanan').append('<tr>');
                         $('#table-pesanan').append('<td>' + $no++ + '</td>');
                         $('#table-pesanan').append('<td>' + value.tanggal +
-                        '</td>');
-                        $('#table-pesanan').append('<td>' + value.jumlah_harga +
+                            '</td>');
+                        var number_string = value.total_harga.toString(),
+                            sisa = number_string.length % 3,
+                            rupiah = number_string.substr(0, sisa),
+                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                        }
+                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
                             '</td>');
                         $('#table-pesanan').append(
                             '<td>' + value.nama_pengambil + '</td>');
@@ -183,10 +169,10 @@
                             '<td>' + value.kategori_pembayaran + '</td>');
                         $('#table-pesanan').append(
                             '<td>' + value.nama_layanan + '</td>');
-                            $('#table-pesanan').append(
-                                "<td><img src='/pembayaran-images/" + value
-                                .bukti_pembayaran +
-                                "'style='max-height: 50px'></td>");
+                        $('#table-pesanan').append(
+                            "<td><img src='/pembayaran-images/" + value
+                            .bukti_pembayaran +
+                            "'style='max-height: 50px'></td>");
                         $('#table-pesanan').append(
                             '<td>' + value.status + '</td>');
                         $('#table-pesanan').append(
@@ -210,8 +196,17 @@
                         $('#table-pesanan').append('<tr>');
                         $('#table-pesanan').append('<td>' + $no++ + '</td>');
                         $('#table-pesanan').append('<td>' + value.tanggal +
-                        '</td>');
-                        $('#table-pesanan').append('<td>' + value.jumlah_harga +
+                            '</td>');
+                        var number_string = value.total_harga.toString(),
+                            sisa = number_string.length % 3,
+                            rupiah = number_string.substr(0, sisa),
+                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                        }
+                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
                             '</td>');
                         $('#table-pesanan').append(
                             '<td>' + value.nama_pengambil + '</td>');
@@ -246,8 +241,17 @@
                         $('#table-pesanan').append('<tr>');
                         $('#table-pesanan').append('<td>' + $no++ + '</td>');
                         $('#table-pesanan').append('<td>' + value.tanggal +
-                        '</td>');
-                        $('#table-pesanan').append('<td>' + value.jumlah_harga +
+                            '</td>');
+                        var number_string = value.total_harga.toString(),
+                            sisa = number_string.length % 3,
+                            rupiah = number_string.substr(0, sisa),
+                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                        }
+                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
                             '</td>');
                         $('#table-pesanan').append(
                             '<td>' + value.nama_pengambil + '</td>');

@@ -16,7 +16,7 @@ class CreatePesanansTable extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id('id');
             $table->date('tanggal');
-            $table->integer('jumlah_harga');
+            $table->integer('total_harga');
             $table->string('status')->default('keranjang');
             $table->string('nama_pengambil')->nullable();
             $table->string('bukti_pembayaran')->nullable();

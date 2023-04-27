@@ -13,152 +13,71 @@
 </div>
 <!-- Page Header End -->
 
-<!-- Cart Start -->
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5">
-        <div class="col-lg table-responsive mb-5">
-            <table class="table mb-0">
-                <thead class="text-dark text-center">
-                    <tr>
-                        <th></th>
-                        <th>Produk</th>
-                        <th>Jumlah Produk</th>
-                        <th>Jumlah harga</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    @if (empty($pesanan))
-                        <tr class="align-middle">
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th>
-                                <h4>Keranjang Anda Masih Kosong</h4>
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    @elseif(!empty($pesanan))
-                        @foreach ($pesanan_detail as $item)
-                            <tr>
-                                <td>
-                                    <div class="form-check mx-auto">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="defaultCheck1">
+<section class="h-100">
+    <div class="container h-100 py-5 col-9">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-4 text-center">
+                    <h2 class="fw-normal mb-0 text-black"><strong>Keranjang Belanja</strong></h2>
+                </div>
+                @if (isset($pesanan))
+                    @foreach ($pesanan_detail as $item)
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-3">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-1">
+                                        <img src="/product-images/{{ $item->gambar_produk }}"
+                                            class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </div>
-                                </td>
-                                <td class="align-middle">
-                                    <img src="/product-images/{{ $item->gambar_produk }}" alt=""
-                                        style="width: 120px;height:130px">
-                                    <h5 class="mt-3">{{ $item->nama_produk }}</h5>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="input-group quantity mx-auto" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control- text-center"
-                                            value="{{ $item->jumlah }}">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2">{{ $item->nama_produk }}</p>
+                                        <p><span class="text-muted">Size: </span>M <span class="text-muted">
                                     </div>
-                                </td>
-                                <td class="align-middle">Rp. <?php
-                                $angka = $item->jumlah_harga;
-                                echo number_format($angka, 0, ',', '.');
-                                ?></h5>
-                                </td>
-                                <!-- <td class="align-middle"><button class="btn btn-sm"><i class="fa fa-times"></i></button></td> -->
-                                <td class="align-middle"><a href="/hapus/pesanan-keranjang/{{$item->id}}"class="btn btn-sm">
-                                        <h5 class=" text-danger">Hapus</h5>
-                                    </a></td>
-                            </tr>
-                        @endforeach
-                    @endif
+                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                        <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
 
+                                        <input id="form1" min="0" name="quantity" value="{{ $item->jumlah }}"
+                                            type="number" class="form-control form-control-sm" />
 
-                </tbody>
-            </table>
-        </div>
-        <!-- <div class="col-lg-4">
-            <form class="mb-5" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Apply Coupon</button>
+                                        <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0">Rp. <?php
+                                            $angka = $item->jumlah_harga;
+                                            echo number_format($angka, 0, ',', '.');
+                                            ?></h5>
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                        <a href="/hapus/pesanan-keranjang/{{ $item->id }}" class="text-danger"><i
+                                                class="fas fa-trash fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <a href="/checkout" class="btn btn-success btn-block btn-lg">Lanjutkan Pesanan</a>
+                        </div>
                     </div>
-                </div>
-            </form>
-            <div class="card border-secondary mb-5">
-                <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3 pt-1">
-                        <h6 class="font-weight-medium">Subtotal</h6>
-                        <h6 class="font-weight-medium">$150</h6>
+                @else
+                    <div class="card rounded-3 mb-4">
+                        <div class="card-body p-3">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <h1>Keranjang Anda Kosong</h1>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$10</h6>
-                    </div>
-                </div>
-                <div class="card-footer border-secondary bg-transparent">
-                    <div class="d-flex justify-content-between mt-2">
-                        <h5 class="font-weight-bold">Total</h5>
-                        <h5 class="font-weight-bold">$160</h5>
-                    </div>
-                    <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
-                </div>
+                @endif
+
             </div>
-        </div> -->
-    </div>
-</div>
-<!-- Cart End -->
-
-<!--Chekout-->
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5">
-        <div class="col-lg table-responsive mb-5">
-            <table class="table mb-0">
-                <thead class="text-dark text-center">
-                    <tr>
-                        <!-- <th>Pilih Semua</th> -->
-                        <th></th>
-                        <th class="text-right">
-                        </th>
-                        <th class="text-right">
-                            @foreach ($pesanan as $a)
-                                <span class="h5">Total ( {{ $a->total }} Produk): </span>
-                            @endforeach
-                            @foreach ($pesanan_harga as $h)
-                                <span class="h3"><b>Rp. <?php
-                                $angka = $h->totalh;
-                                echo number_format($angka, 0, ',', '.');
-                                ?></b></span>
-                            @endforeach
-                            <a href="/checkout" class="btn btn-secondary px-5 ml-5">Pesan</a>
-                        </th>
-                        <!-- <th>
-                            <a href="btn btn-secondary px-5">Pesan</a>
-                        </th> -->
-                    </tr>
-                </thead>
-
-            </table>
         </div>
     </div>
-</div>
+</section>
 <!--EndCheckout-->

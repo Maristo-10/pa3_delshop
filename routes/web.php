@@ -94,6 +94,8 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
 
     Route::get('/kelola-pesanan', [PesananController::class,'kelolapesanan'])->name('admin.kelolapesanan');
     Route::get('/detail/pesanan/{id}', [PesananController::class,'detailpesanan'])->name('admin.detailpesanan');
+    Route::get('/ubah/status/{id}', [PesananController::class,'ubahstatus'])->name('admin.ubahstatus');
+    Route::post('/proses/ubah/status/{id}', [PesananController::class,'updatestatus'])->name('admin.updatestatus');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

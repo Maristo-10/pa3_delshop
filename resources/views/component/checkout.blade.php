@@ -3,6 +3,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- Page Header Start -->
 <div class="container-fluid ">
     <div class="row px-xl-5 mt-3">
@@ -19,243 +20,150 @@
 </div>
 <!-- Page Header End -->
 <!-- Navbar Start -->
-<div class="row col-lg-12 mt-5">
-    <div class="col-lg-6 ml-5" style="border: solid 1px">
-        <div class="row px-xl-12 mt-5">
-            <div class="col text-center">
-                <b>
-                    <h2> Detail Pesanan</h2>
-                </b>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="row px-xl-5 mt-4">
-                <table>
-                    @foreach ($pengguna_prof as $pembeli)
-                        <thead>
-                            <tr>
-                                <th><b class="h5">Pemesanan A.N </b></th>
-                                <th class="px-xl-4">{{ $pembeli->name }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th><b class="h5">No. Telepon</b></th>
-                                <th class="px-xl-4">{{ $pembeli->no_telp }}</th>
-                            </tr>
-                        </tbody>
-                    @endforeach
-
-                </table>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="col text-center mt-4">
-                <b>
-                    <h5> Detail Produk Pesanan</h5>
-                </b>
-            </div>
-        </div>
-
-
-        <!-- Cart Start -->
-        <div class="pt-2 col-lg-12">
-            <div class="row px-xl-5">
-                <div class="col-lg table-responsive mb-3">
-                    <form action="">
-                        <table class="table mb-0">
-                            <thead class="text-dark text-center">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Produk</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga/Satuan</th>
-                                    <th>Total Harga</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($pesanan_detail as $item)
-                                    <tr>
-                                        <td>
-                                            {{ $no++ }}
-                                        </td>
-                                        <td class="align-middle">
-                                            <img src="/product-images/{{ $item->gambar_produk }}" alt=""
-                                                style="width: 100px;height:110px">
-                                            <h6 class="mt-3">{{ $item->nama_produk }}</h6>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="input-group quantity mx-auto" style="width: 100px;">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-sm btn-minus">
-                                                        <i class="fa fa-minus"></i>
-                                                    </button>
-                                                </div>
-                                                <input type="text" class="form-control form-control- text-center"
-                                                    value="{{ $item->jumlah }}">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-sm btn-plus">
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <h6>Rp. <?php
-                                            $angka = $item->harga;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></h6>
-                                        </td>
-                                        <!-- <td class="align-middle"><button class="btn btn-sm"><i class="fa fa-times"></i></button></td> -->
-                                        <td class="align-middle">
-                                            <h6>Rp. <?php
-                                            $angka = $item->jumlah_harga;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></h6>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Cart End -->
-
-        <!--Chekout-->
-        <div class="pt-2 col-lg-12 ml-5">
-            <div class="row px-xl-5">
-                <div class="col-lg table-responsive mb-3">
-                    <table class="table mb-0">
-                        <thead class="text-dark text-center">
-                            <tr>
-                                <!-- <th>Pilih Semua</th> -->
-                                <th></th>
-                                <th class="align-middle">
-                                </th>
-                                <th class="text-right">
-                                    @foreach ($pesanan as $a)
-                                        <span class="h6">Total ( {{ $a->total }} Produk): </span>
-                                    @endforeach
-                                    @foreach ($pesanan_harga as $h)
-                                        <span class="h5"><b>Rp. <?php
-                                        $angka = $h->totalh;
-                                        echo number_format($angka, 0, ',', '.');
-                                        ?></b></span>
-                                    @endforeach
-                                </th>
-                                <!-- <th>
-                                <a href="btn btn-secondary px-5">Pesan</a>
-                            </th> -->
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <!--EndCheckout-->
-    </div>
-    <!--Chekout-->
-
-    <div class="col-lg-5 pt-5 ml-5" style="border: solid 1px">
-        <div class="row px-xl-12 mb-4">
-            <div class="col text-center">
-                <b>
-                    <h2>Pembayaran</h2>
-                </b>
-            </div>
-        </div>
-        <form action="/proses-checkout" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="row px-xl-5">
-                <div class="col-lg table-responsive mb-5">
-                    <div class="text-left">
-                        <small>Silahkan melakukan pembayaran sesuai dengan data yang tersedia!</small>
-                        <h6 class="mt-4">
-                            <b>Pilih Metode Pembayaran</b>
-                            {{-- <a href="" class="btn border text-secondary btn-lg">Bayar Ditempat</a>
-                        <a href="" class="btn border text-dark btn-lg">Transfer Bank</a> --}}
-                        </h6>
-                        <h6>
-                            <select name="kategori_pembayaran" id="kategori_pembayaran" class="form-control">
-                                <option value="0" selected><b>Silahkan Pilih Metode Pembayaran</b></option>
-                                @foreach ($kapem as $data)
-                                    <option value="{{ $data->id_kapem }}">{{ $data->kategori_pembayaran }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </h6>
-
-                        <div class="mb-3 mt-4" name="f-metpem" id="f-metpem" hidden>
-                            <h6 class="mt-3">
-                                <b>Pilih Layanan</b>
-                            </h6>
-                            <h6><select name="metode_pembayaran" id="metode_pembayaran" class="form-control"></select>
-                            </h6>
-                        </div>
-                        <div class="col mt-4" name="layanan" id="layanan" hidden>
-                            <div class="row mt-4">
-                                <h6><b>Metode Pembayaran</b></h6>
+<!--Chekout-->
+<div class="container py-5 h-100 col-11">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <h5 class="mb-3"><a href="/keranjang" class="text-body"><i
+                                        class="fas fa-long-arrow-alt-left me-2"></i> Kembali</a></h5>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h5>Detail Produk</h5>
+                                </div>
                             </div>
-                            <div class="row">
-                                <p class="col-4"><b>Nama Layanan </b></p>
-                                <p class="col-1">:</p>
-                                <p name="namaLayanan" id="namaLayanan"></p>
-                            </div>
-                            <div class="row">
-                                <p class="col-4"><b>Nomor Pembayaran </b></p>
-                                <p class="col-1">:</p>
-                                <p name="nomorLayanan" id="nomorLayanan"></p>
-                            </div>
-                        </div>
-                        <div class="mb-4" name="error" id="error" hidden>Silahkan Pilih Metode Pembayaran
-                            Terlebih Dahulu Untuk Melanjutkan Proses Tranksaksi</div>
-
-                        <h6 class="mt-4" id="form-bukti-pembayaran" name="form-bukti-pembayaran" hidden>
-                            <b>Upload Bukti Pembayaran</b>
-                            @foreach ($pesanan_harga as $h)
-                                <p class="mt-1 ml-2"><small>Total Harga Pesanan : <b>Rp.
-                                            <?php
-                                            $angka = $h->totalh;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></b></small></p>
+                            <div class="mb-3">
+                                @foreach ($pesanan as $a)
+                                <p class="mb-0">Anda mempunyai <b>{{ $a->total }}</b> Barang di Keranjang</p>
+                                {{-- <span class="h6">Total ( {{ $a->total }} Produk): </span> --}}
                             @endforeach
-                            <input class="form-control col-lg-12 mt-1" type="file" name="bukti_pembayaran"
-                                id="bukti_pembayaran" required>
-                        </h6>
-                        <h6 class="mt-4" id="input-pengambil-pesanan" name="input-pengambil-pesanan" hidden>
-                            <b>Nama Pengambil Pesanan</b>
-                            <input class="form-control col-lg-12 mt-3" type="text" name="nama_pengambil"
-                                id="nama_pengambil" required>
-                        </h6>
 
-                        <div class="row col-12 mt-4 mb-5 " name="btn-pembayaran" id="btn-pembayaran" hidden>
-                            <button type="submit" class="btn btn-success text-white py-2 ml-2 col-4 float-right">
-                                Kirim
-                            </button>
+                            </div>
+                            @foreach ($pesanan_detail as $item)
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div>
+                                                <img src="/product-images/{{ $item->gambar_produk }}"
+                                                    class="img-fluid rounded-3" alt="Shopping item"
+                                                    style="width: 65px;">
+                                            </div>
+                                            <div class="ms-3 ml-3">
+                                                <h5>{{ $item->nama_produk }}</h5>
+                                                <p class="small mb-0">{{ $item->kategori_produk }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center text-left">
+                                            <div style="width: 10px;" class="mr-5">
+                                                <h5 class="fw-normal mb-0">{{ $item->jumlah }}</h5>
+                                            </div>
+                                            <div style="width: 130px;">
+                                                <h6 class="mb-0">Rp. <?php
+                                                    $angka = $item->jumlah_harga;
+                                                    echo number_format($angka, 0, ',', '.');
+                                                    ?></h6>
+                                            </div>
+                                            <a href="#!" style="color: #cecece;"><i
+                                                    class="fas fa-trash-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            @foreach ($pesanan_harga as $h)
+                            <div class="pt-4 text-right">
+                                <h4 class="mb-0"><b>Total Harga : </b>Rp. <?php
+                                    $angka = $h->totalh;
+                                    echo number_format($angka, 0, ',', '.');
+                                    ?></h4>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="card bg-secondary text-white rounded-3">
+                                <div class="card-body p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <h3 class="mb-0"><strong>Pembayaran</strong></h3>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="mb-0">Silahkan Pilih Metode Pembayaran!</p>
+                                    </div>
+                                    <form class="mt-4" action="/proses-checkout" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label " for="kategori_pembayaran">Metode
+                                                Pembayaran</label>
+                                            <select name="kategori_pembayaran" id="kategori_pembayaran"
+                                                class="form-control form-control-md" sizez="17" style="border-radius: 5px">
+                                                <option value="0" selected><small>Pilih Metode
+                                                        Pembayaran</small></option>
+                                                @foreach ($kapem as $data)
+                                                    <option value="{{ $data->id_kapem }}">
+                                                        {{ $data->kategori_pembayaran }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                            <p class="row mt-5 col-12">
-                                <small><i class="bi bi-info-circle"></i></small>
-                                    <small class="ml-1">Silahkan Ambil Pesanan Anda di : <b> Institut Teknologi
-                                        Del,</b><br>
+                                        <div class="form-outline form-white mb-4" name="f-metpem" id="f-metpem" hidden>
+                                            <label class="form-label" for="metode_pembayaran">Pilih Layanan</label>
+                                            <select name="metode_pembayaran" id="metode_pembayaran"
+                                                class="form-control form-control-md" style="border-radius: 5px">
+                                            </select>
+                                        </div>
 
-                                        Depan gerbang Institut Teknologi Del, <br> Sitoluama, KAB. TOBA SAMOSIR - Sigumpar,
-                                        Sumatera Utara,
-                                        ID
-                                        22353
-                                    </small>
+                                        <div class="form-outline form-white mb-3 pb-2" name="layanan" id="layanan" hidden>
+                                            <strong>Detail Layanan Pembayaran</strong>
+                                            <table>
+                                                <tr>
+                                                    <td>Nama Layanan</td>
+                                                    <td class="col-2">:</td>
+                                                    <td name="namaLayanan" id="namaLayanan"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nomor Pembayaran</td>
+                                                    <td class="col-2">:</td>
+                                                    <td name="nomorLayanan" id="nomorLayanan"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="mb-4" name="error" id="error" hidden>Silahkan Pilih Metode Pembayaran
+                                            Terlebih Dahulu Untuk Melanjutkan Proses Tranksaksi</div>
 
+                                        <div class="form-outline form-white mb-3 pb-2" name="form-bukti-pembayaran" id="form-bukti-pembayaran" hidden>
+                                            <strong>Upload Bukti Pembayaran</strong><br>
+                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="mt-2">
+                                        </div>
 
-                            </p>
+                                        <p id="input-pengambil-pesanan" name="input-pengambil-pesanan" hidden>
+                                            <b>Nama Pengambil Pesanan</b>
+                                            <input class="form-control form-control-md mt-2" type="text" name="nama_pengambil"
+                                                id="nama_pengambil" style="border-radius: 5px" required>
+                                        </p>
+                                        <button type="submit" class="btn btn-block btn-lg mt-5" name="btn-pembayaran" id="btn-pembayaran" style="background-color: #212A3E;">
+                                            <div class="d-flex justify-content-between" style="color:white">
+                                                @foreach ($pesanan_harga as $h)
+                                                <span>Rp. <?php
+                                                    $angka = $h->totalh;
+                                                    echo number_format($angka, 0, ',', '.');
+                                                    ?></span>
+                                                @endforeach
+                                                <span>Pesan <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -286,9 +194,11 @@
                             '<option value="0">Pilih Layanan Pembayaran</option>');
                         $.each(res, function(key, value) {
                             $('#metode_pembayaran').append('<option value="' + value
-                                .id_metpem + '">' + value.nama_layanan + '</option>');
+                                .id_metpem + '">' + value.nama_layanan +
+                                '</option>');
                         });
                         $('#f-metpem').prop('hidden', false);
+                        $('#error').prop('hidden', true);
                     }
 
                 }
@@ -319,6 +229,7 @@
                         $('#form-bukti-pembayaran').prop('hidden', false);
                         $('#input-pengambil-pesanan').prop('hidden', false);
                         $('#btn-pembayaran').prop('hidden', false);
+                        $('#error').prop('hidden', true);
                     }
                 }
             });

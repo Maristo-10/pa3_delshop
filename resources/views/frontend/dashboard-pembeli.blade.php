@@ -13,9 +13,9 @@
             <h1>Kategori Produk</h1>
         </div>
         <div class="container">
-            <div class="row px-xl-5 pb-3 ">
+            <div class="row pb-3 ">
                 @foreach ($kategori as $data)
-                    <div class="col-lg-4 col-md-3 pb-1 col-12">
+                    <div class="col-lg-3 col-md-3 pb-1 col-12">
                         <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                             <!-- <p class="text-right">15 Products</p> -->
                             <a href="/produk/{{ $data->kategori }}" class="cat-img text-center overflow-hidden mb-3">

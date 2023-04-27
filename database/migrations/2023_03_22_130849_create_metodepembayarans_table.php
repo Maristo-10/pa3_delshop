@@ -14,7 +14,7 @@ class CreateMetodepembayaransTable extends Migration
     public function up()
     {
         Schema::create('metodepembayarans', function (Blueprint $table) {
-            $table->increments('id_metpem')->primary();
+            $table->id('id_metpem');
             $table->string('nama_layanan');
             $table->string('no_layanan');
             $table->string('nama_pemilik');
