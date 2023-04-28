@@ -23,8 +23,8 @@ class CreatePesanansTable extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("nama_layanan")->nullable();
-            $table->unsignedBigInteger("metode_pembayaran")->nullable();
+            $table->unsignedInteger("nama_layanan")->nullable();
+            $table->unsignedInteger("metode_pembayaran")->nullable();
         });
     }
 

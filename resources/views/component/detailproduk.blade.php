@@ -20,9 +20,10 @@
     <div class="row px-xl-5">
         <div class="col-lg-5 pb-5">
             @foreach ($produk as $item)
-            <div class="carousel-item active">
-                <img class="w-100 h-100" src="/product-images/{{ $item->gambar_produk }}" alt="Image" style="max-width:400px;max-height:500px;min-width:250px;min-height:320px">
-            </div>
+                <div class="carousel-item active">
+                    <img class="w-100 h-100" src="/product-images/{{ $item->gambar_produk }}" alt="Image"
+                        style="max-width:400px;max-height:500px;min-width:250px;min-height:320px">
+                </div>
 
         </div>
 
@@ -35,17 +36,17 @@
             <div class="row">
                 <h6>Harga Produk : </h6>
                 <h6 class="font-weight-semi-bold mb-4 ml-2">Rp. <?php
-                    $angka =$item->harga;
-                        echo  number_format( $angka , 0, ",", ".");
-                    ?></h6>
+                $angka = $item->harga;
+                echo number_format($angka, 0, ',', '.');
+                ?></h6>
             </div>
             <div class="border-bottom mb-3"></div>
             <div class="row mb-5">
                 <h6>Stok Barang : </h6>
                 <h6 class="font-weight-semi-bold mb-3 ml-2"><?php
-                    $angka =$item->jumlah_produk;
-                        echo  number_format( $angka , 0, ",", ".");
-                    ?></h6>
+                $angka = $item->jumlah_produk;
+                echo number_format($angka, 0, ',', '.');
+                ?></h6>
             </div>
             <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea.
                 Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus
@@ -105,19 +106,35 @@
                 @csrf
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-secondary btn-minus">
+                        {{-- <td class="cart-product-quantity" width="130px"> --}}
+                        {{-- get item data  --}}
+                        <input type="hidden" class="product_id" value="{{ $item->id_produk }}">
+                        <div class="input-group quantity">
+
+                            <div class="minus changeQuantity" style="cursor: pointer">
+                                <button type="button" class="input-group-text">-</button>
+                            </div>
+                            {{-- <input type="number" value="1"> --}}
+                            <input type="number" name="jumlah" id="jumlah" class="qty-input form-control" value="1">
+                            <div class="plus changeQuantity" style="cursor: pointer">
+                                <button type="button" class="input-group-text">+</button>
+                            </div>
+                        </div>
+                        {{-- </td> --}}
+                        {{-- <div class="input-group-btn">
+                            <button class="btn btn-secondary btn-minus" id="tambah">
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
                         <input type="text" class="form-control bg-light text-center" value="1" id="jumlah" name="jumlah">
                         <div class="input-group-btn">
-                            <button class="btn btn-secondary btn-plus">
+                            <button class="btn btn-secondary btn-plus" id="">
                                 <i class="fa fa-plus"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
-                    <button type="submit" class="btn btn-secondary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button type="submit" class="btn btn-secondary px-3"><i class="fa fa-shopping-cart mr-1"></i>
+                        Add To Cart</button>
                 </div>
             </form>
 
@@ -132,7 +149,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <h4 class="mb-3">Deskripsi Produk</h4>
-                    <p>{{ $item->deskripsi}}</p>
+                    <p>{{ $item->deskripsi }}</p>
 
                 </div>
                 <div class="tab-pane fade" id="tab-pane-3">

@@ -37,9 +37,9 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($pesanan_kapem as $data)
+                            @foreach ($pesanan_kapem as $index => $data)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $index + $pesanan_kapem->firstItem() }}</td>
                                     <td>{{ $data->tanggal }}</td>
                                     <td>Rp. <?php
                                     $angka = $data->total_harga;
@@ -69,13 +69,13 @@
                                     <td class="text-center">
                                         <a href="/detail/pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                             class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-                                        <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
+                                        <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
                                         <a href="/ubah/status/{{$data->id}}" class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
                                     </td>
                             @endforeach
                         </tbody>
-
+                        {{ $pesanan_kapem->links() }}
                     </table>
                 </div>
             </div>

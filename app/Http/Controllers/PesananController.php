@@ -16,11 +16,38 @@ use App\Models\KategoriPembayaran;
 
 class PesananController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+
+    public function updatetocart(Request $request) {
+        $prod_id = $request->input('produk_id');
+        $newQuantity = $request->input('quantity');
+
+        $produk = Produk::where('id_produk',$prod_id)->first();
+        // dd($produk);
+        // DB::table('pesanandetails')->where('produk_id', $prod_id)->update([
+        //     'jumlah' => $newQuantity,
+        //     'jumlah_harga' => $produk->harga * $newQuantity,
+        // ]);
+
+        $detailPesanan = DetailPesanan::where('produk_id', $prod_id)->firstOrFail();
+        $detailPesanan->jumlah = $newQuantity;
+        $detailPesanan->jumlah_harga = $produk->harga * $newQuantity;
+        $detailPesanan->save();
+
+        // $cartItem = Cart::where('product_id', $productId)->firstOrFail();
+        // $cartItem->quantity = $newQuantity;
+        // $cartItem->save();
+
+        return response()->json([
+            'gtprice' => $produk->harga * $newQuantity,
+        ]);
+
+    }
     public function tambahkeranjang(Request $request,$id){
         $produk = Produk::where('id_produk',$id);
         $tanggal = Carbon::now();
@@ -86,10 +113,6 @@ class PesananController extends Controller
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
         $pesanan->total_harga = $pesanan->total_harga+$produk->harga*$request->jumlah;
         $pesanan->update();
-
-
-
-
         return redirect()->route("pembeli.viewproduk");
     }
 
@@ -109,7 +132,8 @@ class PesananController extends Controller
             ->get();
         }
         $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
-
+        // return $pesanan_detail;
+        // dd($total);
         return view('pembeli.keranjang',[
             'pesanan'=>$pesanan,
             'pesanan_baru'=> $pesanan_baru,
@@ -122,7 +146,14 @@ class PesananController extends Controller
 
     public function hapuskeranjang($id){
         $pesanan = DetailPesanan::find($id);
+        $pesanan_baru = Pesanan::where('id', $pesanan->pesanan_id)->first();
+        $harga_pesanan = $pesanan_baru->total_harga;
+        $harga_detail = $pesanan->jumlah_harga;
+        $harga_akhir = $harga_pesanan - $harga_detail;
+        $pesanan_baru->total_harga = $harga_akhir;
+        $pesanan_baru->save();
         $pesanan->delete();
+
 
         return redirect()->route('pembeli.keranjang');
     }
@@ -168,6 +199,7 @@ class PesananController extends Controller
         $arrName = [];
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $tanggal = Carbon::now();
         if($request->file('bukti_pembayaran')){
             if ($request->hasfile('bukti_pembayaran')) {
                 $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('bukti_pembayaran')->getClientOriginalName());
@@ -183,7 +215,8 @@ class PesananController extends Controller
             'status'=>'Sedang Diproses',
             'nama_pengambil'=>$request->nama_pengambil,
             'metode_pembayaran'=>$request->kategori_pembayaran,
-            'id_layanan'=>$request->metode_pembayaran
+            'id_layanan'=>$request->metode_pembayaran,
+            'tanggal'=>$tanggal
 
         ]);
 
@@ -265,7 +298,7 @@ class PesananController extends Controller
         ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
         ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
         ->where('status','!=','keranjang')
-        ->get();
+        ->paginate(5);
 
 
         return view('admin.kelolapesanan',[
@@ -387,5 +420,15 @@ class PesananController extends Controller
         ->where('status', 'Sedang Diproses')
         ->get();
         return response()->json($pesanan_kapem);
+    }
+
+    public function updatebatalkan($id){
+        $pesanan = Pesanan::find($id);
+
+        $pesanan->update([
+            'status'=>'Dibatalkan',
+        ]);
+
+        return redirect()->route('admin.kelolapesanan');
     }
 }

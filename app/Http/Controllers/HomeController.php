@@ -53,7 +53,41 @@ class HomeController extends Controller
             'pengguna_prof'=>$pengguna_prof,
             'total_ung'=>$total_ung
         ]);
+    }
 
+    public function cariProduk(Request $request) {
+        $cari = $request->cari;
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+
+        $produk = Produk::where('nama_produk', 'like', '%'.$cari.'%')->where('status_produk', 'Aktif')->get();
+        // dd($produk);
+
+        $unggulan = Produk::where('nama_produk', 'like', '%'.$cari.'%')->where('produk_unggulan', 'Unggulan')->get();
+
+        $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan','Unggulan')->where('nama_produk', 'like', '%'.$cari.'%')->get();
+
+        foreach ($produk as $p ) {
+            $kategori = KategoriProdukModel::where('kategori', $p->kategori_produk)->get();
+            // dd($kategori);
+        }
+
+        // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
+        // dd($kategori);
+        return view('frontend.dashboard-pembeli',[
+            'kategori'=>$kategori,
+            'produk'=>$produk,
+            'unggulan'=>$unggulan,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof,
+            'total_ung'=>$total_ung
+        ]);
     }
 
     public function produk()
@@ -65,7 +99,31 @@ class HomeController extends Controller
         }else{
             $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
         }
-        $produk = Produk::all()->where('status_produk','Aktif');
+        $produk = Produk::where('status_produk','Aktif')->get();
+        $kategori = KategoriProdukModel::all();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        return view('pembeli.viewproduk',[
+            'produk'=>$produk,
+            'kategori'=>$kategori,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
+        ]);
+    }
+
+    public function cariProduk2(Request $request) {
+        $cari = $request->cari;
+
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+
+        $produk = Produk::where('nama_produk', 'like', '%'.$cari.'%')->where('status_produk', 'Aktif')->get();
+
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         return view('pembeli.viewproduk',[
@@ -87,6 +145,7 @@ class HomeController extends Controller
             $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
         }
         $produk = Produk::all()->where('id_produk',$id)->where('status_produk','Aktif');
+
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         return view('pembeli.detailproduk',[
             'produk'=>$produk,

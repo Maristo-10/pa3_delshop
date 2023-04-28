@@ -100,7 +100,7 @@
                                                 Pembayaran</label>
                                             <select name="kategori_pembayaran" id="kategori_pembayaran"
                                                 class="form-control form-control-md" sizez="17" style="border-radius: 5px">
-                                                <option value="0" selected><small>Pilih Metode
+                                                <option value="0" selected disabled><small>Pilih Metode
                                                         Pembayaran</small></option>
                                                 @foreach ($kapem as $data)
                                                     <option value="{{ $data->id_kapem }}">
@@ -137,7 +137,7 @@
 
                                         <div class="form-outline form-white mb-3 pb-2" name="form-bukti-pembayaran" id="form-bukti-pembayaran" hidden>
                                             <strong>Upload Bukti Pembayaran</strong><br>
-                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="mt-2">
+                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="mt-2" required>
                                         </div>
 
                                         <p id="input-pengambil-pesanan" name="input-pengambil-pesanan" hidden>
@@ -145,7 +145,7 @@
                                             <input class="form-control form-control-md mt-2" type="text" name="nama_pengambil"
                                                 id="nama_pengambil" style="border-radius: 5px" required>
                                         </p>
-                                        <button type="submit" class="btn btn-block btn-lg mt-5" name="btn-pembayaran" id="btn-pembayaran" style="background-color: #212A3E;">
+                                        <button type="submit" class="btn btn-block btn-lg mt-5" name="btn-pembayaran" id="btn-pembayaran" style="background-color: #212A3E;" disabled>
                                             <div class="d-flex justify-content-between" style="color:white">
                                                 @foreach ($pesanan_harga as $h)
                                                 <span>Rp. <?php
@@ -191,7 +191,7 @@
                     }
                     if (kapemId != "0") {
                         $('#metode_pembayaran').html(
-                            '<option value="0">Pilih Layanan Pembayaran</option>');
+                            '<option value="0" disabled selected>Pilih Layanan Pembayaran</option>');
                         $.each(res, function(key, value) {
                             $('#metode_pembayaran').append('<option value="' + value
                                 .id_metpem + '">' + value.nama_layanan +
@@ -216,7 +216,7 @@
                         $('#layanan').prop('hidden', true);
                         $('#form-bukti-pembayaran').prop('hidden', true);
                         $('#input-pengambil-pesanan').prop('hidden', true);
-                        $('#btn-pembayaran').prop('hidden', true);
+                        $('#btn-pembayaran').prop('disabled', true);
                     }
                     if (metpemId != "0") {
                         $.each(res, function(key, value) {
@@ -228,7 +228,7 @@
                         $('#layanan').prop('hidden', false);
                         $('#form-bukti-pembayaran').prop('hidden', false);
                         $('#input-pengambil-pesanan').prop('hidden', false);
-                        $('#btn-pembayaran').prop('hidden', false);
+                        $('#btn-pembayaran').prop('disabled', false);
                         $('#error').prop('hidden', true);
                     }
                 }

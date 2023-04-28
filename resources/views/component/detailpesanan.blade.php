@@ -21,13 +21,13 @@
 @endphp
 
 <style type="text/css">
-    @media (min-width: 1025px) {
+    /* @media (min-width: 1025px) {
         .h-custom {
             height: 100vh !important;
         }
-    }
+    } */
 
-    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    /* .card-registration .select-input.form-control[readonly]:not([disabled]) {
         font-size: 1rem;
         line-height: 2.15;
         padding-left: .75em;
@@ -40,8 +40,8 @@
 
     .bg-grey {
         background-color: #eae8e8;
-    }
-
+    } */
+/*
     @media (min-width: 992px) {
         .card-registration-2 .bg-grey {
             border-top-right-radius: 16px;
@@ -54,7 +54,7 @@
             border-bottom-left-radius: 16px;
             border-bottom-right-radius: 16px;
         }
-    }
+    } */
 </style>
 <div class="container-fluid py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -73,7 +73,7 @@
                                         @foreach ($pembayaran as $data)
                                             <option selected disabled>{{ $data->status }}</option>
                                         @endforeach
-                                        <option value="Unggulan">Ditangguhkan</option>
+                                        <option value="Ditangguhkan">Ditangguhkan</option>
                                         <option value="Dibatalkan">Dibatalkan</option>
                                         <option value="Diproses">Diproses</option>
                                         <option value="Siap Diambil">Siap Diambil</option>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         @foreach ($pembayaran as $data)
-                            <div class="col-lg-4 bg-secondary rounded-3" style="border-top-right-radius: 15px;border-bottom-right-radius: 15px">
+                            <div class="col-lg-4 bg-secondary rounded-3" style="border-top-right-radius: 15px;border-bottom-right-radius: 15px;color:white">
                                 <div class="p-5">
                                     <h4 class="fw-bold mb-2 mt-2 pt-1"><strong>Detail Pesanan</strong></h4>
                                     <hr class="my-4">
@@ -162,7 +162,12 @@
                                     <hr class="my-3">
                                     <h6 class="text-uppercase mb-3"><b>Tanggal Pemesanan</b></h6>
                                     <div class="mb-2 pb-2">
-                                        <h6>05 Mei 2023</h6>
+                                        <h6>
+                                            <?php
+                                            $tgl = $data->tanggal;
+                                            echo date('d F Y', strtotime($tgl));
+                                            ?>
+                                        </h6>
                                     </div>
                                     <h6 class="text-uppercase mb-3"><b>Nama Pengambil Pesanan</b></h6>
                                     <div class="mb-4 pb-2">

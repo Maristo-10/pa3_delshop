@@ -13,10 +13,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <div class="card-body d-sm-flex justify-content-between">
-    <h6 class="col-md-12 mb-0">
-        <a href="/tambahpengguna" class="btn btn-success text-white py-2 ml-2">
+    <h6 class="col-md-7 mb-0">
+        <a href="/tambahpengguna" class="btn btn-success text-white py-2 ml-2 col-md-5">
             <i class="fa fa-plus"></i>
             <span>Tambah Data Pengguna</span>
+        </a>
+    </h6>
+    <h6 class="col-md-5 mb-0">
+        <a href="tambahpengguna/import" class="btn btn-success text-white py-2 ml-2 col-md-6">
+            <i class="fa fa-plus"></i>
+            <span>Import data excel</span>
         </a>
     </h6>
 </div>
@@ -37,12 +43,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
+                            {{-- @php
                                 $no = 1;
-                            @endphp
-                            @foreach ($pengguna as $data)
+                            @endphp --}}
+                            @foreach ($pengguna as $index => $data)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $index + $pengguna->firstItem() }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->role_pengguna }}</td>
@@ -52,6 +58,7 @@
                                     </td>
                             @endforeach
                         </tbody>
+                        {{ $pengguna->links() }}
                     </table>
                 </div>
             </div>

@@ -7,7 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
@@ -89,9 +91,9 @@
                 </a>
             </div>
             <div class="col-lg-5 col-6 text-left">
-                <form action="">
+                <form action="/produk/cari">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products"
+                        <input type="text" class="form-control" name="cari" placeholder="Search for products"
                             style="height: 30px">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
@@ -161,10 +163,10 @@
                                     data-bs-toggle="dropdown" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
                                     @foreach ($pengguna_prof as $profile)
-                                    @php
-                                        $profile = $profile->gambar_pengguna;
-                                    @endphp
-                                        <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
+                                        @php
+                                            $profile = $profile->gambar_pengguna;
+                                        @endphp
+                                        <img src="{{ asset('/profile-images/' . $profile) }}" alt="Profile"
                                             class="rounded-circle" style="width: 40px; height:40px">
                                     @endforeach
 
@@ -208,7 +210,8 @@
             <div class="col-lg-11">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                                class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse"
                         data-target="#navbarCollapse">
@@ -229,7 +232,7 @@
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="container-fluid bg-secondary text-white mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-5 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
@@ -239,7 +242,7 @@
                         </a>
                     </div>
                 </a>
-                <h5 class="font-weight-bold text-dark mb-4 mt-4">Quick Links</h5>
+                <h5 class="font-weight-bold text-white mb-4 mt-4">Quick Links</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>
                     Institut Teknologi Del
                     Jl. Sisingamangaraja, Sitoluama Laguboti, Toba Samosir Sumatera Utara, Indonesia</p>
@@ -250,23 +253,23 @@
             <div class="col-lg-7 col-md-12">
                 <div class="row">
                     <div class="col-md-6 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-white mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="/produk"><i class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-dark mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                            <a class="text-white mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-white mb-2" href="/produk"><i class="fa fa-angle-right mr-2"></i>Produk</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
                                 Kita</a>
-                            <a class="text-dark mb-2" href="/keranjang"><i
+                            <a class="text-white mb-2" href="/keranjang"><i
                                     class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-white" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Partner Del</h5>
+                        <h5 class="font-weight-bold text-white mb-4">Partner Del</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>IT Del</a>
-                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
+                            <a class="text-white mb-2" href="/home"><i class="fa fa-angle-right mr-2"></i>IT Del</a>
+                            <a class="text-white mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
                                 Del</a>
                         </div>
                     </div>
@@ -275,10 +278,10 @@
         </div>
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md px-xl-0">
-                <p class="mb-md-0 text-center text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Del Shop</a>. All Rights
+                <p class="mb-md-0 text-center text-white">
+                    &copy; <a class="text-white font-weight-semi-bold" href="#">Del Shop</a>. All Rights
                     Reserved.
-                    <!-- <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a> -->
+                    <!-- <a class="text-white font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a> -->
                 </p>
             </div>
         </div>
@@ -292,7 +295,6 @@
 
 
     <!-- JavaScript Libraries -->
-    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script> --}}
     <script src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
@@ -301,9 +303,11 @@
 
     <!-- Contact Javascript File -->
     {{-- <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
-    <script src="{{ asset('mail/contact.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<<<<<<< HEAD
+    <script src="{{ asset('mail/contact.js') }}"></script>
+    <script src="{{ asset('ja/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script> --}}
+
 
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
@@ -322,7 +326,19 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+<<<<<<< HEAD
+    {{-- <script src="{{ asset('https://code.jquery.com/jquery-3.5.1.slim.min.js') }}"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script> --}}
+
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> {{-- custom js --}}
+
+=======
     {{-- <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script> --}}
+>>>>>>> origin/master
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->
@@ -337,6 +353,16 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- jquery --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js --}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
+
+    {{-- custom.js adding to cart ajax --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- end custom.js --}}
+    {{-- end - jquery --}}
 </body>
 
 </html>
