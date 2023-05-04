@@ -30,7 +30,7 @@
     <link href="{{ asset('css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-    
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
@@ -89,9 +89,9 @@
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                        <form action="produk/cari" method="get" class="modal-content modal-body border-0 p-0">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                                <input type="text" class="form-control" id="inputModalSearch" name="cari" placeholder="Search ...">
                                 <button type="submit" class="input-group-text bg-success text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>
                                 </button>
@@ -113,7 +113,7 @@
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     @guest
-                            
+
                         @else
                             <div class="btn-group">
                                 <a type="button" class="text-dark dropdown-toggle mr-3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -160,7 +160,7 @@
                                 </ul>
                             </div>
                         @endguest
-                    
+
                         @guest
                         <a href="/keranjang" class="btn" style="font-size: 20px">
                             <i class="fas fa-shopping-cart text-primary"></i>
@@ -177,11 +177,11 @@
                                     @foreach ($pesanan as $a)
                                     <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ $a->total }}</span>
                                     @endforeach
-                                    
+
                                 </a>
                             @endempty
                         @endguest
-                        
+
                     @guest
                         @if (Route::has('login') && Route::has('register'))
                         <button type="button" class="btn btn-sm btn-outline-secondary ml-3">
@@ -197,8 +197,8 @@
                                 @endphp
                                     <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
                                         class="rounded-circle border" style="width: 40px; height:40px">
-                                @endforeach 
-    
+                                @endforeach
+
                                 <span class="d-none ">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
@@ -291,7 +291,7 @@
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    
+
 
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bunle.min.js') }}"></script>
@@ -311,7 +311,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> 
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->

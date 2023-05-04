@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPesanan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\KategoriProdukModel;
+use App\Models\Pesanan;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProdukController extends Controller
 {
@@ -19,7 +24,37 @@ class ProdukController extends Controller
         return view('admin.kelolaproduk',compact('produk'));
     }
 
+    // sorting produk
+    public function sorting(Request $request) {
+        $sort = $request->input('sort');
 
+        $items = Produk::query();
+        if ($sort) {
+            if ($sort == 'latest') {
+                $items->orderBy('created_at', 'desc');
+            } elseif ($sort == 'termahal') {
+                $items->orderBy('harga', 'desc');
+            } elseif ($sort == 'termurah') {
+                $items->orderBy('harga', 'asc');
+            }
+        }
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+        $kategori = KategoriProdukModel::all();
+        $produk = $items->get();
+        return view('pembeli.viewproduk',[
+            'produk'=>$produk,
+            'kategori'=>$kategori,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
+        ]);
+    }
 
     public function viewtambahproduk(){
         $kategori_produk = KategoriProdukModel::all();
@@ -33,7 +68,6 @@ class ProdukController extends Controller
     public function tambahproduk(Request $request){
         $arrName = [];
         $id = $request->id;
-
 
         $validatedData = $request->validate([
             'gambar_produk'=>'image|file|max:10000'

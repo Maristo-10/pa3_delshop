@@ -69,7 +69,7 @@
                 </ul>
                 @endforeach
             </div>
-            <!-- End Categories --> 
+            <!-- End Categories -->
         </div>
         <!-- Shop Sidebar End -->
 
@@ -78,9 +78,9 @@
             <div class="row pb-3">
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="">
+                        <form action="list-produk/cari" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
+                                <input type="text" class="form-control" name="cari" placeholder="Search by name">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-secondary">
                                         <i class="fa fa-search"></i>
@@ -94,9 +94,9 @@
                                 Sort by
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'latest']) }}">Latest</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termahal']) }}">Termahal</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termurah']) }}">Termurah</a>
                             </div>
                         </div>
                     </div>

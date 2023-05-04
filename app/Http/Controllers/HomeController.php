@@ -79,7 +79,7 @@ class HomeController extends Controller
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
-        return view('frontend.dashboard-pembeli',[
+        return view('pembeli.viewproduk',[
             'kategori'=>$kategori,
             'produk'=>$produk,
             'unggulan'=>$unggulan,
