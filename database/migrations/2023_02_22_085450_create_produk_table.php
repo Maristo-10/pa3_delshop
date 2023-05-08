@@ -27,6 +27,7 @@ class CreateProdukTable extends Migration
 
             $table->string("role_pembeli");
             $table->string("kategori_produk");
+            $table->string("ukuran_produk")->nullable();
         });
     }
 

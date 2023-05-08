@@ -8,6 +8,7 @@ use App\Models\KategoriProdukModel;
 use Illuminate\Support\Facades\DB;
 use App\Models\DetailPesanan;
 use App\Models\Pesanan;
+use App\Models\UkuranModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,8 +103,10 @@ class HomeController extends Controller
         $produk = Produk::where('status_produk','Aktif')->get();
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $ukuran = UkuranModel::all();
         return view('pembeli.viewproduk',[
             'produk'=>$produk,
+            'ukuran'=>$ukuran,
             'kategori'=>$kategori,
             'pesanan'=>$pesanan,
             'pesanan_baru'=>$pesanan_baru,

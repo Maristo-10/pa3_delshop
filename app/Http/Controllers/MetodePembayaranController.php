@@ -40,9 +40,9 @@ class MetodePembayaranController extends Controller
         $tambahmetpem->nama_pemilik = $request->nama_pemilik;
         $id_kapem = $request->kategori_layanan;
         $tambahmetpem->kategori_layanan = $id_kapem;
-        $kapem = KategoriPembayaran::where('id',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
-
+        $kapem = KategoriPembayaran::where('id_kapem',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
         $tambahmetpem->kapem = $kapem;
+
         if (!$tambahmetpem->save()) {
             if (count($arrName) > 1) {
                 foreach ($arrName as $path) {
@@ -55,7 +55,7 @@ class MetodePembayaranController extends Controller
     }
 
     public function ubmetpem($id){
-        $metpem=MetodePembayaran::find($id);
+        $metpem=MetodePembayaran::where('id_metpem', $id)->first();
         $kapem = KategoriPembayaran::all();
 
         return view('admin.ubahmetodepembayaran',[

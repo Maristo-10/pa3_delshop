@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\KategoriProdukModel;
 use App\Models\Role;
+use App\Models\UkuranModel;
 
 class ProdukController extends Controller
 {
@@ -15,7 +16,7 @@ class ProdukController extends Controller
     }
 
     public function produk(){
-        $produk = Produk::paginate(5)->where('status_produk','Aktif');
+        $produk = Produk::paginate(1)->where('status_produk','Aktif');
         return view('admin.kelolaproduk',compact('produk'));
     }
 
@@ -24,9 +25,11 @@ class ProdukController extends Controller
     public function viewtambahproduk(){
         $kategori_produk = KategoriProdukModel::all();
         $role = Role::all()->where('kategori_role','Pembeli');
+        $ukuran = UkuranModel::all();
         return view('admin.tambahproduk',[
             'kategori_produk'=>$kategori_produk,
-            'role'=>$role
+            'role'=>$role,
+            'ukuran'=>$ukuran
         ]);
     }
 

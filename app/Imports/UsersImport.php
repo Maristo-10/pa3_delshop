@@ -17,8 +17,7 @@ class UsersImport implements ToModel
         return new User([
             'name' => $row[0],
             'email' => $row[1],
-            'password' => $row[2],
-            'role_pengguna' => $row[3]
+            'role_pengguna' => $row[2]
         ]);
     }
 }

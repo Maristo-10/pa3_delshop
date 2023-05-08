@@ -20,7 +20,7 @@
                 <select name="kategori_layanan" id="kategori_layanan" class="form-control">
                     <option selected>Silahkan Pilih Kategori Pembayaran</option>
                     @foreach ($kapem as $data)
-                        <option value="{{ $data->id }}">{{ $data->kategori_pembayaran }}</option>
+                        <option value="{{ $data->id_kapem }}">{{ $data->kategori_pembayaran }}</option>
                     @endforeach
                 </select>
                 <script type="text/javascript">

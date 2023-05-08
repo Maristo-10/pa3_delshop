@@ -24,7 +24,7 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli');
+Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli-1');
 Auth::routes();
 
 
@@ -50,7 +50,7 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::post('/proses-checkout', [PesananController::class,'pcheckout'])->name('pembeli.pcheckout');
 
     Route::get('/pesanan', [PesananController::class,'vpesanan'])->name('pembeli.pesanan');
-    Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.pesanan');
+    Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.detailpesanan');
 
     Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
     Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
@@ -64,7 +64,7 @@ Route::middleware(['auth','isPembeli'])->group( function() {
 Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/dashboard-admin', function () {
         return view('frontend.dashboard-admin');
-    });
+    })->name('frontend.dashboard-admin');
 
     Route::get('/produk', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class,'viewtambahproduk'])->name('admin.tambahproduk');

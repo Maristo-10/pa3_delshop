@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('instagram')->default('https://instagram.com/');
             $table->string('linkedin')->default('https://linkedin.com/');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default('$2y$10$5DNeMBwr01c/PxQDS7I6BOcxxQL5GT7naGt4Bftj5LBGZ4hgb8JO6');
             $table->rememberToken();
             $table->timestamps();
             $table->string("role_pengguna")->default('Publik');

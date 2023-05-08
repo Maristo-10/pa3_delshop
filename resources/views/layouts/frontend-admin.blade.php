@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/mdb.min.css') }}">
     {{-- your custom style --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css') }}">
+<script defer src="{{ asset('https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js') }}"></script>
 </head>
 
 <body>

@@ -32,13 +32,14 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     public function redirectTo() {
         if(Auth::user()->role_pengguna == 'Admin') {
-            return  '/dashboard-admin';
+            return '/dashboard-admin';
+
         }
         if(Auth::user()->role_pengguna == 'Pegawai') {
             return  '/dashboard-pegawai';
         }
-        if(Auth::user()->role_pengguna == 'Publik' ||Auth::user()->role_pengguna == 'Dosen/Staff' || Auth::user()->role_pengguna == 'Mahasiswa') {
-            return "/home";
+        if(Auth::user()->role_pengguna === 'Publik' | Auth::user()->role_pengguna === 'Dosen/Staff' | Auth::user()->role_pengguna === 'Mahasiswa') {
+            return '/home';
         }
     }
 

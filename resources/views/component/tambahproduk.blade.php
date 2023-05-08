@@ -43,6 +43,7 @@
                         });
                     </script>
                 </div>
+
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="produk_unggulan">Produk Unggulan</label>
                     <select name="produk_unggulan" id="produk_unggulan" class="form-control">
@@ -53,6 +54,20 @@
                     <script type="text/javascript">
                         $(document).ready(function() {
                             $('#produk_unggulan').select2();
+                        });
+                    </script>
+                </div>
+                <div class="form-group col-12 col-md-6 mt-3">
+                    <label for="ukuran">Ukuran Produk</label>
+                    <select name="ukuran" id="ukuran" class="form-control">
+                        <option selected>Silahkan Pilih Ukuran</option>
+                        @foreach ($ukuran as $ukurans)
+                            <option value="{{ $ukurans->ukuran }}">{{ $ukurans->ukuran }}</option>
+                        @endforeach
+                    </select>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#ukuran').select2();
                         });
                     </script>
                 </div>

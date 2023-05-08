@@ -62,7 +62,7 @@
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
                                         <td>
-                                            <a href="/ubah-metode-pembayaran/{{ $data->id }}" title="Ubah Data"
+                                            <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
                                                 class="bi bi-slash-circle-fill btn btn-danger col-md-5 py-2"></a>

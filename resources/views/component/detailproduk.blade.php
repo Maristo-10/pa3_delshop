@@ -104,7 +104,7 @@
             </div>
             <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
                 @csrf
-                <div class="d-flex align-items-center mb-4 pt-2">
+                <div class="d-flex align-items-center pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         {{-- <td class="cart-product-quantity" width="130px"> --}}
                         {{-- get item data  --}}
@@ -115,7 +115,8 @@
                                 <button type="button" class="input-group-text">-</button>
                             </div>
                             {{-- <input type="number" value="1"> --}}
-                            <input type="number" name="jumlah" id="jumlah" class="qty-input form-control" value="1">
+                            <input type="number" name="jumlah" id="jumlah" class="qty-input form-control"
+                                value="1">
                             <div class="plus changeQuantity" style="cursor: pointer">
                                 <button type="button" class="input-group-text">+</button>
                             </div>
@@ -133,9 +134,25 @@
                             </button>
                         </div> --}}
                     </div>
-                    <button type="submit" class="btn btn-secondary px-3"><i class="fa fa-shopping-cart mr-1"></i>
-                        Add To Cart</button>
+                    @if ($item->role_pembeli == Auth::user()->role_pengguna)
+                        <button type="submit" class="btn btn-secondary px-3"><i
+                                class="fa fa-shopping-cart mr-1"></i>
+                            Add To Cart</button>
+                    @else
+                        <button type="submit" class="btn btn-secondary px-3" disabled><i
+                                class="fa fa-shopping-cart mr-1"></i>
+                            Add To Cart</button> <br>
+                    @endif
                 </div>
+                <div class="d-flex align-items-center mb-4 pt-2">
+                    @if ($item->role_pembeli != Auth::user()->role_pengguna)
+                    <small class="ml-3" style="color:red;"><i
+                            class="bi bi-info-circle mr-2"></i><em>Produk ini hanya tersedia untuk
+                                {{ $item->role_pembeli }}</em></small>
+                @endif
+                </div>
+
+
             </form>
 
         </div>

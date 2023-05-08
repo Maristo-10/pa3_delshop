@@ -1,6 +1,6 @@
 <div class="col-12 p-3 bg-white shadow rounded">
     {{-- TODO: Controller not ready yet --}}
-    <form class="mt-3" action="/prosesubahmetodepembayaran/{{$metpem->id}}" method="post" enctype="multipart/form-data">
+    <form class="mt-3" action="/prosesubahmetodepembayaran/{{$metpem->id_metpem}}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="row">
                 <div class="form-group col-12 col-md-6 mt-3">
@@ -18,7 +18,7 @@
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="kategori_layanan">Kategori Pembayaran</label>
                     <select name="kategori_layanan" id="kategori_layanan" class="form-control">
-                        <option selected>{{$metpem->kategori_layanan}}</option>
+                        <option selected disabled>{{$metpem->kapem}}</option>
                         @foreach ($kapem as $data)
                             <option value="{{ $data->kategori_pembayaran }}">{{ $data->kategori_pembayaran }}</option>
                         @endforeach

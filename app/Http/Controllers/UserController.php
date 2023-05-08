@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     public function user(){
-        $pengguna = User::paginate(5);
+        $pengguna = User::paginate(2);
         return view('admin.kelolapengguna',compact('pengguna'));
     }
 
