@@ -36,7 +36,7 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/list-produk/cari', [HomeController::class, 'cariProduk2']);
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
     Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewprodukid');
-
+    Route::get('/items', [ProdukController::class, 'sorting'])->name('items.index');
     Route::post('/produk/tambah-keranjang/{id}',[PesananController::class, 'keranjang'])->name('pembeli.tambahkeranjang');
     Route::get('/keranjang',[PesananController::class, 'vkeranjang'])->name('pembeli.keranjang');
     Route::get('/hapus/pesanan-keranjang/{id}', [PesananController::class, 'hapuskeranjang'])->name('admin.hapuspesanan');

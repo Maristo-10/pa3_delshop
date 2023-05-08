@@ -17,7 +17,7 @@
 
 <!-- Shop Detail Start -->
 <div class="container-fluid py-5">
-    <div class="row px-xl-5">
+    <div class="row px-xl-5 mb-5">
         <div class="col-lg-5 pb-5">
             @foreach ($produk as $item)
                 <div class="carousel-item active">
@@ -27,205 +27,168 @@
 
         </div>
 
-        <div class="col-lg-7 pb-5">
-            <div class="row">
-                <h6>Nama Produk : </h6>
-                <h6 class="font-weight-semi-bold mb-3 ml-2"> {{ $item->nama_produk }}</h6>
-            </div>
-            <div class="border-bottom mb-3"></div>
-            <div class="row">
-                <h6>Harga Produk : </h6>
-                <h6 class="font-weight-semi-bold mb-4 ml-2">Rp. <?php
-                $angka = $item->harga;
-                echo number_format($angka, 0, ',', '.');
-                ?></h6>
-            </div>
-            <div class="border-bottom mb-3"></div>
-            <div class="row mb-5">
-                <h6>Stok Barang : </h6>
-                <h6 class="font-weight-semi-bold mb-3 ml-2"><?php
-                $angka = $item->jumlah_produk;
-                echo number_format($angka, 0, ',', '.');
-                ?></h6>
-            </div>
-            <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea.
-                Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus
-                labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.
-            </p>
-            <div class="d-flex mb-3">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                <form>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-1" name="size">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-2" name="size">
-                        <label class="custom-control-label" for="size-2">S</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-3" name="size">
-                        <label class="custom-control-label" for="size-3">M</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-4" name="size">
-                        <label class="custom-control-label" for="size-4">L</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-5" name="size">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                    </div>
-                </form>
-            </div>
-            <div class="d-flex mb-4">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-                <form>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-1" name="color">
-                        <label class="custom-control-label" for="color-1">Black</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-2" name="color">
-                        <label class="custom-control-label" for="color-2">White</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-3" name="color">
-                        <label class="custom-control-label" for="color-3">Red</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-4" name="color">
-                        <label class="custom-control-label" for="color-4">Blue</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-5" name="color">
-                        <label class="custom-control-label" for="color-5">Green</label>
-                    </div>
-                </form>
-            </div>
-            <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
-                @csrf
-                <div class="d-flex align-items-center pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        {{-- <td class="cart-product-quantity" width="130px"> --}}
-                        {{-- get item data  --}}
-                        <input type="hidden" class="product_id" value="{{ $item->id_produk }}">
-                        <div class="input-group quantity">
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="h2">{{ $item->nama_produk }}</h1>
+                    <p class="h3 py-2">Rp.
+                        <?php
+                        $angka = $item->harga;
+                        echo number_format($angka, 0, ',', '.');
+                        ?>
+                    </p>
+                    <h6 class="mt-3">Deskripsi:</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt ut labore
+                        et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum convallis. Nunc sed
+                        orci a diam ultrices aliquet interdum quis nulla.</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <h6>Warna yang tersedia :</h6>
+                        </li>
+                        <li class="list-inline-item">
+                            <p class="text-muted"><strong>White / Black</strong></p>
+                        </li>
+                    </ul>
+                    <h6>Spesifikasi:</h6>
+                    <ul class="list-unstyled pb-3">
+                        <li>Lorem ipsum dolor sit</li>
+                        <li>Amet, consectetur</li>
+                        <li>Adipiscing elit,set</li>
+                        <li>Duis aute irure</li>
+                        <li>Ut enim ad minim</li>
+                        <li>Dolore magna aliqua</li>
+                        <li>Excepteur sint</li>
+                    </ul>
+                    <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $item->id_produk }}">
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="list-inline pb-3">
+                                    <li class="list-inline-item">Size :
+                                        <input type="hidden" name="product-size" id="product-size" value="S">
+                                    </li>
+                                    @foreach ($ukuran as $data)
+                                        <li class="list-inline-item"><span class="btn btn-primary btn-size">{{$data->ukuran}}</span>
+                                        </li>
+                                    @endforeach
 
-                            <div class="minus changeQuantity" style="cursor: pointer">
-                                <button type="button" class="input-group-text">-</button>
-                            </div>
-                            {{-- <input type="number" value="1"> --}}
-                            <input type="number" name="jumlah" id="jumlah" class="qty-input form-control"
-                                value="1">
-                            <div class="plus changeQuantity" style="cursor: pointer">
-                                <button type="button" class="input-group-text">+</button>
+                                </ul>
                             </div>
                         </div>
-                        {{-- </td> --}}
-                        {{-- <div class="input-group-btn">
-                            <button class="btn btn-secondary btn-minus" id="tambah">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group quantity">
+                                    <div class="minus changeQuantity" style="cursor: pointer">
+                                        <button type="button" class="input-group-text">-</button>
+                                    </div>
+                                    <input type="number" name="jumlah" id="jumlah" class="qty-input form-control"
+                                        value="1">
+                                    <div class="plus changeQuantity" style="cursor: pointer">
+                                        <button type="button" class="input-group-text">+</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <input type="text" class="form-control bg-light text-center" value="1" id="jumlah" name="jumlah">
-                        <div class="input-group-btn">
-                            <button class="btn btn-secondary btn-plus" id="">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div> --}}
-                    </div>
-                    @if ($item->role_pembeli == Auth::user()->role_pengguna)
-                        <button type="submit" class="btn btn-secondary px-3"><i
-                                class="fa fa-shopping-cart mr-1"></i>
-                            Add To Cart</button>
-                    @else
-                        <button type="submit" class="btn btn-secondary px-3" disabled><i
-                                class="fa fa-shopping-cart mr-1"></i>
-                            Add To Cart</button> <br>
-                    @endif
+                        <div class="row pb-3">
+                            <div class="col-md-4 offset-md-8">
+                                <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
+                                    value="addtocard">Add To Cart</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    @if ($item->role_pembeli != Auth::user()->role_pengguna)
-                    <small class="ml-3" style="color:red;"><i
-                            class="bi bi-info-circle mr-2"></i><em>Produk ini hanya tersedia untuk
-                                {{ $item->role_pembeli }}</em></small>
-                @endif
-                </div>
-
-
-            </form>
-
+            </div>
         </div>
     </div>
-    <div class="row px-xl-5">
+    @endforeach
+</div>
+<div class="container">
+    <div class="row">
         <div class="col">
-            <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3">Deskripsi Produk</h4>
-                    <p>{{ $item->deskripsi }}</p>
+            <div class="slide-container swiper wow zoomIn" data-wow-delay="0.1s">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper ">
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/profile1.jpg') }}" alt="" class="card-img">
+                                </div>
+                            </div>
 
-                </div>
-                <div class="tab-pane fade" id="tab-pane-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
-                            <div class="media mb-4">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                    style="width: 45px;">
-                                <div class="media-body">
-                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                    <div class="text-primary mb-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no
-                                        at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/profile2.jpg') }}" alt="" class="card-img">
                                 </div>
                             </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="mb-4">Leave a review</h4>
-                            <small>Your email address will not be published. Required fields are marked *</small>
-                            <div class="d-flex my-3">
-                                <p class="mb-0 mr-2">Your Rating * :</p>
-                                <div class="text-primary">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/profile3.jpg') }}" alt="" class="card-img">
                                 </div>
                             </div>
-                            <form>
-                                <div class="form-group">
-                                    <label for="message">Your Review *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Your Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Your Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group mb-0">
-                                    <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                                </div>
-                            </form>
+
                         </div>
-                        @endforeach
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="img{{ asset('img/profile4.jpg') }}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/profile5.jpg') }}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/profile6s.jpg') }}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="img/profile7.jpg" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="img/profile8.jpg" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="img/" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+                <div class="swiper-button-next swiper-navBtn"></div>
+                <div class="swiper-button-prev swiper-navBtn"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Shop Detail End -->

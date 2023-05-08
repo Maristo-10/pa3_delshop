@@ -17,7 +17,7 @@
 <div class="container-fluid pt-4">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
-        <div class="col-lg-2 col-md-12">
+        <div class="col-lg-3 col-md-12">
             <!-- Size Start -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Ukuran</h5>
@@ -38,102 +38,31 @@
             </div>
             <!-- Size End -->
 
-            <!-- Price Start -->
-            <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Harga</h5>
-                <form>
-                    <div class="input-group input-group-sm mb-3 row ">
-                        <div class="col">
-                            <input type="text" name="Min" class="form-control border" placeholder="Min"
-                                id="">
-                        </div>
-                        <p>-</p>
-                        <div class="col">
-                            <input type="text" name="Max" class="form-control border" placeholder="Max"
-                                id="">
-                        </div>
-                    </div>
-                    <div class="custom-control align-items-center justify-content-between mb-3 row">
-                        <div class="col">
-                            <button type="button" class="btn btn-secondary btn-sm">50RB-100RB</button>
-                            <button type="button" class="btn btn-secondary btn-sm">100RB-200RB</button>
-                        </div>
-                    </div>
-                    <div class="custom-control align-items-center mb-3 row">
-                        <div class="col">
-                            <button type="button" class="btn btn-secondary btn-sm">50RB-100RB</button>
-                            <button type="button" class="btn btn-secondary btn-sm">100RB-200RB</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <!-- Price End -->
-
             <!-- Categories -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Kategori</h5>
+                @foreach ($kategori as $cat)
                 <ul class="list-group list-group-flush">
                     <div class="row col-md-12">
-                        @foreach ($kategori as $cat)
                             <div>
                                 <li class="list-group-item"><a href="">{{ $cat->kategori }}</a></li>
                             </div>
-                        @endforeach
                     </div>
                 </ul>
+                @endforeach
             </div>
             <!-- End Categories -->
-
-            <!-- Color Start -->
-            <!-- <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div> -->
-            <!-- Color End -->
-
         </div>
         <!-- Shop Sidebar End -->
 
         <!-- Shop Product Start -->
-        <div class="col-lg-10 col-md-12">
+        <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="/list-produk/cari" method="GET">
+                        <form action="list-produk/cari" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name" name="cari">
+                                <input type="text" class="form-control" name="cari" placeholder="Search by name">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-secondary">
                                         <i class="fa fa-search"></i>
@@ -147,15 +76,15 @@
                                 Sort by
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'latest']) }}">Latest</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termahal']) }}">Termahal</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termurah']) }}">Termurah</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 @foreach ($produk as $item)
-                    <div class="col-sm-3 pb-1 view">
+                    <div class="col-sm-4 pb-1 view">
                         <div class="card product-item border-0 mb-3">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}">

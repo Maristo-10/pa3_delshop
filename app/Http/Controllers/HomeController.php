@@ -78,10 +78,13 @@ class HomeController extends Controller
             // dd($kategori);
         }
 
+        $ukuran = UkuranModel::all();
+
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
-        return view('frontend.dashboard-pembeli',[
+        return view('pembeli.viewproduk',[
             'kategori'=>$kategori,
+            'ukuran'=>$ukuran,
             'produk'=>$produk,
             'unggulan'=>$unggulan,
             'pesanan'=>$pesanan,
@@ -129,8 +132,10 @@ class HomeController extends Controller
 
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $ukuran = UkuranModel::all();
         return view('pembeli.viewproduk',[
             'produk'=>$produk,
+            'ukuran'=>$ukuran,
             'kategori'=>$kategori,
             'pesanan'=>$pesanan,
             'pesanan_baru'=>$pesanan_baru,
@@ -150,8 +155,10 @@ class HomeController extends Controller
         $produk = Produk::all()->where('id_produk',$id)->where('status_produk','Aktif');
 
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $ukuran = UkuranModel::all();
         return view('pembeli.detailproduk',[
             'produk'=>$produk,
+            'ukuran'=>$ukuran,
             'pesanan'=>$pesanan,
             'pengguna_prof'=>$pengguna_prof,
             'pesanan_baru'=>$pesanan_baru,
