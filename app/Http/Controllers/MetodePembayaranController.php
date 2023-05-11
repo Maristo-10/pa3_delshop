@@ -40,13 +40,8 @@ class MetodePembayaranController extends Controller
         $tambahmetpem->nama_pemilik = $request->nama_pemilik;
         $id_kapem = $request->kategori_layanan;
         $tambahmetpem->kategori_layanan = $id_kapem;
-<<<<<<< HEAD
-        $kapem = KategoriPembayaran::where('id_kapem',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
-=======
         // dd($id_kapem);
         $kapem = KategoriPembayaran::where('id_kapem',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
-
->>>>>>> origin/master
         $tambahmetpem->kapem = $kapem;
 
         if (!$tambahmetpem->save()) {
@@ -57,7 +52,7 @@ class MetodePembayaranController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolametodepembayaran");
+        return redirect()->route("admin.kelolametodepembayaran")->with('success','Proses Berhasil di lakukan');
     }
 
     public function ubmetpem($id){
@@ -75,7 +70,7 @@ class MetodePembayaranController extends Controller
 
         $metpem->update($request->all());
 
-        return redirect()->route('admin.kelolametodepembayaran');
+        return redirect()->route('admin.kelolametodepembayaran')->with('success','Proses Berhasil di lakukan');
     }
 
     public function tambahkapem(Request $request){
@@ -92,14 +87,14 @@ class MetodePembayaranController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolametodepembayaran");
+        return redirect()->route("admin.kelolametodepembayaran")->with('success','Proses Berhasil di lakukan');
     }
 
     public function hapuskapem($id){
         $kapem = KategoriPembayaran::where('kategori_pembayaran',$id);
         $kapem->delete();
 
-        return redirect()->route('admin.kelolametodepembayaran');
+        return redirect()->route('admin.kelolametodepembayaran')->with('success','Data Berhasil di hapus');
     }
 
     public function ubkapem($id){
@@ -119,7 +114,7 @@ class MetodePembayaranController extends Controller
 
         $kapem->update($request->except(['_token']));
 
-        return redirect()->route('admin.kelolametodepembayaran');
+        return redirect()->route('admin.kelolametodepembayaran')->with('success','Proses Berhasil di lakukan');
     }
     /**
      * Display a listing of the resource.

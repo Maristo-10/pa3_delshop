@@ -27,13 +27,31 @@
                         <label class="custom-control-label" for="size-all">Semua Ukuran</label>
                         <!-- <span class="badge border font-weight-normal">1000</span> -->
                     </div>
-                    @foreach ($ukuran as $ukurans)
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-{{ $ukurans->ukuran }}">
-                        <label class="custom-control-label" for="size-{{ $ukurans->ukuran }}">{{ $ukurans->ukuran }}</label>
+                        <input type="checkbox" class="custom-control-input" id="size-1">
+                        <label class="custom-control-label" for="size-1">XS</label>
+                        <!-- <span class="badge border font-weight-normal">150</span> -->
                     </div>
-                    @endforeach
-
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-2">
+                        <label class="custom-control-label" for="size-2">S</label>
+                        <!-- <span class="badge border font-weight-normal">295</span> -->
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-3">
+                        <label class="custom-control-label" for="size-3">M</label>
+                        <!-- <span class="badge border font-weight-normal">246</span> -->
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-4">
+                        <label class="custom-control-label" for="size-4">L</label>
+                        <!-- <span class="badge border font-weight-normal">145</span> -->
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="checkbox" class="custom-control-input" id="size-5">
+                        <label class="custom-control-label" for="size-5">XL</label>
+                        <!-- <span class="badge border font-weight-normal">168</span> -->
+                    </div>
                 </form>
             </div>
             <!-- Size End -->
@@ -41,17 +59,14 @@
             <!-- Categories -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Kategori</h5>
+                
                 @foreach ($kategori as $cat)
-                <ul class="list-group list-group-flush">
-                    <div class="row col-md-12">
-                            <div>
-                                <li class="list-group-item"><a href="">{{ $cat->kategori }}</a></li>
-                            </div>
-                    </div>
-                </ul>
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action">{{ $cat->kategori }}</a>
+                </div>
                 @endforeach
             </div>
-            <!-- End Categories -->
+            <!-- End Categories --> 
         </div>
         <!-- Shop Sidebar End -->
 
@@ -60,9 +75,9 @@
             <div class="row pb-3">
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="list-produk/cari" method="GET">
+                        <form action="">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="cari" placeholder="Search by name">
+                                <input type="text" class="form-control" placeholder="Search by name">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-secondary">
                                         <i class="fa fa-search"></i>
@@ -76,34 +91,36 @@
                                 Sort by
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'latest']) }}">Latest</a>
-                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termahal']) }}">Termahal</a>
-                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termurah']) }}">Termurah</a>
+                                <a class="dropdown-item" href="#">Latest</a>
+                                <a class="dropdown-item" href="#">Popularity</a>
+                                <a class="dropdown-item" href="#">Best Rating</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 @foreach ($produk as $item)
                     <div class="col-sm-4 pb-1 view">
-                        <div class="card product-item border-0 mb-3">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 ">
-                                <div class="col-12 mt-3" style="text-align: center">
-                                    <small class="text-truncate mb-3">{{ $item->nama_produk }}</small>
-                                    <div class="d-flex justify-content-center">
-                                        <h6>Rp. <?php
-                                        $angka = $item->harga;
-                                        echo number_format($angka, 0, ',', '.');
-                                        ?></h6>
+                        <div class="card-group product-item border-0 mb-3">
+                            <div class="card">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="/product-images/{{ $item->gambar_produk }}">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 ">
+                                    <div class="col-12 mt-3" style="text-align: center">
+                                        <small class="text-truncate mb-3">{{ $item->nama_produk }}</small>
+                                        <div class="d-flex justify-content-center">
+                                            <h6>Rp. <?php
+                                            $angka = $item->harga;
+                                            echo number_format($angka, 0, ',', '.');
+                                            ?></h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer d-flex bg-light border justify-content-center">
-                                <small><a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0">
-                                    <i class="fas fa-eye text-secondary mr-1"></i>View Detail</a>
-                                </small>
+                                <div class="card-footer d-flex bg-light border justify-content-center">
+                                    <small><a href="/detail-produk/{{ $item->id_produk }}" class="btn btn-sm text-dark p-0">
+                                        <i class="fas fa-eye text-secondary mr-1"></i>View Detail</a>
+                                    </small>
+                                </div>
                             </div>
                         </div>
                     </div>

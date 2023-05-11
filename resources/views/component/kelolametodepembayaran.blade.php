@@ -28,7 +28,7 @@
 </script>
 
 <div class="row col-12">
-    <div class="col-7 shadow-sm rounded bg-white">
+    <div class="col-7 ">
         <small><a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
             <i class="fa fa-plus"></i>
             <span><small>Tambah Data Metode Pembayaran</small></span>
@@ -37,6 +37,19 @@
             <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
                 <div class="card">
                     <div class="card-body">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @endif
+                        
+                        @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @endif
                         <table class="table table-striped table-bordered" id="list">
                             <thead>
                                 <tr>
@@ -63,9 +76,9 @@
                                         <td>{{ $data->kapem }}</td>
                                         <td>
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
-                                                class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
+                                                class="bi bi-pencil-square btn btn-warning"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger col-md-5 py-2"></a>
+                                                class="bi bi-slash-circle-fill btn btn-danger"></a>
                                         </td>
                                 @endforeach
                             </tbody>
@@ -116,6 +129,19 @@
         <div class="card" id="table_kapem" name="table_kapem">
 
             <div class="card-body">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
+                    
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
                 <table class="table table-striped table-bordered" id="list">
                     <thead>
                         <tr>
@@ -135,10 +161,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
-                                    <a class="bi bi-pencil-square btn btn-warning col-md-5 py-2" href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
-
+                                    <a class="bi bi-pencil-square btn btn-warning col-md-6" href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
                                     <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" title="Hapus Data"
-                                        class="bi bi-trash-fill btn btn-danger col-md-5 py-2"></a>
+                                        class="bi bi-trash-fill btn btn-danger col-md-6"></a>
                                 </td>
                         @endforeach
                     </tbody>
