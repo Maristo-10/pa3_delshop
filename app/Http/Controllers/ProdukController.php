@@ -120,7 +120,7 @@ class ProdukController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolaproduk");
+        return redirect()->route("admin.kelolaproduk")->with('success','Data Produk Berhasil Di Tambahkan');
     }
 
     public function viewubahproduk($id){
@@ -164,7 +164,7 @@ class ProdukController extends Controller
             'deskripsi'=>$deskripsi
         ]);
 
-        return redirect()->route('admin.kelolaproduk');
+        return redirect()->route('admin.kelolaproduk')->with('success','Data Produk Berhasil di Ubah');
     }
 
     public function ubahstatusproduknon($id, Request $request){
@@ -176,14 +176,14 @@ class ProdukController extends Controller
 
     public function produknonaktif(){
         $produk = Produk::all()->where('status_produk','Non-Aktif');
-        return view('admin.kelolaproduknonaktif',compact('produk'));
+        return view('admin.kelolaproduknonaktif',compact('produk')->with('success','Data Produk Berhasil Di Tambahkan'));
     }
 
     public function ubahstatusprodukaktf($id){
         $produk = Produk::find($id);
         $produk->update(['status_produk'=>'Aktif']);
 
-        return redirect()->route('admin.kelolaproduknonaktif');
+        return redirect()->route('admin.kelolaproduknonaktif')->with('success','Data Produk Berhasil Di Tambahkan');;
     }
 
 

@@ -1934,6 +1934,10 @@ background-color: #2980b9;
     border: none;
 }
 
+.product-item img{
+    height: 200px;
+}
+
 @media (max-width: 1210.98px) {
     .kategori img {
         height: 320px;
@@ -2049,6 +2053,11 @@ background-color: #2980b9;
     .kategori .cat-item{
         width: 280px;
         align-items: center;
+    }
+
+    
+    .product-item img{
+        height: 400px;
     }
 
     .product-image img{

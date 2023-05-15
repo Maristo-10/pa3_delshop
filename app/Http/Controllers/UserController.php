@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     public function user(){
-        $pengguna = User::paginate(2);
+        $pengguna = User::paginate(5);
         return view('admin.kelolapengguna',compact('pengguna'));
     }
 
@@ -74,14 +74,14 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolapengguna");
+        return redirect()->route("admin.kelolapengguna")->with('success','Data Produk Berhasil di tambah');;
     }
 
     public function hapuspengguna($id){
         $pengguna = User::find($id);
         $pengguna->delete();
 
-        return redirect()->route('admin.kelolapengguna');
+        return redirect()->route('admin.kelolapengguna')->with('success','Data Produk Berhasil di hapus');;
     }
 
     public function viewubahuser($id){
@@ -93,7 +93,7 @@ class UserController extends Controller
         $produk = User::find($id);
         $produk->update($request->all());
 
-        return redirect()->route('admin.kelolapengguna');
+        return redirect()->route('admin.kelolapengguna')->with('success','Data Produk Berhasil di Ubah');;
     }
 
     public function vprofile(){

@@ -21,7 +21,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
@@ -30,7 +30,7 @@
     <link href="{{ asset('css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-
+    
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
@@ -89,9 +89,9 @@
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="produk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                        <form action="" method="get" class="modal-content modal-body border-0 p-0">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="inputModalSearch" name="cari" placeholder="Search ...">
+                                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
                                 <button type="submit" class="input-group-text bg-success text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>
                                 </button>
@@ -113,10 +113,24 @@
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     @guest
-
+                            
                         @else
-                            <div class="btn-group">
-                                <a type="button" class="text-dark dropdown-toggle mr-3" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown mr-2">
+                            <a class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                        
+                            <ul class="dropdown-menu">
+                                <h6 class="dropdown-header">
+                                    Notifikasi
+                                </h6>
+                                <li><a class="dropdown-item" href="#">! Pesanan Sudah Masuk</a></li>
+                                <li><a class="dropdown-item" href="#">! Pesanan Sudah Sampai</a></li>
+                                <li><a class="dropdown-item" href="#">! Something else here</a></li>
+                            </ul>
+                        </div>
+                            {{-- <div class="btn-group">
+                                <a type="button" class="text-dark dropdown-toggle mr-2" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-bell"></i>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -158,30 +172,37 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                 </ul>
-                            </div>
+                            </div> --}}
                         @endguest
-
+                    
                         @guest
                         <a href="/keranjang" class="btn" style="font-size: 20px">
                             <i class="fas fa-shopping-cart text-primary"></i>
                         </a>
                         @else
                             @empty($pesanan_baru)
-                                <a href="/keranjang" class="btn" style="font-size: 20px">
+                                <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
                                     <i class="fas fa-shopping-cart text-dark"></i>
-                                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">0</span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                        0
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
                                 </a>
                             @else
                                 <a class="nav-icon position-relative text-decoration-none ml-2 mr-4 text-dark" href="/keranjang">
                                     <i class="fa fa-fw fa-cart-arrow-down mr-1"></i>
                                     @foreach ($pesanan as $a)
-                                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ $a->total }}</span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                        {{ $a->total }}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                    {{-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ $a->total }}</span> --}}
                                     @endforeach
-
+                                    
                                 </a>
                             @endempty
                         @endguest
-
+                        
                     @guest
                         @if (Route::has('login') && Route::has('register'))
                         <button type="button" class="btn btn-sm btn-outline-secondary ml-3">
@@ -197,8 +218,8 @@
                                 @endphp
                                     <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
                                         class="rounded-circle border" style="width: 40px; height:40px">
-                                @endforeach
-
+                                @endforeach 
+    
                                 <span class="d-none ">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
@@ -291,8 +312,7 @@
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-
-
+    
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bunle.min.js') }}"></script>
 
@@ -311,7 +331,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> 
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->
@@ -331,6 +351,11 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js --}}
     <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
+    {{-- custom.js adding to cart ajax --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    {{-- end custom.js --}}
+    {{-- end - jquery --}}
 </body>
 
 </html>
