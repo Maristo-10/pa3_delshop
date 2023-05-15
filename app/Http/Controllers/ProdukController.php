@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductsImport;
 use App\Models\DetailPesanan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
@@ -12,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\UkuranModel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProdukController extends Controller
 {
@@ -20,8 +22,22 @@ class ProdukController extends Controller
         $this->middleware('auth');
     }
 
+    // function to import produk data excel
+    public function importProduk(Request $request) {
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        $file->move('ProductsData', $fileName);
+        Excel::import(new ProductsImport, \public_path('/ProductsData/'.$fileName));
+
+        return redirect()->route('admin.kelolaproduk');
+    }
+
+    public function viewImportProduct() {
+        return view('admin.tambahprodukimport');
+    }
+
     public function produk(){
-        $produk = Produk::paginate(1)->where('status_produk','Aktif');
+        $produk = Produk::paginate(5)->where('status_produk','Aktif');
         return view('admin.kelolaproduk',compact('produk'));
     }
 
