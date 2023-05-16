@@ -62,7 +62,7 @@
                                 $no = 1;
                             @endphp
 
-                            {{-- @foreach ($pesanan_kapem as $data)
+                            @foreach ($pesanan_kapem as $data)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $data->tanggal }}</td>
@@ -81,7 +81,7 @@
                                         <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
                                     </td>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
 
                     </table>

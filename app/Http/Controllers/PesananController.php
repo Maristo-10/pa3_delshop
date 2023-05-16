@@ -215,7 +215,7 @@ class PesananController extends Controller
             'status'=>'Sedang Diproses',
             'nama_pengambil'=>$request->nama_pengambil,
             'metode_pembayaran'=>$request->kategori_pembayaran,
-            'id_layanan'=>$request->metode_pembayaran,
+            'nama_layanan'=>$request->metode_pembayaran,
             'tanggal'=>$tanggal
 
         ]);
@@ -234,11 +234,11 @@ class PesananController extends Controller
 
         $pesanan_kapem = DB::table('pesanans')
         ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
-        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.nama_layanan')
         ->where('pesanans.user_id', Auth::user()->id)
         ->where('status','!=','keranjang')
         ->get();
-
+        // dd($pesanan_kapem);
 
         return view('pembeli.pesanan',[
             'pengguna_prof'=>$pengguna_prof,
