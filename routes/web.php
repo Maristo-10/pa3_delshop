@@ -66,6 +66,9 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
         return view('frontend.dashboard-admin');
     })->name('frontend.dashboard-admin');
 
+    Route::get('/laporan',[PesananController::class, 'laporanpenjualan'])->name('admin.laporanpenjualan');
+    Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
+
     Route::get('/produk', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class,'viewtambahproduk'])->name('admin.tambahproduk');
     Route::post('/prosestambahproduk', [ProdukController::class,'tambahproduk'])->name('admin.storeproduk');

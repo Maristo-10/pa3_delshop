@@ -194,7 +194,7 @@
                             '<option value="0" disabled selected>Pilih Layanan Pembayaran</option>');
                         $.each(res, function(key, value) {
                             $('#metode_pembayaran').append('<option value="' + value
-                                .id_metpem + '">' + value.nama_layanan +
+                                .id_metpem + '">' + value.layanan +
                                 '</option>');
                         });
                         $('#f-metpem').prop('hidden', false);
@@ -221,7 +221,7 @@
                     if (metpemId != "0") {
                         $.each(res, function(key, value) {
                             document.getElementById('namaLayanan').innerHTML = value
-                                .nama_layanan;
+                                .layanan;
                             document.getElementById('nomorLayanan').innerHTML =
                                 value.no_layanan
                         });

@@ -21,7 +21,7 @@ class ProdukController extends Controller
     }
 
     public function produk(){
-        $produk = Produk::paginate(1)->where('status_produk','Aktif');
+        $produk = Produk::paginate(5)->where('status_produk','Aktif');
         return view('admin.kelolaproduk',compact('produk'));
     }
 

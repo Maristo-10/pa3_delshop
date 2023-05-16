@@ -40,6 +40,9 @@
 
     <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css') }}">
 <script defer src="{{ asset('https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.js') }}">
+</script>
+<link href="{{ asset('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
