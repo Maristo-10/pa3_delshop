@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductsImport;
 use App\Models\DetailPesanan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
@@ -12,12 +13,27 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\UkuranModel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProdukController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    // function to import produk data excel
+    public function importProduk(Request $request) {
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        $file->move('ProductsData', $fileName);
+        Excel::import(new ProductsImport, \public_path('/ProductsData/'.$fileName));
+
+        return redirect()->route('admin.kelolaproduk');
+    }
+
+    public function viewImportProduct() {
+        return view('admin.tambahprodukimport');
     }
 
     public function produk(){
@@ -104,7 +120,7 @@ class ProdukController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolaproduk");
+        return redirect()->route("admin.kelolaproduk")->with('success','Data Produk Berhasil Di Tambahkan');
     }
 
     public function viewubahproduk($id){
@@ -148,7 +164,7 @@ class ProdukController extends Controller
             'deskripsi'=>$deskripsi
         ]);
 
-        return redirect()->route('admin.kelolaproduk');
+        return redirect()->route('admin.kelolaproduk')->with('success','Data Produk Berhasil di Ubah');
     }
 
     public function ubahstatusproduknon($id, Request $request){
@@ -160,14 +176,14 @@ class ProdukController extends Controller
 
     public function produknonaktif(){
         $produk = Produk::all()->where('status_produk','Non-Aktif');
-        return view('admin.kelolaproduknonaktif',compact('produk'));
+        return view('admin.kelolaproduknonaktif',['produk'=>$produk])->with('success','Data Produk Berhasil Di Tambahkan');
     }
 
     public function ubahstatusprodukaktf($id){
         $produk = Produk::find($id);
         $produk->update(['status_produk'=>'Aktif']);
 
-        return redirect()->route('admin.kelolaproduknonaktif');
+        return redirect()->route('admin.kelolaproduknonaktif')->with('success','Data Produk Berhasil Di Tambahkan');;
     }
 
 

@@ -91,6 +91,9 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     // add import file
     Route::get('/tambahpengguna/import', [UserController::class, 'viewimport']);
     Route::post('/prosestambahpengguna/import', [UserController::class, 'import'])->name('tambahpengguna.import');
+    Route::get('/tambahproduk/import', [ProdukController::class, 'viewImportProduct']);
+    Route::post('/prosestambahproduk/import', [ProdukController::class, 'importProduk'])->name('tambahproduk.import');
+
     // end import file
     Route::get('/kelola-metode-pembayaran', [MetodePembayaranController::class, 'kemetpem'])->name('admin.kelolametodepembayaran');
     Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class,'tametpem'])->name('admin.tambahmetodepembayaran');

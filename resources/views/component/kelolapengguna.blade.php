@@ -33,6 +33,19 @@
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
             <div class="card">
                 <div class="card-body">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
+
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
                     <table class="table table-striped table-bordered" id="list">
                         <thead>
                             <tr>
@@ -44,9 +57,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
-                                $no = 1;
-                            @endphp --}}
                             @foreach ($pengguna as $index => $data)
                                 <tr>
                                     <td>{{ $index + $pengguna->firstItem() }}</td>

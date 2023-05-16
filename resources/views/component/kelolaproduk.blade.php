@@ -13,10 +13,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <div class="card-body d-sm-flex justify-content-between">
-    <h6 class="col-md-12 mb-0">
+    <h6 class="col-md-7 mb-0">
         <a href="/tambahproduk" class="btn btn-success text-white py-2 ml-2">
             <i class="fa fa-plus"></i>
             <span>Tambah Data Produk</span>
+        </a>
+    </h6>
+    <h6 class="col-md-5 mb-0">
+        <a href="tambahproduk/import" class="btn btn-success text-white py-2 ml-2">
+            <i class="fa fa-plus"></i>
+            <span>Import Data Excel</span>
         </a>
     </h6>
 </div>
@@ -25,6 +31,19 @@
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
             <div class="card">
                 <div class="card-body">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
+                    
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
                     <table class="table table-striped table-bordered" id="list">
                         <thead>
                             <tr>
@@ -66,7 +85,7 @@
                                     <td>
                                         <a href="/ubahproduk/{{ $data->id_produk }}" title="Ubah Data"
                                             class="bi bi-pencil-square btn btn-warning " style="font-size: 8px"></a>
-                                        <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2"></a>
+                                        <a title="Non-Aktifkan Data" href="/prosesubahstatusproduk/nonaktif/{{ $data->id_produk }}" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" ></a>
                                     </td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,11 +103,15 @@
                                     </div>
                             @endforeach
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="d-flex justify-content-end n-link" style="text-decoration: none">
+    {{ $produk->links() }}
 </div>
 </div>

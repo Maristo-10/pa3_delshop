@@ -18,7 +18,7 @@
                 @foreach ($kategori as $data)
                 <div class="element-card">
                     <div class="front-facing text-center">
-                        <img src="/category-images/{{ $data->gambar_kategori }}" alt="" width="110px" class="mt-3">
+                        <img src="/category-images/{{ $data->gambar_kategori }}" alt="" width="110px" height="100px" class="mt-3">
                         <p class="title">{{ $data->kategori }}</p>
                     </div>
                 </div>
@@ -31,9 +31,9 @@
     <!-- Start Banner Hero -->
     <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active" style="display:none" ></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1" style="display:none"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2" style="display:none"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -61,7 +61,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_02.jpg" alt="">
+                            <img class="img-fluid" src="/img/baju_putih.jpeg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -80,7 +80,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_03.jpg" alt="">
+                            <img class="img-fluid" src="/img/baju_putih.jpeg" alt="" >
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -129,7 +129,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="thumb-content text-center">
+                        <div class="thumb-content text-center mt-3">
                             <h4>{{ $data->nama_produk }}</h4>
                             <p class="item-price"><span class="text-primary"> Rp. 
                                 <?php
@@ -146,8 +146,8 @@
             @else
             <div class="row align-items-center product-slider product-slider-1 wow zoomIn" data-wow-delay="0.1s">
                 @foreach ($unggulan as $data)
-                <div class="col-md-3">
-                    <div class="product-item ">
+                <div class="col-sm-3">
+                    <div class="product-item  ">
                         <div class="product-image">
                             <a href="/detail-produk/{{ $data->id_produk }}">
                                 <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" >
@@ -157,13 +157,15 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="product-price text-center">
-                            <h5 class="text-light border-bottom">{{ $data->nama_produk }}</h5><br>
-                            <h4 class="text-light" ><span>Rp.</span><?php
+                        <div class="thumb-content text-center mt-3">
+                            <h4>{{ $data->nama_produk }}</h4>
+                            <p class="item-price"><span class="text-primary"> Rp. 
+                                <?php
                                 $angka = $data->harga;
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
-                            </h4 >
+                            </span></p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
