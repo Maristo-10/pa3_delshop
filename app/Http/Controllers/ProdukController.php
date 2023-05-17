@@ -37,7 +37,7 @@ class ProdukController extends Controller
     }
 
     public function produk(){
-        $produk = Produk::paginate(5)->where('status_produk','Aktif');
+        $produk = Produk::where('status_produk','Aktif')->paginate(5);
         return view('admin.kelolaproduk',compact('produk'));
     }
 
@@ -103,7 +103,6 @@ class ProdukController extends Controller
         $tambahproduk->produk_unggulan = $request->produk_unggulan;
         $tambahproduk->deskripsi = $request->deskripsi;
         if($request->file('gambar_produk')){
-
             if ($request->hasfile('gambar_produk')) {
                 $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar_produk')->getClientOriginalName());
                 $request->file('gambar_produk')->move(public_path('product-images'), $filename);
@@ -175,7 +174,7 @@ class ProdukController extends Controller
     }
 
     public function produknonaktif(){
-        $produk = Produk::all()->where('status_produk','Non-Aktif');
+        $produk = Produk::where('status_produk','Non-Aktif')->paginate(5);
         return view('admin.kelolaproduknonaktif',['produk'=>$produk])->with('success','Data Produk Berhasil Di Tambahkan');
     }
 

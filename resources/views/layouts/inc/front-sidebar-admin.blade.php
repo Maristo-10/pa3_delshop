@@ -32,12 +32,12 @@
         </a>
         <ul id="components-nav-2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="/produk">
+                <a href="/produks">
                     <i class="bi bi-box2-fill fs-5"></i><span>Kelola Produk</span>
                 </a>
             </li>
             <li>
-                <a href="/produk/non-aktif">
+                <a href="/produks/non-aktif">
                     <i class="bi bi-box2 fs-5"></i><span>Produk Non-Aktif</span>
                 </a>
             </li>

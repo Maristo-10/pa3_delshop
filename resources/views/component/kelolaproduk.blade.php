@@ -33,14 +33,14 @@
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
@@ -65,9 +65,9 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($produk as $data)
+                            @foreach ($produk as $index => $data)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $index + $produk->firstItem() }}</td>
                                     <td>{{ $data->nama_produk }}</td>
                                     <td style="text-align:right"><?php
                                         $angka =$data->harga;
@@ -105,13 +105,10 @@
                         </tbody>
 
                     </table>
+                        {{ $produk->links('pagination::tailwind') }}
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="d-flex justify-content-end n-link" style="text-decoration: none">
-    {{ $produk->links() }}
 </div>
 </div>

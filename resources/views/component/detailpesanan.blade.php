@@ -61,14 +61,14 @@
         <div class="col-11">
             @foreach ($pembayaran as $data)
                 @if (Route::is('admin.ubahstatus', $data->id))
-                    <div class="card card-registration card-registration-2 col-6 d-flex justify-content-center"
+                    <div class="card card-registration card-registration-2 col-4  d-flex justify-content-center"
                         style="border-radius: 15px;">
                         <form action="/proses/ubah/status/{{$data->id}}" method="POST">
                             @csrf
-                            <div class="card-body p-5">
+                            <div class="card-body p-4">
                                 <div class="row mb-3">
-                                    <h5 class="col col-lg-6 mt-2 g-0" style="font-weight: bold">Status Pesanan : </h5>
-                                    <select class="col form-control form-control-lg col-6 " name="status"
+                                    <small class="col col-5 mt-1" style="font-weight: bold">Status Pesanan : </small>
+                                    <select class="col form-control form-control-sm" name="status"
                                         id="status" style="font-weight: bold">
                                         @foreach ($pembayaran as $data)
                                             <option selected disabled>{{ $data->status }}</option>
@@ -81,7 +81,7 @@
                                     </select>
                                 </div>
                                 <div class="row mb-1 float-center">
-                                    <button type="submit" class="col btn btn-warning col-12">Ubah</button>
+                                    <button type="submit" class="col btn btn-warning btn-sm col-sm-12">Ubah</button>
                                 </div>
                             </div>
                         </form>
@@ -182,7 +182,7 @@
                                     </div>
                                     <h6 class="text-uppercase mb-2"><b>Jenis Layanan</b></h6>
                                     <div class="mb-2 pb-2">
-                                        <h6>{{ $data->nama_layanan }}</h6>
+                                        <h6>{{ $data->layanan }}</h6>
                                         <h6>{{ $data->no_layanan }}</h6>
                                     </div>
                                 </div>

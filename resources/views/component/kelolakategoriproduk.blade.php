@@ -34,9 +34,9 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($kategoriproduk as $data)
+                                    @foreach ($kategoriproduk as $index => $data)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $index + $kategoriproduk->firstItem() }}</td>
                                             <td>
                                                 <img src="/category-images/{{ $data->gambar_kategori }}" alt="" style="max-height: 50px">
                                             </td>
@@ -65,6 +65,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $kategoriproduk->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>

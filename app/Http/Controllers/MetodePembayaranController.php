@@ -14,8 +14,8 @@ class MetodePembayaranController extends Controller
     }
 
     public function kemetpem(){
-        $metpem = MetodePembayaran::all();
-        $kapem = KategoriPembayaran::all();
+        $metpem = MetodePembayaran::paginate(5);
+        $kapem = KategoriPembayaran::paginate(5);
 
         return view('admin.kelolametodepembayaran',[
             'metpem'=>$metpem,
