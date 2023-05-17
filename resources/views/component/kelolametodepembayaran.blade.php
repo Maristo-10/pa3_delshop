@@ -39,14 +39,14 @@
                     <div class="card-body">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
                         </div>
                         @endif
-                        
+
                         @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
                         </div>
                         @endif
@@ -70,7 +70,7 @@
                                 @foreach ($metpem as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->nama_layanan }}</td>
+                                        <td>{{ $data->layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
@@ -131,14 +131,14 @@
             <div class="card-body">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif

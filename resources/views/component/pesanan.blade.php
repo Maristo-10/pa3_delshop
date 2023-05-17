@@ -66,10 +66,13 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $data->tanggal }}</td>
-                                    <td>Rp</td>
+                                    <td>Rp. <?php
+                                        $angka = $data->total_harga;
+                                        echo number_format($angka, 0, ',', '.');
+                                        ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
-                                    <td>{{ $data->kategori_pembayaran }}</td>
-                                    <td>{{ $data->nama_layanan }}</td>
+                                    <td>{{ $data->kapem }}</td>
+                                    <td>{{ $data->layanan }}</td>
                                     <td>
                                         <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
                                             style="max-height: 50px">
@@ -83,8 +86,12 @@
                                     </td>
                             @endforeach
                         </tbody>
-
                     </table>
+                        {{-- <div class="row">
+                            <div class="col-md-12">
+                                {{ $pesanan_kapem->links('pagination::tailwind') }}
+                            </div>
+                        </div> --}}
                 </div>
             </div>
         </div>

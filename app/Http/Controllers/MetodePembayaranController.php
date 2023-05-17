@@ -35,12 +35,11 @@ class MetodePembayaranController extends Controller
         $arrName = [];
 
         $tambahmetpem = new MetodePembayaran();
-        $tambahmetpem->nama_layanan = $request->nama_layanan;
+        $tambahmetpem->layanan = $request->nama_layanan;
         $tambahmetpem->no_layanan = $request->no_layanan;
         $tambahmetpem->nama_pemilik = $request->nama_pemilik;
         $id_kapem = $request->kategori_layanan;
         $tambahmetpem->kategori_layanan = $id_kapem;
-        // dd($id_kapem);
         $kapem = KategoriPembayaran::where('id_kapem',$id_kapem)->get('kategori_pembayaran')->implode('kategori_pembayaran'," ");
         $tambahmetpem->kapem = $kapem;
 

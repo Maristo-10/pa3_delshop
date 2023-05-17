@@ -176,7 +176,7 @@ class ProdukController extends Controller
 
     public function produknonaktif(){
         $produk = Produk::all()->where('status_produk','Non-Aktif');
-        return view('admin.kelolaproduknonaktif',compact('produk')->with('success','Data Produk Berhasil Di Tambahkan'));
+        return view('admin.kelolaproduknonaktif',['produk'=>$produk])->with('success','Data Produk Berhasil Di Tambahkan');
     }
 
     public function ubahstatusprodukaktf($id){

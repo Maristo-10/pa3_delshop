@@ -47,7 +47,7 @@
                                     ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
                                     <td>{{ $data->kategori_pembayaran }}</td>
-                                    <td>{{ $data->nama_layanan }}</td>
+                                    <td>{{ $data->layanan }}</td>
                                     <td>
                                         <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
                                             style="max-height: 50px">
@@ -75,8 +75,9 @@
                                     </td>
                             @endforeach
                         </tbody>
-                        {{ $pesanan_kapem->links() }}
                     </table>
+                    {{ $pesanan_kapem->links() }}
+
                 </div>
             </div>
         </div>
