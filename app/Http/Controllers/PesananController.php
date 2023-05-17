@@ -216,14 +216,23 @@ class PesananController extends Controller
         }
         // $jumlah_pro = $produk->jumlah_produk - $request->jumlah;
         // $produk->update(['jumlah_produk'=>$jumlah_pro]);
-        $pesanan_baru->update([
-            'status' => 'Sedang Diproses',
-            'nama_pengambil' => $request->nama_pengambil,
-            'metode_pembayaran' => $request->kategori_pembayaran,
-            'nama_layanan' => $request->metode_pembayaran,
-            'tanggal' => $tanggal
-
-        ]);
+        if ($request->kategori_pembayaran == 901) {
+            $pesanan_baru->update([
+                'status' => 'Ditangguhkan',
+                'nama_pengambil' => $request->nama_pengambil,
+                'metode_pembayaran' => $request->kategori_pembayaran,
+                'nama_layanan' => $request->metode_pembayaran,
+                'tanggal' => $tanggal
+            ]);
+        } else {
+            $pesanan_baru->update([
+                'status' => 'Sedang Diproses',
+                'nama_pengambil' => $request->nama_pengambil,
+                'metode_pembayaran' => $request->kategori_pembayaran,
+                'nama_layanan' => $request->metode_pembayaran,
+                'tanggal' => $tanggal
+            ]);
+        }
 
         return redirect()->route('frontend.dashboard-pembeli');
     }
@@ -354,7 +363,7 @@ class PesananController extends Controller
         $harga = Pesanan::where('id', $id)->first();
         $pembayaran = DB::table('pesanans')
             ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
-            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nam_layanan')
+            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('id', $id)
             ->get();
 
@@ -398,7 +407,7 @@ class PesananController extends Controller
             ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
             ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('pesanans.user_id', Auth::user()->id)
-            ->where('status', 'Belum Dibayar')
+            ->where('status', 'Ditangguhkan')
             ->get();
         return response()->json($pesanan_kapem);
     }
@@ -451,16 +460,16 @@ class PesananController extends Controller
     {
         $awal = $request->tanggal_awal;
         $akhir = $request->tanggal_akhir;
-        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
+        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails','pesanandetails.pesanan_id', '=', 'pesanans.id')
             ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
-        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('count(pesanandetails.id) as total'))->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->first();
+        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->first();
         return view('admin.laporanpenjualan', [
             'penjualan' => $penjualan,
             'jlh_pesanan' => $jlh_pesanan,
-            'total_harga' =>$total_harga,
-            'awal'=>$awal,
-            'akhir'=>$akhir
+            'total_harga' => $total_harga,
+            'awal' => $awal,
+            'akhir' => $akhir
         ]);
     }
 }

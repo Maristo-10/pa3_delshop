@@ -36,42 +36,44 @@
             <div class="row col-md-9 d-flex justify-content-center mt-5">
 
                 <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
-                    <div class="card" style="background-color: #17a2b8">
-                        <div class="card-body">
-                            <h3 class="text-center fw-bold" style="color: white">Laporan Penjualan</h3>
-                            <h6 class="" style="color: white">Tanggal :
-                                @empty($awal)
-                                    -
-                                @else
-                                    <?php
-                                    echo date('d F Y', strtotime($awal));
-                                    ?> - <?php
-                                    echo date('d F Y', strtotime($akhir));
-                                    ?> </h6>
-                            @endempty
-
-                            <h6 class="text-left fw-bold" style="color: white">Jumlah Produk Terjual:
-                                {{ $jlh_pesanan->total }}
-                            </h6>
-                            <h6 class="text-left fw-bold" style="color: white">Total Pendapatan: Rp. <?php
-                            $angka = $total_harga->total;
-                            echo number_format($angka, 0, ',', '.');
-                            ?>
-                            </h6>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">
+                                <thead style="background-color: #17a2b8">
+                                    <tr>
+                                        <th scope="col" colspan="7">
+                                            <div class="row">
+                                                <div class="col col-12">
+                                                    <h3 class="text-center fw-bold" style="color: white">Laporan
+                                                        Penjualan</h3>
+                                                </div>
+                                                <div class="col col-12">
+                                                    <h6 class="" style="color: white">Tanggal :
+                                                        @empty($awal)
+                                                            -
+                                                        @else
+                                                            <?php
+                                                            echo date('d F Y', strtotime($awal));
+                                                            ?> - <?php
+                                                            echo date('d F Y', strtotime($akhir));
+                                                            ?> </h6>
+                                                    @endempty
+                                                </div>
+                                            </div>
+
+                                        </th>
+                                    </tr>
+                                </thead>
                                 <thead>
                                     <tr>
                                         <!-- <th scope="col">Pilihan</th> -->
-                                        <th scope="col" class="">No</th>
-                                        <th scope="col" class="">Tanggal Pesanan</th>
-                                        <th scope="col" class="">Nama Pengambil</th>
-                                        <th scope="col" class="">Metode Pembayaran</th>
-                                        <th scope="col" class="">Nama Layanan</th>
-                                        <th scope="col" class="">Total Harga</th>
+                                        <th scope="col" class="fw-bold">No</th>
+                                        <th scope="col" class="fw-bold">Tanggal Pesanan</th>
+                                        <th scope="col" class="fw-bold">Nama Pengambil</th>
+                                        <th scope="col" class="fw-bold">Jumlah Produk</th>
+                                        <th scope="col" class="fw-bold">Metode Pembayaran</th>
+                                        <th scope="col" class="fw-bold">Nama Layanan</th>
+                                        <th scope="col" class="fw-bold">Total Harga</th>
 
                                     </tr>
                                 </thead>
@@ -79,19 +81,60 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($penjualan as $index => $data)
+                                    @empty($penjualan)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $data->tanggal }}</td>
-                                            <td>{{ $data->nama_pengambil }}</td>
-                                            <td>{{ $data->kapem }}</td>
-                                            <td>{{ $data->layanan }}</td>
-                                            <td style="text-align: right">Rp. <?php
-                                            $angka = $data->total_harga;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></td>
-                                    @endforeach
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>0</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td style="text-align: right">Rp. 0</td>
+                                        </tr>
+                                    @else
+                                        @foreach ($penjualan as $index => $data)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $data->tanggal }}</td>
+                                                <td>{{ $data->nama_pengambil }}</td>
+                                                <td>{{ $data->jumlah }}</td>
+                                                <td>{{ $data->kapem }}</td>
+                                                <td>{{ $data->layanan }}</td>
+                                                <td style="text-align: right">Rp. <?php
+                                                $angka = $data->total_harga;
+                                                echo number_format($angka, 0, ',', '.');
+                                                ?></td>
+                                            </tr>
+                                        @endforeach
+                                    @endempty
                                 </tbody>
+                                <tfoot style="background-color: #17a2b8">
+                                    <tr>
+                                        @empty($penjualan)
+                                            <th scope="col" colspan="4">
+                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                    Terjual:
+                                                    0 Produk
+                                                </h6>
+                                            </th>
+                                        @else
+                                            <th scope="col" colspan="4">
+                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                    Terjual:
+                                                    {{ $jlh_pesanan->total }} Produk
+                                                </h6>
+                                            </th>
+                                        @endempty
+                                        <th scope="col" colspan="3">
+                                            <h6 class="text-right fw-bold" style="color: white">Total Pendapatan: Rp.
+                                                <?php
+                                                $angka = $total_harga->total;
+                                                echo number_format($angka, 0, ',', '.');
+                                                ?>
+                                            </h6>
+                                        </th>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                         </div>

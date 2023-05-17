@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         DB::table('ukuranproduks')->insert([
             'ukuran' => 'XL'
         ]);
+
+        
     }
 }

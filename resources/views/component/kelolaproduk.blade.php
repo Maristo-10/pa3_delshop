@@ -65,9 +65,9 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($produk as $data)
+                            @foreach ($produk as $index => $data)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $index + $produk->firstItem() }}</td>
                                     <td>{{ $data->nama_produk }}</td>
                                     <td style="text-align:right"><?php
                                         $angka =$data->harga;
@@ -105,6 +105,7 @@
                         </tbody>
 
                     </table>
+                        {{ $produk->links('pagination::tailwind') }}
                 </div>
             </div>
         </div>
