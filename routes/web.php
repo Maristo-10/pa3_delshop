@@ -63,17 +63,18 @@ Route::middleware(['auth','isPembeli'])->group( function() {
 });
 
 Route::middleware(['auth', 'isAdmin'])->group( function() {
-    Route::get('/dashboard-admin', function () {
-        return view('frontend.dashboard-admin');
-    })->name('frontend.dashboard-admin');
+    Route::get('/dashboard-admin',[HomeController::class, 'dashboard'])->name('frontend.dashboard-admin');
 
-    Route::get('/produk', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
+    Route::get('/laporan',[PesananController::class, 'laporanpenjualan'])->name('admin.laporanpenjualan');
+    Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
+
+    Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class,'viewtambahproduk'])->name('admin.tambahproduk');
     Route::post('/prosestambahproduk', [ProdukController::class,'tambahproduk'])->name('admin.storeproduk');
     Route::get('/ubahproduk/{id}', [ProdukController::class,'viewubahproduk'])->name('admin.ubahproduk');
     Route::post('/prosesubahproduk/{id}', [ProdukController::class,'ubahproduk'])->name('admin.updateproduk');
     Route::get('/prosesubahstatusproduk/nonaktif/{id}', [ProdukController::class,'ubahstatusproduknon'])->name('admin.updatestatusproduknon');
-    Route::get('/produk/non-aktif', [ProdukController::class, 'produknonaktif'])->name('admin.kelolaproduknonaktif');
+    Route::get('/produks/non-aktif', [ProdukController::class, 'produknonaktif'])->name('admin.kelolaproduknonaktif');
     Route::get('/prosesubahstatusproduk/aktif/{id}', [ProdukController::class,'ubahstatusprodukaktf'])->name('admin.updatestatusprodukak');
     Route::get('/kategoriproduk', [KategoriController::class, 'kategoriproduk'])->name('admin.kelolakategoriproduk');
     Route::post('/prosestambahkategori', [KategoriController::class,'tambahkategori'])->name('admin.storekategori');
@@ -89,6 +90,9 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     // add import file
     Route::get('/tambahpengguna/import', [UserController::class, 'viewimport']);
     Route::post('/prosestambahpengguna/import', [UserController::class, 'import'])->name('tambahpengguna.import');
+    Route::get('/tambahproduk/import', [ProdukController::class, 'viewImportProduct']);
+    Route::post('/prosestambahproduk/import', [ProdukController::class, 'importProduk'])->name('tambahproduk.import');
+
     // end import file
     Route::get('/kelola-metode-pembayaran', [MetodePembayaranController::class, 'kemetpem'])->name('admin.kelolametodepembayaran');
     Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class,'tametpem'])->name('admin.tambahmetodepembayaran');

@@ -35,14 +35,14 @@
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
@@ -57,9 +57,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
-                                $no = 1;
-                            @endphp --}}
                             @foreach ($pengguna as $index => $data)
                                 <tr>
                                     <td>{{ $index + $pengguna->firstItem() }}</td>
@@ -72,7 +69,6 @@
                                     </td>
                             @endforeach
                         </tbody>
-
                     </table>
                     <div class="row">
                         <div class="col-md-12">

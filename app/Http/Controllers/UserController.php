@@ -25,8 +25,7 @@ class UserController extends Controller
         $file->move('UsersData', $fileName);
         Excel::import(new UsersImport, \public_path('/UsersData/'.$fileName));
 
-        return redirect()->route("admin.kelolapengguna");
-        // return redirect()->back()->with('success', 'Data imported successfully!');
+        return redirect()->route("admin.kelolapengguna")->with('success', 'Data imported successfully!');
     }
 
     public function user(){

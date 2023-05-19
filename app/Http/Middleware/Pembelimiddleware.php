@@ -20,7 +20,7 @@ class Pembelimiddleware
         if(Auth::user()->role_pengguna == 'Publik' ||Auth::user()->role_pengguna == 'Dosen/Staff' || Auth::user()->role_pengguna == 'Mahasiswa') {
             return $next($request);
         } else {
-            return back()->with('status', 'you are not allowed to access the admin dashboard');
+            return back()->with('status', 'you are not allowed to access the user dashboard');
         }
     }
 }

@@ -61,8 +61,37 @@
                             @php
                                 $no = 1;
                             @endphp
+
+                            @foreach ($pesanan_kapem as $data)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $data->tanggal }}</td>
+                                    <td>Rp. <?php
+                                    $angka = $data->total_harga;
+                                    echo number_format($angka, 0, ',', '.');
+                                    ?></td>
+                                    <td>{{ $data->nama_pengambil }}</td>
+                                    <td>{{ $data->kapem }}</td>
+                                    <td>{{ $data->layanan }}</td>
+                                    <td>
+                                        <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
+                                            style="max-height: 50px">
+                                    </td>
+                                    <td><b>{{ $data->status }}</b></td>
+                                    <td>
+                                        <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
+                                            class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                        <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
+                                            class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
+                                    </td>
+                            @endforeach
                         </tbody>
                     </table>
+                    {{-- <div class="row">
+                            <div class="col-md-12">
+                                {{ $pesanan_kapem->links('pagination::tailwind') }}
+                            </div>
+                        </div> --}}
                 </div>
             </div>
         </div>
@@ -108,8 +137,7 @@
                         $('#table-pesanan').append(
                             '<td>' + value.status + '</td>');
                         $('#table-pesanan').append(
-                            "<td><a href='/detail-pesanan/" + value.id +
-                            " title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
+                            "<td><a href='/detail-pesanan/" + value.id + "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a> <a href='#' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
                         );
                         $('#table-pesanan').append('</tr>');
                     });
@@ -155,7 +183,7 @@
                             '<td>' + value.status + '</td>');
                         $('#table-pesanan').append(
                             "<td><a href='/detail-pesanan/" + value.id +
-                            " title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
+                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
                         );
                         $('#table-pesanan').append('</tr>');
                     });
@@ -200,7 +228,7 @@
                             '<td>' + value.status + '</td>');
                         $('#table-pesanan').append(
                             "<td><a href='/detail-pesanan/" + value.id +
-                            " title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
+                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
                         );
                         $('#table-pesanan').append('</tr>');
                     });
@@ -245,7 +273,7 @@
                             '<td>' + value.status + '</td>');
                         $('#table-pesanan').append(
                             "<td><a href='/detail-pesanan/" + value.id +
-                            " title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
+                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
                         );
                         $('#table-pesanan').append('</tr>');
                     });

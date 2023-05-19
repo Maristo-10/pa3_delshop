@@ -39,12 +39,12 @@
         </a>
         <ul id="components-nav-2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="/produk">
+                <a href="/produks">
                     <i class="bi bi-box2-fill fs-5"></i><span>Kelola Produk</span>
                 </a>
             </li>
             <li>
-                <a href="/produk/non-aktif">
+                <a href="/produks/non-aktif">
                     <i class="bi bi-box2 fs-5"></i><span>Produk Non-Aktif</span>
                 </a>
             </li>
@@ -84,11 +84,19 @@
                     <i class="bi bi-wallet2 fs-5"></i><span>Kelola Pesanan</span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="/kelola-metode-pembayaran">
-                    <i class="bi bi-wallet-fill fs-5"></i><span>Kelola Kategori Pembayaran</span>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav-5" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-journal-text"></i><span>Manajemen Penjualan</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/laporan">
+                    <i class="bi bi-journal-text fs-5"></i><span>Laporan Penjualan</span>
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </li>
 </ul>

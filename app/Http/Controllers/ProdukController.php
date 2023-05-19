@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductsImport;
 use App\Models\DetailPesanan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
@@ -12,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\UkuranModel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProdukController extends Controller
 {
@@ -20,10 +22,23 @@ class ProdukController extends Controller
         $this->middleware('auth');
     }
 
+    // function to import produk data excel
+    public function importProduk(Request $request) {
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        $file->move('ProductsData', $fileName);
+        Excel::import(new ProductsImport, \public_path('/ProductsData/'.$fileName));
+
+        return redirect()->route('admin.kelolaproduk');
+    }
+
+    public function viewImportProduct() {
+        return view('admin.tambahprodukimport');
+    }
+
     public function produk(){
-        $produk = Produk::where('status_produk','Aktif')->simplePaginate(5);
-        return view('admin.kelolaproduk',compact('produk'))
-            ->with('i',(request()->input('page',1) - 1) * 5);
+        $produk = Produk::where('status_produk','Aktif')->paginate(5);
+        return view('admin.kelolaproduk',compact('produk'));
     }
 
     // sorting produk
@@ -88,7 +103,6 @@ class ProdukController extends Controller
         $tambahproduk->produk_unggulan = $request->produk_unggulan;
         $tambahproduk->deskripsi = $request->deskripsi;
         if($request->file('gambar_produk')){
-
             if ($request->hasfile('gambar_produk')) {
                 $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar_produk')->getClientOriginalName());
                 $request->file('gambar_produk')->move(public_path('product-images'), $filename);
@@ -160,8 +174,8 @@ class ProdukController extends Controller
     }
 
     public function produknonaktif(){
-        $produk = Produk::all()->where('status_produk','Non-Aktif');
-        return view('admin.kelolaproduknonaktif',compact('produk')->with('success','Data Produk Berhasil Di Tambahkan'));
+        $produk = Produk::where('status_produk','Non-Aktif')->paginate(5);
+        return view('admin.kelolaproduknonaktif',['produk'=>$produk])->with('success','Data Produk Berhasil Di Tambahkan');
     }
 
     public function ubahstatusprodukaktf($id){

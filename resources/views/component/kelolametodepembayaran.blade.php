@@ -39,14 +39,14 @@
                     <div class="card-body">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
                         </div>
                         @endif
-                        
+
                         @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
                         </div>
                         @endif
@@ -67,14 +67,14 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($metpem as $data)
+                                @foreach ($metpem as $index => $data)
                                     <tr>
-                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $index + $metpem->firstItem() }}</td>
                                         <td>{{ $data->nama_layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
-                                        <td>
+                                        <td style="text-align: center">
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
@@ -83,6 +83,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $metpem->links('pagination::tailwind') }}
                     </div>
                 </div>
             </div>
@@ -131,14 +132,14 @@
             <div class="card-body">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
@@ -156,9 +157,9 @@
                         @php
                             $no = 1;
                         @endphp
-                        @foreach ($kapem as $data)
+                        @foreach ($kapem as $index =>$data)
                             <tr>
-                                <td>{{ $no++ }}</td>
+                                <td>{{ $index + $kapem->firstItem() }}</td>
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
                                     <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
@@ -168,6 +169,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $kapem->links('pagination::tailwind') }}
             </div>
         </div>
     </div>

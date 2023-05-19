@@ -13,10 +13,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <div class="card-body d-sm-flex justify-content-between">
-    <h6 class="col-md-12 mb-0">
+    <h6 class="col-md-7 mb-0">
         <a href="/tambahproduk" class="btn btn-success text-white py-2 ml-2">
             <i class="fa fa-plus"></i>
             <span>Tambah Data Produk</span>
+        </a>
+    </h6>
+    <h6 class="col-md-5 mb-0">
+        <a href="tambahproduk/import" class="btn btn-success text-white py-2 ml-2">
+            <i class="fa fa-plus"></i>
+            <span>Import Data Excel</span>
         </a>
     </h6>
 </div>
@@ -27,14 +33,14 @@
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
@@ -59,9 +65,9 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($produk as $data)
+                            @foreach ($produk as $index => $data)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $index + $produk->firstItem() }}</td>
                                     <td>{{ $data->nama_produk }}</td>
                                     <td style="text-align:right"><?php
                                         $angka =$data->harga;
@@ -97,8 +103,9 @@
                                     </div>
                             @endforeach
                         </tbody>
-                        
+
                     </table>
+                        {{ $produk->links('pagination::tailwind') }}
                 </div>
             </div>
         </div>
@@ -106,6 +113,6 @@
 </div>
 
 <div class="d-flex justify-content-end n-link" style="text-decoration: none">
-    {{ $produk->links() }}
+    {{-- {{ $produk->links() }} --}}
 </div>
 </div>
