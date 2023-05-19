@@ -137,7 +137,7 @@
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
                             </span></p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
             <div class="row align-items-center product-slider product-slider-1 wow zoomIn" data-wow-delay="0.1s">
                 @foreach ($unggulan as $data)
                 <div class="col-sm-3">
-                    <div class="product-item  ">
+                    <div class="product-item">
                         <div class="product-image">
                             <a href="/detail-produk/{{ $data->id_produk }}">
                                 <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" >
@@ -165,7 +165,7 @@
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
                             </span></p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>

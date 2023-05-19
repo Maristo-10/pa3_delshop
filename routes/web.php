@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Models\MetodePembayaran;
 use Illuminate\Http\Request;
@@ -104,6 +105,13 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/ubah/status/{id}', [PesananController::class,'ubahstatus'])->name('admin.ubahstatus');
     Route::post('/proses/ubah/status/{id}', [PesananController::class,'updatestatus'])->name('admin.updatestatus');
     Route::get('/proses/ubah/status/batalkan/{id}', [PesananController::class,'updatebatalkan'])->name('admin.updatebatalkan');
+    Route::resource('beritas', BeritaController::class);
+    Route::get('/kelola-berita', [BeritaController::class, 'berita'])->name('admin.kelolaberita');
+    Route::get('/tambah-berita', [BeritaController::class,'create'])->name('admin.tambahberita');
+    Route::post('/prosestambahberita', [BeritaController::class,'store'])->name('admin.storeberita');
+    Route::get('/ubahberita/{id}', [BeritaController::class,'edit'])->name('admin.ubahberita');
+    Route::post('/prosesubahberita/{id}', [BeritaController::class,'update'])->name('admin.updateberita');
+    
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

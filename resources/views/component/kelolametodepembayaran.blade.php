@@ -28,7 +28,7 @@
 </script>
 
 <div class="row col-12">
-    <div class="col-7 ">
+    <div class="col-7">
         <small><a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
             <i class="fa fa-plus"></i>
             <span><small>Tambah Data Metode Pembayaran</small></span>
@@ -78,7 +78,7 @@
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger"></a>
+                                                class="bi bi-slash-circle-fill btn btn-danger mt-1"></a>
                                         </td>
                                 @endforeach
                             </tbody>
@@ -161,9 +161,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
-                                    <a class="bi bi-pencil-square btn btn-warning col-md-6" href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
+                                    <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
                                     <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" title="Hapus Data"
-                                        class="bi bi-trash-fill btn btn-danger col-md-6"></a>
+                                        class="bi bi-trash-fill btn btn-danger mt-3"></a>
                                 </td>
                         @endforeach
                     </tbody>

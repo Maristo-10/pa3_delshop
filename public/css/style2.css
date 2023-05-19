@@ -2260,7 +2260,7 @@ textarea.form-control {
   }
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   font-weight: 400;
   color: #6F6F6F;
@@ -2274,7 +2274,7 @@ textarea.form-control {
   line-height: 1.5;
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+} */
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -2308,39 +2308,40 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #ffffff;
   background-color: #3C8DBC;
-  border-color: #3C8DBC;
+  border-color: #ffffff;
 }
 
 .btn-primary:hover {
-  color: #fff;
-  background-color: #3C8DBC;
-  border-color: #083E60;
+  color: #ffffff;
+  background-color: #78c1eb;
+  border-color: #bac9ff;
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  color: #fff;
-  background-color: #1370AA;
-  border-color: #083E60;
-  box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
+  color: #212529;
+  background-color: #c7d3ff;
+  border-color: #bac9ff;
+  box-shadow: 0 0 0 0.2rem rgba(206, 210, 223, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #212529;
-  background-color: #3C8DBC;
-  border-color: #3C8DBC;
+  background-color: #EDF1FF;
+  border-color: #EDF1FF;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #083E60;
-  border-color: #bd726b;
+  color: #212529;
+  background-color: #bac9ff;
+  border-color: #adbfff;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(206, 210, 223, 0.5);
 }
+
 
 .btn-secondary {
   color: #ffffff;
@@ -2378,6 +2379,7 @@ fieldset:disabled a.btn {
 .show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(206, 210, 223, 0.5);
 }
+
 
 .btn-success {
   color: #fff;
@@ -3156,7 +3158,6 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #3C8DBC;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {

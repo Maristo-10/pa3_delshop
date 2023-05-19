@@ -593,6 +593,7 @@ class ComposerStaticInitde100123ec7f6040647a84ac969f4076
         'App\\Models\\Pesanan' => __DIR__ . '/../..' . '/app/Models/Pesanan.php',
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
+        'App\\Models\\UkuranModel' => __DIR__ . '/../..' . '/app/Models/UkuranModel.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

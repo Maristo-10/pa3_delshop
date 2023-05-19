@@ -234,7 +234,7 @@ class PesananController extends Controller
 
         $pesanan_kapem = DB::table('pesanans')
         ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
-        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.id_layanan')
+        ->join('metodepembayarans','metodepembayarans.id_metpem', '=' ,'pesanans.nama_layanan')
         ->where('pesanans.user_id', Auth::user()->id)
         ->where('status','!=','keranjang')
         ->get();
