@@ -86,7 +86,7 @@
         </a>
         <ul id="components-nav-5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="/laporan">
+                <a href="/laporan-custom">
                     <i class="bi bi-journal-text fs-5"></i><span>Laporan Penjualan</span>
                 </a>
             </li>

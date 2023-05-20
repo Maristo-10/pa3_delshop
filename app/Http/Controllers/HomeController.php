@@ -207,6 +207,7 @@ class HomeController extends Controller
         $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as int ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
 
         $tahun = $now->format('Y');
+        $date = $now->format('l, d F Y');
 
         //total
 
@@ -223,6 +224,9 @@ class HomeController extends Controller
         $jumlahTangguh = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Ditangguhkan')->get();
         $jumlahBatal = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Batalkan')->get();
 
+        //Pesanan Harian
+        $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->paginate(10);
+
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
             'totalpemasukan' => $totalpemasukan,
@@ -236,6 +240,8 @@ class HomeController extends Controller
             'jumlahProses'=>$jumlahProses,
             'jumlahTangguh'=>$jumlahTangguh,
             'jumlahBatal'=>$jumlahBatal,
+            'date'=>$date,
+            'pesanan_harian'=>$pesanan_harian
         ]);
     }
 }

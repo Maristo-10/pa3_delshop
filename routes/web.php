@@ -64,7 +64,9 @@ Route::middleware(['auth','isPembeli'])->group( function() {
 Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::get('/dashboard-admin',[HomeController::class, 'dashboard'])->name('frontend.dashboard-admin');
 
-    Route::get('/laporan',[PesananController::class, 'laporanpenjualan'])->name('admin.laporanpenjualan');
+    Route::get('/laporan-custom',[PesananController::class, 'laporanpenjualanCustom'])->name('admin.laporanpenjualan');
+    Route::get('/laporan-bulanan',[PesananController::class, 'laporanpenjualanBulanan'])->name('admin.laporanpenjualanBulanan');
+    Route::get('/laporan-tahunan',[PesananController::class, 'laporanpenjualanTahunan'])->name('admin.laporanpenjualanTahunan');
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
 
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');

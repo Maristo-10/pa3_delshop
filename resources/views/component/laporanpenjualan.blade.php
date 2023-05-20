@@ -7,10 +7,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<div class="container-fluid">
-    <form action="/laporan" method="GET" enctype="multipart/form-data">
-        <div class="row">
-
+<div class="container-fluid" id="form-laporan">
+    <form action="/laporan-custom" method="GET" enctype="multipart/form-data">
+        <a class="" data-bs-target="#laporan-custom" data-bs-toggle="collapse">
+            <h5 class="fw-bold">Pencarian Laporan Custom <i class="bi bi-chevron-down ml-2"></i></h5>
+        </a>
+        <hr>
+        <div class="row nav-content collapse " id="laporan-custom" data-bs-parent="#form-laporan">
             <div class="col col-4">
                 <h6>Tanggal Awal</h6>
                 <input type="date" class="form-control form-control-md col-md-10" id="tanggal_awal"
@@ -24,7 +27,39 @@
             <div class="col-2">
                 <button class="btn btn-primary mt-4" name="cari-penjualan" id="cari-penjualan"> Cari</button>
             </div>
-
+        </div>
+    </form>
+    <form action="/laporan-bulanan" method="GET" enctype="multipart/form-data">
+        <a class="" data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
+            <h5 class="fw-bold">Pencarian Laporan Bulanan <i class="bi bi-chevron-down ml-2"></i></h5>
+        </a>
+        <hr>
+        <div class="row nav-content collapse " id="components-laporan-bulanan" data-bs-parent="#form-laporan">
+            <div class="col col-4 mb-5">
+                <h6>Masukkan Bulan Laporan</h6>
+                <input type="month" class="form-control form-control-md col-md-10" id="bulan_laporan"
+                    name="bulan_laporan">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary mt-4" name="cari-penjualan" id="cari-penjualan"> Cari</button>
+            </div>
+        </div>
+    </form>
+    <form action="/laporan-tahunan" method="GET" enctype="multipart/form-data">
+        <a class="" data-bs-target="#components-laporan-tahunan" data-bs-toggle="collapse">
+            <h5 class="fw-bold">Pencarian Laporan Tahunan <i class="bi bi-chevron-down ml-2"></i></h5>
+        </a>
+        <hr>
+        <div class="row nav-content collapse " id="components-laporan-tahunan" data-bs-parent="#form-laporan">
+            <div class="col col-4 mb-5">
+                <h6>Masukkan Tahun Laporan</h6>
+                <input type="number" min="1999" max={{ $year }} type="Year"
+                    class="form-control form-control-md col-md-10" id="tahun_laporan" name="tahun_laporan"
+                    value={{ $year }} type="year">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary mt-4" name="cari-penjualan" id="cari-penjualan"> Cari</button>
+            </div>
         </div>
     </form>
     <hr style="border: double">
@@ -48,15 +83,27 @@
                                                         Penjualan</h3>
                                                 </div>
                                                 <div class="col col-12">
-                                                    <h6 class="" style="color: white">Tanggal :
-                                                        @empty($awal)
+                                                    <h6 class="" style="color: white">
+                                                        @empty($awal || $month || $tahunl)
                                                             -
                                                         @else
-                                                            <?php
-                                                            echo date('d F Y', strtotime($awal));
-                                                            ?> - <?php
-                                                            echo date('d F Y', strtotime($akhir));
-                                                            ?> </h6>
+                                                            @if ($awal && $akhir)
+                                                            Tanggal :
+                                                                <?php
+                                                                echo date('d F Y', strtotime($awal));
+                                                                ?> - <?php
+                                                                echo date('d F Y', strtotime($akhir));
+                                                                ?>
+                                                            @endif
+                                                            @if ($month)
+                                                                <?php
+                                                                echo 'Bulan ' . date('F Y', strtotime($month));
+                                                                ?>
+                                                            @endif
+                                                            @if ($tahunl)
+                                                               Tahun {{ $tahunl }}
+                                                            @endif
+                                                        </h6>
                                                     @endempty
                                                 </div>
                                             </div>
