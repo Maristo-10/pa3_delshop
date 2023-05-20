@@ -111,4 +111,8 @@
         </div>
     </div>
 </div>
+
+<div class="d-flex justify-content-end n-link" style="text-decoration: none">
+    {{-- {{ $produk->links() }} --}}
+</div>
 </div>
