@@ -117,7 +117,8 @@ Route::middleware(['auth', 'isAdmin'])->group( function() {
     Route::post('/prosestambahberita', [BeritaController::class,'store'])->name('admin.storeberita');
     Route::get('/ubahberita/{id}', [BeritaController::class,'edit'])->name('admin.ubahberita');
     Route::post('/prosesubahberita/{id}', [BeritaController::class,'update'])->name('admin.updateberita');
-    
+    Route::get('/nonaktifkan-berita/{id}', [BeritaController::class,'destroy'])->name('admin.nonaktifberita');
+    Route::get('/aktifkan-berita/{id}', [BeritaController::class,'aktifkan'])->name('admin.aktifberita');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group( function() {

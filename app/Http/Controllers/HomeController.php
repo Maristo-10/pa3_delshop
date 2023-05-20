@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\KategoriProdukModel;
@@ -12,7 +13,7 @@ use App\Models\UkuranModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-
+use Mockery\Matcher\Not;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,9 @@ class HomeController extends Controller
         $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan');
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
         $kategori = KategoriProdukModel::all();
+        $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
+        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+
         return view('frontend.dashboard-pembeli', [
             'kategori' => $kategori,
             'produk' => $produk,
@@ -53,7 +57,9 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'total_ung' => $total_ung
+            'total_ung' => $total_ung,
+            'berita' => $berita,
+            'berita_2' => $berita_2
         ]);
     }
 

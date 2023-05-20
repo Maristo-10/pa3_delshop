@@ -19,7 +19,7 @@ class CreateBeritasTable extends Migration
             $table->string('subtitle');
             $table->string('image');
             $table->string('description');
-            $table->string('status');
+            $table->string('status')->default('Aktif');
             $table->timestamps();
         });
     }
