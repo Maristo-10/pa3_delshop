@@ -18,17 +18,20 @@
 </div>
 <div class=" col 12 card-body d-sm-flex justify-content-between text-center">
     <h6 class="col-md-12 mb-0">
-        <button class="btn btn-success text-white py-2 ml-2" name="btn-ditangguhkan" id="btn-ditangguhkan">
-            <span>Belum Dibayar</span>
+        <button class=" bi bi-x-square-fillx btn btn-danger text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan" id="btn-ditangguhkan">
+            <span class="ml-1">Dibatalkan</span>
         </button>
-        <button class="btn btn-success text-white py-2 ml-2" name="btn-diproses" id="btn-diproses">
-            <span>Sedang Diproses</span>
+        <button class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan" id="btn-ditangguhkan">
+            <span class="ml-1">Belum Dibayar</span>
         </button>
-        <button class="btn btn-success text-white py-2 ml-2" name="btn-belum" id="btn-belum">
-            <span>Belum Diambil</span>
+        <button class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-5" name="btn-diproses" id="btn-diproses">
+            <span class="ml-1">Sedang Diproses</span>
         </button>
-        <button class="btn btn-success text-white py-2 ml-2" name="btn-selesai" id="btn-selesai">
-            <span>Selesai</span>
+        <button class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-5" name="btn-belum" id="btn-belum">
+            <span class="ml-1">Dapat Diambil</span>
+        </button>
+        <button class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-5" name="btn-selesai" id="btn-selesai">
+            <span class="ml-1">Selesai</span>
         </button>
     </h6>
 </div>
