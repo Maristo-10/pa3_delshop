@@ -47,7 +47,7 @@
                             <p class="text-muted"><strong>White / Black</strong></p>
                         </li>
                     </ul>
-                    <h6>Spesifikasi:</h6>
+                    {{-- <h6>Spesifikasi:</h6>
                     <ul class="list-unstyled pb-3">
                         <li>Lorem ipsum dolor sit</li>
                         <li>Amet, consectetur</li>
@@ -56,7 +56,7 @@
                         <li>Ut enim ad minim</li>
                         <li>Dolore magna aliqua</li>
                         <li>Excepteur sint</li>
-                    </ul>
+                    </ul> --}}
                     <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $item->id_produk }}">
@@ -112,92 +112,5 @@
     </div>
     @endforeach
 </div>
-{{-- <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="slide-container swiper wow zoomIn" data-wow-delay="0.1s">
-                <div class="slide-content">
-                    <div class="card-wrapper swiper-wrapper ">
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/profile1.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/profile2.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/profile3.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="img{{ asset('img/profile4.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/profile5.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/profile6s.jpg') }}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="img/profile7.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="img/profile8.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="img/" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next swiper-navBtn"></div>
-                <div class="swiper-button-prev swiper-navBtn"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <!-- Shop Detail End -->

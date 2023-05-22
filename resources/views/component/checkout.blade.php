@@ -88,8 +88,15 @@
                             <div class="card bg-secondary text-white rounded-3">
                                 <div class="card-body p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <h3 class="mb-0"><strong>Pembayaran</strong></h3>
+                                        <h5 class="mb-0">ID Pesanan : {{$pesanan_baru->kode}}</h5>
                                     </div>
+
+                                    <hr style="height:2px;border-width:0;color:white;background-color:white">
+
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <h3 class="mb-0 fw-bold">Pembayaran</h3>
+                                    </div>
+
                                     <div class="mb-3">
                                         <p class="mb-0">Silahkan Pilih Metode Pembayaran!</p>
                                     </div>

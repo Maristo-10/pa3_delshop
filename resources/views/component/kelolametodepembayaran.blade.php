@@ -28,7 +28,7 @@
 </script>
 
 <div class="row col-12">
-    <div class="col-7 ">
+    <div class="col-7">
         <small><a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
             <i class="fa fa-plus"></i>
             <span><small>Tambah Data Metode Pembayaran</small></span>
@@ -70,7 +70,7 @@
                                 @foreach ($metpem as $index => $data)
                                     <tr>
                                         <td>{{ $index + $metpem->firstItem() }}</td>
-                                        <td>{{ $data->nama_layanan }}</td>
+                                        <td>{{ $data->layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
@@ -161,10 +161,10 @@
                             <tr>
                                 <td>{{ $index + $kapem->firstItem() }}</td>
                                 <td>{{ $data->kategori_pembayaran }}</td>
-                                <td style="text-align: center">
-                                    <a class="bi bi-pencil-square btn btn-warning col-md-4" href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
+                                <td>
+                                    <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
                                     <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" title="Hapus Data"
-                                        class="bi bi-trash-fill btn btn-danger col-md-4"></a>
+                                        class="bi bi-trash-fill btn btn-danger"></a>
                                 </td>
                         @endforeach
                     </tbody>

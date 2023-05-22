@@ -7,8 +7,6 @@
     @include('layouts.inc.corousel')
 @endsection
 @section('content')
-
-    
     <div class="container">
         <div class="row justify-content-center text-center mt-5">
             <h1 class="">KATEGORI <span class="text-primary text-uppercase">Produk</span></h1>
@@ -23,7 +21,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </div>
@@ -40,61 +37,41 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="/img/baju_putih.jpeg" alt="">
+                            <img class="img-fluid" src="/berita-images/{{ $berita->image}}" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-primary"><b>Baju</b> Del Mahasiswa</h1>
-                                <h3 class="h2">Exelent Start Here</h3>
+                                <h1 class="h1 text-primary">{{$berita->title}}</h1>
+                                <h3 class="h2">{{$berita->subtitle}}</h3>
                                 <p>
-                                    Untuk menghadiri perkuliahan di IT Del kita harus menggunakan pakaian yang rapi dan sopan, 
-                                    dan selama perkuliahan akademik berlangsung mahasiswa IT Del membawa kemeja/kaos berkerah yang akan
-                                    dibawa dari rumah dan untuk hari Jumat menggunakan kaos khusus yaitu kaos IT Del. 
+                                    {{$berita->description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @foreach ($berita_2 as $data)
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="/berita-images/{{$data->image}}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1 text-primary">{{ $data->title}}</h1>
+                                <h3 class="h2">{{ $data->subtitle}}</h3>
+                                <p>
+                                    {{ $data->description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="/img/baju_putih.jpeg" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-primary">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
-                                <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="/img/baju_putih.jpeg" alt="" >
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-primary">Repr in voluptate</h1>
-                                <h3 class="h2">Ullamco laboris nisi ut </h3>
-                                <p>
-                                    We bring you 100% free CSS templates for your websites. 
-                                    If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
             <i class="fas fa-chevron-left"></i>
@@ -131,13 +108,13 @@
                         </div>
                         <div class="thumb-content text-center mt-3">
                             <h4>{{ $data->nama_produk }}</h4>
-                            <p class="item-price"><span class="text-primary"> Rp. 
+                            <p class="item-price"><span class="text-primary"> Rp.
                                 <?php
                                 $angka = $data->harga;
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
                             </span></p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +124,7 @@
             <div class="row align-items-center product-slider product-slider-1 wow zoomIn" data-wow-delay="0.1s">
                 @foreach ($unggulan as $data)
                 <div class="col-sm-3">
-                    <div class="product-item  ">
+                    <div class="product-item">
                         <div class="product-image">
                             <a href="/detail-produk/{{ $data->id_produk }}">
                                 <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" >
@@ -159,13 +136,13 @@
                         </div>
                         <div class="thumb-content text-center mt-3">
                             <h4>{{ $data->nama_produk }}</h4>
-                            <p class="item-price"><span class="text-primary"> Rp. 
+                            <p class="item-price"><span class="text-primary"> Rp.
                                 <?php
                                 $angka = $data->harga;
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
                             </span></p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>

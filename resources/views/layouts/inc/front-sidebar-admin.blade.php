@@ -8,6 +8,13 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{asset('/kelola-berita')}}">
+            <i class="bi bi-newspaper"></i>
+            <span>Berita</span>
+        </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-1" data-bs-toggle="collapse" href="#">
             <i class="bi bi-people"></i><span>Manajemen Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -86,7 +93,7 @@
         </a>
         <ul id="components-nav-5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="/laporan">
+                <a href="/laporan-custom">
                     <i class="bi bi-journal-text fs-5"></i><span>Laporan Penjualan</span>
                 </a>
             </li>

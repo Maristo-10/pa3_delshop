@@ -30,13 +30,6 @@
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons ml-auto">
-            {{-- <li class="nav-item">
-                <a class="nav-link waves-effect">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-                    <span class="badge red z-depth-1 mr-1"> 1 </span>
-                </a>
-            </li> --}}
             <!-- Authentication Links -->
             @guest
                 @if (   Route::has('login') && Route::has('register'))
