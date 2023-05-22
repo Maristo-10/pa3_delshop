@@ -197,6 +197,7 @@ class HomeController extends Controller
         //Data statistik
         DB::statement("SET SQL_MODE=''");
         $now = Carbon::now();
+        // dd($now);
         $bulan = Pesanan::select(DB::raw('MonthName(tanggal) as bulanp'))
             ->GroupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('bulanp');
 

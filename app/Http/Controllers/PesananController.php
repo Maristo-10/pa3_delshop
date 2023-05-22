@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\MetodePembayaran;
 use App\Models\KategoriPembayaran;
-
+use App\Notifications\OrderNotification;
 
 class PesananController extends Controller
 {
@@ -234,6 +234,20 @@ class PesananController extends Controller
             ]);
         }
 
+        User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses"));
+        return redirect()->route('frontend.dashboard-pembeli');
+    }
+
+    public function markAsRead() {
+        Auth::user()->unreadNotifications->markAsRead();
+        return redirect()->route('frontend.dashboard-pembeli');
+    }
+
+    public function markAsReadByID($id) {
+        DB::table('notifications')
+        ->where('id', $id)
+        ->update(['read_at'=>now()]);
+
         return redirect()->route('frontend.dashboard-pembeli');
     }
 
@@ -393,11 +407,13 @@ class PesananController extends Controller
     public function updatestatus(Request $request, $id)
     {
         $pesanan = Pesanan::find($id);
-
+        $status = $request->status;
         $pesanan->update([
             'status' => $request->status,
         ]);
 
+        // $user = $pesanan->user_id;
+        User::find($pesanan->user_id)->notify(new OrderNotification($status));
         return redirect()->route('admin.kelolapesanan');
     }
 

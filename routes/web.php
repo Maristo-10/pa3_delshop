@@ -49,6 +49,10 @@ Route::middleware(['auth','isPembeli'])->group( function() {
     Route::get('/checkout', [PesananController::class,'vcheckout'])->name('pembeli.checkout');
     Route::post('/proses-checkout', [PesananController::class,'pcheckout'])->name('pembeli.pcheckout');
 
+    // mark notif as read
+    Route::get('/mark-as-read', [PesananController::class, 'markAsRead'])->name('mark-as-read');
+    Route::get('/mark-as-read-by-id/{id}', [PesananController::class, 'markAsReadByID'])->name('mark-as-read-by-id');
+
     Route::get('/pesanan', [PesananController::class,'vpesanan'])->name('pembeli.pesanan');
     Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.detailpesanan');
 
