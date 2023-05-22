@@ -33,39 +33,20 @@
                                     <p class="text-center small">Masukkan email anda untuk melakukan reset password!</p>
                                 </div>
 
-                                <form class="row g-3 needs-validation" action="{{ route('password-update')}}" method="post">
+                                <form class="row g-3 needs-validation" action="{{ route('password-email') }}" method="post">
                                     @csrf
-
-                                    <input type="text" name="token" id="token" value={{ $token}}>
-
                                     <div class="col-12">
-                                        <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                        <label for="yourUsername" class="form-label">Email</label>
                                         <div class="input-group has-validation">
                                             <span class="bi bi-envelope input-group-text" id="inputGroupPrepend"></span>
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <div class="input-group has-validation">
-                                            <span class="bi bi-envelope input-group-text" id="inputGroupPrepend"></span>
-                                            <input id="password" type="password"
-                                                class="form-control" name="password" required >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourPasswordConfirmation" class="form-label">Password Confirmation</label>
-                                        <div class="input-group has-validation">
-                                            <span class="bi bi-envelope input-group-text" id="inputGroupPrepend"></span>
-                                            <input id="password_confirmation" type="password"
-                                                class="form-control" name="password_confirmation" required >
+                                            <input id="email" type="email"
+                                                class="form-control" name="email" required >
                                         </div>
                                     </div>
 
                                     <div class="col-12 mt-3">
                                         <button type="submit" class="btn btn-secondary w-100">
-                                            {{ __('Update Password') }}
+                                            {{ __('Reset Password') }}
                                         </button>
                                     </div>
                                 </form>

@@ -13,7 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-@if ($jumlah->total < 3)
+@if ($jumlah->total)
     <div class="card-body d-sm-flex justify-content-between">
         <h6 class="col-md-12 mb-0">
             <a href="/tambah-berita" class="btn btn-success text-white py-2 ml-2">
@@ -21,6 +21,7 @@
                 <span>Tambah Data Berita</span>
             </a>
         </h6>
+    </div>
     </div>
 @else
     <div class="card-body d-sm-flex justify-content-between">
@@ -36,6 +37,8 @@
         </h6>
     </div>
 @endif
+
+
 
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <center>
@@ -83,22 +86,22 @@
                                         <td class="text-center">
                                             <a href="/ubahberita/{{ $data->id }}" title="Ubah Berita"
                                                 class="bi bi-pencil-square btn btn-warning "
-                                                style="font-size: 10px"></a>
+                                                style="font-size: 15px"></a>
                                             @if ($data->status == 'Aktif')
                                                 <a title="Non-Aktifkan Berita"
                                                     href="/nonaktifkan-berita/{{ $data->id }}"
                                                     class="bi bi-slash-circle-fill btn btn-danger ml-2"
-                                                    style="font-size: 10px"></a>
+                                                    style="font-size: 15px"></a>
                                             @else
                                                 @if ($jumlah->total < 3)
                                                     <a title="Aktifkan Berita"
                                                         href="/aktifkan-berita/{{ $data->id }}"
-                                                        class="bi bi-slash-circle-fill btn btn-danger ml-2"
-                                                        style="font-size: 10px"></a>
+                                                        class="bi bi-check-circle-fill btn btn-danger ml-2"
+                                                        style="font-size: 15px"></a>
                                                 @else
-                                                <Button title="Aktifkan Berita"
-                                                        class="bi bi-slash-circle-fill btn btn-danger ml-2"
-                                                        style="font-size: 10px" disabled></Button>
+                                                    <Button title="Aktifkan Berita"
+                                                        class="bi bi-check-circle-fill btn btn-danger ml-2"
+                                                        style="font-size: 15px" disabled></Button>
                                                 @endif
                                             @endif
                                         </td>

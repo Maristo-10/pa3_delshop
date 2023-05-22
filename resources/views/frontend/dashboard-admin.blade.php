@@ -1,17 +1,15 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <h1>Dashboard</h1>
+<h1 class="fs-1">Dashboard</h1>
 @endsection
 
 @section('content')
     <section class="section dashboard">
         <div class="row">
-
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
-
                     <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-4">
                         <div class="card info-card sales-card">
@@ -211,9 +209,9 @@
 
                 <!-- Budget Report -->
                 <div class="card">
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0" style="min-height: 400px">
                         <h5 class="card-title">Pesanan Harian <span>| {{ $date }}</span></h5>
-                        <table class="table table-bordered col-12" id="list" style="min-height: 300px">
+                        <table class="table table-bordered col-12" id="list">
                             <thead>
                                 <tr>
                                     <th scope="col" class="">No</th>
@@ -223,7 +221,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($pesanan_harian)
+                                @empty($pesanan_harian)
                                     <tr>
                                         <td colspan="4" class="card-title text-center fs-5" >
                                             <span  style="font-style: italic">Pesanan Hari Ini Masih Kosong</span>
@@ -243,7 +241,7 @@
                                             ?></td>
                                             <td><small>{{ $data->status }}</small></td>
                                     @endforeach
-                                @endisset
+                                @endempty
                             </tbody>
                         </table>
                         {{ $pesanan_harian->links() }}

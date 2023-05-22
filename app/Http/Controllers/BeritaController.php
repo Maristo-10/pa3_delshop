@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,12 @@ class BeritaController extends Controller
     public function berita()
     {
         $beritas = Berita::orderBy('status','asc')->orderBy('updated_at','desc')->Paginate(5);
-        $jumlah = Berita::select(DB::raw('CAST(count(id) as int ) as total'))->where('status', 'Aktif')->groupBy('status')->first();
+        if($beritas == null){
+            $jumlah = Carbon::now();
+            $jumlah->total = 0;
+        }else{
+            $jumlah = Berita::select(DB::raw('CAST(count(id) as int ) as total'))->where('status', 'Aktif')->groupBy('status')->first();
+        }
         return view('admin.kelolaberita',([
             'beritas'=>$beritas,
             'jumlah'=>$jumlah

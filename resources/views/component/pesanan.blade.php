@@ -18,7 +18,7 @@
 </div>
 <div class=" col 12 card-body d-sm-flex justify-content-between text-center">
     <h6 class="col-md-12 mb-0">
-        <button class=" bi bi-x-square-fillx btn btn-danger text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan" id="btn-ditangguhkan">
+        <button class=" bi bi-x-square-fillx btn btn-danger text-white py-2 ml-2 col-2 fs-5" name="btn-dibatalkan" id="btn-dibatalkan">
             <span class="ml-1">Dibatalkan</span>
         </button>
         <button class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan" id="btn-ditangguhkan">

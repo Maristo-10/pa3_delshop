@@ -36,10 +36,10 @@
                                 <form class="row g-3 needs-validation" action="{{ route('password-update')}}" method="post">
                                     @csrf
 
-                                    <input type="text" name="token" id="token" value={{ $token}}>
+                                    <input type="hidden" name="token" id="token" value={{request()->token}}>
 
                                     <div class="col-12">
-                                        <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
                                         <div class="input-group has-validation">
                                             <span class="bi bi-envelope input-group-text" id="inputGroupPrepend"></span>
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>

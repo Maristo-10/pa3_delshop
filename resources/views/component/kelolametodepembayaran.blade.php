@@ -70,7 +70,7 @@
                                 @foreach ($metpem as $index => $data)
                                     <tr>
                                         <td>{{ $index + $metpem->firstItem() }}</td>
-                                        <td>{{ $data->nama_layanan }}</td>
+                                        <td>{{ $data->layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
@@ -78,7 +78,7 @@
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger mt-1"></a>
+                                                class="bi bi-slash-circle-fill btn btn-danger"></a>
                                         </td>
                                 @endforeach
                             </tbody>
@@ -164,7 +164,7 @@
                                 <td>
                                     <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
                                     <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" title="Hapus Data"
-                                        class="bi bi-trash-fill btn btn-danger mt-3"></a>
+                                        class="bi bi-trash-fill btn btn-danger"></a>
                                 </td>
                         @endforeach
                     </tbody>

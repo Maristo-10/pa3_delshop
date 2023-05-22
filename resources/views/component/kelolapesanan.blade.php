@@ -22,12 +22,13 @@
                             <tr>
                                 <!-- <th scope="col">Pilihan</th> -->
                                 <th scope="col" class="">No</th>
+                                <th scope="col" class="col-md-1">ID Pesanan</th>
                                 <th scope="col" class="col-md-1">Tanggal Pesanan</th>
                                 <th scope="col" class="col-md-1">Total Harga</th>
                                 <th scope="col" class="col-md-2">Nama Pengambil</th>
                                 <th scope="col" class="col-md-1">Metode Pembayaran</th>
                                 <th scope="col" class="col-md-1">Nama Layanan</th>
-                                <th scope="col" class="col-md-2">Bukti Pembayaran</th>
+                                {{-- <th scope="col" class="col-md-2">Bukti Pembayaran</th> --}}
                                 <th scope="col" class="col-md-2">Status</th>
                                 <th scope="col" class="col-md-2">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
@@ -40,6 +41,7 @@
                             @foreach ($pesanan_kapem as $index => $data)
                                 <tr>
                                     <td>{{ $index + $pesanan_kapem->firstItem() }}</td>
+                                    <td>{{ $data->kode }}</td>
                                     <td>{{ $data->tanggal }}</td>
                                     <td>Rp. <?php
                                     $angka = $data->total_harga;
@@ -48,10 +50,10 @@
                                     <td>{{ $data->nama_pengambil }}</td>
                                     <td>{{ $data->kategori_pembayaran }}</td>
                                     <td>{{ $data->layanan }}</td>
-                                    <td>
+                                    {{-- <td>
                                         <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
                                             style="max-height: 50px">
-                                    </td>
+                                    </td> --}}
                                     <td style="font-weight: bold">
                                         <div class="row">
                                             <div class="col col-12">
