@@ -40,7 +40,28 @@ class ProdukController extends Controller
         $produk = Produk::where('status_produk','Aktif')->paginate(5);
         return view('admin.kelolaproduk',compact('produk'));
     }
+    // filter category
+    public function filterByCategory($category) {
+        $products = Produk::where('kategori_produk', $category)->get();
 
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if(empty($pesanan_baru)){
+            $pesanan = 0;
+        }else{
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id',$pesanan_baru->id)->get();
+        }
+        $kategori = KategoriProdukModel::all();
+        $ukuran = UkuranModel::all();
+        return view('pembeli.viewproduk',[
+            'produk'=>$products,
+            'ukuran'=>$ukuran,
+            'kategori'=>$kategori,
+            'pesanan'=>$pesanan,
+            'pesanan_baru'=>$pesanan_baru,
+            'pengguna_prof'=>$pengguna_prof
+        ]);
+    }
     // sorting produk
     public function sorting(Request $request) {
         $sort = $request->input('sort');

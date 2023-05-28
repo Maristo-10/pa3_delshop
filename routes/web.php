@@ -90,6 +90,7 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     Route::get('/produk/cari', [HomeController::class, 'cariProduk']);
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');
     Route::get('/list-produk/cari', [HomeController::class, 'cariProduk2']);
+    Route::get('/list-produk/{kategori_produk}', [ProdukController::class, 'filterByCategory'])->name('products.category');
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
     Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewprodukid');
     Route::get('/items', [ProdukController::class, 'sorting'])->name('items.index');

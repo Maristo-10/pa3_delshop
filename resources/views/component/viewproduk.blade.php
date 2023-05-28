@@ -62,7 +62,9 @@
 
                 @foreach ($kategori as $cat)
                 <div class="list-group">
-                    <a href="" class="list-group-item list-group-item-action">{{ $cat->kategori }}</a>
+                    {{-- <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'all']) }}">All Produk</a> --}}
+
+                    <a href="{{ route('products.category', $cat->kategori) }}" class="list-group-item list-group-item-action">{{ $cat->kategori }}</a>
                 </div>
                 @endforeach
             </div>
