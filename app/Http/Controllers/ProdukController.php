@@ -53,6 +53,8 @@ class ProdukController extends Controller
                 $items->orderBy('harga', 'desc');
             } elseif ($sort == 'termurah') {
                 $items->orderBy('harga', 'asc');
+            } elseif ($sort == 'all') {
+                $items = $items;
             }
         }
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status','keranjang')->first();

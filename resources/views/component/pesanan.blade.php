@@ -74,7 +74,7 @@
                                     echo number_format($angka, 0, ',', '.');
                                     ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
-                                    <td>{{ $data->kapem }}</td>
+                                    <td>{{ $data->kategori_pembayaran }}</td>
                                     <td>{{ $data->nama_layanan }}</td>
                                     <td>
                                         <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""

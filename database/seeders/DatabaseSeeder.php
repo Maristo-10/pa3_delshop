@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
             'ukuran' => 'XL'
         ]);
 
-        
+        $this->call(CategorySeeder::class);
+        $this->call(ProdukSeeder::class);
+        $this->call(KategoriPembayaranSeeder::class);
+        $this->call(MetodePembayaranSeeder::class);
     }
 }

@@ -102,9 +102,9 @@
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                        <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="inputModalSearch" name="q"
+                                <input type="text" class="form-control" id="inputModalSearch" name="cari"
                                     placeholder="Search ...">
                                 <button type="submit" class="input-group-text bg-success text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>

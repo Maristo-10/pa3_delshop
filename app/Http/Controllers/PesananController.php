@@ -481,10 +481,11 @@ class PesananController extends Controller
         $year = Carbon::now()->format('Y');
         $awal = $request->tanggal_awal;
         $akhir = $request->tanggal_akhir;
-        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails','pesanandetails.pesanan_id', '=', 'pesanans.id')
+        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->first();
+        // dd($jlh_pesanan);
         return view('admin.laporanpenjualan', [
             'penjualan' => $penjualan,
             'jlh_pesanan' => $jlh_pesanan,
@@ -507,7 +508,7 @@ class PesananController extends Controller
         $date=Carbon::createFromFormat('Y-m', $month);
         $bulan = $date->format('m');
         $tahun = $date->format('Y');
-        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails','pesanandetails.pesanan_id', '=', 'pesanans.id')
+        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->get();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->first();
@@ -522,6 +523,7 @@ class PesananController extends Controller
             'tahunl'=>$tahunl
         ]);
     }
+
     public function laporanpenjualanTahunan(Request $request)
     {
         $year = Carbon::now()->format('Y');
@@ -529,7 +531,7 @@ class PesananController extends Controller
         $akhir = $request->tanggal_akhir;
         $month = $request->bulan_laporan;
         $tahunl=$request->tahun_laporan;
-        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails','pesanandetails.pesanan_id', '=', 'pesanans.id')
+        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->whereYear('tanggal', $tahunl)->where('pesanans.status','!=','keranjang')->get();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $tahunl)->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $tahunl)->first();
