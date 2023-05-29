@@ -17,9 +17,13 @@ class OrderNotification extends Notification
      * @return void
      */
     protected $status;
-    public function __construct($status)
+    protected $pesananId;
+    protected $kode;
+    public function __construct($status, $pesananId, $kode)
     {
         $this->status = $status;
+        $this->pesananId = $pesananId;
+        $this->kode = $kode;
     }
 
     /**
@@ -56,7 +60,8 @@ class OrderNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Pesanan Anda '.$this->status
+            'data' => 'Pesanan '. $this->kode. ' ' .$this->status,
+            'pesananId' => $this->pesananId,
         ];
     }
 }

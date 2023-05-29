@@ -15,6 +15,19 @@
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <form action="{{ route('admin.pesananByKode') }}" method="GET">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="pesanan id" name="kode">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-secondary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <table class="table table-bordered" id="list">

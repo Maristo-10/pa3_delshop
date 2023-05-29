@@ -238,7 +238,7 @@ class PesananController extends Controller
             ]);
         }
 
-        User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses"));
+        User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
         return redirect()->route('frontend.dashboard-pembeli');
     }
 
@@ -324,7 +324,6 @@ class PesananController extends Controller
 
     public function kelolapesanan()
     {
-
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
 
         $pesanan_kapem = DB::table('pesanans')
@@ -335,6 +334,18 @@ class PesananController extends Controller
 
         return view('admin.kelolapesanan', [
             'pengguna_prof' => $pengguna_prof,
+            'pesanan_kapem' => $pesanan_kapem
+        ]);
+    }
+    public function searchPesananByKode(Request $request) {
+        $kodeUnik = $request->input('kode');
+        $pesanan_kapem = DB::table('pesanans')
+            ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
+            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
+            ->where('kode', $kodeUnik)
+            ->paginate(1);
+
+        return view('admin.kelolapesanan', [
             'pesanan_kapem' => $pesanan_kapem
         ]);
     }
@@ -409,13 +420,14 @@ class PesananController extends Controller
     public function updatestatus(Request $request, $id)
     {
         $pesanan = Pesanan::find($id);
+        // dd($pesanan);
         $status = $request->status;
         $pesanan->update([
             'status' => $request->status,
         ]);
 
         // $user = $pesanan->user_id;
-        User::find($pesanan->user_id)->notify(new OrderNotification($status));
+        User::find($pesanan->user_id)->notify(new OrderNotification($status, $pesanan->id, $pesanan->kode));
         return redirect()->route('admin.kelolapesanan');
     }
 

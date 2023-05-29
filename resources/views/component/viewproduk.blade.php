@@ -94,7 +94,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
                                 <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'all']) }}">All Produk</a>
-                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'latest']) }}">Latest</a>
+                                <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'latest']) }}">Terbaru</a>
                                 <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termahal']) }}">Termahal</a>
                                 <a class="dropdown-item" href="{{ route('items.index', ['sort'=>'termurah']) }}">Termurah</a>
                             </div>

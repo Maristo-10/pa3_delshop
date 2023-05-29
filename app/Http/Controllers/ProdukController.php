@@ -22,14 +22,15 @@ class ProdukController extends Controller
         $this->middleware('auth');
     }
 
-    // function to import produk data excel
+    
+
     public function importProduk(Request $request) {
         $file = $request->file('file');
         $fileName = $file->getClientOriginalName();
         $file->move('ProductsData', $fileName);
         Excel::import(new ProductsImport, \public_path('/ProductsData/'.$fileName));
 
-        return redirect()->route('admin.kelolaproduk');
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data imported successfully!');
     }
 
     public function viewImportProduct() {

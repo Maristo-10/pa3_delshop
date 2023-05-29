@@ -170,6 +170,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/proses-ubah-kategori-pembayaran/{id}', [MetodePembayaranController::class, 'ubahkapem'])->name('admin.prosesubahkategoripembayaran');
 
     Route::get('/kelola-pesanan', [PesananController::class, 'kelolapesanan'])->name('admin.kelolapesanan');
+    Route::get('/kelola-pesanan/searchByKode', [PesananController::class, 'searchPesananByKode'])->name('admin.pesananByKode');
     Route::get('/detail/pesanan/{id}', [PesananController::class, 'detailpesanan'])->name('admin.detailpesanan');
     Route::get('/ubah/status/{id}', [PesananController::class, 'ubahstatus'])->name('admin.ubahstatus');
     Route::post('/proses/ubah/status/{id}', [PesananController::class, 'updatestatus'])->name('admin.updatestatus');

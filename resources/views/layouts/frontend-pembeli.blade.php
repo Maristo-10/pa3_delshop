@@ -149,10 +149,37 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </li>
                                 @endif
-                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                {{-- @foreach (auth()->user()->unreadNotifications as $notification)
                                     <li><a class="dropdown-item " href="{{ route('mark-as-read-by-id', ['id' => $notification->id]) }}">
                                         <small>{{ $notification->data['data'] }}</small>
                                     </a></li>
+                                @endforeach --}}
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+
+                                    {{-- <li><a class="dropdown-item " href="{{ route('mark-as-read-by-id', ['id' => $notification->id]) }}"> --}}
+                                    {{-- <li class="dropdown-item"> --}}
+                                        @if (isset($notification->data['pesananId']))
+
+
+                                        <li><a class="dropdown-item " href="{{ route('pembeli.detailpesanan', ['id' => $notification->data['pesananId']]) }}">
+
+                                            {{-- href="/detail-pesanan/{{ $data->id }}" --}}
+                                            {{-- @if(isset($notification->data['status']))
+                                                    --- {{ $notification->data['status'] }}
+                                                @endif --}}
+                                            <small>{{ $notification->data['data'] }}</small>
+                                            {{-- @if (isset($notification->data['status']))
+                                                @if ($notification->data['status'] == 'Siap Diambil')
+                                                    <a class="dropdown-item " href="{{ route('pembeli.pesanan') }}">
+                                                        <small>{{ $notification->data['data'] }}</small>
+                                                    </a>
+                                                @else
+                                                    <h1>ini else nya</h1>
+                                                @endif
+                                            @endif --}}
+
+                                        </a></li>
+                                    @endif
                                 @endforeach
                                 {{-- <li>
                                     @foreach (auth()->user()->readNotifications as $notification)
