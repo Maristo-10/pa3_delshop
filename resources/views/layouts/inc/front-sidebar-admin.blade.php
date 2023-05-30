@@ -15,6 +15,13 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{asset('/corousel')}}">
+            <i class="bi bi-images"></i>
+            <span>Corousel</span>
+        </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-1" data-bs-toggle="collapse" href="#">
             <i class="bi bi-people"></i><span>Manajemen Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>

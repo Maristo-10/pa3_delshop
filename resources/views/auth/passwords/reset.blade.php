@@ -5,7 +5,7 @@
         <div class="container mt-5">
             <div class="row col-md-12 justify-content-center mt-5">
                 <div class="col-lg-5 col-md-8 d-flex flex-column align-items-center ">
-                    <div class="card mb-2">
+                    <div class="card m-5">
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -36,7 +36,7 @@
                                 <form class="row g-3 needs-validation" action="{{ route('password-update')}}" method="post">
                                     @csrf
 
-                                    <input type="text" name="token" id="token" value={{ $token}}>
+                                    <input type="hidden" name="token" id="token" value={{ $token}}>
 
                                     <div class="col-12">
                                         <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>

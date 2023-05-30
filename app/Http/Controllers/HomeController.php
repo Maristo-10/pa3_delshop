@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Mockery\Matcher\Not;
+use App\Models\Corousel;
 
 class HomeController extends Controller
 {
@@ -49,6 +50,8 @@ class HomeController extends Controller
         $kategori = KategoriProdukModel::all();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
         $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+        $corousel_f = Corousel::where('status', 1)->first();
+        $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
 
         return view('frontend.dashboard-pembeli', [
             'kategori' => $kategori,
@@ -59,7 +62,9 @@ class HomeController extends Controller
             'pengguna_prof' => $pengguna_prof,
             'total_ung' => $total_ung,
             'berita' => $berita,
-            'berita_2' => $berita_2
+            'berita_2' => $berita_2,
+            'corousel_f'=>$corousel_f,
+            'corousel'=>$corousel
         ]);
     }
 

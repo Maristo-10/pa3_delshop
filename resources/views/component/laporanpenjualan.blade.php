@@ -88,7 +88,7 @@
                                                             -
                                                         @else
                                                             @if ($awal && $akhir)
-                                                            Tanggal :
+                                                                Tanggal :
                                                                 <?php
                                                                 echo date('d F Y', strtotime($awal));
                                                                 ?> - <?php
@@ -101,7 +101,7 @@
                                                                 ?>
                                                             @endif
                                                             @if ($tahunl)
-                                                               Tahun {{ $tahunl }}
+                                                                Tahun {{ $tahunl }}
                                                             @endif
                                                         </h6>
                                                     @endempty
@@ -139,6 +139,17 @@
                                             <td style="text-align: right">Rp. 0</td>
                                         </tr>
                                     @else
+                                    @if ($jumlah->total == 0)
+                                    <tr>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>0</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td style="text-align: right">Rp. 0</td>
+                                    </tr>
+                                    @else
                                         @foreach ($penjualan as $index => $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
@@ -153,6 +164,8 @@
                                                 ?></td>
                                             </tr>
                                         @endforeach
+
+                                        @endempty
                                     @endempty
                                 </tbody>
                                 <tfoot style="background-color: #17a2b8">
@@ -165,13 +178,25 @@
                                                 </h6>
                                             </th>
                                         @else
-                                            <th scope="col" colspan="4">
-                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
-                                                    Terjual:
-                                                    {{ $jlh_pesanan->total }} Produk
-                                                </h6>
-                                            </th>
+                                            @if ($jumlah->total == 0)
+                                                <th scope="col" colspan="4">
+                                                    <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                        Terjual:
+                                                        0 Produk
+                                                    </h6>
+                                                </th>
+                                            @else
+                                                <th scope="col" colspan="4">
+                                                    <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                        Terjual:
+                                                        {{ $jlh_pesanan->total }} Produk
+                                                    </h6>
+                                                </th>
+                                            @endif
+
                                         @endempty
+
+
                                         <th scope="col" colspan="3">
                                             <h6 class="text-right fw-bold" style="color: white">Total Pendapatan: Rp.
                                                 <?php

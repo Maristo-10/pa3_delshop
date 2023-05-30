@@ -30,7 +30,7 @@
     <link href="{{ asset('css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-    
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
@@ -113,13 +113,13 @@
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     @guest
-                            
+
                         @else
                         <div class="dropdown mr-2">
                             <a class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
                             </a>
-                        
+
                             <ul class="dropdown-menu">
                                 <h6 class="dropdown-header">
                                     Notifikasi
@@ -174,7 +174,7 @@
                                 </ul>
                             </div> --}}
                         @endguest
-                    
+
                         @guest
                         <a href="/keranjang" class="btn" style="font-size: 20px">
                             <i class="fas fa-shopping-cart text-primary"></i>
@@ -198,11 +198,11 @@
                                     </span>
                                     {{-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ $a->total }}</span> --}}
                                     @endforeach
-                                    
+
                                 </a>
                             @endempty
                         @endguest
-                        
+
                     @guest
                         @if (Route::has('login') && Route::has('register'))
                         <button type="button" class="btn btn-sm btn-outline-secondary ml-3">
@@ -218,8 +218,8 @@
                                 @endphp
                                     <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
                                         class="rounded-circle border" style="width: 40px; height:40px">
-                                @endforeach 
-    
+                                @endforeach
+
                                 <span class="d-none ">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
@@ -312,7 +312,7 @@
     <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    
+
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bunle.min.js') }}"></script>
 
@@ -331,7 +331,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> 
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->
