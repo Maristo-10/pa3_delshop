@@ -30,7 +30,7 @@
         </div>
         <div class="col-12 col-md-6 mt-5 mb-5">
             <button type="submit" class="btn btn-success">
-                Tambahkan Data Produk
+                Tambahkan Data Berita
             </button>
         </div>
     </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\KategoriProdukModel;
@@ -12,7 +13,7 @@ use App\Models\UkuranModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-
+use Mockery\Matcher\Not;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,9 @@ class HomeController extends Controller
         $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan');
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
         $kategori = KategoriProdukModel::all();
+        $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
+        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+
         return view('frontend.dashboard-pembeli', [
             'kategori' => $kategori,
             'produk' => $produk,
@@ -53,7 +57,9 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'total_ung' => $total_ung
+            'total_ung' => $total_ung,
+            'berita' => $berita,
+            'berita_2' => $berita_2
         ]);
     }
 
@@ -197,22 +203,24 @@ class HomeController extends Controller
         //Data statistik
         DB::statement("SET SQL_MODE=''");
         $now = Carbon::now();
+        // dd($now);
         $bulan = Pesanan::select(DB::raw('MonthName(tanggal) as bulanp'))
             ->GroupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('bulanp');
 
-        $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as int ) as totalp'))
+        $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as UNSIGNED INTEGER ) as totalp'))
             ->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')
-            ->whereYear('tanggal', $now)->pluck('totalp');
+            ->whereYear('tanggal', $now)->where('pesanans.status','!=','keranjang')->pluck('totalp');
 
-        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as int ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
+        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
 
         $tahun = $now->format('Y');
+        $date = $now->format('l, d F Y');
 
         //total
 
-        $jumlahproduk = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as totalproduk'))->whereYear('tanggal', $now)->get();
+        $jumlahproduk = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as totalproduk'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $now)->get();
 
-        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->whereYear('tanggal', $now)->get();
+        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $now)->get();
 
         $jumlahpengguna = User::select("id",DB::raw('count(id) as totalpeng'))->whereYear('created_at', $now)->get();
 
@@ -222,6 +230,9 @@ class HomeController extends Controller
         $jumlahProses = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Sedang Diproses')->get();
         $jumlahTangguh = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Ditangguhkan')->get();
         $jumlahBatal = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Batalkan')->get();
+
+        //Pesanan Harian
+        $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->paginate(10);
 
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
@@ -236,6 +247,8 @@ class HomeController extends Controller
             'jumlahProses'=>$jumlahProses,
             'jumlahTangguh'=>$jumlahTangguh,
             'jumlahBatal'=>$jumlahBatal,
+            'date'=>$date,
+            'pesanan_harian'=>$pesanan_harian
         ]);
     }
 }

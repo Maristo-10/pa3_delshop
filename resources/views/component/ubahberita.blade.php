@@ -15,9 +15,9 @@
 
     <div class="col-12 p-3 bg-white shadow rounded">
         {{-- TODO: Controller not ready yet --}}
-        <form class="mt-3" action="/prosesubahberita/{{ $berita->id }}" method="post" 
-            
-            
+        <form class="mt-3" action="/prosesubahberita/{{ $berita->id }}" method="post"
+
+
             enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -48,7 +48,7 @@
             </div>
             <div class="col-12 col-md-6 mt-5 mb-5">
                 <button type="submit" class="btn btn-warning">
-                    Ubah Data Produk
+                    Ubah Data Berita
                 </button>
                 <button type="reset" class="btn btn-primary">Reset</button>
             </div>

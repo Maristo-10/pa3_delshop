@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +24,17 @@ class BeritaController extends Controller
 
     public function berita()
     {
-        $beritas = Berita::orderBy('id','desc')->Paginate(5);
-        return view('admin.kelolaberita',compact('beritas'))
+        $beritas = Berita::orderBy('status','asc')->orderBy('updated_at','desc')->Paginate(5);
+        if($beritas == null){
+            $jumlah = Carbon::now();
+            $jumlah->total = 0;
+        }else{
+            $jumlah = Berita::select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as total'))->where('status', 'Aktif')->groupBy('status')->first();
+        }
+        return view('admin.kelolaberita',([
+            'beritas'=>$beritas,
+            'jumlah'=>$jumlah
+        ]))
             ->with('i',(request()->input('page',1) - 1) * 5);
         // $data['beritas'] = Berita::orderBy('id', 'desc')->simplePaginate(5);
 
@@ -60,7 +70,7 @@ class BeritaController extends Controller
 
         $path = $foto->store('product', 'public');
 
-        $foto->move(public_path('img/'), $path);
+        $foto->move(public_path('berita-images/'), $path);
 
         $berita = new Berita();
         $berita->title = $request->title;
@@ -83,7 +93,7 @@ class BeritaController extends Controller
     public function show($id)
     {
         return view('beritas.show',compact('berita'));
-        
+
     }
 
     /**
@@ -96,7 +106,7 @@ class BeritaController extends Controller
     {
         $berita = Berita::find($id);
         return view('admin.ubahberita',compact('berita'));
-        
+
     }
 
     /**
@@ -119,7 +129,7 @@ class BeritaController extends Controller
 
             $foto = $request->file('image');
             $path = $foto->store('berita', 'public');
-            $foto->move(public_path('img/'), $path);
+            $foto->move(public_path('berita-images/'), $path);
             $berita -> image = basename($path);
         }
         $berita -> save();
@@ -136,8 +146,24 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        $berita->delete();
+        $berita =Berita::find($id);
+        $non = 'Non-Aktif';
+        $berita->status = $non;
 
-        return redirect()->route('beritas.index')->with('success', 'Data berhasil di hapus'); 
+        $berita->save();
+
+        return redirect()->route('admin.kelolaberita')->with('success', 'Data berhasil di non-aktifkan!');
+    }
+
+    public function aktifkan($id)
+    {
+        $berita =Berita::find($id);
+        $non = 'Aktif';
+        $berita->status = $non;
+
+        $berita->save();
+
+        return redirect()->route('admin.kelolaberita')->with('success', 'Data berhasil di aktifkan!');
     }
 }
+
