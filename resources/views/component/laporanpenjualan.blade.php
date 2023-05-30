@@ -139,38 +139,45 @@
                                             <td style="text-align: right">Rp. 0</td>
                                         </tr>
                                     @else
-                                    @if ($jumlah->total == 0)
-                                    <tr>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>0</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td style="text-align: right">Rp. 0</td>
-                                    </tr>
-                                    @else
-                                        @foreach ($penjualan as $index => $data)
+                                        @if ($jumlah->total == 0)
                                             <tr>
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $data->tanggal }}</td>
-                                                <td>{{ $data->nama_pengambil }}</td>
-                                                <td>{{ $data->jumlah }}</td>
-                                                <td>{{ $data->kapem }}</td>
-                                                <td>{{ $data->layanan }}</td>
-                                                <td style="text-align: right">Rp. <?php
-                                                $angka = $data->total_harga;
-                                                echo number_format($angka, 0, ',', '.');
-                                                ?></td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>0</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td style="text-align: right">Rp. 0</td>
                                             </tr>
-                                        @endforeach
-
+                                        @else
+                                            @foreach ($penjualan as $index => $data)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $data->tanggal }}</td>
+                                                    <td>{{ $data->nama_pengambil }}</td>
+                                                    <td>{{ $data->jumlah }}</td>
+                                                    <td>{{ $data->kapem }}</td>
+                                                    <td>{{ $data->layanan }}</td>
+                                                    <td style="text-align: right">Rp. <?php
+                                                    $angka = $data->total_harga;
+                                                    echo number_format($angka, 0, ',', '.');
+                                                    ?></td>
+                                                </tr>
+                                            @endforeach
                                         @endempty
                                     @endempty
-                                </tbody>
-                                <tfoot style="background-color: #17a2b8">
-                                    <tr>
-                                        @empty($penjualan)
+                            </tbody>
+                            <tfoot style="background-color: #17a2b8">
+                                <tr>
+                                    @empty($penjualan)
+                                        <th scope="col" colspan="4">
+                                            <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                Terjual:
+                                                0 Produk
+                                            </h6>
+                                        </th>
+                                    @else
+                                        @if ($jumlah->total == 0)
                                             <th scope="col" colspan="4">
                                                 <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
                                                     Terjual:
@@ -178,44 +185,36 @@
                                                 </h6>
                                             </th>
                                         @else
-                                            @if ($jumlah->total == 0)
-                                                <th scope="col" colspan="4">
-                                                    <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
-                                                        Terjual:
-                                                        0 Produk
-                                                    </h6>
-                                                </th>
-                                            @else
-                                                <th scope="col" colspan="4">
-                                                    <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
-                                                        Terjual:
-                                                        {{ $jlh_pesanan->total }} Produk
-                                                    </h6>
-                                                </th>
-                                            @endif
+                                            <th scope="col" colspan="4">
+                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                    Terjual:
+                                                    {{ $jlh_pesanan->total }} Produk
+                                                </h6>
+                                            </th>
+                                        @endif
 
-                                        @endempty
+                                    @endempty
 
 
-                                        <th scope="col" colspan="3">
-                                            <h6 class="text-right fw-bold" style="color: white">Total Pendapatan: Rp.
-                                                <?php
-                                                $angka = $total_harga->total;
-                                                echo number_format($angka, 0, ',', '.');
-                                                ?>
-                                            </h6>
-                                        </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    <th scope="col" colspan="3">
+                                        <h6 class="text-right fw-bold" style="color: white">Total Pendapatan: Rp.
+                                            <?php
+                                            $angka = $total_harga->total;
+                                            echo number_format($angka, 0, ',', '.');
+                                            ?>
+                                        </h6>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
 
-                        </div>
                     </div>
                 </div>
             </div>
-        </center>
+        </div>
+    </center>
 
-    </div>
+</div>
 </div>
 
 <!-- Bootstrap JavaScript -->
