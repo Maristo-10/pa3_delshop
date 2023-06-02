@@ -55,6 +55,7 @@
                                 <tr>
                                     <!-- <th scope="col">Pilihan</th> -->
                                     <th scope="col" class="col-md-1">No</th>
+                                    <th scope="col" class="col-md-1">Status</th>
                                     <th scope="col" class="col-md-2">Nama Layanan</th>
                                     <th scope="col" class="col-md-2">Nomor Pembayaran</th>
                                     <th scope="col" class="col-md-2">Nama Pemilik</th>
@@ -70,6 +71,7 @@
                                 @foreach ($metpem as $index => $data)
                                     <tr>
                                         <td>{{ $index + $metpem->firstItem() }}</td>
+                                        <td>{{ $data->status_metpem}}</td>
                                         <td>{{ $data->layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
@@ -77,9 +79,47 @@
                                         <td style="text-align: center">
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning"></a>
-                                            <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger"></a>
+                                        @if ($data->status_metpem == "Aktif")
+                                            <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a>
+                                        @else
+                                            <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal3" ></a>
+                                        @endif
+                                            {{-- <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a> --}}
+
+                                            {{-- <a href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem}}" title="Non-Aktifkan Data"
+                                                class="bi bi-slash-circle-fill btn btn-danger"></a> --}}
                                         </td>
+                                        <!-- Modal menon-aktifkan-->
+                                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                    Anda yakin akan Non-Aktifkan data ini.. ?
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <a type="button" class="btn btn-danger" href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem}}">Non Aktifkan</a>
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal mengaktifkan -->
+                                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                    Anda yakin akan Aktifkan data ini.. ?
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <a type="button" class="btn btn-danger" href="/prosesubahstatusmetpem/aktif/{{ $data->id_metpem}}">Aktifkan</a>
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -163,9 +203,27 @@
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
                                     <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
-                                    <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" title="Hapus Data"
-                                        class="bi bi-trash-fill btn btn-danger"></a>
+                                    <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
                                 </td>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah anda yakun untuk menghapus data ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" class="btn btn-danger">Ya</a>
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                         @endforeach
                     </tbody>
                 </table>

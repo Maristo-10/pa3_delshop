@@ -22,6 +22,9 @@ class KategoriPembayaranSeeder extends Seeder
             ],
             [
                 'kategori_pembayaran' => 'transfer-bank'
+            ],
+            [
+                'kategori_pembayaran' => 'tunai'
             ]
         ];
         foreach($categoryPayments as $categoryPayment) {
