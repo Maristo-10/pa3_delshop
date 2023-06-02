@@ -71,6 +71,11 @@
                     <i class="bi bi-wallet-fill fs-5"></i><span>Kelola Kategori Pembayaran</span>
                 </a>
             </li>
+            <li>
+                <a href="/metpem/non-aktif">
+                    <i class="bi bi-box2 fs-5"></i><span>Metode Pembayaran Non-Aktif</span>
+                </a>
+            </li>
         </ul>
     </li>
     <li class="nav-item">

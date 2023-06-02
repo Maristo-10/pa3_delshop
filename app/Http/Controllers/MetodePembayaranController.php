@@ -12,6 +12,31 @@ class MetodePembayaranController extends Controller
     {
         $this->middleware('auth');
     }
+        
+    // fungsi untuk menon-aktifkan metode pembayaran
+    public function ubahStatusMetpenNon($id) {
+
+        // dd($id);
+        $metpem = MetodePembayaran::find($id);
+        $metpem->update(['status_metpem'=>'Non-Aktif']);
+
+        return redirect()->route('admin.kelolametodepembayaran')->with('success','Data Metode Pembayaran Berhasil Di Non aktifkan');;
+    }
+
+    // fungsi untuk melihat metode pembayaran yang tidak aktif
+    public function metpemnonaktif(){
+        $metpemNonAktif = MetodePembayaran::where('status_metpem','Non-Aktif')->paginate(5);
+        return view('admin.kelolametpemnonaktif',['metpemNonAktif'=>$metpemNonAktif]);
+    }
+
+    // fungsi untuk mengaktifkan metode pembayaran
+    public function metpemAktif($id) {
+        $metpem = MetodePembayaran::find($id);
+        $metpem->update(['status_metpem'=>'Aktif']);
+
+        return redirect()->route('admin.kelolametodepembayaran')->with('success','Data Metode Pembayaran Berhasil Di Aktifkan');
+
+    }
 
     public function kemetpem(){
         $metpem = MetodePembayaran::paginate(5);
@@ -121,7 +146,7 @@ class MetodePembayaranController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     /**
+    /**
      * return metode_pembayaran list.
      *
      * @return json

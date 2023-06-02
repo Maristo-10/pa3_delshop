@@ -330,7 +330,7 @@ class PesananController extends Controller
             ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
             ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('status', '!=', 'keranjang')
-            ->paginate(2);
+            ->paginate(3);
 
         return view('admin.kelolapesanan', [
             'pengguna_prof' => $pengguna_prof,
