@@ -16,7 +16,7 @@
 @if ($jumlah->total < 3)
     <div class="card-body d-sm-flex justify-content-between">
         <h6 class="col-md-12 mb-0">
-            <a href="/tambah-berita" class="btn btn-success text-white py-2 ml-2">
+            <a href="/tambah-berita" class="btn btn-success text-white ml-2">
                 <i class="fa fa-plus"></i>
                 <span>Tambah Data Berita</span>
             </a>
@@ -26,7 +26,7 @@
 @else
     <div class="card-body d-sm-flex justify-content-between">
         <h6 class="col-md-12 mb-0">
-            <button class="btn btn-success text-white py-2 ml-2" disabled>
+            <button class="btn btn-success text-white ml-2" disabled>
                 <i class="fa fa-plus"></i>
                 <span>Tambah Data Berita</span>
             </button>
@@ -40,80 +40,74 @@
 
 
 
-<div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
-    <center>
-        <div class="col-10 mt-1 ">
-            <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
-                <div class="card">
-                    <div class="card-body">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-block">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-block">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-                        <table class=" col-12 table table-striped table-bordered" id="list">
-                            <thead>
+<div class="row">
+    <div class="col-10 shadow-sm rounded justify-content-center bg-white">
+        <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
+            <div class="card">
+                <div class="card-body">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    <table class=" col-12 table table-striped table-bordered" id="list">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="">No</th>
+                                <th scope="col" class="col-md-3">Judul</th>
+                                <th scope="col" class="col-md-3">Subjudul</th>
+                                <th scope="col" class="col-md-3">Descripsi</th>
+                                <th scope="col" class="col-md-1">Status</th>
+                                <th scope="col" class="col-md-2">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($beritas as $data)
                                 <tr>
-                                    <!-- <th scope="col">Pilihan</th> -->
-                                    <th scope="col" class="">No</th>
-                                    <th scope="col" class="col-md-3">Judul</th>
-                                    <th scope="col" class="col-md-3">Subjudul</th>
-                                    <th scope="col" class="col-md-3">Descripsi</th>
-                                    <th scope="col" class="col-md-1">Status</th>
-                                    <th scope="col" class="col-md-2">Aksi</th>
-                                    <!-- <th scope="col">Lampiran</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($beritas as $data)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $data->title }}</td>
-                                        <td>{{ $data->subtitle }}</td>
-                                        <td>{{ $data->description }}</td>
-                                        <td>{{ $data->status }}</td>
-                                        <td class="text-center">
-                                            <a href="/ubahberita/{{ $data->id }}" title="Ubah Berita"
-                                                class="bi bi-pencil-square btn btn-warning "
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $data->title }}</td>
+                                    <td>{{ $data->subtitle }}</td>
+                                    <td>{{ $data->description }}</td>
+                                    <td>{{ $data->status }}</td>
+                                    <td class="text-center">
+                                        <a href="/ubahberita/{{ $data->id }}" title="Ubah Berita"
+                                            class="bi bi-pencil-square btn btn-warning "
+                                            style="font-size: 15px"></a>
+                                        @if ($data->status == 'Aktif')
+                                            <a title="Non-Aktifkan Berita"
+                                                href="/nonaktifkan-berita/{{ $data->id }}"
+                                                class="bi bi-slash-circle-fill btn btn-danger ml-2"
                                                 style="font-size: 15px"></a>
-                                            @if ($data->status == 'Aktif')
-                                                <a title="Non-Aktifkan Berita"
-                                                    href="/nonaktifkan-berita/{{ $data->id }}"
-                                                    class="bi bi-slash-circle-fill btn btn-danger ml-2"
+                                        @else
+                                            @if ($jumlah->total < 3)
+                                                <a title="Aktifkan Berita"
+                                                    href="/aktifkan-berita/{{ $data->id }}"
+                                                    class="bi bi-check-circle-fill btn btn-danger ml-2"
                                                     style="font-size: 15px"></a>
                                             @else
-                                                @if ($jumlah->total < 3)
-                                                    <a title="Aktifkan Berita"
-                                                        href="/aktifkan-berita/{{ $data->id }}"
-                                                        class="bi bi-check-circle-fill btn btn-danger ml-2"
-                                                        style="font-size: 15px"></a>
-                                                @else
-                                                    <Button title="Aktifkan Berita"
-                                                        class="bi bi-check-circle-fill btn btn-danger ml-2"
-                                                        style="font-size: 15px" disabled></Button>
-                                                @endif
+                                                <Button title="Aktifkan Berita"
+                                                    class="bi bi-check-circle-fill btn btn-danger ml-2"
+                                                    style="font-size: 15px" disabled></Button>
                                             @endif
-                                        </td>
-                                @endforeach
-                            </tbody>
-
-                        </table>
-                    </div>
+                                        @endif
+                                    </td>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </center>
+    </div>
 </div>
 
 <div class="d-flex justify-content-end n-link" style="text-decoration: none">

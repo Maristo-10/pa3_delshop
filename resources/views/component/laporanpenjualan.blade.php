@@ -63,12 +63,8 @@
         </div>
     </form>
     <hr style="border: double">
-    <div class="row">
-        <center>
-
-
-
-            <div class="row col-md-9 d-flex justify-content-center mt-5">
+    <div class="row justify-content-center">
+            <div class="row col-md-9 d-flex mt-5">
 
                 <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
                     <div class="card">

@@ -1931,6 +1931,10 @@ background-color: #2980b9;
     font-size: 20px;
 }
 
+.card-icon {
+    size: 10px;
+}
+
 @media (max-width: 1210.98px) {
     .kategori img {
         height: 320px;

@@ -171,6 +171,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/tambah-metode-pembayaran', [MetodePembayaranController::class, 'tametpem'])->name('admin.tambahmetodepembayaran');
     Route::post('/prosestambahmetodepembayaran', [MetodePembayaranController::class, 'tambahmetpem'])->name('admin.storemetodepembayaran');
     Route::get('/ubah-metode-pembayaran/{id}', [MetodePembayaranController::class, 'ubmetpem'])->name('admin.ubahmetodepembayaran');
+    Route::get('/prosesubahstatusmetpem/non-aktif/{id}', [MetodePembayaranController::class, 'ubahStatusMetpenNon'])->name('admin.ubahstatusmetpen');
+    Route::get('/metpem/non-aktif', [MetodePembayaranController::class, 'metpemnonaktif'])->name('admin.kelolametpemnonaktif');
+    Route::get('/prosesubahstatusmetpem/aktif/{id}', [MetodePembayaranController::class, 'metpemAktif'])->name('admin.statusmetpemaktif');
     Route::post('/prosesubahmetodepembayaran/{id}', [MetodePembayaranController::class, 'ubahmetpem'])->name('admin.updatemetodepembayaran');
     Route::post('/prosestambahkategoripembayaran', [MetodePembayaranController::class, 'tambahkapem'])->name('admin.storekategoripembayaran');
     Route::get('/hapus/kategoripembayaran/{id}', [MetodePembayaranController::class, 'hapuskapem'])->name('admin.hapuskategoripengguna');

@@ -62,7 +62,7 @@
     <main id="main" class="main">
         <div class="content-body ">
             <div class="col-md-12 mb-5">
-               @yield('title')
+                @yield('title')
             </div>
             <div class=" mb-5">
                 @yield('content')
