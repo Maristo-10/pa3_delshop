@@ -14,15 +14,20 @@
 
     <!-- Google Web Fonts -->
     <link rel="{{ asset('preconnect" href="https://fonts.gstatic.com') }}">
-    <link href="{{ asset('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap') }}" rel="stylesheet">
+    <link
+        href="{{ asset('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap') }}"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}"
+        rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
+    <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css') }}"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('lib/slick/slick.css') }}" rel="stylesheet">
@@ -48,15 +53,20 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">itdel@gmail.com</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none"
+                        href="mailto:info@company.com">itdel@gmail.com</a>
                     <i class="fa fa-phone mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
                 </div>
                 <div>
-                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i
+                            class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i
+                            class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://twitter.com/" target="_blank"><i
+                            class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i
+                            class="fab fa-linkedin fa-sm fa-fw"></i></a>
                 </div>
             </div>
         </div>
@@ -68,30 +78,34 @@
     <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                <img src="{{asset('img/logo.png')}}" alt="Logo" width="90px">
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90px">
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="align-self-center collapse navbar-collapse d-lg-flex" id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
-                        <a href="{{asset('/home')}}" class="nav-item nav-link">Home</a>
-                        <a href="{{asset('/list-produk')}}" class="nav-item nav-link">Produk</a>
-                        <a href="{{asset('/pesanan')}}" class="nav-item nav-link">Pesanan</a>
+                        <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        <a href="{{ asset('/list-produk') }}" class="nav-item nav-link">Produk</a>
+                        <a href="{{ asset('/pesanan') }}" class="nav-item nav-link">Pesanan</a>
                         <a href=""></a>
                     </ul>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                        <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                                <input type="text" class="form-control" id="inputModalSearch" name="cari"
+                                    placeholder="Search ...">
                                 <button type="submit" class="input-group-text bg-success text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>
                                 </button>
@@ -103,96 +117,102 @@
                 <div class="navbar align-self-center d-flex">
                     <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-sm-auto">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <input type="text" class="form-control" id="inputMobileSearch"
+                                placeholder="Search ...">
                             <div class="input-group-text">
                                 <i class="fa fa-fw fa-search"></i>
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
+                        data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     @guest
 
                         @else
                         <div class="dropdown mr-2">
-                            <a class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-bell"></i>
+                            <a class="dropdown position-relative" href="#" role="button"
+                                data-bs-toggle="dropdown" style="font-size: 20px" aria-expanded="false">
+                                <i class="fas fa-bell mr-3"></i>
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                </span>
+                                {{-- <span class="badge badge-light bg-dark text-light badge-xs">{{ auth()->user()->unreadNotifications->count() }}</span> --}}
                             </a>
 
                             <ul class="dropdown-menu">
-                                <h6 class="dropdown-header">
-                                    Notifikasi
-                                </h6>
-                                <li><a class="dropdown-item" href="#">! Pesanan Sudah Masuk</a></li>
-                                <li><a class="dropdown-item" href="#">! Pesanan Sudah Sampai</a></li>
-                                <li><a class="dropdown-item" href="#">! Something else here</a></li>
+                                @if (auth()->user()->unreadNotifications)
+                                <li>
+                                    <a href="{{ route('mark-as-read') }}"
+                                        class="text-light text-center dropdown-item bg-primary">Tandai Sudah Dibaca</a>
+                                    <span class="visually-hidden">unread messages</span>
+                                </li>
+                                @endif
+                                {{-- @foreach (auth()->user()->unreadNotifications as $notification)
+                                    <li><a class="dropdown-item " href="{{ route('mark-as-read-by-id', ['id' => $notification->id]) }}">
+                                        <small>{{ $notification->data['data'] }}</small>
+                                    </a></li>
+                                @endforeach --}}
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+
+                                    {{-- <li><a class="dropdown-item " href="{{ route('mark-as-read-by-id', ['id' => $notification->id]) }}"> --}}
+                                    {{-- <li class="dropdown-item"> --}}
+                                        @if (isset($notification->data['pesananId']))
+
+
+                                        <li><a class="dropdown-item " href="{{ route('pembeli.detailpesanan', ['id' => $notification->data['pesananId']]) }}">
+
+                                            {{-- href="/detail-pesanan/{{ $data->id }}" --}}
+                                            {{-- @if(isset($notification->data['status']))
+                                                    --- {{ $notification->data['status'] }}
+                                                @endif --}}
+                                            <small>{{ $notification->data['data'] }}</small>
+                                            {{-- @if (isset($notification->data['status']))
+                                                @if ($notification->data['status'] == 'Siap Diambil')
+                                                    <a class="dropdown-item " href="{{ route('pembeli.pesanan') }}">
+                                                        <small>{{ $notification->data['data'] }}</small>
+                                                    </a>
+                                                @else
+                                                    <h1>ini else nya</h1>
+                                                @endif
+                                            @endif --}}
+
+                                        </a></li>
+                                    @endif
+                                @endforeach
+                                {{-- <li>
+                                    @foreach (auth()->user()->readNotifications as $notification)
+                                    <a href="#" class="dropdown-item">
+                                        <small><li class="text-secondary"> {{ $notification->data['data'] }}</li></small>
+                                    </a>
+                                    @endforeach
+                                </li> --}}
                             </ul>
                         </div>
-                            {{-- <div class="btn-group">
-                                <a type="button" class="text-dark dropdown-toggle mr-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-bell"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <h6 class="dropdown-header">
-                                        Alerts Center
-                                    </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-primary">
-                                                <i class="fas fa-file-alt text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 2, 2019</div>
-                                            Spending Alert: We've noticed unusually high spending for your account.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                </ul>
-                            </div> --}}
-                        @endguest
+                    @endguest
 
-                        @guest
+                    @guest
                         <a href="/keranjang" class="btn" style="font-size: 20px">
                             <i class="fas fa-shopping-cart text-primary"></i>
                         </a>
+                    @else
+                        @empty($pesanan_baru)
+                            <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
+                                <i class="fas fa-shopping-cart text-dark"></i>
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark mt-2">
+                                    0
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
                         @else
-                            @empty($pesanan_baru)
-                                <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
-                                    <i class="fas fa-shopping-cart text-dark"></i>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
-                                        0
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
-                                </a>
-                            @else
-                                <a class="nav-icon position-relative text-decoration-none ml-2 mr-4 text-dark" href="/keranjang">
-                                    <i class="fa fa-fw fa-cart-arrow-down mr-1"></i>
-                                    @foreach ($pesanan as $a)
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                            <a class="nav-icon position-relative text-decoration-none ml-2 mr-4 text-dark" href="/keranjang">
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1"></i>
+                                @foreach ($pesanan as $a)
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                                         {{ $a->total }}
                                         <span class="visually-hidden">unread messages</span>
                                     </span>
@@ -205,18 +225,19 @@
 
                     @guest
                         @if (Route::has('login') && Route::has('register'))
-                        <button type="button" class="btn btn-sm btn-outline-secondary ml-3">
-                            <a href="{{ route('login') }}">Masuk</a>
-                        </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary ml-3">
+                                <a href="{{ route('login') }}">Masuk</a>
+                            </button>
                         @endif
-                        @else
+                    @else
                         <div class="btn-group">
-                            <a type="button" class="text-dark ml-2 mr-3" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a type="button" class="text-dark ml-2 mr-3" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 @foreach ($pengguna_prof as $profile)
-                                @php
-                                    $profile = $profile->gambar_pengguna;
-                                @endphp
-                                    <img src="{{asset("/profile-images/".$profile)}}" alt="Profile"
+                                    @php
+                                        $profile = $profile->gambar_pengguna;
+                                    @endphp
+                                    <img src="{{ asset('/profile-images/' . $profile) }}" alt="Profile"
                                         class="rounded-circle border" style="width: 40px; height:40px">
                                 @endforeach
 
@@ -227,7 +248,8 @@
                                     <i class="bi bi-person mb-2 mt-2"></i>
                                     <span>My Profile</span>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                     <i class="bi bi-box-arrow-right mb-2 mt-2"></i>
                                     <span>{{ __('Logout') }}</span>
@@ -237,7 +259,7 @@
                                 </form>
                             </ul>
                         </div>
-                        @endguest
+                    @endguest
                 </div>
             </div>
         </div>
@@ -272,17 +294,23 @@
                         <h5 class="font-weight-bold text-light mb-2">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-light mb-1" href="/produk"><i class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang Kita</a>
-                            <a class="text-light mb-1" href="/keranjang"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-light mb-1" href="/produk"><i
+                                    class="fa fa-angle-right mr-2"></i>Produk</a>
+                            <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                                Kita</a>
+                            <a class="text-light mb-1" href="/keranjang"><i
+                                    class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
+                                Us</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">
                         <h5 class="font-weight-bold text-light mb-2">Partner Del</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>IT Del</a>
-                            <a class="text-light mb-1" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan Del</a>
+                            <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>IT
+                                Del</a>
+                            <a class="text-light mb-1" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
+                                Del</a>
                         </div>
                     </div>
                 </div>

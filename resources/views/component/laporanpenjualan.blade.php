@@ -73,11 +73,31 @@
                 <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
                     <div class="card">
                         <div class="card-body">
+                            <a href="{{ route('laporan.export', request()->query()) }}" class="btn btn-success text-white py-2 ml-2">
+                                <i class="bi bi-printer"></i>
+                                <span>Export Penjualan</span>
+                            </a>
                             <table class="table table-bordered">
                                 <thead style="background-color: #17a2b8">
                                     <tr>
                                         <th scope="col" colspan="7">
                                             <div class="row">
+                                                <div class="card-body d-sm-flex justify-content-between">
+                                                    <h6 class="col-md-7 mb-0">
+                                                        {{-- <a href="/tambahproduk" class="btn btn-success text-white py-2 ml-2">
+                                                            <i class="fa fa-plus"></i>
+                                                            <span>Tambah Data Produk</span>
+                                                        </a> --}}
+                                                    </h6>
+                                                    <h6 class="col-md-5 mb-0">
+                                                        {{-- <a href="export/laporanpenjualan" class="btn btn-success text-white py-2 ml-2">
+                                                            <i class="bi bi-printer"></i>
+                                                            <span>Export Penjualan</span>
+                                                        </a> --}}
+
+
+                                                    </h6>
+                                                </div>
                                                 <div class="col col-12">
                                                     <h3 class="text-center fw-bold" style="color: white">Laporan
                                                         Penjualan</h3>

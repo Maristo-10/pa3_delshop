@@ -208,14 +208,15 @@ class HomeController extends Controller
         //Data statistik
         DB::statement("SET SQL_MODE=''");
         $now = Carbon::now();
+        // dd($now);
         $bulan = Pesanan::select(DB::raw('MonthName(tanggal) as bulanp'))
             ->GroupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('bulanp');
 
-        $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as int ) as totalp'))
+        $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as UNSIGNED INTEGER ) as totalp'))
             ->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')
             ->whereYear('tanggal', $now)->where('pesanans.status','!=','keranjang')->pluck('totalp');
 
-        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as int ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
+        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
 
         $tahun = $now->format('Y');
         $date = $now->format('l, d F Y');

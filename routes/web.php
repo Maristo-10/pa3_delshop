@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Models\MetodePembayaran;
 use Illuminate\Http\Request;
@@ -91,6 +92,7 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     Route::get('/produk/cari', [HomeController::class, 'cariProduk']);
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');
     Route::get('/list-produk/cari', [HomeController::class, 'cariProduk2']);
+    Route::get('/list-produk/{kategori_produk}', [ProdukController::class, 'filterByCategory'])->name('products.category');
     Route::get('/detail-produk/{id}', [HomeController::class, 'detail_produk'])->name('pembeli.detailproduk');
     Route::get('/produk/{id}', [HomeController::class, 'produk_kategori'])->name('pembeli.viewprodukid');
     Route::get('/items', [ProdukController::class, 'sorting'])->name('items.index');
@@ -106,8 +108,12 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     Route::get('/checkout', [PesananController::class, 'vcheckout'])->name('pembeli.checkout');
     Route::post('/proses-checkout', [PesananController::class, 'pcheckout'])->name('pembeli.pcheckout');
 
-    Route::get('/pesanan', [PesananController::class, 'vpesanan'])->name('pembeli.pesanan');
-    Route::get('/detail-pesanan/{id}', [PesananController::class, 'detail_pesanan'])->name('pembeli.detailpesanan');
+    // mark notif as read
+    Route::get('/mark-as-read', [PesananController::class, 'markAsRead'])->name('mark-as-read');
+    Route::get('/mark-as-read-by-id/{id}', [PesananController::class, 'markAsReadByID'])->name('mark-as-read-by-id');
+
+    Route::get('/pesanan', [PesananController::class,'vpesanan'])->name('pembeli.pesanan');
+    Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.detailpesanan');
 
     Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
     Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
@@ -129,11 +135,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('admin.laporanpenjualan');
     Route::get('/laporan-bulanan', [PesananController::class, 'laporanpenjualanBulanan'])->name('admin.laporanpenjualanBulanan');
     Route::get('/laporan-tahunan', [PesananController::class, 'laporanpenjualanTahunan'])->name('admin.laporanpenjualanTahunan');
+    Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
+
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
 
 
     Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
-
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
     Route::post('/prosestambahproduk', [ProdukController::class, 'tambahproduk'])->name('admin.storeproduk');

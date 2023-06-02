@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\MetodePembayaran;
 use App\Models\KategoriPembayaran;
-use PhpParser\Node\Expr\Cast;
-use PHPUnit\Framework\Constraint\Count;
+use App\Notifications\OrderNotification;
 
 class PesananController extends Controller
 {
@@ -267,6 +266,20 @@ class PesananController extends Controller
             ]);
         }
 
+        User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
+        return redirect()->route('frontend.dashboard-pembeli');
+    }
+
+    public function markAsRead() {
+        Auth::user()->unreadNotifications->markAsRead();
+        return redirect()->route('frontend.dashboard-pembeli');
+    }
+
+    public function markAsReadByID($id) {
+        DB::table('notifications')
+        ->where('id', $id)
+        ->update(['read_at'=>now()]);
+
         return redirect()->route('frontend.dashboard-pembeli');
     }
 
@@ -342,7 +355,6 @@ class PesananController extends Controller
 
     public function kelolapesanan()
     {
-
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
 
         $pesanan_kapem = DB::table('pesanans')
@@ -430,10 +442,14 @@ class PesananController extends Controller
         $pesanan = Pesanan::find($id);
         $detailspesanan = DetailPesanan::where("pesanan_id", $pesanan->id)->first();
         $produk = Produk::where('id_produk', $detailspesanan->produk_id)->first();
+        // dd($pesanan);
+        $status = $request->status;
         $pesanan->update([
             'status' => $request->status,
         ]);
 
+        // $user = $pesanan->user_id;
+        User::find($pesanan->user_id)->notify(new OrderNotification($status, $pesanan->id, $pesanan->kode));
         return redirect()->route('admin.kelolapesanan');
     }
 
@@ -610,7 +626,7 @@ class PesananController extends Controller
         $tahun = $date->format('Y');
         $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
             ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->get();
-        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
+        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('status', 'Selesai')->first();
         return view('admin.laporanpenjualan', [
@@ -625,6 +641,7 @@ class PesananController extends Controller
             'jumlah' =>$jumlah
         ]);
     }
+
     public function laporanpenjualanTahunan(Request $request)
     {
         $year = Carbon::now()->format('Y');
@@ -657,7 +674,6 @@ class PesananController extends Controller
 
         $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
 
-
         $tanggal = Carbon::now();
         $now = Carbon::now()->format('dmY');
 
@@ -669,28 +685,28 @@ class PesananController extends Controller
             $pesanan->status = 'checkout';
             $pesanan->save();
         }
-        $pesanan_detail_baru = DetailPesanan::where('pesanan_id', $cek_pesanan->id)->where('produk_id',$pesanan_detail->produk_id)->first();
+
+        $pes = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
 
         $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
         $pesanan_baru->total_harga = $harga;
         $pesanan_baru->update([
             'total_harga' => $harga
         ]);
+            $pesanan_detail_baru = DetailPesanan::where('pesanan_id', $pes->id)->where('produk_id',$pesanan_detail->produk_id)->first();
+            if (empty($pesanan_detail_baru)) {
+                $pesanan_detail->pesanan_id = $pes->id;
+                $pesanan_detail->update();
+            }
 
-        $produks = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.pesanan_id', $cek_pesanan->id)->get();
-        // dd($produks);
-        if (empty($pesanan_detail_baru)) {
-            $pesanan_detail->pesanan_id = $cek_pesanan->id;
-            $pesanan_detail->update();
-        }
+            if (!empty($pesanan_detail_baru)) {
+                $pesanan_detail_baru = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pes->id)->first();
+                $pesanan_detail_baru->jumlah = $pesanan_detail->jumlah + $pesanan_detail_baru->jumlah;
+                $pesanan_detail_baru->jumlah_harga = $pesanan_detail->jumlah_harga + $pesanan_detail_baru->jumlah_harga;
+                $pesanan_detail_baru->update();
+                $pesanan_detail->delete();
+            }
 
-        if (!empty($pesanan_detail_baru)) {
-            $pesanan_detail_baru = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $cek_pesanan->id)->first();
-            $pesanan_detail_baru->jumlah = $pesanan_detail->jumlah + $pesanan_detail_baru->jumlah;
-            $pesanan_detail_baru->jumlah_harga = $pesanan_detail->jumlah_harga + $pesanan_detail_baru->jumlah_harga;
-            $pesanan_detail_baru->update();
-            $pesanan_detail->delete();
-        }
 
         $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
         $stok = $produk->jumlah_produk-$pesanan_detail->jumlah;
@@ -699,8 +715,8 @@ class PesananController extends Controller
             'jumlah_produk'=> $stok,
         ]);
 
-        $cek_pesanan->kode = "DEL$now$cek_pesanan->id";
-        $cek_pesanan->update();
+        $pes->kode = "DEL$now$pes->id";
+        $pes->update();
         // $cek_pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $cek_pesanan->id)->first();
 
 
@@ -716,10 +732,18 @@ class PesananController extends Controller
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
         $pesanan_lama = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $pesanan_baru->id)->first();
-        $pesanan_detail_lama = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pesanan_lama->id)->first();
+
         $tanggal = Carbon::now();
         $now = Carbon::now()->format('dmY');
 
+        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
+        $pro = Produk::where('id_produk',$produk->id_produk)->first();
+        $stok = $produk->jumlah_produk+$pesanan_detail->jumlah;
+        $pro->update([
+            'jumlah_produk' => $stok
+        ]);
+
+        $pesanan_detail_lama = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pesanan_lama->id)->first();
         if (empty($pesanan_detail_lama)) {
             $pesanan_detail->pesanan_id = $pesanan_lama->id;
             $pesanan_detail->update();
@@ -733,12 +757,7 @@ class PesananController extends Controller
             $pesanan_detail->delete();
         }
 
-        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
-        $pro = Produk::where('id_produk',$produk->id_produk)->first();
-        $stok = $produk->jumlah_produk+$pesanan_detail->jumlah;
-        $pro->update([
-            'jumlah_produk' => $stok
-        ]);
+
 
         $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
         $pesanan_baru->total_harga = $harga;

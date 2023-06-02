@@ -29,7 +29,7 @@ class BeritaController extends Controller
             $jumlah = Carbon::now();
             $jumlah->total = 0;
         }else{
-            $jumlah = Berita::select(DB::raw('CAST(count(id) as int ) as total'))->where('status', 'Aktif')->groupBy('status')->first();
+            $jumlah = Berita::select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as total'))->where('status', 'Aktif')->groupBy('status')->first();
         }
         return view('admin.kelolaberita',([
             'beritas'=>$beritas,
