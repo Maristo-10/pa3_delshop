@@ -73,17 +73,9 @@
                                     <td class="text-center">
                                         <a href="/detail/pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                             class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-<<<<<<< HEAD
                                         <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal2"></a>
                                         <a href="/ubah/status/{{$data->id}}" class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
-=======
-                                        <a href="/proses/ubah/status/batalkan/{{ $data->id }}"
-                                            title="Batalkan Pesanan" class="bi bi-x-lg btn btn-danger ml-2"
-                                            style="font-size: 15px"></a>
-                                        <a href="/ubah/status/{{ $data->id }}"
-                                            class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
->>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                     </td>
 
                                     <!-- Modal -->
@@ -108,19 +100,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
-<<<<<<< HEAD
                                                     <input type="text" id="disabledTextInput" class="form-control" 
                                                         placeholder="Rp. <?php $angka = $data->total_harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
                                                 </div>  
-=======
-                                                    <input type="text" id="disabledTextInput" class="form-control"
-                                                        placeholder="Rp. <?php $angka = $data->total_harga;
-                                                                echo number_format($angka, 0, ',', '.');
-                                                                ?>" disabled>
-                                                </div>
->>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori Pembayaran</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_pembayaran }}" disabled>

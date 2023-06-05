@@ -19,8 +19,8 @@
             <span>Tambah Data Produk</span>
         </a>
     </h6>
-    <h6 class="col-md-3 mb-0">
-        <a href="" class="btn btn-success text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
+    <h6 class="col-md-3 mb-0">  
+        <a href="" class="btn btn-info text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
         </a>
@@ -77,7 +77,7 @@
                                 {{-- <th scope="col">Kategori Pembeli</th> --}}
                                 {{-- <th scope="col">Kategori Produk</th> --}}
                                 <th scope="col">Produk Unggulan</th>
-                                <th scope="col">Keterangan</th>
+                                <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
@@ -163,8 +163,8 @@
                                                                 ?>" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Deskripsi</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->deskripsi }}" disabled>
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $data->deskripsi}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
