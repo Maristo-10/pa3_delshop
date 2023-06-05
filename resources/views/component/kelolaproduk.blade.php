@@ -102,15 +102,15 @@
                                     <td>{{ $data->produk_unggulan }}</td>
                                     {{-- <td>{{ $data->deskripsi }}</td> --}}
                                     <td>
-                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $data->id_produk }}"></a>
                                     </td>
                                     <td>
                                         <a href="/ubahproduk/{{ $data->id_produk }}" title="Ubah Data"
                                             class="bi bi-pencil-square btn btn-warning " style="font-size: 8px"></a>
-                                        <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a>
+                                        <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2{{ $data->id_produk }}" ></a>
                                     </td>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- Modal menonaktifkan produk-->
+                                    <div class="modal fade" id="exampleModal2{{ $data->id_produk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-body text-center">
@@ -125,11 +125,11 @@
                                     </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $data->id_produk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Data Pesanan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Produk</h1>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mb-3">
@@ -141,11 +141,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Harga</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="Rp. <?php $angka = $data->harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
-                                                </div>  
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_produk}}" disabled>
@@ -156,7 +156,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Jumlah Produk</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="<?php $angka = $data->jumlah_produk;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>

@@ -31,19 +31,39 @@
 <div class="row justify-content-center">
     <div class="col-8 ">
         <div class="card">
-            <form action="tambahpengguna/import" method="GET" enctype="multipart/form-data">
-                <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
+            <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
+
+            <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
+                @csrf
+                <div class="row"></div>
+                <div class="col">
+                    <h5 class="mb-8">Silahkan Tambahkan File Excel!</h5>
+                </div>
+                <div class="col">
+                    <input type="file" name="file" required class="col-md-8 mb-3">
+                </div>
+                <div class="col ml-3">
+                    <button type="submit" class="col-md-4">Import</button>
+                </div>
+            </form>
+            </div>
+            {{-- form --}}
+            {{-- <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
+
+            <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
+                @csrf
                     <div class="col-6 mb-5">
                         <div class="">
                             <label for="formFile" class="form-label">Masukkan Data Pengguna </label>
-                            <input class="form-control mt-3" type="file" id="formFile">
+                            <input class="form-control mt-3" type="file" >
                         </div>
                     </div>
                     <div class="col-2 ">
-                        <button class="btn btn-primary" name="cari-penjualan" id="cari-penjualan"> Cari</button>
+                        <button type="submit" class="btn btn-primary"> Import</button>
                     </div>
                 </div>
             </form>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -85,11 +105,11 @@
                                     <td>{{ $data->role_pengguna }}</td>
                                     <td style="text-align: center">
                                         <a href="/ubahpengguna/{{ $data->id}}" title="Ubah Data" class="bi bi-pencil-square btn btn-warning " style="font-size: 15px"></a>
-                                        <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                                        <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $data->id}}"></a>
                                     </td>
-                                    
+
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $data->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">

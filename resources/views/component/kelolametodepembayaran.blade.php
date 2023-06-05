@@ -203,11 +203,11 @@
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
                                     <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
-                                    <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                                    <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->kategori_pembayaran}}"></a>
                                 </td>
-                                    
+
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{$data->kategori_pembayaran}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
