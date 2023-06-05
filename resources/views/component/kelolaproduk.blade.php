@@ -30,16 +30,17 @@
 <div class="row justify-content-center">
     <div class="col-8 ">
         <div class="card">
-            <form action="tambahpengguna/import" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('tambahproduk.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
+                @csrf
                 <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
                     <div class="col-6 mb-5">
                         <div class="">
                             <label for="formFile" class="form-label">Masukkan Data Pengguna </label>
-                            <input class="form-control mt-3" type="file" id="formFile">
+                            <input class="form-control mt-3" name="file" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="col-2 ">
-                        <button class="btn btn-primary" name="cari-penjualan" id="cari-penjualan"> Cari</button>
+                        <button type="submit" class="btn btn-primary" name="cari-penjualan" id="cari-penjualan">Import</button>
                     </div>
                 </div>
             </form>
