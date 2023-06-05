@@ -141,11 +141,7 @@
                                             </div>
                                         </div>
                                     </div>
-<<<<<<< HEAD
                                     
-=======
-
->>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
