@@ -55,27 +55,6 @@
                         </div>
                     </div><!-- End Revenue Card -->
 
-                    <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-4">
-                        <div class="card info-card customers-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Pengguna <span>| Tahun {{ $tahun }}</span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        @foreach ($jumlahpengguna as $item)
-                                            <p class="fs-5">{{ $item->totalpeng }}</p>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
 
                     <!-- Reports -->
                     <div class="col-12">
