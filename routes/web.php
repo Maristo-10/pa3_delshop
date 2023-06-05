@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Http\Controllers\CorouselController;
+use App\Models\Corousel;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,10 +118,15 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     Route::get('get-metpem', [MetodePembayaranController::class, 'metpem'])->name('getMetpem');
     Route::get('get-layanan', [MetodePembayaranController::class, 'layanan'])->name('getLayanan');
 
-    Route::get('/get-diproses', [PesananController::class, 'diproses'])->name('getDiproses');
-    Route::get('/get-ditangguhkan', [PesananController::class, 'ditangguhkan'])->name('getDitangguhkan');
-    Route::get('/get-belum', [PesananController::class, 'belumDiambil'])->name('getBelum');
-    Route::get('/get-selesai', [PesananController::class, 'selesai'])->name('getSelesai');
+    Route::get('/pesanan-diproses', [PesananController::class, 'diproses'])->name('getDiproses');
+    Route::get('/pesanan-ditangguhkan', [PesananController::class, 'ditangguhkan'])->name('getDitangguhkan');
+    Route::get('/pesanan-belum', [PesananController::class, 'belumDiambil'])->name('getBelum');
+    Route::get('/pesanan-selesai', [PesananController::class, 'selesai'])->name('getSelesai');
+    Route::get('/pesanan-dibatalkan', [PesananController::class, 'dibatalkan'])->name('getDibatalkan');
+
+    //add checkout
+    Route::post('/add-checkout/{id}',[PesananController::class, 'addCh'])->name('addCheckout');
+    Route::post('/remove-checkout/{id}',[PesananController::class, 'backKer'])->name('removeCheckout');
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
@@ -133,6 +140,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
 
 
+    Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
     Route::post('/prosestambahproduk', [ProdukController::class, 'tambahproduk'])->name('admin.storeproduk');
@@ -185,6 +193,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/prosesubahberita/{id}', [BeritaController::class, 'update'])->name('admin.updateberita');
     Route::get('/nonaktifkan-berita/{id}', [BeritaController::class, 'destroy'])->name('admin.nonaktifberita');
     Route::get('/aktifkan-berita/{id}', [BeritaController::class, 'aktifkan'])->name('admin.aktifberita');
+
+    Route::get('/corousel', [CorouselController::class, 'kelolaCorousel'])->name('admin.corousel');
+    Route::post('/tambah/corousel', [CorouselController::class, 'tambahCorousel'])->name('admin.tambahcorousel');
+    Route::post('/ubah/corousel/{id}', [CorouselController::class, 'ubahCorousel'])->name('admin.ubahcorousel');
+    Route::get('/aktifkan-corousel/{id}',[CorouselController::class, 'aktifkan'])->name('aktifkan');
+    Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group(function () {

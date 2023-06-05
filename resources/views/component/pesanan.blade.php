@@ -18,21 +18,29 @@
 </div>
 <div class=" col 12 card-body d-sm-flex justify-content-between text-center">
     <h6 class="col-md-12 mb-0">
-        <button class=" bi bi-x-square-fillx btn btn-danger text-white py-2 ml-2 col-2 fs-5" name="btn-dibatalkan" id="btn-dibatalkan">
+        <a href="/pesanan" class="bi bi-filter-circle btn btn-dark text-white py-2 ml-2 fs-5" name="btn-dibatalkan"
+            id="btn-dibatalkan" title="Semua Pesanan"></a>
+        <a href="/pesanan-dibatalkan" class=" bi bi-x-square-fill btn btn-danger text-white py-2 ml-2 col-2 fs-5"
+            name="btn-dibatalkan" id="btn-dibatalkan" title="Pesanan Dibatalkan">
             <span class="ml-1">Dibatalkan</span>
-        </button>
-        <button class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan" id="btn-ditangguhkan">
+        </a>
+        <a href="/pesanan-ditangguhkan"
+            class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan"
+            id="btn-ditangguhkan" title="Pesanan Belum Dibayar">
             <span class="ml-1">Belum Dibayar</span>
-        </button>
-        <button class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-5" name="btn-diproses" id="btn-diproses">
+        </a>
+        <a href="/pesanan-diproses" class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-5"
+            name="btn-diproses" id="btn-diproses" title="Pesanan Sedang Diproses">
             <span class="ml-1">Sedang Diproses</span>
-        </button>
-        <button class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-5" name="btn-belum" id="btn-belum">
+        </a>
+        <a href="/pesanan-belum" class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-5"
+            name="btn-belum" id="btn-belum" title="Pesanan Dapat Diambil">
             <span class="ml-1">Dapat Diambil</span>
-        </button>
-        <button class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-5" name="btn-selesai" id="btn-selesai">
+        </a>
+        <a href="/pesanan-selesai" class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-5"
+            name="btn-selesai" id="btn-selesai" title="Pesanan Selesai">
             <span class="ml-1">Selesai</span>
-        </button>
+        </a>
     </h6>
 </div>
 <div class="col-md-12 mt-3 text-center">
@@ -44,7 +52,7 @@
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar col-md-11 text-center">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped table-bordered" id="list">
+                    <table class="table  table-bordered" id="list" style="min-height: 300px">
                         <thead>
                             <tr>
                                 <!-- <th scope="col">Pilihan</th> -->
@@ -54,8 +62,7 @@
                                 <th scope="col" class="col-md-2">Nama Pengambil</th>
                                 <th scope="col" class="col-md-1">Metode Pembayaran</th>
                                 <th scope="col" class="col-md-1">Nama Layanan</th>
-                                <th scope="col" class="col-md-1">Bukti Pembayaran</th>
-                                <th scope="col" class="col-md-1">Status</th>
+                                <th scope="col" class="col-md-2">Status</th>
                                 <th scope="col" class="col-md-2">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
@@ -64,30 +71,37 @@
                             @php
                                 $no = 1;
                             @endphp
-
-                            @foreach ($pesanan_kapem as $data)
+                            @if ($jumlah->total == 0)
+                            <tr>
+                                <td colspan="8" class="text-muted"><p hidden>Data Pesanan Anda Masih Kosong</p></td>
+                            </tr>
                                 <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $data->tanggal }}</td>
-                                    <td>Rp. <?php
-                                    $angka = $data->total_harga;
-                                    echo number_format($angka, 0, ',', '.');
-                                    ?></td>
-                                    <td>{{ $data->nama_pengambil }}</td>
-                                    <td>{{ $data->kategori_pembayaran }}</td>
-                                    <td>{{ $data->nama_layanan }}</td>
-                                    <td>
-                                        <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
-                                            style="max-height: 50px">
-                                    </td>
-                                    <td><b>{{ $data->status }}</b></td>
-                                    <td>
-                                        <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
-                                            class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-                                        <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
-                                            class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
-                                    </td>
-                            @endforeach
+                                    <td colspan="8" rowspan="2" class="text-muted fs-3">Data Pesanan Anda Masih Kosong</td>
+                                </tr>
+
+                            @else
+                                @foreach ($pesanan_kapem as $data)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->tanggal }}</td>
+                                        <td>Rp. <?php
+                                        $angka = $data->total_harga;
+                                        echo number_format($angka, 0, ',', '.');
+                                        ?></td>
+                                        <td>{{ $data->nama_pengambil }}</td>
+                                        <td>{{ $data->kapem }}</td>
+                                        <td>{{ $data->layanan }}</td>
+                                        <td><b>{{ $data->status }}</b></td>
+                                        <td>
+                                            <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
+                                                class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                            <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
+                                                class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
                         </tbody>
                     </table>
                     {{-- <div class="row">
@@ -103,185 +117,3 @@
 </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#btn-ditangguhkan').on('click', function() {
-            $('#table-pesanan').html('');
-            $.ajax({
-                url: '{{ route('getDitangguhkan') }}',
-                type: 'get',
-                success: function(res) {
-                    $('#table-pesanan').html(' ');
-                    $no = 1;
-                    $.each(res, function(key, value) {
-                        $('#table-pesanan').append('<tr>');
-                        $('#table-pesanan').append('<td>' + $no++ + '</td>');
-                        $('#table-pesanan').append('<td>' + value.tanggal +
-                            '</td>');
-                        var number_string = value.total_harga.toString(),
-                            sisa = number_string.length % 3,
-                            rupiah = number_string.substr(0, sisa),
-                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
-
-                        if (ribuan) {
-                            separator = sisa ? '.' : '';
-                            rupiah += separator + ribuan.join('.');
-                        }
-                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
-                            '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_pengambil + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.kategori_pembayaran + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_layanan + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><small>Kosong</small></td>");
-                        $('#table-pesanan').append(
-                            '<td>' + value.status + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><a href='/detail-pesanan/" + value.id + "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a> <a href='#' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
-                        );
-                        $('#table-pesanan').append('</tr>');
-                    });
-                }
-            });
-        });
-
-        $('#btn-diproses').on('click', function() {
-            $('#table-pesanan').html('');
-            $.ajax({
-                url: '{{ route('getDiproses') }}',
-                type: 'get',
-                success: function(res) {
-                    $('#table-pesanan').html(' ');
-                    $no = 1;
-                    $.each(res, function(key, value) {
-                        $('#table-pesanan').append('<tr>');
-                        $('#table-pesanan').append('<td>' + $no++ + '</td>');
-                        $('#table-pesanan').append('<td>' + value.tanggal +
-                            '</td>');
-                        var number_string = value.total_harga.toString(),
-                            sisa = number_string.length % 3,
-                            rupiah = number_string.substr(0, sisa),
-                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
-
-                        if (ribuan) {
-                            separator = sisa ? '.' : '';
-                            rupiah += separator + ribuan.join('.');
-                        }
-                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
-                            '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_pengambil + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.kategori_pembayaran + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_layanan + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><img src='/pembayaran-images/" + value
-                            .bukti_pembayaran +
-                            "'style='max-height: 50px'></td>");
-                        $('#table-pesanan').append(
-                            '<td>' + value.status + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><a href='/detail-pesanan/" + value.id +
-                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
-                        );
-                        $('#table-pesanan').append('</tr>');
-                    });
-                }
-            });
-        });
-        $('#btn-belum').on('click', function() {
-            $('#table-pesanan').html('');
-            $.ajax({
-                url: '{{ route('getBelum') }}',
-                type: 'get',
-                success: function(res) {
-                    $('#table-pesanan').html(' ');
-                    $no = 1;
-                    $.each(res, function(key, value) {
-                        $('#table-pesanan').append('<tr>');
-                        $('#table-pesanan').append('<td>' + $no++ + '</td>');
-                        $('#table-pesanan').append('<td>' + value.tanggal +
-                            '</td>');
-                        var number_string = value.total_harga.toString(),
-                            sisa = number_string.length % 3,
-                            rupiah = number_string.substr(0, sisa),
-                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
-
-                        if (ribuan) {
-                            separator = sisa ? '.' : '';
-                            rupiah += separator + ribuan.join('.');
-                        }
-                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
-                            '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_pengambil + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.kategori_pembayaran + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_layanan + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><img src='/pembayaran-images/" + value
-                            .bukti_pembayaran +
-                            "'style='max-height: 50px'></td>");
-                        $('#table-pesanan').append(
-                            '<td>' + value.status + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><a href='/detail-pesanan/" + value.id +
-                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
-                        );
-                        $('#table-pesanan').append('</tr>');
-                    });
-                }
-            });
-        });
-        $('#btn-selesai').on('click', function() {
-            $('#table-pesanan').html('');
-            $.ajax({
-                url: '{{ route('getSelesai') }}',
-                type: 'get',
-                success: function(res) {
-                    $('#table-pesanan').html(' ');
-                    $no = 1;
-                    $.each(res, function(key, value) {
-                        $('#table-pesanan').append('<tr>');
-                        $('#table-pesanan').append('<td>' + $no++ + '</td>');
-                        $('#table-pesanan').append('<td>' + value.tanggal +
-                            '</td>');
-                        var number_string = value.total_harga.toString(),
-                            sisa = number_string.length % 3,
-                            rupiah = number_string.substr(0, sisa),
-                            ribuan = number_string.substr(sisa).match(/\d{3}/g);
-
-                        if (ribuan) {
-                            separator = sisa ? '.' : '';
-                            rupiah += separator + ribuan.join('.');
-                        }
-                        $('#table-pesanan').append('<td>' + 'Rp. ' + rupiah +
-                            '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_pengambil + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.kategori_pembayaran + '</td>');
-                        $('#table-pesanan').append(
-                            '<td>' + value.nama_layanan + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><img src='/pembayaran-images/" + value
-                            .bukti_pembayaran +
-                            "'style='max-height: 50px'></td>");
-                        $('#table-pesanan').append(
-                            '<td>' + value.status + '</td>');
-                        $('#table-pesanan').append(
-                            "<td><a href='/detail-pesanan/" + value.id +
-                            "' title='Lihat Detail Pesanan' class='bi bi-eye btn btn-secondary' style='font-size: 15px'></a><a href='/prosesubahstatusproduk/nonaktif/' title='Batalkan Pesanan' class='bi bi-x-lg btn btn-danger ml-2' style='font-size: 15px'></a></td>"
-                        );
-                        $('#table-pesanan').append('</tr>');
-                    });
-                }
-            });
-        });
-    });
-</script>

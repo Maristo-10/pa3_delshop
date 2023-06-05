@@ -77,6 +77,9 @@
                                         <div class=" row col-12 justify-content-center mt-3">
                                             <p >Belum Punya Akun? <a href="{{ route('register') }}" class="btn text-secondary">Buat Akun</a></p>
                                         </div>
+                                        <div class=" row col-12 justify-content-center">
+                                            <a href="{{ route('password-request') }}" class="btn text-secondary">Lupa Password</a>
+                                        </div>
                                         {{-- <div class="row col-12 justify-content-center text-secondary">
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">

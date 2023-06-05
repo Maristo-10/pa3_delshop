@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Berita;
+use App\Models\Corousel;
 
 class Controller extends BaseController
 {
@@ -34,6 +35,9 @@ class Controller extends BaseController
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan','Unggulan')->get();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
         $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+
+        $corousel_f = Corousel::where('status', 1)->first();
+        $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
         return view('frontend.dashboard-pembeli',[
             'kategori'=>$kategori,
             'unggulan'=>$unggulan,
@@ -41,7 +45,9 @@ class Controller extends BaseController
             'pengguna_prof'=>$pengguna_prof,
             'total_ung'=>$total_ung,
             'berita' => $berita,
-            'berita_2' => $berita_2
+            'berita_2' => $berita_2,
+            'corousel_f'=>$corousel_f,
+            'corousel'=>$corousel
         ]);
     }
 }

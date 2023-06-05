@@ -44,36 +44,41 @@
 
                             </div>
                             @foreach ($pesanan_detail as $item)
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div>
-                                                    <img src="/product-images/{{ $item->gambar_produk }}"
-                                                        class="img-fluid rounded-3" alt="Shopping item"
-                                                        style="width: 65px;">
+                                <form action="/remove-checkout/{{ $item->id }}" method="post">
+                                    @csrf
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="/product-images/{{ $item->gambar_produk }}"
+                                                            class="img-fluid rounded-3" alt="Shopping item"
+                                                            style="width: 65px;">
+                                                    </div>
+                                                    <div class="ms-3 ml-3">
+                                                        <h5>{{ $item->nama_produk }}</h5>
+                                                        <p class="small mb-0">{{ $item->kategori_produk }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="ms-3 ml-3">
-                                                    <h5>{{ $item->nama_produk }}</h5>
-                                                    <p class="small mb-0">{{ $item->kategori_produk }}</p>
+                                                <div class="d-flex flex-row align-items-center text-left">
+                                                    <div style="width: 10px;" class="mr-5">
+                                                        <h5 class="fw-normal mb-0">{{ $item->jumlah }}</h5>
+                                                    </div>
+                                                    <div style="width: 130px;">
+                                                        <h6 class="mb-0">Rp. <?php
+                                                        $angka = $item->jumlah_harga;
+                                                        echo number_format($angka, 0, ',', '.');
+                                                        ?></h6>
+                                                    </div>
+                                                    <button type="submit" name="remove-{{ $item->id }}"
+                                                        id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i
+                                                            class="fas fa-trash-alt text-danger"></i></label>
                                                 </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center text-left">
-                                                <div style="width: 10px;" class="mr-5">
-                                                    <h5 class="fw-normal mb-0">{{ $item->jumlah }}</h5>
-                                                </div>
-                                                <div style="width: 130px;">
-                                                    <h6 class="mb-0">Rp. <?php
-                                                    $angka = $item->jumlah_harga;
-                                                    echo number_format($angka, 0, ',', '.');
-                                                    ?></h6>
-                                                </div>
-                                                <a href="#!" style="color: #cecece;"><i
-                                                        class="fas fa-trash-alt"></i></a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             @endforeach
                             @foreach ($pesanan_harga as $h)
                                 <div class="pt-4 text-right mb-5">
@@ -88,7 +93,7 @@
                             <div class="card bg-secondary text-white rounded-3">
                                 <div class="card-body p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <h5 class="mb-0">ID Pesanan : {{$pesanan_baru->kode}}</h5>
+                                        <h5 class="mb-0">ID Pesanan : {{ $pesanan_baru->kode }}</h5>
                                     </div>
 
                                     <hr style="height:2px;border-width:0;color:white;background-color:white">

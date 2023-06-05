@@ -38,7 +38,7 @@
                         ?>
                     </p>
                     <h6 class="mt-3">Deskripsi:</h6>
-                    <p>{{$item->deskripsi}}</p>
+                    <p>{{ $item->deskripsi }}</p>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <h6>Warna yang tersedia :</h6>
@@ -89,21 +89,31 @@
                         </div>
                         <div class="row pb-3">
                             <div class="col-md-4 offset-md-8">
-                                @if ($item->role_pembeli == Auth::user()->role_pengguna)
+                                @if ($item->role_pembeli == 'Publik')
                                     <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
                                         value="addtocard">Add To Cart</button>
                                 @else
-                                    <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
-                                        value="addtocard" style="border-radius: 8px" disabled>Add To Cart</button>
+                                    @if ($item->role_pembeli == Auth::user()->role_pengguna)
+                                        <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
+                                            value="addtocard">Add To Cart</button>
+                                    @else
+                                        <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
+                                            value="addtocard" style="border-radius: 8px" disabled>Add To Cart</button>
+                                    @endif
                                 @endif
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4 pt-2">
-                            @if ($item->role_pembeli != Auth::user()->role_pengguna)
-                                <small class="ml-3" style="color:red;"><i
-                                        class="bi bi-info-circle mr-2"></i><em>Produk ini hanya tersedia untuk
-                                        {{ $item->role_pembeli }}</em></small>
+                            @if ($item->role_pembeli == 'Publik')
+                            @else
+                                @if ($item->role_pembeli != Auth::user()->role_pengguna)
+                                    <small class="ml-3" style="color:red;"><i
+                                            class="bi bi-info-circle mr-2"></i><em>Produk ini hanya tersedia untuk
+                                            {{ $item->role_pembeli }}</em></small>
+                                @endif
                             @endif
+
+
                         </div>
                     </form>
                 </div>

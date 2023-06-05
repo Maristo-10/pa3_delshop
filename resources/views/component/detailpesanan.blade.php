@@ -39,7 +39,7 @@
                                         @endforeach
                                         <option value="Ditangguhkan">Ditangguhkan</option>
                                         <option value="Dibatalkan">Dibatalkan</option>
-                                        <option value="Diproses">Diproses</option>
+                                        <option value="Sedang Diproses">Sedang Diproses</option>
                                         <option value="Siap Diambil">Siap Diambil</option>
                                         <option value="Selesai">Selesai</option>
                                     </select>
@@ -77,13 +77,13 @@
                                     <div class="col-md-1 col-lg-2 col-xl-2">
                                         <h6></h6>
                                     </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <div class="col-md-3 col-lg-3 col-xl-3 fw-bold">
                                         Nama Produk
                                     </div>
-                                    <div class="col-md-1 col-lg-3 col-xl-2 d-flex">
+                                    <div class="col-md-1 col-lg-3 col-xl-2 d-flex fw-bold">
                                         Jumlah
                                     </div>
-                                    <div class="col-md-6 col-lg-2 col-xl-3 offset-lg-1">
+                                    <div class="col-md-6 col-lg-2 col-xl-3 offset-lg-1 fw-bold">
                                         Harga
                                     </div>
                                 </div>

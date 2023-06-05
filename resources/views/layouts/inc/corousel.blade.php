@@ -3,11 +3,14 @@
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-inner" >
             <div class="carousel-item active">
-                <img src="img/carousel.png" class="d-block w-100" alt="...">
+                <img src="/corousel-images/{{$corousel_f->gambar_corousel}}" class="d-block w-100" alt="...">
             </div>
+            @foreach ($corousel as $data)
             <div class="carousel-item">
-                <img src="img/carousel2.png" class="d-block w-100" alt="...">
+                <img src="/corousel-images/{{$data->gambar_corousel}}" class="d-block w-100" alt="...">
             </div>
+            @endforeach
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -129,7 +129,8 @@
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     @guest
-                    @else
+
+                        @else
                         <div class="dropdown mr-2">
                             <a class="dropdown position-relative" href="#" role="button"
                                 data-bs-toggle="dropdown" style="font-size: 20px" aria-expanded="false">
@@ -216,11 +217,11 @@
                                         <span class="visually-hidden">unread messages</span>
                                     </span>
                                     {{-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ $a->total }}</span> --}}
-                                @endforeach
+                                    @endforeach
 
-                            </a>
-                        @endempty
-                    @endguest
+                                </a>
+                            @endempty
+                        @endguest
 
                     @guest
                         @if (Route::has('login') && Route::has('register'))

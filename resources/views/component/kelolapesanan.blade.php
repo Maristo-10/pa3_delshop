@@ -12,6 +12,12 @@
     href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center col-12" method="GET" action="/kelola-pesanan/search">
+            <input type="text" name="sidPes" id="sidPes" placeholder="Cari Pesanan Berdasarkan ID Pesanan" title="Masukkan ID Pesanan" class="form-control col-4">
+            <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
@@ -53,7 +59,8 @@
                                         <div class="row">
                                             <div class="col col-12">
                                                 <select class="form-control form-select-sm text-center"
-                                                    style="border: none;font-weight: bold" name="f-status" id="f-status">
+                                                    style="border: none;font-weight: bold" name="f-status"
+                                                    id="f-status">
                                                     <option selected>{{ $data->status }}</option>
                                                     <option value="1">Selesai</option>
                                                     <option value="2">Belum Dibayar</option>
@@ -66,9 +73,17 @@
                                     <td class="text-center">
                                         <a href="/detail/pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                             class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+<<<<<<< HEAD
                                         <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal2"></a>
                                         <a href="/ubah/status/{{$data->id}}" class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
+=======
+                                        <a href="/proses/ubah/status/batalkan/{{ $data->id }}"
+                                            title="Batalkan Pesanan" class="bi bi-x-lg btn btn-danger ml-2"
+                                            style="font-size: 15px"></a>
+                                        <a href="/ubah/status/{{ $data->id }}"
+                                            class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
+>>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                     </td>
 
                                     <!-- Modal -->
@@ -93,11 +108,19 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
+<<<<<<< HEAD
                                                     <input type="text" id="disabledTextInput" class="form-control" 
                                                         placeholder="Rp. <?php $angka = $data->total_harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
                                                 </div>  
+=======
+                                                    <input type="text" id="disabledTextInput" class="form-control"
+                                                        placeholder="Rp. <?php $angka = $data->total_harga;
+                                                                echo number_format($angka, 0, ',', '.');
+                                                                ?>" disabled>
+                                                </div>
+>>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori Pembayaran</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_pembayaran }}" disabled>
@@ -118,7 +141,11 @@
                                             </div>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -154,5 +181,3 @@
         $('#f-status').prop('disabled', false);
     }
 </script>
-
-

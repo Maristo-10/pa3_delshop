@@ -14,7 +14,7 @@
                     <div class="col-xxl-6 col-md-6">
                         <div class="card info-card sales-card">
                             <div class="card-body">
-                                <h5 class="card-title">Produk Terjual <span>| Tahun {{ $tahun }}</span></h5>
+                                <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fs-6">
@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="ps-3">
                                         @foreach ($jumlahproduk as $item)
-                                            <h6>{{ $item->totalproduk }}</h6>
+                                            <p class="fs-5">{{ $item->totalproduk }}</p>
                                         @endforeach
                                     </div>
                                 </div>
@@ -35,15 +35,15 @@
                     <div class="col-xxl-6 col-md-6">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
-                                <h5 class="card-title">Pendapatan <span>| Tahun {{ $tahun }}</span></h5>
+                                <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cash"></i>
                                     </div>
-                                    <div class="ml-2">
+                                    <div class="ml-1">
                                         @foreach ($jumlahpendapatan as $item)
-                                            <p class="fs-4">Rp. <?php
+                                            <p class="fs-5">Rp.<?php
                                             $angka = $item->totalpes;
                                             echo number_format($angka, 0, ',', '.');
                                             ?></p>
@@ -55,6 +55,30 @@
                         </div>
                     </div><!-- End Revenue Card -->
 
+<<<<<<< HEAD
+=======
+                    <!-- Customers Card -->
+                    <div class="col-xxl-4 col-xl-4">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Pengguna <span>| Tahun {{ $tahun }}</span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        @foreach ($jumlahpengguna as $item)
+                                            <p class="fs-5">{{ $item->totalpeng }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- End Customers Card -->
+>>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
 
                     <!-- Reports -->
                     <div class="col-12">
@@ -230,6 +254,7 @@
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">Nama Pesanan</label>
                                                             <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->name}}" disabled>
+<<<<<<< HEAD
                                                         </div> 
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
@@ -242,6 +267,20 @@
                                                             <label for="exampleFormControlInput1" class="form-label">Status</label>
                                                             <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->status}}" disabled>
                                                         </div> 
+=======
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
+                                                            <input type="text" id="disabledTextInput" class="form-control"
+                                                                placeholder="Rp. <?php $angka = $data->total_harga;
+                                                                        echo number_format($angka, 0, ',', '.');
+                                                                        ?>" disabled>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleFormControlInput1" class="form-label">Status</label>
+                                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->status}}" disabled>
+                                                        </div>
+>>>>>>> 2cf3c46a9fd938be1f47090740f83b1a25c7a528
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
