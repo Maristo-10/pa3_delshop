@@ -92,11 +92,11 @@
                                             @if ($jumlah->total < 3)
                                                 <a title="Aktifkan Berita"
                                                     href="/aktifkan-berita/{{ $data->id }}"
-                                                    class="bi bi-check-circle-fill btn btn-danger ml-2"
+                                                    class="bi bi-check-circle-fill btn btn-success ml-2"
                                                     style="font-size: 15px"></a>
                                             @else
                                                 <Button title="Aktifkan Berita"
-                                                    class="bi bi-check-circle-fill btn btn-danger ml-2"
+                                                    class="bi bi-check-circle-fill btn btn-success ml-2"
                                                     style="font-size: 15px" disabled></Button>
                                             @endif
                                         @endif

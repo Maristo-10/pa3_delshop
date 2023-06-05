@@ -21,7 +21,7 @@
         </a>
     </h6>
     <h6 class="col-md-3 mb-0">  
-        <a href="" class="btn btn-success text-white" data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
+        <a href="" class="btn btn-info text-white" data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
         </a>
