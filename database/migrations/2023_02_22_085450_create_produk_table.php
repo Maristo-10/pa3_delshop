@@ -16,8 +16,8 @@ class CreateProdukTable extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id("id_produk");
             $table->string('gambar_produk')->nullable();
-            $table->string("nama_produk");
-            $table->double("harga");
+            $table->string("nama_produk"); // botol minum
+            $table->double("harga");        // warna : kuning, hijau
             $table->double("jumlah_produk");
             $table->longText("deskripsi");
             // $table->string('ukuran')->nullable();
