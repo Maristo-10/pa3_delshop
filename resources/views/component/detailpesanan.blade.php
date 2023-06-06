@@ -20,7 +20,7 @@
     $no = 1;
 @endphp
 
-<div class="container-fluid py-5 h-100">
+<div class="container-fluid pt-4 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-11">
             @foreach ($pembayaran as $data)
@@ -53,14 +53,34 @@
                 @endif
             @endforeach
             @if ($harga->bukti_pembayaran == null)
-                <button class="btn btn-success" disabled>Lihat Bukti Pembayaran</button>
+                <button class="btn btn-info" disabled>Lihat Bukti Pembayaran</button>
                 <br>
                 <small class=" col-12 bi bi-info-circle text-danger mb-4"> File Bukti Pembayaran Tidak ada</small>
             @else
-                <a href="/pembayaran-images/{{ $harga->bukti_pembayaran }}" class="btn btn-success mb-4">Lihat Bukti
-                    Pembayaran</a>
+                <a href="/pembayaran-images/{{ $harga->bukti_pembayaran }}" class="btn btn-info mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Lihat Bukti Pembayaran</a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="/pembayaran-images/{{ $harga->bukti_pembayaran }}" alt="">
+                        </div>
+                    </div>
+                    </div>
+                </div>
             @endif
 
+            <div class="card p-3">
+                <h3>Alamat Pengambilan </h3>
+                <small><b>Institute Teknologi Del  </b></small>
+                <small>{{$kontak->no_telp}}</small>
+                <small>Institut Teknologi Del, Sitoluama, Kec. Balige, Toba, Sumatera Utara 22381</small>
+                <a href="http://wa.me/{{$kontak->no_telp}}" class="btn btn-success w-25 mt-4"> WhatshApp <i class="bi bi-whatsapp"></i></a>
+            </div>
             <div class="card card-registration card-registration-2 mt-4" style="border-radius: 15px;">
                 <div class="card-body p-0">
                     <div class="row g-0">

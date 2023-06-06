@@ -312,10 +312,13 @@ class PesananController extends Controller
         ]);
     }
 
+
     public function detail_pesanan($id)
     {
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $kontak = User::where('role_pengguna', 'Admin')->first();
+
         if (empty($pesanan_baru)) {
             $pesanan = 0;
         } else {
@@ -349,7 +352,8 @@ class PesananController extends Controller
             'harga' => $harga,
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
-            'jumlah_pesanan' => $jumlah_pesanan
+            'jumlah_pesanan' => $jumlah_pesanan,
+            'kontak' => $kontak
         ]);
     }
 

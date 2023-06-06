@@ -6,7 +6,7 @@
             <span>Dashboard</span>
         </a>
     </li><!-- End Dashboard Nav -->
-
+{{-- 
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{asset('/kelola-berita')}}">
             <i class="bi bi-newspaper"></i>
@@ -19,9 +19,9 @@
             <i class="bi bi-images"></i>
             <span>Corousel</span>
         </a>
-    </li><!-- End Dashboard Nav -->
+    </li><!-- End Dashboard Nav --> --}}
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-1" data-bs-toggle="collapse" href="#">
             <i class="bi bi-people"></i><span>Manajemen Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -31,15 +31,11 @@
                     <i class="bi bi-person-gear fs-5"></i><span>Kelola Pengguna</span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="">
-                    <i class="bi bi-person-fill-x fs-5"></i><span>Pengguna Non-Aktif</span>
-                </a>
-            </li> --}}
-
         </ul>
-    </li><!-- End Components Nav -->
+    </li> --}}
+    <!-- End Components Nav -->
 
+    
     <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-2" data-bs-toggle="collapse" href="#">
             <i class="bi bi-boxes"></i><span>Manajemen Produk</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -62,7 +58,8 @@
             </li>
         </ul>
     </li><!-- End Components Nav -->
-    <li class="nav-item">
+
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-3" data-bs-toggle="collapse" href="#">
             <i class="bi bi-boxes"></i><span>Manajemen Metode Pembayaran</span><i
                 class="bi bi-chevron-down ms-auto"></i>
@@ -74,7 +71,8 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li> --}}
+    
     <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-4" data-bs-toggle="collapse" href="#">
             <i class="bi bi-bag"></i><span>Manajemen Pesanan</span><i
@@ -102,3 +100,4 @@
         </ul>
     </li>
 </ul>
+    

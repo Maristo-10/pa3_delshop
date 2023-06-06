@@ -1748,11 +1748,7 @@ box-shadow: none;
     color: aliceblue;
 }
 
-.kategori img {
-    height: 400px;
-}
-
-.product-image img{
+ct-image img{
     height: 260px;
 }
 
@@ -1936,9 +1932,7 @@ background-color: #2980b9;
 }
 
 @media (max-width: 1210.98px) {
-    .kategori img {
-        height: 320px;
-    }
+    
 
     .product-image img{
         height: 240px;
@@ -1947,9 +1941,7 @@ background-color: #2980b9;
 }
 
 @media (max-width: 1109.98px) {
-    .kategori img {
-        height: 280px;
-    }
+    
 
     .product-image img{
         height: 200px;
@@ -1957,10 +1949,6 @@ background-color: #2980b9;
 }
 
 @media (max-width: 1000.98px) {
-    .kategori img {
-        height: 390px;
-        width: 390px;
-    }
 
     .product-image img{
         height: 260px;

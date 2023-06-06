@@ -106,7 +106,7 @@
                             <div class="input-group mb-2">
                                 <input type="text" class="form-control" id="inputModalSearch" name="cari"
                                     placeholder="Search ...">
-                                <button type="submit" class="input-group-text bg-success text-light">
+                                <button type="submit" class="input-group-text bg-primary text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>
                                 </button>
                             </div>

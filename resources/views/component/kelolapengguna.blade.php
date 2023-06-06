@@ -31,39 +31,20 @@
 <div class="row justify-content-center">
     <div class="col-8 ">
         <div class="card">
-            <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
-
             <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
                 @csrf
-                <div class="row"></div>
-                <div class="col">
-                    <h5 class="mb-8">Silahkan Tambahkan File Excel!</h5>
-                </div>
-                <div class="col">
-                    <input type="file" name="file" required class="col-md-8 mb-3">
-                </div>
-                <div class="col ml-3">
-                    <button type="submit" class="col-md-4">Import</button>
-                </div>
-            </form>
-            </div>
-            {{-- form --}}
-            {{-- <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
-
-            <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
-                @csrf
+                <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
                     <div class="col-6 mb-5">
                         <div class="">
                             <label for="formFile" class="form-label">Masukkan Data Pengguna </label>
-                            <input class="form-control mt-3" type="file" >
+                            <input class="form-control mt-3" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="col-2 ">
-                        <button type="submit" class="btn btn-primary"> Import</button>
+                        <button class="btn btn-primary" name="cari-penjualan" id="cari-penjualan"> Import</button>
                     </div>
                 </div>
             </form>
-            </div> --}}
         </div>
     </div>
 </div>

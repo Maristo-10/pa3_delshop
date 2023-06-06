@@ -127,6 +127,10 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     //add checkout
     Route::post('/add-checkout/{id}',[PesananController::class, 'addCh'])->name('addCheckout');
     Route::post('/remove-checkout/{id}',[PesananController::class, 'backKer'])->name('removeCheckout');
+
+    //Tempat Pengambilan
+    Route::get('/pengambilanbarang', [PesananController::class,'tempat'])->name('pembeli.tempat');
+
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
@@ -138,8 +142,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
 
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
-
-
     Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
@@ -205,4 +207,20 @@ Route::middleware(['auth', 'isPegawai'])->group(function () {
     Route::get('/dashboard-pegawai', function () {
         return view('frontend.dashboard-pegawai');
     });
+
+    // Route::get('/produks-pegawai', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
+    // Route::get('/tambahproduk-pegawai', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
+    // Route::post('/prosestambahproduk-pegawai', [ProdukController::class, 'tambahproduk'])->name('admin.storeproduk');
+    // Route::get('/ubahproduk-pegawai/{id}', [ProdukController::class, 'viewubahproduk'])->name('admin.ubahproduk');
+    // Route::post('/prosesubahproduk-pegawai/{id}', [ProdukController::class, 'ubahproduk'])->name('admin.updateproduk');
+    // Route::get('/prosesubahstatusproduk-pegawai/nonaktif/{id}', [ProdukController::class, 'ubahstatusproduknon'])->name('admin.updatestatusproduknon');
+    // Route::get('/produks-pegawai/non-aktif', [ProdukController::class, 'produknonaktif'])->name('admin.kelolaproduknonaktif');
+    // Route::get('/prosesubahstatusproduk-pegawai/aktif/{id}', [ProdukController::class, 'ubahstatusprodukaktf'])->name('admin.updatestatusprodukak');
+    // Route::get('/kategoriproduk-pegawai', [KategoriController::class, 'kategoriproduk'])->name('admin.kelolakategoriproduk');
+
+    // manajemen penjualan
+    Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('pegawai.laporanpenjualan');
+    Route::get('/laporan-bulanan', [PesananController::class, 'laporanpenjualanBulanan'])->name('pegawai.laporanpenjualanBulanan');
+    Route::get('/laporan-tahunan', [PesananController::class, 'laporanpenjualanTahunan'])->name('pegawai.laporanpenjualanTahunan');
+    Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
 });

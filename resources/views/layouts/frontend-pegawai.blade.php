@@ -49,7 +49,7 @@
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-        @include('layouts.inc.front-sidebar-admin')
+        @include('layouts.inc.front-sidebar-pegawai')
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
