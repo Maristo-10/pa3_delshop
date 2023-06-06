@@ -85,12 +85,22 @@ class PesananController extends Controller
         }
 
         $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
-
+        $cek_pesanan_c = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
         if (empty($cek_pesanan)) {
             $pesanan = new Pesanan;
             $pesanan->user_id = Auth::user()->id;
             $pesanan->tanggal = $tanggal;
             $pesanan->total_harga = 0;
+            $pesanan->save();
+
+        }
+
+        if(empty($cek_pesanan_c)){
+            $pesanan = new Pesanan;
+            $pesanan->user_id = Auth::user()->id;
+            $pesanan->tanggal = $tanggal;
+            $pesanan->total_harga = 0;
+            $pesanan->status = 'checkout';
             $pesanan->save();
         }
 

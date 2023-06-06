@@ -31,6 +31,8 @@ $(document).ready(function () {
         value = isNaN(value) ? 0 : value;
         if (value < 10) {
             value++;
+            console.log(value)
+
             $(this).parents('.quantity').find('.qty-input').val(value);
         }
     });
@@ -63,8 +65,13 @@ $(document).ready(function () {
         });
 
         var thisClick = $(this);
-        var quantity = $(this).closest(".cartpage").find('.qty-input').val();
-        var produk_id = $(this).closest(".cartpage").find('.produk_id').val();
+        // var quantity = $(this).closest(".cartpage").find('.qty-input').val();
+        var quantity = $('.qty-input').val();
+        var produk_id = $('.produk_id').val();
+        // var produk_id = $(this).closest(".cartpage").find('.produk_id').val();
+        console.log("produk id ", produk_id);
+        // var quantityToInt = parseInt(quantity)
+        // console.log(produk_id);
         // var produk_id = $this.data('product-id');
         // alert(produk_id);
         var data = {
@@ -74,14 +81,14 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: 'update-to-cart',
+            url: '/update-to-cart',
             type: 'POST',
             data: data,
             success: function (response) {
                 // window.location.reload();
                 // console.log(response.gtprice)
                 thisClick.closest(".cartpage").find('.cart-grand-total-price').text(response.gtprice);
-                $('#totalajaxcall').load(location.href + ' .totalpricingload').load(location.href + ' .total');
+                // $('#totalajaxcall').load(location.href + ' .totalpricingload').load(location.href + ' .total');
                 // this.closest(".totalajaxcall").find('.totalpricingload').load(location.href + '');
                 // $('.totalpricingload').html(response.totalpricingload);
 
