@@ -61,7 +61,7 @@
                                         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         <i class="fas fa-minus"></i>
                                     </button> --}}
-                                    <input id="form1" min="0" name="jumlah" id="jumlah"
+                                    <input min="0" name="jumlah" id="jumlah"
                                         value="{{ $item->jumlah }}" type="number"
                                         class="form-control form-control-sm text-center" disabled/>
 

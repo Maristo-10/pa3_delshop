@@ -693,6 +693,7 @@ class PesananController extends Controller
 
     public function addCh(Request $request, $id)
     {
+        $detail = DetailPesanan::find($id);
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $pesanan_baru->id)->first();
 
@@ -746,10 +747,8 @@ class PesananController extends Controller
         $pes->update();
         // $cek_pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $cek_pesanan->id)->first();
 
-
-
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
-        $pesanan->total_harga = $pesanan->total_harga + $produk->harga * $request->jumlah;
+        $pesanan->total_harga = $pesanan->total_harga + $detail->jumlah_harga;
         $pesanan->update();
         return redirect()->route('pembeli.keranjang');
     }
