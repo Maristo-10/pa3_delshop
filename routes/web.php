@@ -134,6 +134,8 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/aprofile', [UserController::class, 'aprofile'])->name('admin.profile');
+    Route::post('/aprofile/update', [UserController::class, 'upprofile'])->name('admin.updateprofile');
     Route::get('/dashboard-admin', [HomeController::class, 'dashboard'])->name('frontend.dashboard-admin');
 
     Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('admin.laporanpenjualan');

@@ -78,7 +78,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90px">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -305,12 +305,11 @@
                             <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-light mb-1" href="/produk"><i
                                     class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
-                                Kita</a>
+                            {{-- <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                                Kita</a> --}}
                             <a class="text-light mb-1" href="/keranjang"><i
                                     class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
-                                Us</a>
+                            <a class="text-light" href="/pesanan"><i class="fa fa-angle-right mr-2"></i>Pesanan</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">

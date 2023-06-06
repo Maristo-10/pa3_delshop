@@ -57,18 +57,18 @@
                                     @endif
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                    <button class="btn btn-link px-2"
+                                    {{-- <button class="btn btn-link px-2"
                                         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         <i class="fas fa-minus"></i>
-                                    </button>
+                                    </button> --}}
                                     <input id="form1" min="0" name="jumlah" id="jumlah"
                                         value="{{ $item->jumlah }}" type="number"
-                                        class="form-control form-control-sm" />
+                                        class="form-control form-control-sm text-center" disabled/>
 
-                                    <button class="btn btn-link px-2"
+                                    {{-- <button class="btn btn-link px-2"
                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         <i class="fas fa-plus"></i>
-                                    </button>
+                                    </button> --}}
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
                                     <h5 class="mb-0">Rp. <?php
