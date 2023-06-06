@@ -44,7 +44,7 @@
     <link href="{{ asset('css/a.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/templatemo.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
-    @stack('styles');
+    @stack('styles')
 </head>
 
 <body>
