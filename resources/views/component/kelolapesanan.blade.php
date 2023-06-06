@@ -25,10 +25,10 @@
         </div> 
     </div>
 </div>
-    
-    
 
-    
+
+
+
 
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1">
@@ -66,11 +66,12 @@
                                         ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
                                     <td>
-                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}"></a>
+                                       {{$data->status}}
                                     </td>
                                     <td>
-                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#details-{{$data->id}}" title="Lihat Detail Pesanan"></a>
+                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}"></a>
                                     </td>
+
                                     <td class="text-center">
                                         <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
                                             class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$data->id}} "></a>

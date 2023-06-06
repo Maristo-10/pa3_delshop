@@ -209,25 +209,3 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
     Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
 });
-
-Route::middleware(['auth', 'isPegawai'])->group(function () {
-    Route::get('/dashboard-pegawai', function () {
-        return view('frontend.dashboard-pegawai');
-    });
-
-    // Route::get('/produks-pegawai', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
-    // Route::get('/tambahproduk-pegawai', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
-    // Route::post('/prosestambahproduk-pegawai', [ProdukController::class, 'tambahproduk'])->name('admin.storeproduk');
-    // Route::get('/ubahproduk-pegawai/{id}', [ProdukController::class, 'viewubahproduk'])->name('admin.ubahproduk');
-    // Route::post('/prosesubahproduk-pegawai/{id}', [ProdukController::class, 'ubahproduk'])->name('admin.updateproduk');
-    // Route::get('/prosesubahstatusproduk-pegawai/nonaktif/{id}', [ProdukController::class, 'ubahstatusproduknon'])->name('admin.updatestatusproduknon');
-    // Route::get('/produks-pegawai/non-aktif', [ProdukController::class, 'produknonaktif'])->name('admin.kelolaproduknonaktif');
-    // Route::get('/prosesubahstatusproduk-pegawai/aktif/{id}', [ProdukController::class, 'ubahstatusprodukaktf'])->name('admin.updatestatusprodukak');
-    // Route::get('/kategoriproduk-pegawai', [KategoriController::class, 'kategoriproduk'])->name('admin.kelolakategoriproduk');
-
-    // manajemen penjualan
-    Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('pegawai.laporanpenjualan');
-    Route::get('/laporan-bulanan', [PesananController::class, 'laporanpenjualanBulanan'])->name('pegawai.laporanpenjualanBulanan');
-    Route::get('/laporan-tahunan', [PesananController::class, 'laporanpenjualanTahunan'])->name('pegawai.laporanpenjualanTahunan');
-    Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
-});

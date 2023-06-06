@@ -89,7 +89,11 @@
             <div class="align-self-center collapse navbar-collapse d-lg-flex" id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
+                        @guest
+                        <a href="{{ asset('/') }}" class="nav-item nav-link">Home</a>
+                        @else
                         <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        @endguest
                         @guest
                         <a href="{{ asset('/glist-produk') }}" class="nav-item nav-link">Produk</a>
                         @else
@@ -208,7 +212,7 @@
                         </a>
                     @else
                         @empty($pesanan_baru)
-                            <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
+                            <a href="/" type="button" class="btn position-relative mr-2" style="font-size: 20px" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fas fa-shopping-cart text-dark"></i>
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark mt-2">
@@ -337,6 +341,21 @@
     <!-- Footer End -->
 
 
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered p-3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Pesan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Keranjang Anda Masih Kosong</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
@@ -366,8 +385,8 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> --}}
 
     {{-- js maristo and the man --}}
     <!-- Vendor JS Files -->
@@ -383,8 +402,8 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     {{-- jquery --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js --}}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js
     <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
     {{-- custom.js adding to cart ajax --}}
