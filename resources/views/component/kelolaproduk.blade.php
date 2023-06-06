@@ -19,7 +19,7 @@
             <span>Tambah Data Produk</span>
         </a>
     </h6>
-    <h6 class="col-md-3 mb-0">  
+    <h6 class="col-md-3 mb-0">
         <a href="" class="btn btn-success text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
@@ -141,11 +141,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Harga</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="Rp. <?php $angka = $data->harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
-                                                </div>  
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_produk}}" disabled>
@@ -156,7 +156,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Jumlah Produk</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="<?php $angka = $data->jumlah_produk;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>

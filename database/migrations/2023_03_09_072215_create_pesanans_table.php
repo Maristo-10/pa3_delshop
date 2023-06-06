@@ -26,6 +26,9 @@ class CreatePesanansTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->unsignedInteger("nama_layanan")->nullable();
             $table->unsignedInteger("metode_pembayaran")->nullable();
+            $table->string("ukurans")->nullable();
+            $table->string("warna_produk")->nullable();
+            $table->string("angkatans")->nullable();
         });
     }
 

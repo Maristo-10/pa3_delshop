@@ -89,7 +89,11 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
                         <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        @guest
+                        <a href="{{ asset('/glist-produk') }}" class="nav-item nav-link">Produk</a>
+                        @else
                         <a href="{{ asset('/list-produk') }}" class="nav-item nav-link">Produk</a>
+                        @endguest
                         <a href="{{ asset('/pesanan') }}" class="nav-item nav-link">Pesanan</a>
                         <a href=""></a>
                     </ul>
@@ -102,7 +106,11 @@
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                        @guest
+                        <form action="/gproduk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                            @else
+                            <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                            @endguest
                             <div class="input-group mb-2">
                                 <input type="text" class="form-control" id="inputModalSearch" name="cari"
                                     placeholder="Search ...">

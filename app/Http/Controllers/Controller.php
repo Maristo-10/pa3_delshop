@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Berita;
 use App\Models\Corousel;
+use App\Models\UkuranModel;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
@@ -48,6 +50,100 @@ class Controller extends BaseController
             'berita_2' => $berita_2,
             'corousel_f'=>$corousel_f,
             'corousel'=>$corousel
+        ]);
+    }
+
+    public function produk()
+    {
+        $pesanan = [0];
+            $pengguna_prof =[0];
+
+        $produk = Produk::where('status_produk', 'Aktif')->get();
+        $kategori = KategoriProdukModel::all();
+        $ukuran = UkuranModel::all();
+        return view('pembeli.viewproduk', [
+            'produk' => $produk,
+            'ukuran' => $ukuran,
+            'kategori' => $kategori,
+            'pesanan' => $pesanan,
+            'pengguna_prof' => $pengguna_prof
+        ]);
+    }
+
+    public function cariProduk(Request $request)
+    {
+        $cari = $request->cari;
+        $pesanan = [0];
+            $pengguna_prof =[0];
+
+        $produk = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('status_produk', 'Aktif')->get();
+        // dd($produk);
+
+        $unggulan = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('produk_unggulan', 'Unggulan')->get();
+
+        $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->where('nama_produk', 'like', '%' . $cari . '%')->get();
+
+        foreach ($produk as $p) {
+            $kategori = KategoriProdukModel::where('kategori', $p->kategori_produk)->get();
+            // dd($kategori);
+        }
+
+        $ukuran = UkuranModel::all();
+
+        // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
+        // dd($kategori);
+        return view('pembeli.viewproduk', [
+            'kategori' => $kategori,
+            'ukuran' => $ukuran,
+            'produk' => $produk,
+            'unggulan' => $unggulan,
+            'pesanan' => $pesanan,
+            'pengguna_prof' => $pengguna_prof,
+            'total_ung' => $total_ung
+        ]);
+    }
+
+    public function filterByCategory($category)
+    {
+        $products = Produk::where('kategori_produk', $category)->get();
+
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if (empty($pesanan_baru)) {
+            $pesanan = 0;
+        } else {
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id', $pesanan_baru->id)->get();
+        }
+        $kategori = KategoriProdukModel::all();
+        $ukuran = UkuranModel::all();
+        return view('pembeli.viewproduk', [
+            'produk' => $products,
+            'ukuran' => $ukuran,
+            'kategori' => $kategori,
+            'pesanan' => $pesanan,
+            'pesanan_baru' => $pesanan_baru,
+            'pengguna_prof' => $pengguna_prof
+        ]);
+    }
+
+    public function cariProduk2(Request $request)
+    {
+        $cari = $request->cari;
+
+        $pesanan = [0];
+            $pengguna_prof =[0];
+
+        $produk = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('status_produk', 'Aktif')->get();
+
+        $kategori = KategoriProdukModel::all();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $ukuran = UkuranModel::all();
+        return view('pembeli.viewproduk', [
+            'produk' => $produk,
+            'ukuran' => $ukuran,
+            'kategori' => $kategori,
+            'pesanan' => $pesanan,
+            'pengguna_prof' => $pengguna_prof
         ]);
     }
 }

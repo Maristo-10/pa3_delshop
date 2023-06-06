@@ -11,7 +11,7 @@
             <div class="col-lg-8">
                 <div class="row">
                     <!-- Sales Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card sales-card">
                             <div class="card-body">
                                 <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
@@ -32,7 +32,7 @@
                     </div><!-- End Sales Card -->
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
                                 <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
@@ -232,9 +232,10 @@
                                         <tr>
                                             <td>{{ $index + $pesanan_harian->firstItem() }}</td>
                                             <td>{{ $data->name}}</td>
-                                            <td>
-                                                <a type="button" class="bi bi-eye btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
-                                            </td>
+                                            <td>Rp. <?php
+                                        $angka = $data->total_harga;
+                                        echo number_format($angka, 0, ',', '.');
+                                        ?></td>
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -35,6 +35,10 @@ use App\Models\Corousel;
 
 
 Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli-1');
+Route::get('/gproduk/cari', [Controller::class, 'cariProduk']);
+Route::get('/glist-produk', [Controller::class, 'produk'])->name('pembeli.viewproduk');
+Route::get('/glist-produk/cari', [Controller::class, 'cariProduk2']);
+Route::get('/glist-produk/{kategori_produk}', [Controller::class, 'filterByCategory'])->name('products.category');
 Auth::routes();
 
 //reset password
@@ -199,6 +203,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/ubah/corousel/{id}', [CorouselController::class, 'ubahCorousel'])->name('admin.ubahcorousel');
     Route::get('/aktifkan-corousel/{id}',[CorouselController::class, 'aktifkan'])->name('aktifkan');
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
+    Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group(function () {

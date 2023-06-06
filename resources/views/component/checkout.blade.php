@@ -53,11 +53,29 @@
                                                     <div>
                                                         <img src="/product-images/{{ $item->gambar_produk }}"
                                                             class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
+                                                            style="width: 200px;">
                                                     </div>
                                                     <div class="ms-3 ml-3">
-                                                        <h5>{{ $item->nama_produk }}</h5>
-                                                        <p class="small mb-0">{{ $item->kategori_produk }}</p>
+                                                        <h5 class="fw-bold">{{ $item->nama_produk }}</h5>
+                                                        @if ($item->ukurans != null)
+                                                            <p class="">Size: {{ $item->ukurans }}
+                                                                </p>
+                                                                @else
+                                                                    <p class="">Size: -</p>
+                                                        @endif
+                                                        @if ($item->warna_produk != null)
+                                                            <p class="">Warna: {{ $item->warna_produk }}
+                                                                </p>
+                                                                @else
+                                                                    <p class="">Warna: -</p>
+                                                        @endif
+                                                        @if ($item->angkatans != null)
+                                                            <p class="">Angkatan: {{ $item->angkatans }}
+                                                                </p>
+                                                                @else
+                                                                    <p class="">Angkatan: -</p>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center text-left">
@@ -72,8 +90,9 @@
                                                     </div>
                                                     <button type="submit" name="remove-{{ $item->id }}"
                                                         id="remove-{{ $item->id }}" method="post" hidden></button>
-                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i
-                                                            class="fas fa-trash-alt text-danger"></i></label>
+                                                    <label for="remove-{{ $item->id }}"
+                                                        title="Hapus Produk dari Checkout"><i
+                                                            class="fas fa-trash-alt text-danger mr-4"></i></label>
                                                 </div>
                                             </div>
                                         </div>

@@ -18,14 +18,12 @@ class KategoriPembayaranSeeder extends Seeder
 
         $categoryPayments = [
             [
-                'kategori_pembayaran' => 'e-wallet'
+                'kategori_pembayaran' => 'E-wallet'
             ],
             [
-                'kategori_pembayaran' => 'transfer-bank'
+                'kategori_pembayaran' => 'Transfer Bank'
             ],
-            [
-                'kategori_pembayaran' => 'tunai'
-            ]
+
         ];
         foreach($categoryPayments as $categoryPayment) {
             KategoriPembayaran::create($categoryPayment);
