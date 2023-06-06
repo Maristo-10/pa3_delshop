@@ -21,6 +21,9 @@ class CreatePesanandetailsTable extends Migration
 
             $table->unsignedBigInteger('produk_id');
             $table->unsignedBigInteger('pesanan_id');
+            $table->string("ukurans")->nullable();
+            $table->string("warna_produk")->nullable();
+            $table->string("angkatans")->nullable();
         });
     }
 

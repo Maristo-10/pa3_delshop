@@ -44,6 +44,7 @@
     <link href="{{ asset('css/a.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/templatemo.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+    @stack('styles');
 </head>
 
 <body>
@@ -77,7 +78,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90px">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -89,7 +90,11 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
                         <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        @guest
+                        <a href="{{ asset('/glist-produk') }}" class="nav-item nav-link">Produk</a>
+                        @else
                         <a href="{{ asset('/list-produk') }}" class="nav-item nav-link">Produk</a>
+                        @endguest
                         <a href="{{ asset('/pesanan') }}" class="nav-item nav-link">Pesanan</a>
                         <a href=""></a>
                     </ul>
@@ -102,7 +107,11 @@
                         <div class="w-100 pt-1 mb-5 text-right">
                             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button> --}}
                         </div>
-                        <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                        @guest
+                        <form action="/gproduk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                            @else
+                            <form action="/produk/cari" method="get" class="modal-content modal-body border-0 p-0">
+                            @endguest
                             <div class="input-group mb-2">
                                 <input type="text" class="form-control" id="inputModalSearch" name="cari"
                                     placeholder="Search ...">
@@ -296,12 +305,11 @@
                             <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-light mb-1" href="/produk"><i
                                     class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
-                                Kita</a>
+                            {{-- <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                                Kita</a> --}}
                             <a class="text-light mb-1" href="/keranjang"><i
                                     class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
-                                Us</a>
+                            <a class="text-light" href="/pesanan"><i class="fa fa-angle-right mr-2"></i>Pesanan</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">

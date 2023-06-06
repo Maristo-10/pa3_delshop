@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="ps-3">
                                         @foreach ($jumlahproduk as $item)
-                                            <p class="fs-5">{{ $item->totalproduk }}</p>
+                                            <p class="fs-3">{{ $item->totalproduk }}</p>
                                         @endforeach
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cash"></i>
                                     </div>
-                                    <div class="ml-1">
+                                    <div class="ml-3">
                                         @foreach ($jumlahpendapatan as $item)
-                                            <p class="fs-5">Rp.<?php
+                                            <p class="fs-3">Rp.<?php
                                             $angka = $item->totalpes;
                                             echo number_format($angka, 0, ',', '.');
                                             ?></p>
@@ -211,9 +211,10 @@
                                         <tr>
                                             <td>{{ $index + $pesanan_harian->firstItem() }}</td>
                                             <td>{{ $data->name}}</td>
-                                            <td>
-                                                <a type="button" class="bi bi-eye btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $data->id }}"></a>
-                                            </td>
+                                            <td>Rp. <?php
+                                                $angka = $data->total_harga;
+                                                echo number_format($angka, 0, ',', '.');
+                                                ?></td>
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -2,7 +2,7 @@
     $no = 1;
     $no2 = 1;
 @endphp
-<div name="tambah-cr" id="tambah-cr">
+{{-- <div name="tambah-cr" id="tambah-cr">
     <div class="card-body d-sm-flex justify-content-between">
         <h6 class="col-md-7 mb-0">
             <a href="" data-bs-target="#tambah-corousel" class="btn btn-success text-white py-2 ml-2"
@@ -18,12 +18,11 @@
                 @csrf
                 <Label for="gambar_pengguna">Gambar Corousel</Label>
                 <input type="file" name="gambar_corousel" id="gambar_corousel" class="form-control col-md-8">
-
                 <button type="submit" class="btn btn-success mt-3">Tambah</button>
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
 @foreach ($corousel as $data)
     <div class="col-10 p-3 bg-white shadow rounded m-5">
@@ -43,12 +42,12 @@
                         <span>Ubah Gambar</span>
                     </a>
                     @if ($data->status == 0)
-                        <a href="/aktifkan-corousel/{{$data->id}}" class="btn btn-success text-white py-2 ml-2">
+                        <a href="/aktifkan-corousel/{{$data->id}}" class="btn btn-success text-white py-2 ml-2 col-5">
                             <i class="bi bi-check-circle-fill"></i>
                             <span>Aktifkan</span>
                         </a>
                     @else
-                        <a href="/non-aktifkan-corousel/{{$data->id}}" class="btn btn-danger text-white py-2 ml-2">
+                        <a href="/non-aktifkan-corousel/{{$data->id}}" class="btn btn-danger text-white py-2 ml-2 col-5">
                             <i class="bi bi-slash-circle-fill"></i>
                             <span>Non-Aktifkan</span>
                         </a>

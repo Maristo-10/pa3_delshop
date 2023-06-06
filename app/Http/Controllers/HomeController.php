@@ -139,6 +139,7 @@ class HomeController extends Controller
         if (empty($pesanan_baru)) {
             $pesanan = 0;
         } else {
+
             $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id', $pesanan_baru->id)->get();
         }
 
@@ -214,9 +215,9 @@ class HomeController extends Controller
 
         $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as UNSIGNED INTEGER ) as totalp'))
             ->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')
-            ->whereYear('tanggal', $now)->where('pesanans.status','!=','keranjang')->pluck('totalp');
+            ->whereYear('tanggal', $now)->where('pesanans.status','Selesai')->pluck('totalp');
 
-        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->pluck('totalpr');
+        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->where('pesanans.status','Selesai')->pluck('totalpr');
 
         $tahun = $now->format('Y');
         $date = $now->format('l, d F Y');
@@ -225,7 +226,7 @@ class HomeController extends Controller
 
         $jumlahproduk = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as totalproduk'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $now)->get();
 
-        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $now)->get();
+        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->where('pesanans.status','Selesai')->whereYear('tanggal', $now)->get();
 
         $jumlahpengguna = User::select("id",DB::raw('count(id) as totalpeng'))->whereYear('created_at', $now)->get();
 
@@ -237,7 +238,7 @@ class HomeController extends Controller
         $jumlahBatal = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Batalkan')->get();
 
         //Pesanan Harian
-        $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->paginate(10);
+        $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->where('pesanans.status', '!=', 'checkout')->paginate(10);
 
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,

@@ -85,6 +85,7 @@ class PesananController extends Controller
         }
 
         $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
+        $cek_pesanan_c = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
 
         if (empty($cek_pesanan)) {
             $pesanan = new Pesanan;
@@ -93,22 +94,33 @@ class PesananController extends Controller
             $pesanan->total_harga = 0;
             $pesanan->save();
         }
+        if (empty($cek_pesanan_c)) {
+            $pesanan = new Pesanan;
+            $pesanan->user_id = Auth::user()->id;
+            $pesanan->tanggal = $tanggal;
+            $pesanan->total_harga = 0;
+            $pesanan->status = 'checkout';
+            $pesanan->save();
+        }
 
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan_baru->update([
             'kode' => "DEL$now$pesanan_baru->id"
         ]);
-        $cek_pesanan_detail = DetailPesanan::where('produk_id', $produk->id_produk)->where('pesanan_id', $pesanan_baru->id)->first();
-
-        if (empty($cek_pesanan_detail)) {
+        $cek_pesanan_detail = DetailPesanan::where('produk_id', $produk->id_produk)->where('pesanan_id', $pesanan_baru->id)->where('warna_produk', $request->warna)->where('angkatans', $request->angkatan)->where('ukurans', $request->ukuran)->first();
+        if ($cek_pesanan_detail == null) {
             $pesanan_detail = new DetailPesanan();
             $pesanan_detail->produk_id = $produk->id_produk;
             $pesanan_detail->pesanan_id = $pesanan_baru->id;
             $pesanan_detail->jumlah = $request->jumlah;
             $pesanan_detail->jumlah_harga = $produk->harga * $request->jumlah;
+            $pesanan_detail->ukurans = $request->ukuran;
+            $pesanan_detail->warna_produk = $request->warna;
+            $pesanan_detail->angkatans = $request->angkatan;
             $pesanan_detail->save();
-        } else {
-            $pesanan_detail = DetailPesanan::where('produk_id', $produk->id_produk)->where('pesanan_id', $pesanan_baru->id)->first();
+        }
+        if ($cek_pesanan_detail != null) {
+            $pesanan_detail = DetailPesanan::where('produk_id', $produk->id_produk)->where('pesanan_id', $pesanan_baru->id)->where('warna_produk', $request->warna)->where('angkatans', $request->angkatan)->where('ukurans', $request->ukuran)->first();
             $jumlah_pesanan_detail_baru = $request->jumlah;
             $pesanan_detail->jumlah = $pesanan_detail->jumlah + $jumlah_pesanan_detail_baru;
             $harga_pesanan_detail_baru = $produk->harga * $request->jumlah;
@@ -126,26 +138,26 @@ class PesananController extends Controller
     {
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan_c = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
-        if(empty($pesanan_c)){
+        if (empty($pesanan_c)) {
             $d_pesanan = null;
         }
-        if(!empty($pesanan_c)){
-            $d_pesanan = DB::table('pesanandetails')->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')->where('pesanandetails.pesanan_id', $pesanan_c->id)->first();
+        if (!empty($pesanan_c)) {
+            $d_pesanan = DB::table('pesanandetails')->join('pesanans', 'pesanans.id', '=', 'pesanandetails.pesanan_id')->where('pesanandetails.pesanan_id', $pesanan_c->id)->first();
         }
 
-        $b_pesanan = DB::table('pesanandetails')->join('pesanans','pesanans.id','=','pesanandetails.pesanan_id')->where('pesanandetails.pesanan_id', $pesanan_baru->id)->first();
+        $b_pesanan = DB::table('pesanandetails')->join('pesanans', 'pesanans.id', '=', 'pesanandetails.pesanan_id')->where('pesanandetails.pesanan_id', $pesanan_baru->id)->orwhere('pesanandetails.pesanan_id', $pesanan_c->id)->first();
         // dd($pesanan_c);
-        if($d_pesanan == null){
+        if ($d_pesanan == null) {
             $detail = 0;
         }
-        if($d_pesanan != null){
+        if ($d_pesanan != null) {
             $detail = 1;
         }
-        if($b_pesanan == null){
+        if ($b_pesanan == null) {
 
             $lama = 0;
         }
-        if($b_pesanan != null){
+        if ($b_pesanan != null) {
             $lama = 1;
         }
 
@@ -160,6 +172,7 @@ class PesananController extends Controller
             $pesanan_detail = DB::table('pesanandetails')
                 ->join('produk', 'produk.id_produk', '=', 'pesanandetails.produk_id')
                 ->where('pesanan_id', $pesanan_baru->id)
+                ->orWhere('pesanan_id', $pesanan_c->id)
                 ->where('produk.status_produk', 'Aktif')
                 ->get();
         }
@@ -173,7 +186,7 @@ class PesananController extends Controller
             'total' => $total,
             'pengguna_prof' => $pengguna_prof,
             'pesanan_c' => $pesanan_c,
-            'detail'=>$detail,
+            'detail' => $detail,
             'lama' => $lama
         ]);
     }
@@ -270,15 +283,17 @@ class PesananController extends Controller
         return redirect()->route('frontend.dashboard-pembeli');
     }
 
-    public function markAsRead() {
+    public function markAsRead()
+    {
         Auth::user()->unreadNotifications->markAsRead();
         return redirect()->route('frontend.dashboard-pembeli');
     }
 
-    public function markAsReadByID($id) {
+    public function markAsReadByID($id)
+    {
         DB::table('notifications')
-        ->where('id', $id)
-        ->update(['read_at'=>now()]);
+            ->where('id', $id)
+            ->update(['read_at' => now()]);
 
         return redirect()->route('frontend.dashboard-pembeli');
     }
@@ -366,7 +381,7 @@ class PesananController extends Controller
             ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('status', '!=', 'keranjang')
             ->where('status', '!=', 'checkout')
-            ->paginate(2);
+            ->paginate(5);
 
         return view('admin.kelolapesanan', [
             'pengguna_prof' => $pengguna_prof,
@@ -472,14 +487,14 @@ class PesananController extends Controller
             ->where('pesanans.user_id', Auth::user()->id)
             ->where('status', 'Ditangguhkan')
             ->paginate(5);
-            $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Ditangguhkan')->first();
-            return view('pembeli.pesanan', [
-                'pengguna_prof' => $pengguna_prof,
-                'pesanan_baru' => $pesanan_baru,
-                'pesanan' => $pesanan,
-                'pesanan_kapem' => $pesanan_kapem,
-                'jumlah' =>$jumlah
-            ]);
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Ditangguhkan')->first();
+        return view('pembeli.pesanan', [
+            'pengguna_prof' => $pengguna_prof,
+            'pesanan_baru' => $pesanan_baru,
+            'pesanan' => $pesanan,
+            'pesanan_kapem' => $pesanan_kapem,
+            'jumlah' => $jumlah
+        ]);
     }
 
     public function belumDiambil()
@@ -497,14 +512,14 @@ class PesananController extends Controller
             ->where('pesanans.user_id', Auth::user()->id)
             ->where('status', 'Siap Diambil')
             ->paginate(5);
-            $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Siap Diambil')->first();
-            return view('pembeli.pesanan', [
-                'pengguna_prof' => $pengguna_prof,
-                'pesanan_baru' => $pesanan_baru,
-                'pesanan' => $pesanan,
-                'pesanan_kapem' => $pesanan_kapem,
-                'jumlah'=>$jumlah
-            ]);
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Siap Diambil')->first();
+        return view('pembeli.pesanan', [
+            'pengguna_prof' => $pengguna_prof,
+            'pesanan_baru' => $pesanan_baru,
+            'pesanan' => $pesanan,
+            'pesanan_kapem' => $pesanan_kapem,
+            'jumlah' => $jumlah
+        ]);
     }
 
     public function selesai()
@@ -522,14 +537,14 @@ class PesananController extends Controller
             ->where('pesanans.user_id', Auth::user()->id)
             ->where('status', 'Selesai')
             ->paginate(5);
-            $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Selesai')->first();
-            return view('pembeli.pesanan', [
-                'pengguna_prof' => $pengguna_prof,
-                'pesanan_baru' => $pesanan_baru,
-                'pesanan' => $pesanan,
-                'pesanan_kapem' => $pesanan_kapem,
-                'jumlah'=>$jumlah
-            ]);
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Selesai')->first();
+        return view('pembeli.pesanan', [
+            'pengguna_prof' => $pengguna_prof,
+            'pesanan_baru' => $pesanan_baru,
+            'pesanan' => $pesanan,
+            'pesanan_kapem' => $pesanan_kapem,
+            'jumlah' => $jumlah
+        ]);
     }
 
     public function diproses()
@@ -547,14 +562,14 @@ class PesananController extends Controller
             ->where('pesanans.user_id', Auth::user()->id)
             ->where('status', 'Sedang Diproses')
             ->paginate(5);
-            $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Sedang Diproses')->first();
-            return view('pembeli.pesanan', [
-                'pengguna_prof' => $pengguna_prof,
-                'pesanan_baru' => $pesanan_baru,
-                'pesanan' => $pesanan,
-                'pesanan_kapem' => $pesanan_kapem,
-                'jumlah' =>$jumlah
-            ]);
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Sedang Diproses')->first();
+        return view('pembeli.pesanan', [
+            'pengguna_prof' => $pengguna_prof,
+            'pesanan_baru' => $pesanan_baru,
+            'pesanan' => $pesanan,
+            'pesanan_kapem' => $pesanan_kapem,
+            'jumlah' => $jumlah
+        ]);
     }
 
     public function dibatalkan()
@@ -572,14 +587,14 @@ class PesananController extends Controller
             ->where('pesanans.user_id', Auth::user()->id)
             ->where('status', 'Dibatalkan')
             ->paginate(5);
-            $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Dibatalkan')->first();
-            return view('pembeli.pesanan', [
-                'pengguna_prof' => $pengguna_prof,
-                'pesanan_baru' => $pesanan_baru,
-                'pesanan' => $pesanan,
-                'pesanan_kapem' => $pesanan_kapem,
-                'jumlah' => $jumlah
-            ]);
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Dibatalkan')->first();
+        return view('pembeli.pesanan', [
+            'pengguna_prof' => $pengguna_prof,
+            'pesanan_baru' => $pesanan_baru,
+            'pesanan' => $pesanan,
+            'pesanan_kapem' => $pesanan_kapem,
+            'jumlah' => $jumlah
+        ]);
     }
 
     public function updatebatalkan($id)
@@ -642,7 +657,7 @@ class PesananController extends Controller
             'year' => $year,
             'month' => $month,
             'tahunl' => $tahunl,
-            'jumlah' =>$jumlah
+            'jumlah' => $jumlah
         ]);
     }
 
@@ -667,7 +682,7 @@ class PesananController extends Controller
             'year' => $year,
             'month' => $month,
             'tahunl' => $tahunl,
-            'jumlah' =>$jumlah
+            'jumlah' => $jumlah
         ]);
     }
 
@@ -697,26 +712,29 @@ class PesananController extends Controller
         $pesanan_baru->update([
             'total_harga' => $harga
         ]);
-            $pesanan_detail_baru = DetailPesanan::where('pesanan_id', $pes->id)->where('produk_id',$pesanan_detail->produk_id)->first();
-            if (empty($pesanan_detail_baru)) {
-                $pesanan_detail->pesanan_id = $pes->id;
-                $pesanan_detail->update();
-            }
+        $pesanan_detail_baru = DetailPesanan::where('pesanan_id', $pes->id)->where('produk_id', $pesanan_detail->produk_id)->where('ukurans', $pesanan_detail->ukurans)->where('warna_produk', $pesanan_detail->warna_produk)->where('angkatans', $pesanan_detail->angkatans)->first();
+        if (empty($pesanan_detail_baru)) {
+            $pesanan_detail->pesanan_id = $pes->id;
+            $pesanan_detail->update();
+            $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
+            $stok = $produk->jumlah_produk - $pesanan_detail->jumlah;
+        }
 
-            if (!empty($pesanan_detail_baru)) {
-                $pesanan_detail_baru = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pes->id)->first();
-                $pesanan_detail_baru->jumlah = $pesanan_detail->jumlah + $pesanan_detail_baru->jumlah;
-                $pesanan_detail_baru->jumlah_harga = $pesanan_detail->jumlah_harga + $pesanan_detail_baru->jumlah_harga;
-                $pesanan_detail_baru->update();
-                $pesanan_detail->delete();
-            }
+        if (!empty($pesanan_detail_baru)) {
+            $pesanan_detail_baru = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pes->id)->where('ukurans', $pesanan_detail->ukurans)->where('warna_produk', $pesanan_detail->warna_produk)->where('angkatans', $pesanan_detail->angkatans)->first();
+            $pesanan_detail_baru->jumlah = $pesanan_detail->jumlah + $pesanan_detail_baru->jumlah;
+            $pesanan_detail_baru->jumlah_harga = $pesanan_detail->jumlah_harga + $pesanan_detail_baru->jumlah_harga;
+            $pesanan_detail_baru->update();
+            $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
+            $stok = $produk->jumlah_produk - $pesanan_detail->jumlah;
+            $pesanan_detail->delete();
+        }
 
 
-        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
-        $stok = $produk->jumlah_produk-$pesanan_detail->jumlah;
+
         $pro = Produk::where('id_produk', $produk->id_produk)->first();
         $pro->update([
-            'jumlah_produk'=> $stok,
+            'jumlah_produk' => $stok,
         ]);
 
         $pes->kode = "DEL$now$pes->id";
@@ -741,23 +759,28 @@ class PesananController extends Controller
         $now = Carbon::now()->format('dmY');
 
         $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
-        $pro = Produk::where('id_produk',$produk->id_produk)->first();
-        $stok = $produk->jumlah_produk+$pesanan_detail->jumlah;
+        $pro = Produk::where('id_produk', $produk->id_produk)->first();
+        $stok = $produk->jumlah_produk + $pesanan_detail->jumlah;
         $pro->update([
             'jumlah_produk' => $stok
         ]);
 
-        $pesanan_detail_lama = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pesanan_lama->id)->first();
+        $pesanan_detail_lama = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pesanan_lama->id)->where('ukurans', $pesanan_detail->ukurans)->where('warna_produk', $pesanan_detail->warna_produk)->where('angkatans', $pesanan_detail->angkatans)->first();
         if (empty($pesanan_detail_lama)) {
             $pesanan_detail->pesanan_id = $pesanan_lama->id;
             $pesanan_detail->update();
-
+            $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
+            $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->update();
         }
 
         if (!empty($pesanan_detail_lama)) {
             $pesanan_detail_lama->jumlah = $pesanan_detail_lama->jumlah + $pesanan_detail->jumlah;
             $pesanan_detail_lama->jumlah_harga = $pesanan_detail_lama->jumlah_harga + $pesanan_detail->jumlah_harga;
             $pesanan_detail_lama->update();
+            $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
+            $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->update();
             $pesanan_detail->delete();
         }
 
@@ -772,17 +795,22 @@ class PesananController extends Controller
         $pesanan_lama->kode = "DEL$now$pesanan_lama->id";
         $pesanan_lama->update();
 
-        return redirect()->route('pembeli.checkout');
+        if (route('pembeli.keranjang')) {
+            return redirect()->route('pembeli.keranjang');
+        } else {
+            return redirect()->route('pembeli.checkout');
+        }
     }
 
-    public function cariPesanan(Request $request){
+    public function cariPesanan(Request $request)
+    {
         $cari = $request->sidPes;
 
         $pesanan_kapem = DB::table('pesanans')->where('kode', $cari)->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
-        ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->paginate(5  );
+            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->paginate(5);
 
-        return view('admin.kelolapesanan',[
-            'pesanan_kapem'=>$pesanan_kapem
+        return view('admin.kelolapesanan', [
+            'pesanan_kapem' => $pesanan_kapem
         ]);
     }
 }

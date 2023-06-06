@@ -154,7 +154,68 @@ class UserController extends Controller
             'linkedin'=>$linkedin,
         ]);
 
-        return redirect()->route('pembeli.profile');
+        if(route('admin.profile')){
+            return redirect()->route('admin.profile');
+        }
+
+        if(route('pembeli.profile')){
+            return redirect()->route('pembeli.profile');
+        }
+
+    }
+
+    public function aprofile(){
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $pengguna = User::where('id', Auth::user()->id)->get();
+        return view('admin.profile',[
+            'pengguna'=>$pengguna,
+            'pengguna_prof'=>$pengguna_prof
+        ]);
+    }
+
+    public function upprofile(Request $request){
+        $pengguna = User::where('id', Auth::user()->id);
+
+        $name = $request->name;
+        $jenis_kelamin = $request->jenis_kelamin;
+        $pekerjaan = $request->pekerjaan;
+        $alamat = $request->alamat;
+        $no_telp = $request->no_telp;
+        $tentang = $request->tentang;
+        $email = $request->email;
+        $twitter = $request->twitter;
+        $facebook = $request->facebook;
+        $instagram = $request->instagram;
+        $linkedin = $request->linkedin;
+        if($request->file('gambar_pengguna')){
+            if ($request->hasfile('gambar_pengguna')) {
+                $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar_pengguna')->getClientOriginalName());
+                $request->file('gambar_pengguna')->move(public_path('profile-images'), $filename);
+                $pengguna->update(['gambar_pengguna'=>$filename]);
+            }else{
+                $profile = 'baju.png';
+                $pengguna->update(['gambar_pengguna'=>$profile]);
+            }
+
+            // $validatedData['gambar_produk'] = $request->file('gambar_produk')->store('product-images');
+            // $tambahproduk->gambar_produk = $request->gambar_produk;
+        }
+        $pengguna->update([
+            'name'=>$name,
+            'jenis_kelamin'=>$jenis_kelamin,
+            'pekerjaan'=>$pekerjaan,
+            'alamat'=>$alamat,
+            'no_telp'=>$no_telp,
+            'tentang'=>$tentang,
+            'email'=>$email,
+            'twitter'=>$twitter,
+            'facebook'=>$facebook,
+            'instagram'=>$instagram,
+            'linkedin'=>$linkedin,
+        ]);
+
+            return redirect()->route('admin.profile');
+
     }
 
 }

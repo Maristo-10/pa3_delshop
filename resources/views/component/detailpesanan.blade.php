@@ -31,7 +31,7 @@
                             @csrf
                             <div class="card-body p-4">
                                 <div class="row mb-3">
-                                    <small class="col col-5 mt-1" style="font-weight: bold">Status Pesanan : </small>
+                                    <h6 class="col col-4 mt-1" style="font-weight: bold">Status :</h6>
                                     <select class="col form-control form-control-sm" name="status" id="status"
                                         style="font-weight: bold">
                                         @foreach ($pembayaran as $data)
@@ -39,13 +39,13 @@
                                         @endforeach
                                         <option value="Ditangguhkan">Ditangguhkan</option>
                                         <option value="Dibatalkan">Dibatalkan</option>
-                                        <option value="Sedang Diproses">Sedang Diproses</option>
+                                        <option value="Sedang Diproses" selected>Sedang Diproses</option>
                                         <option value="Siap Diambil">Siap Diambil</option>
                                         <option value="Selesai">Selesai</option>
                                     </select>
                                 </div>
-                                <div class="row mb-1 float-center">
-                                    <button type="submit" class="col btn btn-warning btn-sm col-sm-12">Ubah</button>
+                                <div class="row mb-1 float-center float-right mb-4">
+                                    <button type="submit" class="col btn btn-warning btn-md">Ubah</button>
                                 </div>
                             </div>
                         </form>
@@ -89,12 +89,13 @@
                                 <div class="d-flex justify-content-between align-items-center mb-5">
                                     <h1 class="fw-bold mb-0 text-black">Detail Produk</h1>
                                     <h6 class="mb-0 text-muted">{{ $jumlah_pesanan->total }} Produk</h6>
+
                                 </div>
 
                                 <hr style="height:2px;border-width:0;color:white;background-color:white">
                                 <div class="row d-flex justify-content-between align-items-center"
                                     style="font-weight: bold">
-                                    <div class="col-md-1 col-lg-2 col-xl-2">
+                                    <div class="col-md-1 col-lg-2 col-xl-3">
                                         <h6></h6>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3 fw-bold">
@@ -110,16 +111,34 @@
                                 <hr style="height:2px;border-width:0;color:white;background-color:white">
                                 @foreach ($detail_pesanan as $data)
                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <div class="col-md-1 col-lg-2 col-xl-2">
+                                        <div class="col-md-1 col-lg-2 col-xl-3">
                                             <img src="/product-images/{{ $data->gambar_produk }}"
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h6 class="text-black mb-0">{{ $data->nama_produk }}</h6>
-                                            <small class="text-muted">{{ $data->kategori_produk }}</small>
+
+                                            <h5 class="fw-bold">{{ $data->nama_produk }}</h5>
+                                            @if ($data->ukurans != null)
+                                                <p class="">Size: {{ $data->ukurans }}
+                                                    </p>
+                                                    @else
+                                                        <p class="">Size: -</p>
+                                            @endif
+                                            @if ($data->warna_produk != null)
+                                                <p class="">Warna: {{ $data->warna_produk }}
+                                                    </p>
+                                                    @else
+                                                        <p class="">Warna: -</p>
+                                            @endif
+                                            @if ($data->angkatans != null)
+                                                <p class="">Angkatan: {{ $data->angkatans }}
+                                                    </p>
+                                                    @else
+                                                        <p class="">Angkatan: -</p>
+                                            @endif
                                         </div>
                                         <div class="col-md-2 col-lg-3 col-xl-2 d-flex">
-                                            <h6>{{ $data->jumlah }}</h6>
+                                            <h6 class="ml-3">{{ $data->jumlah }}</h6>
                                         </div>
                                         <div class="col-md-5 col-lg-2 col-xl-3 offset-lg-1">
                                             <h6 class="mb-0">Rp. <?php

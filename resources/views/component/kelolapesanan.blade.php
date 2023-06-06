@@ -47,9 +47,10 @@
                                 <th scope="col">ID Pesanan</th>
                                 <th scope="col">Tanggal Pesanan</th>
                                 <th scope="col">Total Harga</th>
-                                <th scope="col">Detail Pesanan</th>
+                                <th scope="col">Nama Pengambil</th>
                                 {{-- <th scope="col" class="col-md-2">Bukti Pembayaran</th> --}}
                                 <th scope="col">Status</th>
+                                <th scope="col">Detail Pesanan</th>
                                 <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
@@ -63,28 +64,16 @@
                                     <td>{{ $index + $pesanan_kapem->firstItem() }}</td>
                                     <td>{{ $data->kode }}</td>
                                     <td>{{ $data->tanggal }}</td>
+                                    <td>Rp. <?php
+                                        $angka = $data->total_harga;
+                                        echo number_format($angka, 0, ',', '.');
+                                        ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
                                     <td>
                                         <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}"></a>
                                     </td>
-                                    {{-- <td>
-                                        <img src="/pembayaran-images/{{ $data->bukti_pembayaran }}" alt=""
-                                            style="max-height: 50px">
-                                    </td> --}}
-                                    <td style="font-weight: bold">
-                                        <div class="row">
-                                            <div class="col col-12">
-                                                <select class="form-control form-select-sm text-center"
-                                                    style="border: none;font-weight: bold" name="f-status"
-                                                    id="f-status">
-                                                    <option selected>{{ $data->status }}</option>
-                                                    <option value="1">Selesai</option>
-                                                    <option value="2">Belum Dibayar</option>
-                                                    <option value="3">Sedang Diproses</option>
-                                                    <option value="4">Siap Diambil</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <td>
+                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#details-{{$data->id}}" title="Lihat Detail Pesanan"></a>
                                     </td>
                                     <td class="text-center">
                                         <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
@@ -97,7 +86,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Data Pesanan</h1>
+                                                <h1 class="modal-title fs-5" id="details">Data Pesanan</h1>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mb-3">
@@ -114,11 +103,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="Rp. <?php $angka = $data->total_harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
-                                                </div>  
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori Pembayaran</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_pembayaran }}" disabled>
@@ -128,8 +117,9 @@
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->layanan }}" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Bukti Pembayaran</label>
-                                                    <img src="/pembayaran-images/{{$data->bukti_pembayaran}}" width="150" class="" alt="" />
+                                                    <label for="gambar" class="form-label">Bukti Pembayaran</label>
+                                                    <a href="/pembayaran-images/{{ $data->bukti_pembayaran }}" title="Lihat Bukti Pembayaran"> <img name="gambar" id="gambar" src="/pembayaran-images/{{$data->bukti_pembayaran}}" width="150px" class="" alt="" />
+                                                    </a>
                                                     {{-- <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->layanan }}" disabled> --}}
                                                 </div>
                                             </div>
@@ -139,7 +129,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2{{$data->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

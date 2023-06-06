@@ -21,14 +21,14 @@ class MetodePembayaranSeeder extends Seeder
                 'no_layanan' => '082277319005',
                 'nama_pemilik' => 'Septian',
                 'kategori_layanan' => 1,
-                'kapem' => 'e-wallet'
+                'kapem' => 'E-wallet'
             ],
             [
                 'layanan' => 'BNI',
                 'no_layanan' => '0088888888',
                 'nama_pemilik' => 'Faraday',
                 'kategori_layanan' => 2,
-                'kapem' => 'transfer-bank'
+                'kapem' => 'Transfer Bank'
             ]
         ];
 

@@ -35,6 +35,10 @@ use App\Models\Corousel;
 
 
 Route::get('/', [Controller::class, 'index2'])->name('frontend.dashboard-pembeli-1');
+Route::get('/gproduk/cari', [Controller::class, 'cariProduk']);
+Route::get('/glist-produk', [Controller::class, 'produk'])->name('pembeli.aviewproduk');
+Route::get('/glist-produk/cari', [Controller::class, 'cariProduk2']);
+Route::get('/glist-produk/{kategori_produk}', [Controller::class, 'filterByCategory'])->name('aproducts.category');
 Auth::routes();
 
 //reset password
@@ -134,6 +138,8 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/aprofile', [UserController::class, 'aprofile'])->name('admin.profile');
+    Route::post('/aprofile/update', [UserController::class, 'upprofile'])->name('admin.updateprofile');
     Route::get('/dashboard-admin', [HomeController::class, 'dashboard'])->name('frontend.dashboard-admin');
 
     Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('admin.laporanpenjualan');
@@ -201,6 +207,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/ubah/corousel/{id}', [CorouselController::class, 'ubahCorousel'])->name('admin.ubahcorousel');
     Route::get('/aktifkan-corousel/{id}',[CorouselController::class, 'aktifkan'])->name('aktifkan');
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
+    Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
 });
 
 Route::middleware(['auth', 'isPegawai'])->group(function () {
