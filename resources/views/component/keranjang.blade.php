@@ -31,32 +31,6 @@
                         <tr class="cartpage">
                             <div class="card-body p-3">
                                 <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-md-3 col-lg-3 col-xl-2">
-                                        <img src="/product-images/{{ $item->gambar_produk }}"
-                                            class="img-fluid rounded-3" alt="">
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2">
-                                        <p class="lead fw-normal mb-2">{{ $item->nama_produk }}</p>
-                                        @if ($item->ukurans != null)
-                                            <p><span class="">Size: </span>{{ $item->ukurans }}<span
-                                                    class="">
-                                                @else
-                                                    <p><span class="">Size: </span> - <span class="">
-                                        @endif
-                                        @if ($item->warna_produk != null)
-                                            <p><span class="">Warna: </span>{{ $item->warna_produk }}<span
-                                                    class="">
-                                                @else
-                                                    <p><span class="">Warna: </span> - <span class="">
-                                        @endif
-                                        @if ($item->angkatans != null)
-                                            <p><span class="">Angkatan: </span>{{ $item->angkatans }}<span
-                                                    class="">
-                                                @else
-                                                    <p><span class="">Angkatan: </span> - <span class="">
-                                        @endif
-                                    </div>
-
                                     <div class="card-body p-3">
                                         <div class="row d-flex justify-content-between align-items-center">
                                             <div class="col-md-3 col-lg-3 col-xl-2">
