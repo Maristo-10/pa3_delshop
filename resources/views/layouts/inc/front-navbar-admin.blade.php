@@ -1,7 +1,29 @@
+@push('scripts')
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleBtn = document.querySelector(".toggle-sidebar-btn");
+            const sidebar = document.querySelector(".sidebar");
+
+            toggleBtn.addEventListener("click", function() {
+                sidebar.classList.toggle("active");
+            });
+        });
+    </script>
+@endpush
+<style>
+    .sidebar.active {
+        display: none;
+    }
+    .sidebar {
+        display: block;
+    }
+</style>
+@push('styles')
+@endpush
 <div class="d-flex align-items-center justify-content-between">
     <a href="/dashboard" class="logo d-flex align-items-center">
         <div class="col-3">
-            <img src={{ asset('imageStatis/del-shop.png')}} alt="" style="width: 60px; max-height:60px; ">
+            <img src={{ asset('imageStatis/del-shop.png') }} alt="" style="width: 60px; max-height:60px; ">
         </div>
         <div class="col-4 mt-3">
             <span class="d-none d-lg-block">
@@ -58,7 +80,8 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"
                         href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         v-pre>
-                        <img src="/img/profile-1.jpeg" alt="Profile" class="rounded-circle" style="width: 40px; height:45px">
+                        <img src="/img/profile-1.jpeg" alt="Profile" class="rounded-circle"
+                            style="width: 40px; height:45px">
                         <span class="d-none d-md-block dropdown-toggle ps-2 ml-3">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
