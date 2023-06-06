@@ -79,11 +79,16 @@
                                 <div class="row col-md-1 col-lg-3 col-xl-1 mr-4 text-end">
                                     @if ($item->pesanan_id == $pesanan_c->id)
                                       <form action="/remove-checkout/{{ $item->id }}" method="post" class="d-flex justify-content-between">
+                                        @csrf
                                         <div>
                                           <i class="col col-2 text-success fs-3 bi bi-bag-check-fill" aria-disabled="true" title="Data Sudah Dipilih"></i>
                                         </div>
                                         <div class="mt-2">
-                                          <i class="fas fa-trash fa-lg text-danger ml-2 mr-2" title="Data Sudah Dipilih" aria-disabled="true"></i>
+                                            <button type="submit" name="remove-{{ $item->id }}"
+                                                id="remove-{{ $item->id }}" method="post" hidden></button>
+                                            <label for="remove-{{ $item->id }}"
+                                                title="Hapus Produk dari Checkout"><i
+                                                    class="fas fa-trash fa-lg text-danger mr-4"></i></label>
                                         </div>
                                       </form>
                                     @else
