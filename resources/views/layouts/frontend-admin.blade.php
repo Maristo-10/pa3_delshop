@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Del Shop</title>
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('profile-images/logo.png') }}" class="rounded-circle" rel="icon">
+    
 
     <!-- Google Fonts -->
     <link href="{{ asset('https://fonts.gstatic.com') }}" rel="preconnect">

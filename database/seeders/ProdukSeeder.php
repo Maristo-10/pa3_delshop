@@ -21,7 +21,7 @@ class ProdukSeeder extends Seeder
                 'harga' => 10000,
                 'jumlah_produk' => 10,
                 'deskripsi' => 'Ini deskripsi pin it del',
-                'role_pembeli' => 'Publik',
+                'role_pembeli' => 'Mahasiswa',
                 'kategori_produk' => 'Pin'
             ],
             [
@@ -30,7 +30,7 @@ class ProdukSeeder extends Seeder
                 'harga' => 12000,
                 'jumlah_produk' => 16,
                 'deskripsi' => 'Ini deskripsi baju putih it del',
-                'role_pembeli' => 'Publik',
+                'role_pembeli' => 'Mahasiswa',
                 'kategori_produk' => 'Baju'
             ]
         ];

@@ -86,12 +86,21 @@ class PesananController extends Controller
 
         $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $cek_pesanan_c = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
-
         if (empty($cek_pesanan)) {
             $pesanan = new Pesanan;
             $pesanan->user_id = Auth::user()->id;
             $pesanan->tanggal = $tanggal;
             $pesanan->total_harga = 0;
+            $pesanan->save();
+
+        }
+
+        if(empty($cek_pesanan_c)){
+            $pesanan = new Pesanan;
+            $pesanan->user_id = Auth::user()->id;
+            $pesanan->tanggal = $tanggal;
+            $pesanan->total_harga = 0;
+            $pesanan->status = 'checkout';
             $pesanan->save();
         }
         if (empty($cek_pesanan_c)) {
@@ -316,7 +325,7 @@ class PesananController extends Controller
             ->where('status', '!=', 'checkout')
             ->get();
 
-        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', '!=', 'keranjang')->first();
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as UNSIGNED) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', '!=', 'keranjang')->first();
 
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
