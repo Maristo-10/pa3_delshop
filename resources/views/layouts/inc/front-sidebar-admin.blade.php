@@ -31,12 +31,6 @@
                     <i class="bi bi-person-gear fs-5"></i><span>Kelola Pengguna</span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="">
-                    <i class="bi bi-person-fill-x fs-5"></i><span>Pengguna Non-Aktif</span>
-                </a>
-            </li> --}}
-
         </ul>
     </li><!-- End Components Nav -->
 

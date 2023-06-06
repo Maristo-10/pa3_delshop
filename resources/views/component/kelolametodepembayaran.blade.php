@@ -27,12 +27,14 @@
     }
 </script>
 
-<div class="row col-12">
+<div class="row">
     <div class="col-7">
-        <small><a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
-            <i class="fa fa-plus"></i>
-            <span><small>Tambah Data Metode Pembayaran</small></span>
-        </a></small>
+        <small>
+            <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
+                <i class="fa fa-plus"></i>
+                <span><small>Tambah Data Metode Pembayaran</small></span>
+            </a>
+    </small>
         <div class="col-12">
             <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
                 <div class="card">
@@ -54,13 +56,13 @@
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">Pilihan</th> -->
-                                    <th scope="col" class="col-md-1">No</th>
-                                    <th scope="col" class="col-md-1">Status</th>
-                                    <th scope="col" class="col-md-2">Nama Layanan</th>
-                                    <th scope="col" class="col-md-2">Nomor Pembayaran</th>
-                                    <th scope="col" class="col-md-2">Nama Pemilik</th>
-                                    <th scope="col" class="col-md-2">Kategori Layanan</th>
-                                    <th scope="col" class="col-md-2">Aksi</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Nama Layanan</th>
+                                    <th scope="col">Nomor Pembayaran</th>
+                                    <th scope="col">Nama Pemilik</th>
+                                    <th scope="col">Kategori Layanan</th>
+                                    <th scope="col">Aksi</th>
                                     <!-- <th scope="col">Lampiran</th> -->
                                 </tr>
                             </thead>

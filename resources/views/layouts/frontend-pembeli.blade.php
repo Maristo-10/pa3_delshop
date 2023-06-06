@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset('profile-images/logo.png') }}" class="rounded-circle" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="{{ asset('preconnect" href="https://fonts.gstatic.com') }}">
@@ -44,7 +44,7 @@
     <link href="{{ asset('css/a.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/templatemo.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
-    @stack('styles');
+    @stack('styles')
 </head>
 
 <body>

@@ -19,27 +19,29 @@
 <div class=" col 12 card-body d-sm-flex justify-content-between text-center">
     <h6 class="col-md-12 mb-0">
         <a href="/pesanan" class="bi bi-filter-circle btn btn-dark text-white py-2 ml-2 fs-5" name="btn-dibatalkan"
-            id="btn-dibatalkan" title="Semua Pesanan"></a>
+            id="btn-dibatalkan" title="Semua Pesanan">
+            <span class="d-none d-md-inline align-items-center fs-6">Semua</span>
+        </a>
         <a href="/pesanan-dibatalkan" class=" bi bi-x-square-fill btn btn-danger text-white py-2 ml-2 col-2 fs-5"
             name="btn-dibatalkan" id="btn-dibatalkan" title="Pesanan Dibatalkan">
-            <span class="ml-1">Dibatalkan</span>
+            <span class="d-none d-md-inline align-items-center">Dibatalkan</span>
         </a>
         <a href="/pesanan-ditangguhkan"
             class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan"
             id="btn-ditangguhkan" title="Pesanan Belum Dibayar">
-            <span class="ml-1">Belum Dibayar</span>
+            <span class="d-none d-md-inline align-items-center fs-6">Belum Dibayar</span>
         </a>
         <a href="/pesanan-diproses" class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-5"
             name="btn-diproses" id="btn-diproses" title="Pesanan Sedang Diproses">
-            <span class="ml-1">Sedang Diproses</span>
+            <span class="d-none d-md-inline align-items-center fs-6">Sedang Diproses</span>
         </a>
         <a href="/pesanan-belum" class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-5"
             name="btn-belum" id="btn-belum" title="Pesanan Dapat Diambil">
-            <span class="ml-1">Dapat Diambil</span>
+            <span class="d-none d-md-inline align-items-center fs-6">Dapat Diambil</span>
         </a>
         <a href="/pesanan-selesai" class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-5"
             name="btn-selesai" id="btn-selesai" title="Pesanan Selesai">
-            <span class="ml-1">Selesai</span>
+            <span class="d-none d-md-inline align-items-center">Selesai</span>
         </a>
     </h6>
 </div>

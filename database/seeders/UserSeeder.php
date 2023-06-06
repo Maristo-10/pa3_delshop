@@ -20,5 +20,11 @@ class UserSeeder extends Seeder
             'password'=> '$2y$10$5DNeMBwr01c/PxQDS7I6BOcxxQL5GT7naGt4Bftj5LBGZ4hgb8JO6',
             'role_pengguna'=>'Admin',
         ]);
+        DB::table('users')->insert([
+            'name'=> "Pengguna",
+            "email"=> "pengguna@gmail.com",
+            'password'=> '$2y$10$5DNeMBwr01c/PxQDS7I6BOcxxQL5GT7naGt4Bftj5LBGZ4hgb8JO6',
+            'role_pengguna'=>'Publik',
+        ]);
     }
 }
