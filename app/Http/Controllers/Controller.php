@@ -61,7 +61,7 @@ class Controller extends BaseController
         $produk = Produk::where('status_produk', 'Aktif')->get();
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
-        return view('pembeli.aviewproduk', [
+        return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
@@ -92,7 +92,7 @@ class Controller extends BaseController
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
-        return view('pembeli.aviewproduk', [
+        return view('pembeli.viewproduk', [
             'kategori' => $kategori,
             'ukuran' => $ukuran,
             'produk' => $produk,

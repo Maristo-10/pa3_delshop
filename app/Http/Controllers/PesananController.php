@@ -392,6 +392,7 @@ class PesananController extends Controller
     public function detailpesanan($id)
     {
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $kontak = User::where('role_pengguna', 'Admin')->first();
 
         $harga = Pesanan::where('id', $id)->first();
         $pembayaran = DB::table('pesanans')
@@ -419,13 +420,14 @@ class PesananController extends Controller
             'harga' => $harga,
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
-            'jumlah_pesanan' => $jumlah_pesanan
+            'jumlah_pesanan' => $jumlah_pesanan,
+            'kontak'=>$kontak
         ]);
     }
     public function ubahstatus($id)
     {
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
-
+        $kontak = User::where('role_pengguna', 'Admin')->first();
         $harga = Pesanan::where('id', $id)->first();
         $pembayaran = DB::table('pesanans')
             ->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
@@ -452,7 +454,8 @@ class PesananController extends Controller
             'harga' => $harga,
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
-            'jumlah_pesanan' => $jumlah_pesanan
+            'jumlah_pesanan' => $jumlah_pesanan,
+            'kontak'=>$kontak
         ]);
     }
 
@@ -670,8 +673,10 @@ class PesananController extends Controller
         $tahunl = $request->tahun_laporan;
         $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
             ->whereYear('tanggal', $tahunl)->where('pesanans.status', '!=', 'keranjang')->where('pesanans.status', 'Selesai')->get();
-        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->where('pesanans.status', '!=', 'keranjang')->whereYear('tanggal', $tahunl)->where('pesanans.status', 'Selesai')->first();
-        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
+
+        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->whereYear('tanggal', $tahunl)->where('pesanans.status', 'Selesai')->first();
+
+        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->whereYear('tanggal', $tahunl)->where('pesanans.status', 'Selesai')->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->where('pesanans.status', '!=', 'keranjang')->whereYear('tanggal', $tahunl)->where('status', 'Selesai')->first();
         return view('admin.laporanpenjualan', [
             'penjualan' => $penjualan,

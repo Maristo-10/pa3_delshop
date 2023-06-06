@@ -89,7 +89,11 @@
             <div class="align-self-center collapse navbar-collapse d-lg-flex" id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
+                        @guest
+                        <a href="{{ asset('/') }}" class="nav-item nav-link">Home</a>
+                        @else
                         <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        @endguest
                         @guest
                         <a href="{{ asset('/glist-produk') }}" class="nav-item nav-link">Produk</a>
                         @else

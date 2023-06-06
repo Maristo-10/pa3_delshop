@@ -31,7 +31,18 @@ class LaporanPenjualanController extends Controller
         // if(isset($awal) && isset($akhir)){
         //     return Excel::download(new LaporanPenjualanExport($awal, $akhir, $bulan, $tahun));s
         // }
-        return Excel::download(new LaporanPenjualanExport($awal, $akhir, $bulan, $tahun), 'laporan-penjualan.xlsx');
+        if($request->tanggal_awal){
+            return Excel::download(new LaporanPenjualanExport($awal, $akhir, $bulan, $tahun), "laporan-penjualan-".$awal."-".$akhir.".xlsx");
+        }
+
+        if($request->bulan_laporan){
+            return Excel::download(new LaporanPenjualanExport($awal, $akhir, $bulan, $tahun), "laporan-penjualan-".$bulan.".xlsx");
+        }
+
+        if($request->tahun_laporan){
+            return Excel::download(new LaporanPenjualanExport($awal, $akhir, $bulan, $tahun), "laporan-penjualan-".$tahun.".xlsx");
+        }
+
     }
 
 }
