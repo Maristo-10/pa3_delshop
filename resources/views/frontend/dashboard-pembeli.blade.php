@@ -99,7 +99,7 @@
                     <div class="product-item  ">
                         <div class="product-image">
                             <a href="/detail-produk/{{ $data->id_produk }}">
-                                <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" >
+                                <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" style="min-height: 300px">
                             </a>
                             <a href="/detail-produk/{{ $data->id_produk }}">
                                 <div class="product-action">
@@ -114,7 +114,7 @@
                                 echo number_format($angka, 0, ',', '.');
                                 ?>
                             </span></p>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="/detail-produk/{{$data->id_produk}}" class="btn btn-secondary">Lihat Produk</a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                     <div class="product-item">
                         <div class="product-image">
                             <a href="/detail-produk/{{ $data->id_produk }}">
-                                <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" >
+                                <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" style="min-height: 300px">
                             </a>
                             <a href="/detail-produk/{{ $data->id_produk }}">
                                 <div class="product-action">

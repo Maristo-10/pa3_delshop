@@ -19,7 +19,7 @@
             <span>Tambah Data Produk</span>
         </a>
     </h6>
-    <h6 class="col-md-3 mb-0">  
+    <h6 class="col-md-3 mb-0">
         <a href="" class="btn btn-info text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
@@ -163,9 +163,34 @@
                                                                 ?>" disabled>
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Warna</label>
+                                                    @if ($data->warna != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->warna}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Ukuran</label>
+                                                    @if ($data->ukuran_produk != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->ukuran_produk}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Angkatan</label>
+                                                    @if ($data->angkatan != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->angkatan}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $data->deskripsi}}</textarea>
                                                 </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>

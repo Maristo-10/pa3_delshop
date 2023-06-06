@@ -39,56 +39,89 @@
                     </p>
                     <h6 class="mt-3">Deskripsi:</h6>
                     <p>{{ $item->deskripsi }}</p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <h6>Warna yang tersedia :</h6>
-                        </li>
-                        <li class="list-inline-item">
-                            <p class="text-muted"><strong>White / Black</strong></p>
-                        </li>
-                    </ul>
-                    {{-- <h6>Spesifikasi:</h6>
-                    <ul class="list-unstyled pb-3">
-                        <li>Lorem ipsum dolor sit</li>
-                        <li>Amet, consectetur</li>
-                        <li>Adipiscing elit,set</li>
-                        <li>Duis aute irure</li>
-                        <li>Ut enim ad minim</li>
-                        <li>Dolore magna aliqua</li>
-                        <li>Excepteur sint</li>
-                    </ul> --}}
+
+                    <h5 class="mb-4 mt-5">Silahkan Pilih Spesifikasi Produk </h5>
                     <form action="/produk/tambah-keranjang/{{ $item->id_produk }}" method="post">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $item->id_produk }}">
-                        <div class="row">
-                            <div class="col-6">
-                                <ul class="list-inline pb-3">
-                                    <li class="list-inline-item">Size :
-                                        <input type="hidden" name="product-size" id="product-size" value="S">
-                                    </li>
-                                    <li class="list-inline-item"><span class="btn btn-primary btn-size">S</span></li>
-                                    <li class="list-inline-item"><span class="btn btn-primary btn-size">M</span></li>
-                                    <li class="list-inline-item"><span class="btn btn-primary btn-size">L</span></li>
-                                    <li class="list-inline-item"><span class="btn btn-primary btn-size">XL</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="input-group quantity">
-                                    <div class="minus changeQuantity" style="cursor: pointer">
-                                        <button type="button" class="input-group-text">-</button>
+                        <div class="row mb-3">
+                            @if ($item->warna != null)
+                            <div class="form-group col-12 col-md-6 mt-3">
+                                <?php
+                                $warnas = $item->warna;
+                                ?>
+                                <div class="row col-12">
+                                    <h5>Warna Yang Tersedia :</h5>
+                                    <div class="col">
+                                        <select name="warna" id="warna"
+                                            class="form-control col-md-12" required>
+                                            <option selected disabled>Silahkan Pilih Warna Produk</option>
+                                            @foreach (explode(',', $warnas) as $warna)
+                                                <option value="{{ $warna }}">{{ $warna }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <input type="number" name="jumlah" id="jumlah" class="qty-input form-control"
-                                        value="1">
-                                    <div class="plus changeQuantity" style="cursor: pointer">
-                                        <button type="button" class="input-group-text">+</button>
+                                </div>
+                            </div>
+                            @endif
+
+                            @if ($item->angkatan != null)
+                                <div class="form-group col-12 col-md-6 mt-3">
+                                    <?php
+                                    $angkatans = $item->angkatan;
+                                    ?>
+                                    <div class="row col-12">
+                                        <h5>Angkatan :</h5>
+                                        <div class="col">
+                                            <select name="angkatan" id="angkatan"
+                                                class="form-control col-md-12" required>
+                                                <option selected disabled>Silahkan Pilih Angkatan</option>
+                                                @foreach (explode(',', $angkatans) as $angkatan)
+                                                    <option value="{{ $angkatan }}">{{ $angkatan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($item->ukuran_produk != null)
+                            <div class="form-group col-12 col-md-6 mt-3">
+                                <?php
+                                $ukurans = $item->ukuran_produk;
+                                ?>
+
+                                <div class="row col-12">
+                                    <h5>Ukuran Yang Tersedia :</h5>
+                                </div>
+                                <div class="col">
+                                    <select name="ukuran" id="ukuran" class="form-control col-md-12" required>
+                                        <option selected disabled>Silahkan Pilih Ukuran</option>
+                                        @foreach (explode(',', $ukurans) as $ukuran)
+                                            <option value="{{ $ukuran }}">{{ $ukuran }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="form-group col-12 col-md-6 mt-3">
+                                <div class="col-12">
+                                    <h5>Jumlah Produk</h5>
+                                    <div class="input-group quantity">
+                                        <div class="minus changeQuantity" style="cursor: pointer">
+                                            <button type="button" class="input-group-text">-</button>
+                                        </div>
+                                        <input type="number" name="jumlah" id="jumlah"
+                                            class="qty-input form-control" value="1">
+                                        <div class="plus changeQuantity" style="cursor: pointer">
+                                            <button type="button" class="input-group-text">+</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row pb-3">
-                            <div class="col-md-4 offset-md-8">
+                            <div class="col-md-6 offset-md-8">
                                 @if ($item->role_pembeli == 'Publik')
                                     <button type="submit" class="btn btn-primary btn-lg text-center" name="submit"
                                         value="addtocard">Add To Cart</button>
@@ -108,7 +141,10 @@
                             @else
                                 @if ($item->role_pembeli != Auth::user()->role_pengguna)
                                     <small class="ml-3" style="color:red;"><i
-                                            class="bi bi-info-circle mr-2"></i><em>Produk ini hanya tersedia untuk
+                                            class="bi bi-info-circle mr-2"></i><em>Produk
+                                            ini
+                                            hanya
+                                            tersedia untuk
                                             {{ $item->role_pembeli }}</em></small>
                                 @endif
                             @endif
