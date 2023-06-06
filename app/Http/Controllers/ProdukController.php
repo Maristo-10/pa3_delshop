@@ -139,9 +139,9 @@ class ProdukController extends Controller
             'gambar_produk' => 'image|file|max:10000'
         ]);
 
-        $selectedUkuran = implode(',', $request->input('ukuran'));
-        $selectedWarna = implode(',', $request->input('warna'));
-        $selectedAngkatan = implode(',', $request->input('angkatan'));
+
+
+
 
         // dd($options);
 
@@ -153,10 +153,18 @@ class ProdukController extends Controller
         $tambahproduk->kategori_produk = $request->kategori_produk;
         $tambahproduk->produk_unggulan = $request->produk_unggulan;
         $tambahproduk->deskripsi = $request->deskripsi;
-        $tambahproduk->ukuran_produk = $selectedUkuran;
-        $tambahproduk->warna = $selectedWarna;
-        $tambahproduk->angkatan = $selectedAngkatan;
-
+        if($request->input('ukuran') != null){
+            $selectedUkuran = implode(',', $request->input('ukuran'));
+            $tambahproduk->ukuran_produk = $selectedUkuran;
+        }
+        if($request->input('warna') != null){
+            $selectedWarna = implode(',', $request->input('warna'));
+            $tambahproduk->warna = $selectedWarna;
+        }
+        if($request->input('angkatan') != null){
+            $selectedAngkatan = implode(',', $request->input('angkatan'));
+            $tambahproduk->angkatan = $selectedAngkatan;
+        }
         // $tambahproduk->ukuran_produk = $options;
         if ($request->file('gambar_produk')) {
             if ($request->hasfile('gambar_produk')) {
