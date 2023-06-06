@@ -78,7 +78,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90px">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -89,7 +89,11 @@
             <div class="align-self-center collapse navbar-collapse d-lg-flex" id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-end">
+                        @guest
+                        <a href="{{ asset('/') }}" class="nav-item nav-link">Home</a>
+                        @else
                         <a href="{{ asset('/home') }}" class="nav-item nav-link">Home</a>
+                        @endguest
                         @guest
                         <a href="{{ asset('/glist-produk') }}" class="nav-item nav-link">Produk</a>
                         @else
@@ -115,7 +119,7 @@
                             <div class="input-group mb-2">
                                 <input type="text" class="form-control" id="inputModalSearch" name="cari"
                                     placeholder="Search ...">
-                                <button type="submit" class="input-group-text bg-success text-light">
+                                <button type="submit" class="input-group-text bg-primary text-light">
                                     <i class="fa fa-fw fa-search text-white"></i>
                                 </button>
                             </div>
@@ -208,7 +212,7 @@
                         </a>
                     @else
                         @empty($pesanan_baru)
-                            <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
+                            <a href="/" type="button" class="btn position-relative mr-2" style="font-size: 20px" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fas fa-shopping-cart text-dark"></i>
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark mt-2">
@@ -305,12 +309,11 @@
                             <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-light mb-1" href="/produk"><i
                                     class="fa fa-angle-right mr-2"></i>Produk</a>
-                            <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
-                                Kita</a>
+                            {{-- <a class="text-light mb-1" href="#"><i class="fa fa-angle-right mr-2"></i>Tentang
+                                Kita</a> --}}
                             <a class="text-light mb-1" href="/keranjang"><i
                                     class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-light" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact
-                                Us</a>
+                            <a class="text-light" href="/pesanan"><i class="fa fa-angle-right mr-2"></i>Pesanan</a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">
@@ -337,6 +340,21 @@
     </div>
     <!-- Footer End -->
 
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered p-3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Pesan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Keranjang Anda Masih Kosong</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

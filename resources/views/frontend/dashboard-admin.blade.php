@@ -17,7 +17,7 @@
                                 <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
 
                                 <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fs-6">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart " ></i>
                                     </div>
                                     <div class="ps-3">
@@ -212,17 +212,17 @@
                                             <td>{{ $index + $pesanan_harian->firstItem() }}</td>
                                             <td>{{ $data->name}}</td>
                                             <td>Rp. <?php
-                                        $angka = $data->total_harga;
-                                        echo number_format($angka, 0, ',', '.');
-                                        ?></td>
+                                                $angka = $data->total_harga;
+                                                echo number_format($angka, 0, ',', '.');
+                                                ?></td>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">ID Pesanan</h1>
-                                                    </div>
+                                                    </div> 
                                                     <div class="modal-body">
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">ID Pesanan</label>

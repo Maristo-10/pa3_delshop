@@ -45,6 +45,7 @@ class LaporanPenjualanExport implements FromCollection, WithHeadings
                     // DB::raw('SUM(pesanans.total_harga) as total_harga')
                 )
                 ->whereBetween('pesanans.tanggal', [$this->awal, $this->akhir])
+                ->where('pesanans.status', 'Selesai')
                 ->groupBy(
                     'pesanans.tanggal',
                     'pesanans.nama_pengambil',
@@ -73,6 +74,7 @@ class LaporanPenjualanExport implements FromCollection, WithHeadings
                 )
                 ->whereMonth('pesanans.tanggal', $arrayBulanTahun[1])
                 ->whereYear('pesanans.tanggal', $arrayBulanTahun[0])
+                ->where('pesanans.status', 'Selesai')
                 ->groupBy(
                     'pesanans.tanggal',
                     'pesanans.nama_pengambil',
@@ -96,6 +98,7 @@ class LaporanPenjualanExport implements FromCollection, WithHeadings
                     // DB::raw('SUM(pesanans.total_harga) as total_harga'),
                 )
                 ->whereYear('pesanans.tanggal', $this->tahun)
+                ->where('pesanans.status', 'Selesai')
                 ->groupBy(
                     'pesanans.tanggal',
                     'pesanans.nama_pengambil',

@@ -131,9 +131,15 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     //add checkout
     Route::post('/add-checkout/{id}',[PesananController::class, 'addCh'])->name('addCheckout');
     Route::post('/remove-checkout/{id}',[PesananController::class, 'backKer'])->name('removeCheckout');
+
+    //Tempat Pengambilan
+    Route::get('/pengambilanbarang', [PesananController::class,'tempat'])->name('pembeli.tempat');
+
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/aprofile', [UserController::class, 'aprofile'])->name('admin.profile');
+    Route::post('/aprofile/update', [UserController::class, 'upprofile'])->name('admin.updateprofile');
     Route::get('/dashboard-admin', [HomeController::class, 'dashboard'])->name('frontend.dashboard-admin');
 
     Route::get('/laporan-custom', [PesananController::class, 'laporanpenjualanCustom'])->name('admin.laporanpenjualan');
@@ -142,8 +148,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
 
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
-
-
     Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
@@ -204,10 +208,4 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/aktifkan-corousel/{id}',[CorouselController::class, 'aktifkan'])->name('aktifkan');
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
     Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
-});
-
-Route::middleware(['auth', 'isPegawai'])->group(function () {
-    Route::get('/dashboard-pegawai', function () {
-        return view('frontend.dashboard-pegawai');
-    });
 });

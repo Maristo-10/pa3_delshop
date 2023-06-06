@@ -20,7 +20,7 @@ class PegawaiMiddleware
         if(Auth::user()->role_pengguna == 'Pegawai') {
             return $next($request);
         } else {
-            return back()->with('status', 'you are not allowed to access the admin dashboard');
+            return back()->with('status', 'you are not allowed to access the pegawai dashboard');
         }
     }
 }

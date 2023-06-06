@@ -80,9 +80,9 @@
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning"></a>
                                         @if ($data->status_metpem == "Aktif")
-                                            <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a>
+                                            <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$data->id_metpem}}" ></a>
                                         @else
-                                            <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal3" ></a>
+                                            <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-success" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal3{{$data->id_metpem}}" ></a>
                                         @endif
                                             {{-- <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a> --}}
 
@@ -90,7 +90,7 @@
                                                 class="bi bi-slash-circle-fill btn btn-danger"></a> --}}
                                         </td>
                                         <!-- Modal menon-aktifkan-->
-                                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal2{{$data->id_metpem}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
@@ -105,14 +105,14 @@
                                         </div>
 
                                         <!-- Modal mengaktifkan -->
-                                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal3{{$data->id_metpem}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
                                                     Anda yakin akan Aktifkan data ini.. ?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <a type="button" class="btn btn-danger" href="/prosesubahstatusmetpem/aktif/{{ $data->id_metpem}}">Aktifkan</a>
+                                                        <a type="button" class="btn btn-success" href="/prosesubahstatusmetpem/aktif/{{ $data->id_metpem}}">Aktifkan</a>
                                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    <div class="col-4 ml-5 shadow-sm rounded bg-white">
+    <div class="col-5 shadow-sm rounded bg-white">
         <button class="btn btn-success text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
             <i class="bi bi-eye-fill"></i>
             <span><small>Tambah Kategori Pembayaran</small></span>
