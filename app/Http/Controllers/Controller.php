@@ -61,7 +61,7 @@ class Controller extends BaseController
         $produk = Produk::where('status_produk', 'Aktif')->get();
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
-        return view('pembeli.viewproduk', [
+        return view('pembeli.aviewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
@@ -92,7 +92,7 @@ class Controller extends BaseController
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
-        return view('pembeli.viewproduk', [
+        return view('pembeli.aviewproduk', [
             'kategori' => $kategori,
             'ukuran' => $ukuran,
             'produk' => $produk,
@@ -116,7 +116,7 @@ class Controller extends BaseController
         }
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
-        return view('pembeli.viewproduk', [
+        return view('pembeli.aviewproduk', [
             'produk' => $products,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
@@ -138,7 +138,7 @@ class Controller extends BaseController
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
-        return view('pembeli.viewproduk', [
+        return view('pembeli.aviewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,

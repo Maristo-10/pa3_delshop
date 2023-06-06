@@ -38,7 +38,7 @@
             <div class="card-body d-sm-flex justify-content-between">
                 <h6 class="col-md-7 mb-0">
                     <a href="" data-bs-target="#ubah-corousel-{{ $data->id }}"
-                        class="btn btn-warning text-white py-2 ml-2" data-bs-toggle="collapse">
+                        class="btn btn-primary text-white py-2 ml-2" data-bs-toggle="collapse">
                         <i class="bi bi-pencil-square"></i>
                         <span>Ubah Gambar</span>
                     </a>
@@ -63,7 +63,7 @@
                     @csrf
                     <Label for="gambar_pengguna">Gambar Pengguna</Label>
                     <input type="file" name="gambar_corousel" id="gambar_corousel" class="form-control col-md-8">
-                    <button type="submit" class="btn btn-warning mt-3">Ubah</button>
+                    <button type="submit" class="btn btn-primary mt-3">Ubah</button>
                 </form>
             </div>
         </div>

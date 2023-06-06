@@ -60,11 +60,11 @@
                                         <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#details-{{$data->id}}" title="Lihat Detail Pesanan"></a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="/proses/ubah/status/batalkan/{{ $data->id }}"
-                                            title="Batalkan Pesanan" class="bi bi-x-lg btn btn-danger ml-2"
-                                            style="font-size: 15px"></a>
-                                        <a href="/ubah/status/{{ $data->id }}"
-                                            class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
+                                        <a href="/detail/pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
+                                            class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                        <a href="/proses/ubah/status/batalkan/{{$data->id}}" title="Batalkan Pesanan"
+                                            class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal2"></a>
+                                        <a href="/ubah/status/{{$data->id}}" class="btn btn-warning bi bi-pencil-square" style="font-size: 15px"></a>
                                     </td>
 
                                     <!-- Modal -->

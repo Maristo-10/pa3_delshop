@@ -20,7 +20,7 @@
         </a>
     </h6>
     <h6 class="col-md-3 mb-0">
-        <a href="" class="btn btn-success text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
+        <a href="" class="btn btn-info text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
         </a>
@@ -30,16 +30,17 @@
 <div class="row justify-content-center">
     <div class="col-8 ">
         <div class="card">
-            <form action="tambahpengguna/import" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('tambahproduk.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
+                @csrf
                 <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
                     <div class="col-6 mb-5">
                         <div class="">
                             <label for="formFile" class="form-label">Masukkan Data Pengguna </label>
-                            <input class="form-control mt-3" type="file" id="formFile">
+                            <input class="form-control mt-3" name="file" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="col-2 ">
-                        <button class="btn btn-primary" name="cari-penjualan" id="cari-penjualan"> Cari</button>
+                        <button type="submit" class="btn btn-primary" name="cari-penjualan" id="cari-penjualan">Import</button>
                     </div>
                 </div>
             </form>
@@ -76,7 +77,7 @@
                                 {{-- <th scope="col">Kategori Pembeli</th> --}}
                                 {{-- <th scope="col">Kategori Produk</th> --}}
                                 <th scope="col">Produk Unggulan</th>
-                                <th scope="col">Keterangan</th>
+                                <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
@@ -102,15 +103,15 @@
                                     <td>{{ $data->produk_unggulan }}</td>
                                     {{-- <td>{{ $data->deskripsi }}</td> --}}
                                     <td>
-                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                                        <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $data->id_produk }}"></a>
                                     </td>
                                     <td>
                                         <a href="/ubahproduk/{{ $data->id_produk }}" title="Ubah Data"
                                             class="bi bi-pencil-square btn btn-warning " style="font-size: 8px"></a>
-                                        <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a>
+                                        <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2{{ $data->id_produk }}" ></a>
                                     </td>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- Modal menonaktifkan produk-->
+                                    <div class="modal fade" id="exampleModal2{{ $data->id_produk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-body text-center">
@@ -125,11 +126,11 @@
                                     </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $data->id_produk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Data Pesanan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Produk</h1>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mb-3">
@@ -162,9 +163,34 @@
                                                                 ?>" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Deskripsi</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->deskripsi }}" disabled>
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Warna</label>
+                                                    @if ($data->warna != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->warna}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Ukuran</label>
+                                                    @if ($data->ukuran_produk != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->ukuran_produk}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Angkatan</label>
+                                                    @if ($data->angkatan != null)
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="{{ $data->angkatan}}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" disabled value="-">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $data->deskripsi}}</textarea>
+                                                </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>

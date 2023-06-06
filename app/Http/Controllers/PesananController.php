@@ -756,12 +756,18 @@ class PesananController extends Controller
         if (empty($pesanan_detail_lama)) {
             $pesanan_detail->pesanan_id = $pesanan_lama->id;
             $pesanan_detail->update();
+            $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
+            $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->update();
         }
 
         if (!empty($pesanan_detail_lama)) {
             $pesanan_detail_lama->jumlah = $pesanan_detail_lama->jumlah + $pesanan_detail->jumlah;
             $pesanan_detail_lama->jumlah_harga = $pesanan_detail_lama->jumlah_harga + $pesanan_detail->jumlah_harga;
             $pesanan_detail_lama->update();
+            $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
+            $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->update();
             $pesanan_detail->delete();
         }
 
@@ -776,7 +782,11 @@ class PesananController extends Controller
         $pesanan_lama->kode = "DEL$now$pesanan_lama->id";
         $pesanan_lama->update();
 
-        return redirect()->route('pembeli.checkout');
+        if (route('pembeli.keranjang')) {
+            return redirect()->route('pembeli.keranjang');
+        } else {
+            return redirect()->route('pembeli.checkout');
+        }
     }
 
     public function cariPesanan(Request $request)
