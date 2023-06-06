@@ -20,7 +20,7 @@
                     <option value="Publik">Publik</option>
                     <option value="Mahasiswa">Mahasiswa</option>
                     <option value="Dosen/Staff">Dosen/Staff</option>
-                    <option value="Kasir">Kasir</option>
+                    <option value="Pegawai">Pegawai</option>
                     <option value="Admin">Admin</option>
                 </select>
                 <script type="text/javascript">
