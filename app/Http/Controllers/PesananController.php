@@ -788,13 +788,6 @@ class PesananController extends Controller
             $pesanan_baru->update();
             $pesanan_detail->delete();
         }
-
-
-
-        $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
-        $pesanan_baru->total_harga = $harga;
-        $pesanan_baru->update();
-
         $harga_remove = $pesanan_lama->total_harga + $pesanan_detail->jumlah_harga;
         $pesanan_lama->total_harga =  $harga_remove;
         $pesanan_lama->kode = "DEL$now$pesanan_lama->id";

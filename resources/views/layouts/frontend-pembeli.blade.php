@@ -212,7 +212,7 @@
                         </a>
                     @else
                         @empty($pesanan_baru)
-                            <a href="/keranjang" type="button" class="btn position-relative mr-2" style="font-size: 20px">
+                            <a href="/" type="button" class="btn position-relative mr-2" style="font-size: 20px" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fas fa-shopping-cart text-dark"></i>
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark mt-2">
@@ -340,6 +340,21 @@
     </div>
     <!-- Footer End -->
 
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered p-3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Pesan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Keranjang Anda Masih Kosong</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
