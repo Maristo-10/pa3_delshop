@@ -7,6 +7,7 @@
     @include('layouts.inc.corousel')
 @endsection
 @section('content')
+<section class="">
     <div class="container">
         <div class="row justify-content-center text-center mt-5">
             <h1 class="">KATEGORI <span class="text-primary text-uppercase">Produk</span></h1>
@@ -90,7 +91,7 @@
     <!-- End Banner Hero -->
 
     <!-- Featured Product Start -->
-    <div class="featured-product product">
+    <div class="featured-product product dashboard">
         <div class="container-fluid">
             <div class="mt-3 mb-5 text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class=" text-uppercase">Daftar <span class="text-primary text-uppercase">Produk</span></h1>
@@ -164,4 +165,5 @@
     </div>
     <!-- Featured Product End -->
 
+</section>
 @endsection
