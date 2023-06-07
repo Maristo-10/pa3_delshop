@@ -15,10 +15,9 @@
         <div class="row">
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="ukuran" class="col-12">Ukuran Produk</label>
-                <select class="selectpicker form-control-md col-12" multiple data-live-search="true" name="ukuran[]"
-                    id="ukuran">
+                <select class="selectpicker form-control-md col-12" multiple data-live-search="true" name="ukuran[]" id="ukuran">
                     @foreach ($ukuran as $ukurans)
-                        <option value="{{ $ukurans->ukuran }}">{{ $ukurans->ukuran }}</option>
+                        <option value="{{ $ukurans->ukuran }}" class="">{{ $ukurans->ukuran }}</option>
                     @endforeach
                 </select>
             </div>
@@ -66,7 +65,7 @@
         <div class="row">
             <div class="form-group col-12 col-md-6">
                 <label for="nama_produk">Nama Produk</label>
-                <input type="text" name="nama_produk" id="nama_produk" class="form-control">
+                <input type="text" name="nama_produk" id="nama_produk" class="form-control ">
             </div>
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="harga">Harga</label>
@@ -78,7 +77,7 @@
             </div>
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="role_pembeli">Kategori Pembeli</label>
-                <select name="role_pembeli" id="role_pembeli" class="form-control">
+                <select lect name="role_pembeli" id="role_pembeli" class="form-control">
                     <option selected>Silahkan Pilih Kategori Pembeli</option>
                     @foreach ($role as $data)
                         <option value="{{ $data->role }}">{{ $data->role }}</option>

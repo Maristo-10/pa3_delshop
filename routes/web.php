@@ -39,6 +39,7 @@ Route::get('/gproduk/cari', [Controller::class, 'cariProduk']);
 Route::get('/glist-produk', [Controller::class, 'produk'])->name('pembeli.aviewproduk');
 Route::get('/glist-produk/cari', [Controller::class, 'cariProduk2']);
 Route::get('/glist-produk/{kategori_produk}', [Controller::class, 'filterByCategory'])->name('aproducts.category');
+Route::get('/gitems', [Controller::class, 'sorting'])->name('gitems.index');
 Auth::routes();
 
 //reset password

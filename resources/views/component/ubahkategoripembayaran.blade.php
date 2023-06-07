@@ -36,7 +36,7 @@
 </script>
 
 <div class="row col-12">
-    <div class="col-7 shadow-sm rounded bg-white">
+    <div class="col-8 shadow-sm rounded bg-white">
         <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
             <i class="fa fa-plus"></i>
             <span><small>Tambah Data Metode Pembayaran</small></span>
@@ -68,7 +68,7 @@
                                         <td>{{ $data->nama_layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
-                                        <td>{{ $data->kategori_layanan }}</td>
+                                        <td>{{ $data->kapem }}</td>
                                         <td>
                                             <a href="/ubah-metode-pembayaran/{{ $data->id }}" title="Ubah Data"
                                                 class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div class="col-4 ml-5 shadow-sm rounded bg-white">
+    <div class="col-4 shadow-sm rounded bg-white">
         <button class="btn btn-warning text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
             <i class="bi bi-eye-fill"></i>
             <span><small style="color: black">Ubah Kategori Pembayaran</small></span>

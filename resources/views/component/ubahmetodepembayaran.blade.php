@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="nama_layanan">Nama Layanan</label>
-                    <input type="text" name="nama_layanan" id="nama_layanan" class="form-control" value="{{$metpem->nama_layanan}}">
+                    <input type="text" name="layanan" id="layanan" class="form-control" value="{{$metpem->layanan}}">
                 </div>
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="no_layanan">Nomor Pembayaran</label>
@@ -20,7 +20,7 @@
                     <select name="kategori_layanan" id="kategori_layanan" class="form-control">
                         <option selected disabled>{{$metpem->kapem}}</option>
                         @foreach ($kapem as $data)
-                            <option value="{{ $data->kategori_pembayaran }}">{{ $data->kategori_pembayaran }}</option>
+                            <option value="{{ $data->id_kapem }}">{{ $data->kategori_pembayaran }}</option>
                         @endforeach
                     </select>
                     <script type="text/javascript">

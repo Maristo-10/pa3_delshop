@@ -107,8 +107,8 @@ class Controller extends BaseController
     {
         $products = Produk::where('kategori_produk', $category)->get();
 
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
-        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $pesanan = [0];
+            $pengguna_prof =[0];
         if (empty($pesanan_baru)) {
             $pesanan = 0;
         } else {
@@ -116,12 +116,11 @@ class Controller extends BaseController
         }
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
-        return view('pembeli.aviewproduk', [
+        return view('pembeli.viewproduk', [
             'produk' => $products,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
-            'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof
         ]);
     }
@@ -136,9 +135,8 @@ class Controller extends BaseController
         $produk = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('status_produk', 'Aktif')->get();
 
         $kategori = KategoriProdukModel::all();
-        $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
-        return view('pembeli.aviewproduk', [
+        return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
@@ -146,4 +144,40 @@ class Controller extends BaseController
             'pengguna_prof' => $pengguna_prof
         ]);
     }
+
+    public function sorting(Request $request)
+    {
+        $sort = $request->input('sort');
+
+        $items = Produk::query();
+        if ($sort) {
+            if ($sort == 'latest') {
+                $items->orderBy('created_at', 'desc');
+            } elseif ($sort == 'termahal') {
+                $items->orderBy('harga', 'desc');
+            } elseif ($sort == 'termurah') {
+                $items->orderBy('harga', 'asc');
+            } elseif ($sort == 'all') {
+                $items = $items;
+            }
+        }
+        $pesanan = [0];
+            $pengguna_prof =[0];
+        if (empty($pesanan_baru)) {
+            $pesanan = 0;
+        } else {
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id', $pesanan_baru->id)->get();
+        }
+        $kategori = KategoriProdukModel::all();
+        $produk = $items->get();
+        $ukuran = UkuranModel::all();
+        return view('pembeli.viewproduk', [
+            'produk' => $produk,
+            'ukuran' => $ukuran,
+            'kategori' => $kategori,
+            'pesanan' => $pesanan,
+            'pengguna_prof' => $pengguna_prof
+        ]);
+    }
+
 }
