@@ -2052,6 +2052,12 @@ background-color: #2980b9;
     .carousel img{
         height: 200px;
     }
+
+    .dashboard h1 {
+        font-size: 35px;
+        text-align: left;
+        margin-left: 40px;
+    }
 }
 @media (max-width: 518.98px) {
     .start .logo {
@@ -2067,4 +2073,6 @@ background-color: #2980b9;
     .carousel img{
         height: 200px;
     }
+
+    
 }

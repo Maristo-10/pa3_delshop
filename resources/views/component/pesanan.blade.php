@@ -16,34 +16,36 @@
         </div>
     </div>
 </div>
-<div class=" col 12 card-body d-sm-flex justify-content-between text-center">
+<div class="container">
+    <div class=" col 12 card-body d-flex justify-content-center text-center">
     <h6 class="col-md-12 mb-0">
-        <a href="/pesanan" class="bi bi-filter-circle btn btn-dark text-white py-2 ml-2 fs-5" name="btn-dibatalkan"
+        <a href="/pesanan" class="bi bi-filter-circle btn btn-dark text-white py-2 ml-2 fs-6 mt-3" name="btn-dibatalkan"
             id="btn-dibatalkan" title="Semua Pesanan">
-            <span class="d-none d-md-inline align-items-center fs-6">Semua</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Semua</span>
         </a>
-        <a href="/pesanan-dibatalkan" class=" bi bi-x-square-fill btn btn-danger text-white py-2 ml-2 col-2 fs-5"
+        <a href="/pesanan-dibatalkan" class=" bi bi-x-square-fill btn btn-danger text-white py-2 ml-2 col-2 fs-6 mt-3"
             name="btn-dibatalkan" id="btn-dibatalkan" title="Pesanan Dibatalkan">
-            <span class="d-none d-md-inline align-items-center">Dibatalkan</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Dibatalkan</span>
         </a>
         <a href="/pesanan-ditangguhkan"
-            class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-5" name="btn-ditangguhkan"
+            class=" bi bi-exclamation-triangle btn btn-warning text-white py-2 ml-2 col-2 fs-6 mt-3" name="btn-ditangguhkan"
             id="btn-ditangguhkan" title="Pesanan Belum Dibayar">
-            <span class="d-none d-md-inline align-items-center fs-6">Belum Dibayar</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Belum Dibayar</span>
         </a>
-        <a href="/pesanan-diproses" class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-5"
+        <a href="/pesanan-diproses" class="bi bi-hourglass-split btn btn-info text-white py-2 ml-2 col-2 fs-6 mt-3"
             name="btn-diproses" id="btn-diproses" title="Pesanan Sedang Diproses">
-            <span class="d-none d-md-inline align-items-center fs-6">Sedang Diproses</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Sedang Diproses</span>
         </a>
-        <a href="/pesanan-belum" class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-5"
+        <a href="/pesanan-belum" class="bi bi bi-handbag-fill btn btn-primary text-white py-2 ml-2 col-2 fs-6 mt-3"
             name="btn-belum" id="btn-belum" title="Pesanan Dapat Diambil">
-            <span class="d-none d-md-inline align-items-center fs-6">Dapat Diambil</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Dapat Diambil</span>
         </a>
-        <a href="/pesanan-selesai" class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-5"
+        <a href="/pesanan-selesai" class="bi bi-check2-all btn btn-success text-white py-2 ml-2 col-2 fs-6 mt-3"
             name="btn-selesai" id="btn-selesai" title="Pesanan Selesai">
-            <span class="d-none d-md-inline align-items-center">Selesai</span>
+            <span class="d-none d-xl-inline align-items-center fs-6">Selesai</span>
         </a>
     </h6>
+</div>
 </div>
 <div class="col-md-12 mt-3 text-center">
     <h3>Riwayat Pesanan</h3>
