@@ -12,7 +12,7 @@ class MetodePembayaranController extends Controller
     {
         $this->middleware('auth');
     }
-        
+
     // fungsi untuk menon-aktifkan metode pembayaran
     public function ubahStatusMetpenNon($id) {
 

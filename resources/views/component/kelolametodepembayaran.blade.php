@@ -28,29 +28,29 @@
 </script>
 
 <div class="row">
-    <div class="col-7">
+    <div class="col col-8">
         <small>
             <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
                 <i class="fa fa-plus"></i>
                 <span><small>Tambah Data Metode Pembayaran</small></span>
             </a>
-    </small>
+        </small>
         <div class="col-12">
             <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
                 <div class="card">
                     <div class="card-body">
                         @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
-                        </div>
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
                         @endif
 
                         @if ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
-                        </div>
+                            <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
                         @endif
                         <table class="table table-striped table-bordered" id="list">
                             <thead>
@@ -73,49 +73,61 @@
                                 @foreach ($metpem as $index => $data)
                                     <tr>
                                         <td>{{ $index + $metpem->firstItem() }}</td>
-                                        <td>{{ $data->status_metpem}}</td>
+                                        <td>{{ $data->status_metpem }}</td>
                                         <td>{{ $data->layanan }}</td>
                                         <td>{{ $data->no_layanan }}</td>
                                         <td>{{ $data->nama_pemilik }}</td>
                                         <td>{{ $data->kapem }}</td>
                                         <td style="text-align: center">
                                             <a href="/ubah-metode-pembayaran/{{ $data->id_metpem }}" title="Ubah Data"
-                                                class="bi bi-pencil-square btn btn-warning"></a>
-                                        @if ($data->status_metpem == "Aktif")
-                                            <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$data->id_metpem}}" ></a>
-                                        @else
-                                            <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-success" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal3{{$data->id_metpem}}" ></a>
-                                        @endif
+                                                class="bi bi-pencil-square btn btn-warning" style="font-size: 10px"></a>
+                                            @if ($data->status_metpem == 'Aktif')
+                                                <a title="Non-Aktifkan Data"
+                                                    class="bi bi-slash-circle-fill btn btn-danger"
+                                                    style="font-size: 10px" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal2{{ $data->id_metpem }}"></a>
+                                            @else
+                                                <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-success"
+                                                    style="font-size: 10px" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal3{{ $data->id_metpem }}"></a>
+                                            @endif
                                             {{-- <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a> --}}
 
                                             {{-- <a href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem}}" title="Non-Aktifkan Data"
                                                 class="bi bi-slash-circle-fill btn btn-danger"></a> --}}
                                         </td>
                                         <!-- Modal menon-aktifkan-->
-                                        <div class="modal fade" id="exampleModal2{{$data->id_metpem}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal2{{ $data->id_metpem }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
-                                                    Anda yakin akan Non-Aktifkan data ini.. ?
+                                                        Anda yakin akan Non-Aktifkan data ini.. ?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <a type="button" class="btn btn-danger" href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem}}">Non Aktifkan</a>
-                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                        <a type="button" class="btn btn-danger"
+                                                            href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem }}">Non
+                                                            Aktifkan</a>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Modal mengaktifkan -->
-                                        <div class="modal fade" id="exampleModal3{{$data->id_metpem}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal3{{ $data->id_metpem }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
-                                                    Anda yakin akan Aktifkan data ini.. ?
+                                                        Anda yakin akan Aktifkan data ini.. ?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <a type="button" class="btn btn-success" href="/prosesubahstatusmetpem/aktif/{{ $data->id_metpem}}">Aktifkan</a>
-                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                        <a type="button" class="btn btn-success"
+                                                            href="/prosesubahstatusmetpem/aktif/{{ $data->id_metpem }}">Aktifkan</a>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,106 +143,117 @@
             </div>
         </div>
     </div>
+        <div class="col col-4 shadow-sm rounded bg-white">
+            <button class="btn btn-success text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
+                <i class="bi bi-eye-fill"></i>
+                <span><small>Tambah Kategori Pembayaran</small></span>
+            </button>
+            <div class="card" id="tambah_kapem" name="tambah_kapem" hidden>
+                <div class="row">
+                    <div class="btn-close-form">
+                        <button class="btn btn-danger bi bi-x-lg float-right ml-1" style="font-size: 10px"
+                            onclick="eventCloset()"></button>
+                    </div>
+                    <div class="card-body">
+                        <small class="card-title ml-3">Tambah Data Kategori Produk</small>
 
-    <div class="col-5 shadow-sm rounded bg-white">
-        <button class="btn btn-success text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
-            <i class="bi bi-eye-fill"></i>
-            <span><small>Tambah Kategori Pembayaran</small></span>
-        </button>
-        <div class="card" id="tambah_kapem" name="tambah_kapem" hidden>
-            <div class="row">
-                <div class="btn-close-form">
-                    <button class="btn btn-danger bi bi-x-lg float-right ml-1" style="font-size: 10px"
-                        onclick="eventCloset()"></button>
-                </div>
-                <div class="card-body">
-                    <small class="card-title ml-3">Tambah Data Kategori Produk</small>
+                        <!-- Horizontal Form -->
 
-                    <!-- Horizontal Form -->
-
-                    <form class="" action="/prosestambahkategoripembayaran" method="post"enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="kategori_pembayaran" class="col-sm-12 col-form-label">
-                                <small>Kategori Pembayaran</small>
-                            </label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="kategori_pembayaran" name="kategori_pembayaran">
+                        <form class="" action="/prosestambahkategoripembayaran"
+                            method="post"enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="kategori_pembayaran" class="col-sm-12 col-form-label">
+                                    <small>Kategori Pembayaran</small>
+                                </label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="kategori_pembayaran"
+                                        name="kategori_pembayaran">
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center mb-3">
-                            <button type="submit" class="btn btn-success"><small>Tambah</small> </button>
-                            <button type="reset" class="btn btn-primary"><small>Reset</small> </button>
-                        </div>
-                    </form><!-- End Horizontal Form -->
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn btn-success"><small>Tambah</small> </button>
+                                <button type="reset" class="btn btn-primary"><small>Reset</small> </button>
+                            </div>
+                        </form><!-- End Horizontal Form -->
+                    </div>
                 </div>
+
+
             </div>
 
+            <div class="card" id="table_kapem" name="table_kapem">
 
-        </div>
-
-        <div class="card" id="table_kapem" name="table_kapem">
-
-            <div class="card-body">
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
+                <div class="card-body">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
                     @endif
 
                     @if ($message = Session::get('error'))
-                    <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
                     @endif
-                <table class="table table-striped table-bordered" id="list">
-                    <thead>
-                        <tr>
-                            <!-- <th scope="col">Pilihan</th> -->
-                            <th scope="col" class="col-md-1">No</th>
-                            <th scope="col" class="col-md-3">Kategori Pembayaran</th>
-                            <th scope="col" class="col-md-3">Aksi</th>
-                            <!-- <th scope="col">Lampiran</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $no = 1;
-                        @endphp
-                        @foreach ($kapem as $index =>$data)
+                    <table class="table table-striped table-bordered" id="list">
+                        <thead>
                             <tr>
-                                <td>{{ $index + $kapem->firstItem() }}</td>
-                                <td>{{ $data->kategori_pembayaran }}</td>
-                                <td>
-                                    <a class="bi bi-pencil-square btn btn-warning " href="/ubah-kategori-pembayaran/{{$data->kategori_pembayaran}}" title="Ubah Data"></a>
-                                    <a type="button" title="Hapus Data" class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->kategori_pembayaran}}"></a>
-                                </td>
+                                <!-- <th scope="col">Pilihan</th> -->
+                                <th scope="col" class="col-md-1">No</th>
+                                <th scope="col" class="col-md-3">Kategori Pembayaran</th>
+                                <th scope="col" class="col-md-3">Aksi</th>
+                                <!-- <th scope="col">Lampiran</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($kapem as $index => $data)
+                                <tr>
+                                    <td>{{ $index + $kapem->firstItem() }}</td>
+                                    <td>{{ $data->kategori_pembayaran }}</td>
+                                    <td>
+                                        <a class="bi bi-pencil-square btn btn-warning "
+                                            href="/ubah-kategori-pembayaran/{{ $data->kategori_pembayaran }}"
+                                            title="Ubah Data"></a>
+                                        <a type="button" title="Hapus Data"
+                                            class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $data->kategori_pembayaran }}"></a>
+                                    </td>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal{{$data->kategori_pembayaran}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $data->kategori_pembayaran }}"
+                                        tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Apakah anda yakun untuk menghapus data ini?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="/hapus/kategoripembayaran/{{ $data->kategori_pembayaran }}"
+                                                        class="btn btn-danger">Ya</a>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                Apakah anda yakun untuk menghapus data ini?
-                                            </div>
-                                            <div class="modal-footer">
-                                            <a href="/hapus/kategoripembayaran/{{$data->kategori_pembayaran}}" class="btn btn-danger">Ya</a>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                                            </div>
-                                        </div>
                                         </div>
                                     </div>
-                        @endforeach
-                    </tbody>
-                </table>
-                {{ $kapem->links('pagination::tailwind') }}
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $kapem->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>
-</div>
