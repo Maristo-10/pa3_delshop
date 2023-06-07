@@ -20,7 +20,7 @@
                     <select name="kategori_layanan" id="kategori_layanan" class="form-control">
                         <option selected disabled>{{$metpem->kapem}}</option>
                         @foreach ($kapem as $data)
-                            <option value="{{ $data->kategori_pembayaran }}">{{ $data->kategori_pembayaran }}</option>
+                            <option value="{{ $data->id_kapem }}">{{ $data->kategori_pembayaran }}</option>
                         @endforeach
                     </select>
                     <script type="text/javascript">
