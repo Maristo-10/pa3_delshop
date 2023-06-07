@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="nama_layanan">Nama Layanan</label>
-                    <input type="text" name="nama_layanan" id="nama_layanan" class="form-control" value="{{$metpem->nama_layanan}}">
+                    <input type="text" name="layanan" id="layanan" class="form-control" value="{{$metpem->layanan}}">
                 </div>
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="no_layanan">Nomor Pembayaran</label>

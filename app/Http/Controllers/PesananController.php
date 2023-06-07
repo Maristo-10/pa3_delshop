@@ -94,15 +94,6 @@ class PesananController extends Controller
             $pesanan->save();
 
         }
-
-        if(empty($cek_pesanan_c)){
-            $pesanan = new Pesanan;
-            $pesanan->user_id = Auth::user()->id;
-            $pesanan->tanggal = $tanggal;
-            $pesanan->total_harga = 0;
-            $pesanan->status = 'checkout';
-            $pesanan->save();
-        }
         if (empty($cek_pesanan_c)) {
             $pesanan = new Pesanan;
             $pesanan->user_id = Auth::user()->id;
@@ -702,6 +693,7 @@ class PesananController extends Controller
 
     public function addCh(Request $request, $id)
     {
+        $detail = DetailPesanan::find($id);
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $pesanan_baru->id)->first();
 
@@ -755,10 +747,8 @@ class PesananController extends Controller
         $pes->update();
         // $cek_pesanan_detail = DetailPesanan::where('id', $id)->where('pesanan_id', $cek_pesanan->id)->first();
 
-
-
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
-        $pesanan->total_harga = $pesanan->total_harga + $produk->harga * $request->jumlah;
+        $pesanan->total_harga = $pesanan->total_harga + $detail->jumlah_harga;
         $pesanan->update();
         return redirect()->route('pembeli.keranjang');
     }
