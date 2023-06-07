@@ -21,38 +21,17 @@
             <!-- Size Start -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Ukuran</h5>
-                <form>
+                <form action="{{ route('ukuran.filter') }}" method="GET">
+                    @foreach ($ukuran as $index => $ukurans)
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="size-all">
-                        <label class="custom-control-label" for="size-all">Semua Ukuran</label>
-                        <!-- <span class="badge border font-weight-normal">1000</span> -->
+                        <input type="checkbox" class="custom-control-input" id="size-{{ $index }}" name="ukuran[]" value="{{ $ukurans->ukuran }}">
+                        <label class="custom-control-label" for="size-{{ $index }}">{{ $ukurans->ukuran }}</label>
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-1">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                        <!-- <span class="badge border font-weight-normal">150</span> -->
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-2">
-                        <label class="custom-control-label" for="size-2">S</label>
-                        <!-- <span class="badge border font-weight-normal">295</span> -->
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-3">
-                        <label class="custom-control-label" for="size-3">M</label>
-                        <!-- <span class="badge border font-weight-normal">246</span> -->
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-4">
-                        <label class="custom-control-label" for="size-4">L</label>
-                        <!-- <span class="badge border font-weight-normal">145</span> -->
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="size-5">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                        <!-- <span class="badge border font-weight-normal">168</span> -->
-                    </div>
+                    @endforeach
+                    <button type="submit">Filter</button>
                 </form>
+
+
             </div>
             <!-- Size End -->
 
@@ -149,3 +128,5 @@
     </div>
 </div>
 <!-- Shop End -->
+
+

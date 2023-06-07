@@ -92,6 +92,8 @@ Route::post('/reset-password', function (Request $request) {
 
 
 Route::middleware(['auth', 'isPembeli'])->group(function () {
+    // filter ukuran
+    Route::get('/ukuran/filter', [HomeController::class, 'produkFilterUkuran'])->name('ukuran.filter');
     Route::get('/home', [HomeController::class, 'index'])->name('frontend.dashboard-pembeli');
     Route::get('/produk/cari', [HomeController::class, 'cariProduk']);
     Route::get('/list-produk', [HomeController::class, 'produk'])->name('pembeli.viewproduk');

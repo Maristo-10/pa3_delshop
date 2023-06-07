@@ -130,6 +130,57 @@ class HomeController extends Controller
         ]);
     }
 
+    public function produkFilterUkuran(Request $request) {
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        if (empty($pesanan_baru)) {
+            $pesanan = 0;
+        } else {
+            $pesanan = DetailPesanan::select(DB::raw('count(id) as total'))->groupBy("pesanan_id")->where('pesanan_id', $pesanan_baru->id)->get();
+        }
+
+        $kategori = KategoriProdukModel::all();
+        $pengguna_prof = User::where('id', Auth::user()->id)->get();
+        $ukuran = UkuranModel::all();
+
+
+        if($request->input('ukuran') != null){
+            $selectedUkuran = implode(',', $request->input('ukuran'));
+            $arr = explode(',', $selectedUkuran);
+            // dd(count($arr));
+            for($i = 0; $i < count($arr); $i++) {
+                $produk = Produk::where('ukuran_produk', 'like', '%' . $arr[$i] . '%')->where('status_produk', 'Aktif')->get();
+                // $produk = Produk::where('ukuran_produk', $arr[$i])->where('status_produk', 'Aktif')
+                // ->get();
+            }
+            // dd($produk);
+
+            // dd($arr[1]);
+            // dd($arr);
+
+
+            return view('pembeli.viewproduk', [
+                'produk' => $produk,
+                'ukuran' => $ukuran,
+                'kategori' => $kategori,
+                'pesanan' => $pesanan,
+                'pesanan_baru' => $pesanan_baru,
+                'pengguna_prof' => $pengguna_prof
+            ]);
+        } else {
+            $produk = Produk::where('status_produk', 'Aktif')->get();
+            return view('pembeli.viewproduk', [
+                'produk' => $produk,
+                'ukuran' => $ukuran,
+                'kategori' => $kategori,
+                'pesanan' => $pesanan,
+                'pesanan_baru' => $pesanan_baru,
+                'pengguna_prof' => $pengguna_prof
+            ]);
+        }
+
+    }
+
     public function cariProduk2(Request $request)
     {
         $cari = $request->cari;
