@@ -111,7 +111,7 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="nama_pengguna" class="form-label">Nama Lengkap</label>
+                                            <label for="nama_pengguna" class="form-label">Nama Lengkap broth</label>
                                             <div class="input-group has-validation">
                                                 <span class="bi bi-person input-group-text"
                                                     id="inputGroupPrepend"></span>
@@ -171,7 +171,7 @@
                                             </button>
                                         </div>
                                         <div class=" row col-12 justify-content-center mt-3">
-                                            <p >Sudah Punya Akun? <a href="{{ route('login') }}" class="btn text-secondary">Buat Akun</a></p>
+                                            <p >Sudah Punya Akun? <a href="{{ route('login') }}" class="btn text-secondary">Masuk</a></p>
                                         </div>
                                     </form>
 
