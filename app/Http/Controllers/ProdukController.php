@@ -32,7 +32,7 @@ class ProdukController extends Controller
         $file->move('ProductsData', $fileName);
         Excel::import(new ProductsImport, \public_path('/ProductsData/' . $fileName));
 
-        return redirect()->route('admin.kelolaproduk')->with('success', 'Data imported successfully!');
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data sukses diimport!');
     }
 
     public function viewImportProduct()
@@ -42,7 +42,7 @@ class ProdukController extends Controller
 
     public function produk()
     {
-        $produk = Produk::where('status_produk', 'Aktif')->paginate(5);
+        $produk = Produk::paginate(5);
         return view('admin.kelolaproduk', compact('produk'));
     }
     // filter category
@@ -243,7 +243,7 @@ class ProdukController extends Controller
     public function produknonaktif()
     {
         $produk = Produk::where('status_produk', 'Non-Aktif')->paginate(5);
-        return view('admin.kelolaproduknonaktif', ['produk' => $produk])->with('success', 'Data Produk Berhasil Di Tambahkan');
+        return view('admin.kelolaproduknonaktif', ['produk' => $produk])->with('success', 'Data Produk Berhasil Di Non-aktifkan');
     }
 
     public function ubahstatusprodukaktf($id)
@@ -251,7 +251,7 @@ class ProdukController extends Controller
         $produk = Produk::find($id);
         $produk->update(['status_produk' => 'Aktif']);
 
-        return redirect()->route('admin.kelolaproduknonaktif')->with('success', 'Data Produk Berhasil Di Tambahkan');;
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data Produk Berhasil Di Aktifkan');;
     }
 
     public function getUkuran(Request $request)

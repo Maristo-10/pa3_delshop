@@ -126,7 +126,7 @@ class MetodePembayaranController extends Controller
             }
         }
 
-        return redirect()->route("admin.kelolametodepembayaran")->with('success', 'Proses Berhasil di lakukan');
+        return redirect()->route("admin.kelolametodepembayaran")->with('success2', 'Proses Berhasil di lakukan');
     }
 
     public function hapuskapem($id)
@@ -134,7 +134,7 @@ class MetodePembayaranController extends Controller
         $kapem = KategoriPembayaran::where('kategori_pembayaran', $id);
         $kapem->delete();
 
-        return redirect()->route('admin.kelolametodepembayaran')->with('success', 'Data Berhasil di hapus');
+        return redirect()->route('admin.kelolametodepembayaran')->with('success2', 'Data Berhasil di hapus');
     }
 
     public function ubkapem($id)
@@ -156,7 +156,7 @@ class MetodePembayaranController extends Controller
 
         $kapem->update($request->except(['_token']));
 
-        return redirect()->route('admin.kelolametodepembayaran')->with('success', 'Proses Berhasil di lakukan');
+        return redirect()->route('admin.kelolametodepembayaran')->with('success2', 'Proses Berhasil di lakukan');
     }
     /**
      * Display a listing of the resource.

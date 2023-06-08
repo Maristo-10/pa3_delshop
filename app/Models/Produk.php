@@ -18,6 +18,10 @@ class Produk extends Model
         'deskripsi',
         'status_produk',
         'produk_unggulan',
-        'role_pembeli', 
-        'kategori_produk'];
+        'role_pembeli',
+        'kategori_produk',
+        'ukuran_produk',
+        'warna',
+        'angkatan'
+    ];
 }
