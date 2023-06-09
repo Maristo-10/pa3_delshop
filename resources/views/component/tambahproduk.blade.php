@@ -132,7 +132,7 @@
             </div>
             <div class="form-group col-12 col-md-12">
                 <div class="card-body d-sm-flex justify-content-between float-right">
-                    <small class="bi bi-info-circle fw-bold text-danger fst-italic" > Data Tambahan bersifat optional. Hanya untuk produk yang memiliki spesifikasi angkatan, warna dan ukuran</small>
+                    <small class="bi bi-info-circle fw-bold text-danger fst-italic"> Data Tambahan bersifat optional. Hanya untuk produk yang memiliki spesifikasi angkatan, warna dan ukuran</small>
                 </div>
             </div>
         </div>
