@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <h1>Ubah Berita</h1>
+    <p class="fs-1 ">Ubah Berita</p>
 @endsection
 
 @section('content')

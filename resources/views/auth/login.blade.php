@@ -7,15 +7,15 @@
                 <div class="col-lg-5 col-md-8 d-flex flex-column align-items-center ">
                     <div class="card mb-2">
                         <div class="card mb-3 mt-3">
+                            @if (session('success'))
                             <div class="card-body">
-                                @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
-                                @endif
                             </div>
+                            @endif
+                            @if ($errors->any())
                             <div class="card-body">
-                                @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>
                                             @foreach ($errors->all() as $error)
@@ -23,10 +23,9 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                @endif
                             </div>
+                            @endif
                             <div class="card-body">
-
                                 <div class="row mb-3 text-center">
                                     <div class="col">
                                         <a href="{{ asset('/') }}"><img src={{ asset('imageStatis/del-shop.png') }}

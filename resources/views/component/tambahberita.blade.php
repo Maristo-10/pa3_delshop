@@ -1,3 +1,4 @@
+<a href="/kelola-berita" class="btn btn-warning mb-4">Kembali</a>
 <div class="col-12 p-3 bg-white shadow rounded">
     {{-- TODO: Controller not ready yet --}}
     <form class="mt-3" action="/prosestambahberita" method="post" enctype="multipart/form-data">

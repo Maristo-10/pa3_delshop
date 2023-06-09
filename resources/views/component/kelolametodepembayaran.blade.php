@@ -28,14 +28,14 @@
 </script>
 
 <div class="row">
-    <div class="col col-8">
+    <div class="col col-7">
         <small>
             <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
                 <i class="fa fa-plus"></i>
                 <span><small>Tambah Data Metode Pembayaran</small></span>
             </a>
         </small>
-        <div class="col-12">
+        <div class="">
             <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
                 <div class="card">
                     <div class="card-body">
@@ -143,8 +143,8 @@
             </div>
         </div>
     </div>
-        <div class="col col-4 shadow-sm rounded bg-white">
-            <button class="btn btn-success text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
+        <div class="col col-5 shadow-sm rounded bg-white">
+            <button class="btn btn-success text-white mb-3" onclick="eventBtnt();">
                 <i class="bi bi-eye-fill"></i>
                 <span><small>Tambah Kategori Pembayaran</small></span>
             </button>
@@ -202,9 +202,9 @@
                         <thead>
                             <tr>
                                 <!-- <th scope="col">Pilihan</th> -->
-                                <th scope="col" class="col-md-1">No</th>
-                                <th scope="col" class="col-md-3">Kategori Pembayaran</th>
-                                <th scope="col" class="col-md-3">Aksi</th>
+                                <th scope="col">No</th>
+                                <th scope="col">Kategori Pembayaran</th>
+                                <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
                         </thead>

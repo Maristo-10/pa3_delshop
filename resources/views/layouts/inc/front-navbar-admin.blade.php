@@ -18,15 +18,13 @@
         display: block;
     }
 </style>
-@push('styles')
-@endpush
 <div class="d-flex align-items-center justify-content-between">
     <a href="/dashboard" class="logo d-flex align-items-center">
         <div class="col-4">
             <img src={{ asset('imageStatis/del-shop.png') }} alt="" style="width: 80px; max-height:80px; ">
         </div>
         <div class="col-4">
-            <span class="d-none d-lg-block">
+            <span class="d-none d-lg-block mt-3">
                 <p style="text-align:center">DELSHOP</p>
             </span>
         </div>
@@ -80,7 +78,7 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"
                         href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         v-pre>
-                        <img src="/imageStatis/del-shop.png" alt="Profile" class=""
+                        <img src="/imageStatis/admin.png" alt="Profile" class=""
                             style="width: 40px; height:45px">
                         <span class="d-none d-md-block dropdown-toggle ps-2 ml-2">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->

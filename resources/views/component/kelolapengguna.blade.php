@@ -20,8 +20,8 @@
             <span>Tambah Data Pengguna</span>
         </a>
     </h6>
-    <h6 class="col-md-3 mb-0">
-        <a href="" class="btn btn-success text-white" data-bs-target="#components-laporan-bulanan"
+    <h6 class="col-md-4 mb-0">
+        <a href="" class="btn btn-info text-white" data-bs-target="#components-laporan-bulanan"
             data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
@@ -32,25 +32,6 @@
 <div class="row justify-content-center">
     <div class="col-8 ">
         <div class="card">
-            {{-- <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
-                <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
-                    @csrf
-                        <div class="row">
-                            <div class="col">
-                                <div class="col-6 mb-5">
-                                    <div class="">
-                                        <label for="formFile" class="form-label">Masukkan Data Pengguna </label>
-                                        <input type="file" name="file" required class="col-md-8 mb-3">
-                                    </div>
-                                    <div class="col-2 ">
-                                        <button class="btn btn-primary" name="cari-penjualan" id="cari-penjualan">Import</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </form> --}}
-
-                {{--  --}}
                 <form action="{{ route('tambahpengguna.import') }}" method="POST" enctype="multipart/form-data" class="p-3">
                     @csrf
                     <div class="row nav-content collapse justify-content-center align-items-center mt-4" id="components-laporan-bulanan" data-bs-parent="#form-laporan">
@@ -70,8 +51,8 @@
     </div>
 </div>
 
-<div class="row col-10 shadow-sm rounded mt-3 bg-white p-3">
-    <div class="col-12 mt-1">
+<div class="row shadow-sm rounded bg-white p-3">
+    <div class="col-md">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
             <div class="card">
                 <div class="card-body">

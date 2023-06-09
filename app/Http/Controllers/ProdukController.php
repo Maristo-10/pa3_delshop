@@ -42,7 +42,11 @@ class ProdukController extends Controller
 
     public function produk()
     {
-        $produk = Produk::paginate(5);
+
+        $produk = Produk::orderByDesc('id_produk')->paginate(10);
+
+        // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
+
         return view('admin.kelolaproduk', compact('produk'));
     }
     // filter category
@@ -138,10 +142,6 @@ class ProdukController extends Controller
         $validatedData = $request->validate([
             'gambar_produk' => 'image|file|max:10000'
         ]);
-
-
-
-
 
         // dd($options);
 
@@ -242,7 +242,7 @@ class ProdukController extends Controller
 
     public function produknonaktif()
     {
-        $produk = Produk::where('status_produk', 'Non-Aktif')->paginate(5);
+        $produk = Produk::where('status_produk', 'Non-Aktif')->paginate(10);
         return view('admin.kelolaproduknonaktif', ['produk' => $produk])->with('success', 'Data Produk Berhasil Di Non-aktifkan');
     }
 

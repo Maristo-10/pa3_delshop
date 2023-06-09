@@ -182,26 +182,9 @@
                                                     --- {{ $notification->data['status'] }}
                                                 @endif --}}
                                             <small>{{ $notification->data['data'] }}</small>
-                                            {{-- @if (isset($notification->data['status']))
-                                                @if ($notification->data['status'] == 'Siap Diambil')
-                                                    <a class="dropdown-item " href="{{ route('pembeli.pesanan') }}">
-                                                        <small>{{ $notification->data['data'] }}</small>
-                                                    </a>
-                                                @else
-                                                    <h1>ini else nya</h1>
-                                                @endif
-                                            @endif --}}
-
                                         </a></li>
                                     @endif
                                 @endforeach
-                                {{-- <li>
-                                    @foreach (auth()->user()->readNotifications as $notification)
-                                    <a href="#" class="dropdown-item">
-                                        <small><li class="text-secondary"> {{ $notification->data['data'] }}</li></small>
-                                    </a>
-                                    @endforeach
-                                </li> --}}
                             </ul>
                         </div>
                     @endguest
@@ -342,19 +325,20 @@
 
 
     <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered p-3">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Pesan</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered p-3">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Pesan</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-cart-fill fs-1"></i>
+                <h5>Keranjang Anda Masih Kosong</h5>
+            </div>
         </div>
-        <div class="modal-body text-center">
-          <h5>Keranjang Anda Masih Kosong</h5>
         </div>
-      </div>
     </div>
-  </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

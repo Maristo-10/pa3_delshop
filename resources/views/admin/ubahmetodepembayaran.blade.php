@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <h1>Ubah Metode Pembayaran</h1>
+    <p class="fs-1 fw-bolder">Ubah Metode Pembayaran</p>
 @endsection
 
 @section('content')

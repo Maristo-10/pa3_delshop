@@ -10,9 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    <title>Ubah Produk</title>
 
-
+    <a href="/kelola-metode-pembayaran" class="btn btn-warning mb-4">Kembali</a>
     <div class="col-12 p-3 bg-white shadow rounded">
         {{-- TODO: Controller not ready yet --}}
         <form class="mt-3" action="/prosesubahproduk/{{ $produk->id_produk }}" method="post"

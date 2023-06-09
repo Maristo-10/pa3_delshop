@@ -26,10 +26,6 @@
     </div>
 </div>
 
-
-
-
-
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
@@ -65,8 +61,8 @@
                                         echo number_format($angka, 0, ',', '.');
                                         ?></td>
                                     <td>{{ $data->nama_pengambil }}</td>
-                                    <td>
-                                       {{$data->status}}
+                                    <td class="fw-semibold">
+                                        {{$data->status}}
                                     </td>
                                     <td>
                                         <a type="button" class="bi bi-exclamation-circle btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}"></a>

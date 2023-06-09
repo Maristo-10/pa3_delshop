@@ -19,9 +19,8 @@
             <span>Tambah Data Produk</span>
         </a>
     </h6>
-    <h6 class="col-md-3 mb-0">
-        <a href="" class="btn btn-info text-white py-2  " data-bs-target="#components-laporan-bulanan"
-            data-bs-toggle="collapse">
+    <h6 class="col-md-4 mb-0">
+        <a href="" class="btn btn-info text-white py-2  " data-bs-target="#components-laporan-bulanan" data-bs-toggle="collapse">
             <i class="fa fa-plus"></i>
             <span>Import data excel</span>
         </a>
