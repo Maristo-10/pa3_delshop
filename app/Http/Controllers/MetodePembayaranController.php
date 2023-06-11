@@ -104,9 +104,15 @@ class MetodePembayaranController extends Controller
             'layanan' => $request->layanan,
             'no_layanan' => $request->no_layanan,
             'nama_pemilik' => $request->nama_pemilik,
-            'kategori_layanan' => $id_kapem,
-            'kapem' => $kapem
+
         ]);
+
+        if($id_kapem != null){
+            $metpem->update([
+                'kategori_layanan' => $id_kapem,
+                'kapem' => $kapem
+            ]);
+        }
 
         return redirect()->route('admin.kelolametodepembayaran')->with('success', 'Proses Berhasil di lakukan');
     }

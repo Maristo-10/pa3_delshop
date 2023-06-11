@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Mockery\Matcher\Not;
 use App\Models\Corousel;
+use App\Models\GantiRoles;
 
 class HomeController extends Controller
 {
@@ -45,13 +46,15 @@ class HomeController extends Controller
         }
 
         $produk = Produk::all()->where('status_produk', 'Aktif');
-        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status', "Aktif");
+        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status_produk', "Aktif");
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
         $kategori = KategoriProdukModel::all();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
         $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
         $corousel_f = Corousel::where('status', 1)->first();
         $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
+
+        $header = User::where('role_pengguna', "Admin")->first();
 
         return view('frontend.dashboard-pembeli', [
             'kategori' => $kategori,
@@ -64,7 +67,8 @@ class HomeController extends Controller
             'berita' => $berita,
             'berita_2' => $berita_2,
             'corousel_f'=>$corousel_f,
-            'corousel'=>$corousel
+            'corousel'=>$corousel,
+            'header'=>$header
         ]);
     }
 
@@ -291,6 +295,12 @@ class HomeController extends Controller
         //Pesanan Harian
         $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->where('pesanans.status', '!=', 'checkout')->paginate(10);
 
+        $konfirmasi_pengguna = GantiRoles::where('status', 'Menunggu')->count();
+
+        $barang_habis = Produk::where('jumlah_produk', "<=", 5)->where('status_produk', 'Aktif')->count();
+
+        $pesanan_datang = Pesanan::where('status', 'Sedang Diproses')->orWhere('status', 'Ditangguhkan')->count();
+
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
             'totalpemasukan' => $totalpemasukan,
@@ -305,7 +315,10 @@ class HomeController extends Controller
             'jumlahTangguh'=>$jumlahTangguh,
             'jumlahBatal'=>$jumlahBatal,
             'date'=>$date,
-            'pesanan_harian'=>$pesanan_harian
+            'pesanan_harian'=>$pesanan_harian,
+            'konfirmasi_pengguna'=>$konfirmasi_pengguna,
+            'barang_habis'=>$barang_habis,
+            'pesanan_datang'=>$pesanan_datang
         ]);
     }
 }

@@ -387,6 +387,7 @@ class PesananController extends Controller
             ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('status', '!=', 'keranjang')
             ->where('status', '!=', 'checkout')
+            ->orderBy('tanggal', 'desc')
             ->paginate(5);
 
         return view('admin.kelolapesanan', [
