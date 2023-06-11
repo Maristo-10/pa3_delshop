@@ -92,7 +92,6 @@ class PesananController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->total_harga = 0;
             $pesanan->save();
-
         }
         if (empty($cek_pesanan_c)) {
             $pesanan = new Pesanan;
@@ -279,6 +278,13 @@ class PesananController extends Controller
             ]);
         }
 
+        $pesanan = new Pesanan;
+        $pesanan->user_id = Auth::user()->id;
+        $pesanan->tanggal = $tanggal;
+        $pesanan->total_harga = 0;
+        $pesanan->status = 'checkout';
+        $pesanan->save();
+
         User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
         return redirect()->route('frontend.dashboard-pembeli');
     }
@@ -421,7 +427,7 @@ class PesananController extends Controller
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
             'jumlah_pesanan' => $jumlah_pesanan,
-            'kontak'=>$kontak
+            'kontak' => $kontak
         ]);
     }
     public function ubahstatus($id)
@@ -455,7 +461,7 @@ class PesananController extends Controller
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
             'jumlah_pesanan' => $jumlah_pesanan,
-            'kontak'=>$kontak
+            'kontak' => $kontak
         ]);
     }
 
