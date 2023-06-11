@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <a href="/kelola-metode-pembayaran" class="btn btn-secondary mb-4">Kembali</a>
+    <a href="/produks" class="btn btn-secondary mb-4">Kembali</a>
     <div class="col-12 p-3 bg-white shadow rounded">
         {{-- TODO: Controller not ready yet --}}
         <form class="mt-3" action="/prosesubahproduk/{{ $produk->id_produk }}" method="post"

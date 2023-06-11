@@ -139,6 +139,9 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
     //Tempat Pengambilan
     Route::get('/pengambilanbarang', [PesananController::class,'tempat'])->name('pembeli.tempat');
 
+    //batalkan pesanan
+    Route::get('/batalkan-pesanan-pembeli/{id}',[PesananController::class, 'batalPes'])->name('batalkanPesanan');
+
 
 });
 
@@ -221,4 +224,5 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/kelola-permintaan-roles', [UserController::class, 'kelolaReq'])->name('admin.kelolagantirole');
     Route::post('/setuju/ganti/role/{id}',[UserController::class, 'setuju'])->name('admin.setuju');
     Route::post('/tolak/ganti/role/{id}',[UserController::class, 'tidakSetuju'])->name('admin.tolak');
+
 });

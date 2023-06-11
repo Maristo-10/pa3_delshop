@@ -315,6 +315,8 @@ class HomeController extends Controller
 
         $pesanan_datang = Pesanan::where('status', 'Sedang Diproses')->orWhere('status', 'Ditangguhkan')->count();
 
+        $pengguna = User::count();
+
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
             'totalpemasukan' => $totalpemasukan,
@@ -332,7 +334,8 @@ class HomeController extends Controller
             'pesanan_harian'=>$pesanan_harian,
             'konfirmasi_pengguna'=>$konfirmasi_pengguna,
             'barang_habis'=>$barang_habis,
-            'pesanan_datang'=>$pesanan_datang
+            'pesanan_datang'=>$pesanan_datang,
+            'pengguna'=> $pengguna
         ]);
     }
 }

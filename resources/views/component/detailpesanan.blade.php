@@ -23,17 +23,18 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-11">
+            <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
+            <br>
             @foreach ($pembayaran as $data)
                 @if (Route::is('admin.ubahstatus', $data->id))
-                    <div class="card card-registration card-registration-2 col-md-5 d-flex justify-content-center"
+                    <div class="card card-registration card-registration-2 col-md-4 d-flex justify-content-center p-3"
                         style="border-radius: 15px;">
                         <form action="/proses/ubah/status/{{ $data->id }}" method="POST">
                             @csrf
                             <div class="card-body mt-4">
                                 <div class="row mb-3">
                                     <p class="col fs-5 fw-bolder">Status :</p>
-                                    {{-- <h6 class="col col-4 mt-1" style="font-weight: bold">Status :</h6> --}}
-                                    <select class="col form-control form-control-sm" name="status" id="status" style="font-weight: bold">
+                                    <select class="col form-control form-control-md col-12 mt-2 ml-2" name="status" id="status" style="font-weight: bold">
                                         @foreach ($pembayaran as $data)
                                             <option selected disabled>{{ $data->status }}</option>
                                         @endforeach
@@ -77,7 +78,7 @@
                 </div>
             @endif
 
-        <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
+
 
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">

@@ -77,7 +77,7 @@
                                         <i class="bi bi-cart-fill fs-1 "></i>
                                         <p class="fs-1">Data Pesanan Anda Kosong</p></td>
                                 </tr>
-    
+
                                 @else
                                     @foreach ($pesanan_kapem as $data)
                                         <tr>
@@ -94,13 +94,13 @@
                                             <td>
                                                 <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                                     class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-                                                <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
+                                                <a href="/batalkan-pesanan-pembeli/{{$data->id}}" title="Batalkan Pesanan"
                                                     class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @endif
-    
+
                             </tbody>
                         </table>
                     </div>

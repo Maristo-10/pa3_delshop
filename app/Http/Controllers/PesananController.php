@@ -833,4 +833,14 @@ class PesananController extends Controller
             'pesanan_kapem' => $pesanan_kapem
         ]);
     }
+
+    public function batalPes($id){
+        $pesanan = Pesanan::find($id);
+
+        $pesanan->update([
+            'status' => 'Dibatalkan',
+        ]);
+
+        return redirect()->route('pembeli.pesanan')->with('success', 'Pesanan Berhasil Dibatalkan');
+    }
 }

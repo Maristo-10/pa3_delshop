@@ -99,8 +99,8 @@
                                 {{-- <th scope="col">Kategori Pembeli</th> --}}
                                 {{-- <th scope="col">Kategori Produk</th> --}}
                                 <th scope="col">Produk Unggulan</th>
-                                <th scope="col">Detail</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
@@ -125,12 +125,12 @@
                                     {{-- <td>{{ $data->kategori_produk }}</td> --}}
                                     <td>{{ $data->produk_unggulan }}</td>
                                     {{-- <td>{{ $data->deskripsi }}</td> --}}
+                                    <td>{{ $data->status_produk }}</td>
                                     <td>
                                         <a type="button" class="bi bi-exclamation-circle btn btn-info"
                                             data-bs-toggle="modal"
                                             data-bs-target="#exampleModal{{ $data->id_produk }}"></a>
                                     </td>
-                                    <td>{{ $data->status_produk }}</td>
                                     <td>
                                         <a href="/ubahproduk/{{ $data->id_produk }}" title="Ubah Data"
                                             class="bi bi-pencil-square btn btn-warning " style="font-size: 8px"></a>
