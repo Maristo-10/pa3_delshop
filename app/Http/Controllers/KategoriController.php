@@ -13,7 +13,7 @@ class KategoriController extends Controller
     }
 
     public function kategoriproduk(){
-        $kategoriproduk = KategoriProdukModel::paginate(2);
+        $kategoriproduk = KategoriProdukModel::paginate(10);
         return view('admin.kelolakategoriproduk',compact('kategoriproduk'));
     }
 

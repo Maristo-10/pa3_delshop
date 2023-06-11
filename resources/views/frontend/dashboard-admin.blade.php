@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-xxl-6 col-md-4">
                         <div class="card info-card">
                             <div class="card-body my-3">
@@ -309,7 +309,6 @@
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-<<<<<<< Updated upstream
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">ID Pesanan</h1>
                                                     </div>
@@ -317,10 +316,6 @@
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">ID Pesanan</label>
                                                             <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kode}}" disabled>
-=======
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">ID Pesanan</h1>
->>>>>>> Stashed changes
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="mb-3">

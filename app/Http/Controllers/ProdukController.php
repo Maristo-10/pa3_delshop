@@ -291,6 +291,15 @@ class ProdukController extends Controller
         return response()->json($ukuran);
     }
 
+    public function cariDetailPenjualanProduk(Request $request) {
+        $data = $request->cari;
+        $produk = Produk::where('nama_produk', 'like', '%' . $data . '%')->where('status_produk', 'Aktif')->paginate(10);
+        // dd($produk);
+        return view('admin.detailpenjualanproduk', [
+            'produk' => $produk,
+        ]);
+    }
+
     public function detailpenjualanproduk()
     {
         $now = Carbon::now()->format('Y');

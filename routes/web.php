@@ -214,6 +214,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
     Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
     Route::get('/detail-penjualan-produk',[ProdukController::class, 'detailpenjualanproduk'])->name('admin.detailpenjualanproduk');
+    Route::get('/detail-penjualan-produk/cari',[ProdukController::class, 'cariDetailPenjualanProduk'])->name('admin.detailpenjualanprodukcari');
 
     //kelola ganti roles
     Route::get('/kelola-permintaan-roles', [UserController::class, 'kelolaReq'])->name('admin.kelolagantirole');
