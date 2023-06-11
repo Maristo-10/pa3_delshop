@@ -307,7 +307,8 @@ class ProdukController extends Controller
             })
             ->leftJoin('pesanans', function ($join) {
                 $join->on('pesanandetails.pesanan_id', '=', 'pesanans.id')
-                    ->where('pesanans.status', '=', 'Selesai');
+                    ->where('pesanans.status', '=', 'Selesai')
+                    ->where(DB::raw("Year(pesanans.tanggal)"), Carbon::now()->format('Y'));
             })
             ->select('produk.nama_produk','produk.harga', 'produk.jumlah_produk', 'produk.deskripsi', 'produk.kategori_produk', 'produk.ukuran_produk','produk.warna', 'produk.angkatan', 'produk.id_produk','produk.gambar_produk','produk.role_pembeli')
             ->selectRaw('SUM(CASE WHEN YEAR(pesanans.tanggal) = '.$now.' THEN COALESCE(pesanandetails.jumlah, 0) ELSE 0 END) AS total')
@@ -323,7 +324,6 @@ class ProdukController extends Controller
             ->selectRaw('SUM(CASE WHEN MONTH(pesanans.tanggal) = 10 THEN COALESCE(pesanandetails.jumlah, 0) ELSE 0 END) AS oktober')
             ->selectRaw('SUM(CASE WHEN MONTH(pesanans.tanggal) = 11 THEN COALESCE(pesanandetails.jumlah, 0) ELSE 0 END) AS november')
             ->selectRaw('SUM(CASE WHEN MONTH(pesanans.tanggal) = 12 THEN COALESCE(pesanandetails.jumlah, 0) ELSE 0 END) AS desember')
-            ->where(DB::raw("Year(pesanans.tanggal)"), $now)
             ->groupBy('id_produk','produk.nama_produk', 'produk.harga', 'produk.jumlah_produk', 'produk.deskripsi', 'produk.kategori_produk', 'produk.ukuran_produk','produk.warna', 'produk.angkatan','produk.gambar_produk','produk.role_pembeli')
             ->orderBy('total', 'DESC')
             ->paginate(10);
