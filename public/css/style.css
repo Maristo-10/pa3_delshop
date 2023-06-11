@@ -32,7 +32,6 @@
   # Main
   --------------------------------------------------------------*/
   #main {
-    margin-top: 60px;
     padding: 20px 30px;
     transition: all 0.3s;
   }
@@ -365,11 +364,6 @@
     line-height: 1;
   }
 
-  @media (min-width: 1200px) {
-    /* .logo {
-      width: 280px;
-    } */
-  }
 
   .logo img {
     max-height: 26px;
@@ -620,12 +614,6 @@
     background-color: #fff;
   }
 
-  @media (max-width: 1199px) {
-    /* .sidebar {
-      left: -300px;
-    } */
-  }
-
   .sidebar::-webkit-scrollbar {
     width: 5px;
     height: 8px;
@@ -636,22 +624,12 @@
     background-color: #aab7cf;
   }
 
-  /* @media (min-width: 1200px) {
-
-    #footer {
-      margin-left: 300px;
-    }
-  } */
-
   @media (max-width: 1199px) {
     .toggle-sidebar .sidebar {
       left: 0;
     }
   }
 
-  @media (min-width: 1200px) {
-
-  }
 
   .sidebar-nav {
     padding: 0;
