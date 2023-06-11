@@ -56,13 +56,13 @@
                             <tr>
                                 <!-- <th scope="col">Pilihan</th> -->
                                 <th scope="col" class="">No</th>
-                                <th scope="col" class="col-md-2">Tanggal Pesanan</th>
-                                <th scope="col" class="col-md-2">Total Harga</th>
-                                <th scope="col" class="col-md-2">Nama Pengambil</th>
-                                <th scope="col" class="col-md-1">Metode Pembayaran</th>
-                                <th scope="col" class="col-md-1">Nama Layanan</th>
-                                <th scope="col" class="col-md-2">Status</th>
-                                <th scope="col" class="col-md-2">Aksi</th>
+                                <th scope="col" class="">Tanggal Pesanan</th>
+                                <th scope="col" class="">Total Harga</th>
+                                <th scope="col" class="">Nama Pengambil</th>
+                                <th scope="col" class="">Metode Pembayaran</th>
+                                <th scope="col" class="">Nama Layanan</th>
+                                <th scope="col" class="">Status</th>
+                                <th scope="col" class="">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
                             </tr>
                         </thead>

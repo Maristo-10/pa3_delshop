@@ -1,52 +1,26 @@
-@push('scripts')
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            const toggleBtn = document.querySelector(".toggle-sidebar-btn");
-            const sidebar = document.querySelector(".sidebar");
-
-            toggleBtn.addEventListener("click", function() {
-                sidebar.classList.toggle("active");
-            });
-        });
-    </script>
-@endpush
-<style>
-    .sidebar.active {
-        display: none;
-    }
-    .sidebar {
-        display: block;
-    }
-</style>
-<div class="d-flex align-items-center justify-content-between">
-    <a href="/dashboard" class="logo d-flex align-items-center">
+<div class="d-flex justify-content-between">
+    <a href="/dashboard-admin" class="logo d-flex align-items-center">
         <div class="col-4">
             <img src={{ asset('imageStatis/del-shop.png') }} alt="" style="width: 80px; max-height:80px; ">
         </div>
         <div class="col-4">
-            <span class="d-none d-lg-block mt-3">
+            <span class="d-none d-lg-block mt-1 ml-4">
                 <p style="text-align:center">DELSHOP</p>
             </span>
         </div>
     </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
+    <span style="font-size:30px;cursor:pointer" class="mt-1 align-items-center" onclick="openNav()" onclick="closeNav()">&#9776;</span>
 </div><!-- End Logo -->
-
-{{-- <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </form>
-</div> --}}
 
 <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
+        {{-- <li class="nav-item d-block d-lg-none">
             <a class="nav-link nav-icon search-bar-toggle " href="#">
                 <i class="bi bi-search"></i>
             </a>
-        </li><!-- End Search Icon-->
+        </li> --}}
+        <!-- End Search Icon-->
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons ml-auto">

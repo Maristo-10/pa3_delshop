@@ -810,7 +810,7 @@ class PesananController extends Controller
         $cari = $request->sidPes;
 
         $pesanan_kapem = DB::table('pesanans')->where('kode', $cari)->join('kategoripembayarans', 'kategoripembayarans.id_kapem', '=', 'pesanans.metode_pembayaran')
-            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->paginate(5);
+            ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->paginate(1);
 
         return view('admin.kelolapesanan', [
             'pesanan_kapem' => $pesanan_kapem

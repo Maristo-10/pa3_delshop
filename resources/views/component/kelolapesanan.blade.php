@@ -17,9 +17,9 @@
         <div class="col-md">
             <div class="search-bar">
                 <form class="search-form d-flex align-items-center" method="GET" action="/kelola-pesanan/search">
-                    <input type="text" name="sidPes" id="sidPes" placeholder="Cari Berdasarkan ID Pesanan" title="Masukkan ID Pesanan" class="form-control col-4">
+                    <input type="text" name="sidPes" id="sidPes" placeholder="Cari Berdasarkan ID Pesanan" title="Masukkan ID Pesanan" class="form-control w-25" >
                     <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                    <a href="/kelola-pesanan" class="btn btn-secondary text-light">Reset</a>
+                    <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-3">Reset</a>
                 </form>
             </div>
         </div> 
@@ -37,11 +37,11 @@
                                 <!-- <th scope="col">Pilihan</th> -->
                                 <th scope="col">No</th>
                                 <th scope="col">ID Pesanan</th>
-                                <th scope="col">Tanggal Pesanan</th>
+                                <th scope="col" >Tanggal Pesanan</th>
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Nama Pengambil</th>
                                 {{-- <th scope="col" class="col-md-2">Bukti Pembayaran</th> --}}
-                                <th scope="col">Status</th>
+                                <th scope="col" >Status</th>
                                 <th scope="col">Detail Pesanan</th>
                                 <th scope="col">Aksi</th>
                                 <!-- <th scope="col">Lampiran</th> -->
@@ -55,12 +55,12 @@
                                 <tr>
                                     <td>{{ $index + $pesanan_kapem->firstItem() }}</td>
                                     <td>{{ $data->kode }}</td>
-                                    <td>{{ $data->tanggal }}</td>
+                                    <td >{{ $data->tanggal }}</td>
                                     <td>Rp. <?php
                                         $angka = $data->total_harga;
                                         echo number_format($angka, 0, ',', '.');
                                         ?></td>
-                                    <td>{{ $data->nama_pengambil }}</td>
+                                    <td class="">{{ $data->nama_pengambil }}</td>
                                     <td class="fw-semibold">
                                         {{$data->status}}
                                     </td>

@@ -188,38 +188,6 @@
                                 <textarea name="tentang" class="form-control" id="tentang" style="height: 100px">{{ $data->tentang }}</textarea>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter
-                                Profile</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="twitter" type="text" class="form-control" id="Twitter"
-                                    value="{{ $data->twitter }}">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
-                                Profile</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="facebook" type="text" class="form-control" id="Facebook"
-                                    value="{{ $data->facebook }}">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="instagram" class="col-md-4 col-lg-3 col-form-label">Instagram
-                                Profile</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="instagram" type="text" class="form-control" id="instagram"
-                                    value="{{ $data->instagram }}">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin
-                                Profile</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                                    value="{{ $data->linkedin }}">
-                            </div>
-                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>

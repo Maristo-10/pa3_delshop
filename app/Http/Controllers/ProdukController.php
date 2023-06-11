@@ -293,7 +293,7 @@ class ProdukController extends Controller
 
     public function cariDetailPenjualanProduk(Request $request) {
         $data = $request->cari;
-        $produk = Produk::where('nama_produk', 'like', '%' . $data . '%')->where('status_produk', 'Aktif')->paginate(5);
+        $produk = Produk::where('nama_produk', 'like', '%' . $data . '%')->where('status_produk', 'Aktif')->paginate(10);
         // dd($produk);
         return view('admin.detailpenjualanproduk', [
             'produk' => $produk,

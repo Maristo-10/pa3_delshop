@@ -20,16 +20,16 @@
     $no = 1;
 @endphp
 
-<div class="container-fluid pt-4 h-100">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-11">
             @foreach ($pembayaran as $data)
                 @if (Route::is('admin.ubahstatus', $data->id))
-                    <div class="card card-registration card-registration-2 col-md-5  d-flex justify-content-center"
+                    <div class="card card-registration card-registration-2 col-md-5 d-flex justify-content-center"
                         style="border-radius: 15px;">
                         <form action="/proses/ubah/status/{{ $data->id }}" method="POST">
                             @csrf
-                            <div class="card-body">
+                            <div class="card-body mt-4">
                                 <div class="row mb-3">
                                     <p class="col fs-5 fw-bolder">Status :</p>
                                     {{-- <h6 class="col col-4 mt-1" style="font-weight: bold">Status :</h6> --}}
@@ -77,7 +77,7 @@
                 </div>
             @endif
 
-        <a href="/kelola-pesanan" class="btn btn-warning mb-4">Kembali</a>
+        <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
 
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">
@@ -98,9 +98,7 @@
                                 <div class="d-flex justify-content-between align-items-center mb-5">
                                     <h1 class="fw-bold mb-0 text-black p-4 fs-3">Detail Produk</h1>
                                     <h6 class="mb-0 text-muted">{{ $jumlah_pesanan->total }} Produk</h6>
-
                                 </div>
-
                                 {{-- <hr style="height:2px;border-width:0;background-color:white"> --}}
                                 <div class="row d-flex justify-content-between align-items-center"
                                     style="font-weight: bold">
@@ -165,45 +163,45 @@
                         </div>
                         @foreach ($pembayaran as $data)
                             <div class="col-lg-5 bg-secondary rounded-3 text-light">
-                                <div class="p-2 my-5">
+                                <div class="p-2 my-5 mx-4">
                                     <h4 class="fw-bold mb-2 mt-2 pt-1 fs-3"><strong>Detail Pesanan</strong></h4>
                                     <hr clas="mb-2"
                                         style="height:2px;border-width:0;background-color:white">
-                                    <div class="d-flex justify-content-between mb-2 mt-2">
-                                        <p class="text-uppercase col-7">ID Pesanan</p>
+                                    <div class="d-flex mb-2 mt-2">
+                                        <p class="text-capitalize col-7">ID Pesanan</p>
                                         <p class="fs-6 fw-bold">{{ $data->kode }}</p>
                                     </div>
                                     <div class="d-flex mb-2">
-                                        <p class="text-uppercase col-7">Jumlah Produk</p>
+                                        <p class="text-capitalize col-7">Jumlah Produk</p>
                                         <h6 class="col-5">{{ $jumlah_pesanan->total }} produk</h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
-                                        <p class="text-uppercase col-7">Harga Pesanan</p>
+                                        <p class="text-capitalize col-7">Harga Pesanan</p>
                                         <h6 class="col-5">Rp. <?php
                                         $angka = $data->total_harga;
                                         echo number_format($angka, 0, ',', '.');
                                         ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
-                                        <p class="text-uppercase col-7">Tanggal Pesanan</p>
+                                        <p class="text-capitalize col-7">Tanggal Pesanan</p>
                                         <h6 class="col-5"><?php
                                         $tgl = $data->tanggal;
                                         echo date('d F Y', strtotime($tgl));
                                         ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
-                                        <p class="text-uppercase col-7">Pengambil Pesanan</p>
+                                        <p class="text-capitalize col-7">Pengambil Pesanan</p>
                                         <h6 class="col-5">{{ $data->nama_pengambil }}</h6>
                                     </div>
                                     <h4 class="fw-bold mb-2 mt-5 fs-4">Detail Pembayaran</h4>
                                     <hr clas="mb-2"
                                         style="height:2px;border-width:0;background-color:white">
                                     <div class="d-flex justify-content-between mb-2 mt-2">
-                                        <p class="text-uppercase col-7">Metode Pembayaran</p>
+                                        <p class="text-capitalize col-7 fs-6">Metode Pembayaran</p>
                                         <h6 class="col-5 fw-bolder">{{ $data->kapem }}</h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
-                                        <p class="text-uppercase col-7">Jenis Layanan</p>
+                                        <p class="text-capitalize col-7 fs-6">Jenis Layanan</p>
                                         <h6 class="col-5">{{ $data->layanan }}</h6>
                                     </div>
                                 </div>
