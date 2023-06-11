@@ -96,6 +96,7 @@ class HomeController extends Controller
         }
 
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
@@ -107,7 +108,8 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'total_ung' => $total_ung
+            'total_ung' => $total_ung,
+            'header'=>$header
         ]);
     }
 
@@ -124,13 +126,15 @@ class HomeController extends Controller
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -161,6 +165,7 @@ class HomeController extends Controller
 
             // dd($arr[1]);
             // dd($arr);
+            $header = User::where('role_pengguna', "Admin")->first();
 
 
             return view('pembeli.viewproduk', [
@@ -169,9 +174,11 @@ class HomeController extends Controller
                 'kategori' => $kategori,
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
-                'pengguna_prof' => $pengguna_prof
+                'pengguna_prof' => $pengguna_prof,
+                'header'=>$header
             ]);
         } else {
+            $header = User::where('role_pengguna', "Admin")->first();
             $produk = Produk::where('status_produk', 'Aktif')->get();
             return view('pembeli.viewproduk', [
                 'produk' => $produk,
@@ -179,7 +186,8 @@ class HomeController extends Controller
                 'kategori' => $kategori,
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
-                'pengguna_prof' => $pengguna_prof
+                'pengguna_prof' => $pengguna_prof,
+                'header'=> $header
             ]);
         }
 
@@ -203,13 +211,15 @@ class HomeController extends Controller
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -226,12 +236,14 @@ class HomeController extends Controller
 
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.detailproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
+            'header'=>$header
         ]);
     }
 
@@ -250,12 +262,14 @@ class HomeController extends Controller
             ->where('kategoriproduk.kategori', $id)
             ->where('produk.status_produk', 'Aktif')
             ->get();
+            $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'pesanan' => $pesanan,
             'produk' => $produk,
             'kategori' => $kategori,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 

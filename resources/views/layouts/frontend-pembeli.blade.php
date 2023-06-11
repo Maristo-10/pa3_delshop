@@ -145,7 +145,7 @@
 
                         @else
                         <div class="dropdown mr-2">
-                            <a class="dropdown position-relative" href="#" role="button"
+                            <a class="dropdown " href="#" role="button"
                                 data-bs-toggle="dropdown" style="font-size: 20px" aria-expanded="false">
                                 <i class="fas fa-bell mr-3"></i>
                                 <span
@@ -280,8 +280,8 @@
                     Institut Teknologi Del
                     Jl. Sisingamangaraja, Sitoluama Laguboti, Toba Samosir Sumatera Utara, Indonesia</p>
                 <P>Kode Pos: 22381</P>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@del.ac.id</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+62 632 331234</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{$header->email}}</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{$header->no_telp}}</p>
             </div>
             <div class="col-lg-7 col-md-12">
                 <div class="row">

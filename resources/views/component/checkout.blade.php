@@ -88,10 +88,8 @@
                                                         echo number_format($angka, 0, ',', '.');
                                                         ?></h6>
                                                     </div>
-                                                    <button type="submit" name="remove-{{ $item->id }}"
-                                                        id="remove-{{ $item->id }}" method="post" hidden></button>
-                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i
-                                                            class="fas fa-trash-alt text-danger mr-4"></i></label>
+                                                    <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i class="fas fa-trash-alt text-danger mr-4"></i></label>
                                                 </div>
                                             </div>
                                         </div>
