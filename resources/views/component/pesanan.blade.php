@@ -77,11 +77,10 @@
                             @endphp
                             @if ($jumlah->total == 0)
                             <tr>
-                                <td colspan="8" class="text-muted"><p hidden>Data Pesanan Anda Masih Kosong</p></td>
+                                <td colspan="8" class="text-muted mt-3">
+                                    <i class="bi bi-cart-fill fs-1 "></i>
+                                    <p class="fs-1">Data Pesanan Anda Kosong</p></td>
                             </tr>
-                                <tr>
-                                    <td colspan="8" rowspan="2" class="text-muted fs-3">Data Pesanan Anda Masih Kosong</td>
-                                </tr>
 
                             @else
                                 @foreach ($pesanan_kapem as $data)

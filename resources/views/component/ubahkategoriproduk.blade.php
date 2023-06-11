@@ -26,7 +26,7 @@
                                             <th scope="col"class="col-md-1">No</th>
                                             <th scope="col" class="col-md-4">Gambar Kategori</th>
                                             <th scope="col" class="col-md-4">Nama Kategori</th>
-                                            <th scope="col"class="col-md-3">Aksi</th>
+                                            {{-- <th scope="col"class="col-md-3">Aksi</th> --}}
                                             <!-- <th scope="col">Lampiran</th> -->
                                         </tr>
                                     </thead>
@@ -41,14 +41,14 @@
                                                     <img src="/category-images/{{ $data->gambar_kategori }}" alt="" style="max-height: 50px">
                                                 </td>
                                                 <td>{{ $data->kategori }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <a href="/ubahkategoriproduk/{{ $data->kategori }}"
                                                         title="Ubah Data"
                                                         class=" bi bi-pencil-square btn btn-warning col-md-4 ml-3 py-2"></a>
                                                     <a href="/hapuskategoriproduk/{{ $data->kategori }}"
                                                         title="Hapus Data"
                                                         class="bi bi-trash-fill btn btn-danger col-md-4 ml-3 py-2 "></a>
-                                                </td>
+                                                </td> --}}
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -57,17 +57,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 mt-3">
+            <div class="col-md-6 mt-3">
                 <div class="card ml-5">
                     <div class="card-body">
-                        <h5 class="card-title ml-3">Ubah Data Kategori Produk</h5>
+                        <p class="card-title ml-3 fs-5">Ubah Data Kategori Produk</p>
                         @foreach ($kategoriproduk as $data)
                         <!-- Horizontal Form -->
                         <form class="mt-3" action="/prosesubahkategori/{{ $data->kategori }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="kategori" class="col-sm-5 col-form-label">
-                                    <h4>Nama Kategori</h4>
+                                    <h3 class="fs-6">Nama Kategori</h3>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" id="kategori" name="kategori"
@@ -77,7 +77,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="gambar_kategori" class="col-sm-8 col-form-label">
-                                    <h4>Gambar Kategori Produk</h4>
+                                    <h3 class="fs-6">Gambar Kategori Produk</h3>
                                 </label>
                                 <div class="col-sm-12">
                                     <input class="form-control @error('image') is invalid @enderror" type="file"

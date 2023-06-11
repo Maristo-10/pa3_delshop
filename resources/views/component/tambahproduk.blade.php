@@ -4,11 +4,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
+<a href="/produks" class="btn btn-warning mb-4">Kembali</a>
 {{-- TODO: Controller not ready yet --}}
 <form class="mb-5" action="/prosestambahproduk" method="post" enctype="multipart/form-data">
     @csrf
-    <h1>Tambah Produk</h1>
 
     <div class="col-12 mb-3 p-5 bg-white shadow rounded nav-content collapse" id="data-tambahan"
         data-bs-parent="#form-laporan">
@@ -133,7 +132,7 @@
             </div>
             <div class="form-group col-12 col-md-12">
                 <div class="card-body d-sm-flex justify-content-between float-right">
-                    <small class="bi bi-info-circle fw-bold text-danger fst-italic" > Data Tambahan bersifat optional. Hanya untuk produk yang memiliki spesifikasi angkatan, warna dan ukuran</small>
+                    <small class="bi bi-info-circle fw-bold text-danger fst-italic"> Data Tambahan bersifat optional. Hanya untuk produk yang memiliki spesifikasi angkatan, warna dan ukuran</small>
                 </div>
             </div>
         </div>

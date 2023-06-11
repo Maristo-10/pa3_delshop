@@ -129,6 +129,9 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'failed' => 'Email atau password salah.',
+    'invalid_credentials' => 'Email atau password yang Anda masukkan salah.',
+
 
     /*
     |--------------------------------------------------------------------------

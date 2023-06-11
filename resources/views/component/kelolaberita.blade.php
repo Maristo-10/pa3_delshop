@@ -41,7 +41,7 @@
 
 
 <div class="row">
-    <div class="col-10 shadow-sm rounded justify-content-center bg-white">
+    <div class="col-md shadow-sm rounded justify-content-center bg-white">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
             <div class="card">
                 <div class="card-body">

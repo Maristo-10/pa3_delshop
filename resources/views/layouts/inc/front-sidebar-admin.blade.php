@@ -50,11 +50,6 @@
                 </a>
             </li>
             <li>
-                <a href="/produks/non-aktif">
-                    <i class="bi bi-box2 fs-5"></i><span>Produk Non-Aktif</span>
-                </a>
-            </li>
-            <li>
                 <a href="/kategoriproduk">
                     <i class="bi bi-box-seam-fill fs-5"></i><span>Kelola Kategori Produk</span>
                 </a>

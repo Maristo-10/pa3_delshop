@@ -90,14 +90,36 @@
                                                     </div>
                                                     <button type="submit" name="remove-{{ $item->id }}"
                                                         id="remove-{{ $item->id }}" method="post" hidden></button>
-                                                    <label for="remove-{{ $item->id }}"
-                                                        title="Hapus Produk dari Checkout"><i
+                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i
                                                             class="fas fa-trash-alt text-danger mr-4"></i></label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
+                                <!--Modal-->
+                                <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah anda yakun untuk menghapus data ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" name="remove-{{ $item->id }}"
+                                                    id="remove-{{ $item->id }}" method="post" class="btn btn-danger">Ya</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                             @foreach ($pesanan_harga as $h)
                                 <div class="pt-4 text-right mb-5">
@@ -129,13 +151,13 @@
                                         @csrf
                                         <div class="form-outline form-white mb-4">
                                             <label class="form-label " for="kategori_pembayaran"
-                                                style="font-weight: bold">Metode
-                                                Pembayaran</label>
+                                                style="font-weight: bold">Metode Pembayaran</label>
                                             <select name="kategori_pembayaran" id="kategori_pembayaran"
                                                 class="form-control form-control-md" sizez="17"
                                                 style="border-radius: 5px">
-                                                <option value="0" selected disabled><small>Pilih Metode
-                                                        Pembayaran</small></option>
+                                                <option value="0" selected disabled>
+                                                    <small>Pilih Metode Pembayaran</small>
+                                                    </option>
                                                 @foreach ($kapem as $data)
                                                     <option value="{{ $data->id_kapem }}">
                                                         {{ $data->kategori_pembayaran }}
@@ -168,11 +190,8 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="mb-4" name="error" id="error" style="font-weight: bold"
-                                            hidden>Silahkan Pilih Metode
-                                            Pembayaran
-                                            Terlebih Dahulu Untuk Melanjutkan Proses Tranksaksi</div>
-
+                                        <div class="mb-4" name="error" id="error" style="font-weight: bold" hidden>
+                                            Silahkan Pilih Metode Pembayaran Terlebih Dahulu Untuk Melanjutkan Proses Tranksaksi</div>
                                         <div class="form-outline form-white mb-3 pb-2" name="form-bukti-pembayaran"
                                             id="form-bukti-pembayaran" hidden>
                                             <strong style="font-weight: bold">Upload Bukti Pembayaran</strong><br>

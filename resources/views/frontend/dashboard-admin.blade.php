@@ -55,7 +55,6 @@
                         </div>
                     </div><!-- End Revenue Card -->
 
-
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">
@@ -143,47 +142,62 @@
                 </div>
             </div>
             <div class="col-lg-4">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <p class="bi bi-info-circle text-primary fs-5"> Informasi</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="fs-2 rounced-circle hr">3</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center fs-6">
+                            <p>Pesanan Baru</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
                 <!-- Recent Activity -->
                 <div class="card info-card">
                     <div class="card-body">
                         <h5 class="card-title">Pesanan <span>| Semua</span></h5>
                         <div class="d-flex align-items-center">
-                            <p class="fs-5 bi bi-check2-all text-success ml-2"> Selesai</p>
+                            <p class="fs-6 bi bi-check2-all text-success ml-2"> Selesai</p>
                             @foreach ($jumlahSelesai as $item)
-                                <p class="col text-right mr-5 text-success fs-5 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-right mr-5 text-success fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
                         <div class="d-flex align-items-center">
-                            <p class="fs-5 bi bi bi-handbag-fill text-primary ml-2"> Dapat Diambil</p>
+                            <p class="fs-6 bi bi bi-handbag-fill text-primary ml-2"> Dapat Diambil</p>
                             @foreach ($jumlahDiambil as $item)
-                                <p class="col text-right mr-5 text-primary fs-5 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-right mr-5 text-primary fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
                         <div class="d-flex align-items-center">
-                            <p class="fs-5 bi bi-hourglass-split text-info ml-2"> Sedang Diproses</p>
+                            <p class="fs-6 bi bi-hourglass-split text-info ml-2"> Sedang Diproses</p>
                             @foreach ($jumlahProses as $item)
-                                <p class="col text-right mr-5 text-info fs-5 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-right mr-5 text-info fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
                         <div class="d-flex align-items-center">
-                            <p class="fs-5 bbi bi-exclamation-triangle text-warning ml-2"> Ditangguhkan</p>
+                            <p class="fs-6 bbi bi-exclamation-triangle text-warning ml-2"> Ditangguhkan</p>
                             @foreach ($jumlahTangguh as $item)
-                                <p class="col text-right mr-5 text-warning fs-5 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-right mr-5 text-warning fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
                         <div class="d-flex align-items-center">
-                            <p class="fs-5 bi bi-x-square-fill text-danger ml-2"> Dibatalkan</p>
+                            <p class="fs-6 bi bi-x-square-fill text-danger ml-2"> Dibatalkan</p>
                             @foreach ($jumlahBatal as $item)
-                                <p class="col text-right mr-5 text-danger fs-5 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-right mr-5 text-danger fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                     </div>
                 </div><!-- End Recent Activity -->
-
+                
                 <!-- Budget Report -->
                 <div class="card">
                     <div class="card-body pb-0" style="min-height: 400px">
@@ -211,11 +225,12 @@
                                         <tr>
                                             <td>{{ $index + $pesanan_harian->firstItem() }}</td>
                                             <td>{{ $data->name}}</td>
-                                            <td>Rp. <?php
-                                                $angka = $data->total_harga;
-                                                echo number_format($angka, 0, ',', '.');
-                                                ?></td>
-
+                                            <td>
+                                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}">
+                                                    <i class="bi bi-info-square fs-6"></i>
+                                                </a>
+                                            </td>
+                                            
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -231,6 +246,10 @@
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">Nama Pesanan</label>
                                                             <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->name}}" disabled>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleFormControlInput1" class="form-label">Nama Pengambil</label>
+                                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->nama_pengambil}}" disabled>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
@@ -257,5 +276,6 @@
                         {{ $pesanan_harian->links() }}
                     </div>
                 </div><!-- End Budget Report -->
+                
             </div><!-- End Right side columns -->
         @endsection

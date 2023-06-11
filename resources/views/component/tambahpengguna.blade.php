@@ -1,6 +1,7 @@
+<a href="/kelolapengguna" class="btn btn-warning mb-4">Kembali</a>
 <div class="col-12 p-3 bg-white shadow rounded">
     {{-- TODO: Controller not ready yet --}}
-    <form class="mt-3" action="/prosestambahuser" method="post" enctype="multipart/form-data">
+    <form class="" action="/prosestambahuser" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row m-3">
             <div class="form-group col-12 col-md-6 mt-3">
@@ -34,7 +35,7 @@
             <button type="submit" class="btn btn-success">
                 Tambahkan Data Pengguna
             </button>
-            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
         </div>
     </form>
 </div>

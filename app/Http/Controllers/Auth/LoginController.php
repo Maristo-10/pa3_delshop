@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use StaticVariable;
 
 class LoginController extends Controller
@@ -30,17 +33,24 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    public function redirectTo() {
-        if(Auth::user()->role_pengguna == 'Admin') {
+    public function redirectTo()
+    {
+        if (Auth::user()->role_pengguna == 'Admin') {
             return '/dashboard-admin';
-
         }
-        if(Auth::user()->role_pengguna == 'Pegawai') {
+        if (Auth::user()->role_pengguna == 'Pegawai') {
             return  '/dashboard-pegawai';
         }
-        if(Auth::user()->role_pengguna === 'Publik' | Auth::user()->role_pengguna === 'Dosen/Staff' | Auth::user()->role_pengguna === 'Mahasiswa') {
+        if (Auth::user()->role_pengguna === 'Publik' | Auth::user()->role_pengguna === 'Dosen/Staff' | Auth::user()->role_pengguna === 'Mahasiswa') {
             return '/home';
         }
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [Lang::get('auth.failed')],
+        ])->redirectTo(route('login'))->withMessages(["Email atau Password Anda Salah!"]);
     }
 
     /**

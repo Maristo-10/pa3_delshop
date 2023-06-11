@@ -32,7 +32,7 @@ class ProdukController extends Controller
         $file->move('ProductsData', $fileName);
         Excel::import(new ProductsImport, \public_path('/ProductsData/' . $fileName));
 
-        return redirect()->route('admin.kelolaproduk')->with('success', 'Data imported successfully!');
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data sukses diimport!');
     }
 
     public function viewImportProduct()
@@ -42,7 +42,11 @@ class ProdukController extends Controller
 
     public function produk()
     {
-        $produk = Produk::where('status_produk', 'Aktif')->paginate(5);
+
+        $produk = Produk::orderByDesc('id_produk')->paginate(10);
+
+        // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
+
         return view('admin.kelolaproduk', compact('produk'));
     }
     // filter category
@@ -139,10 +143,6 @@ class ProdukController extends Controller
             'gambar_produk' => 'image|file|max:10000'
         ]);
 
-
-
-
-
         // dd($options);
 
         $tambahproduk = new Produk();
@@ -191,11 +191,21 @@ class ProdukController extends Controller
         $produk = Produk::find($id);
         $kategori_produk = KategoriProdukModel::all();
         $role = Role::all()->where('kategori_role', 'Pembeli');
+        $ukuran = UkuranModel::all();
+        $now = Carbon::now(); // Mendapatkan waktu saat ini
+        $currentYear = $now->format('Y');
+        $fiveYearsAgo = $now->subYears(6); // Mengurangi 5 tahun dari waktu saat ini
 
+        // Menggunakan format 'Y' untuk mendapatkan tahun
+
+        $fiveYearsAgoYear = $fiveYearsAgo->format('Y');
         return view('admin.ubahproduk', [
             'produk' => $produk,
             'kategori_produk' => $kategori_produk,
-            'role' => $role
+            'role' => $role,
+            'ukuran'=> $ukuran,
+            'fiveYearsAgoYear' =>$fiveYearsAgoYear,
+            'currentYear'=>$currentYear
         ]);
     }
 
@@ -210,6 +220,21 @@ class ProdukController extends Controller
         $kategori_produk = $request->kategori_produk;
         $produk_unggulan = $request->produk_unggulan;
         $deskripsi = $request->deskripsi;
+        $ukuran_produk = "";
+        $warna = "";
+        $angkatan = "";
+        if($request->input('ukuran') != null){
+            $selectedUkuran = implode(',', $request->input('ukuran'));
+            $ukuran_produk = $selectedUkuran;
+        }
+        if($request->input('warna') != null){
+            $selectedWarna = implode(',', $request->input('warna'));
+            $warna = $selectedWarna;
+        }
+        if($request->input('angkatan') != null){
+            $selectedAngkatan = implode(',', $request->input('angkatan'));
+            $angkatan = $selectedAngkatan;
+        }
         if ($request->file('gambar_produk')) {
             if ($request->hasfile('gambar_produk')) {
                 $filename = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $request->file('gambar_produk')->getClientOriginalName());
@@ -226,7 +251,10 @@ class ProdukController extends Controller
             'role_pembeli' => $role_pembeli,
             'kategori_produk' => $kategori_produk,
             'produk_unggulan' => $produk_unggulan,
-            'deskripsi' => $deskripsi
+            'deskripsi' => $deskripsi,
+            'ukuran_produk' => $ukuran_produk,
+            'warna' => $warna,
+            'angkatan' => $angkatan
         ]);
 
         return redirect()->route('admin.kelolaproduk')->with('success', 'Data Produk Berhasil di Ubah');
@@ -242,8 +270,8 @@ class ProdukController extends Controller
 
     public function produknonaktif()
     {
-        $produk = Produk::where('status_produk', 'Non-Aktif')->paginate(5);
-        return view('admin.kelolaproduknonaktif', ['produk' => $produk])->with('success', 'Data Produk Berhasil Di Tambahkan');
+        $produk = Produk::where('status_produk', 'Non-Aktif')->paginate(10);
+        return view('admin.kelolaproduknonaktif', ['produk' => $produk])->with('success', 'Data Produk Berhasil Di Non-aktifkan');
     }
 
     public function ubahstatusprodukaktf($id)
@@ -251,7 +279,7 @@ class ProdukController extends Controller
         $produk = Produk::find($id);
         $produk->update(['status_produk' => 'Aktif']);
 
-        return redirect()->route('admin.kelolaproduknonaktif')->with('success', 'Data Produk Berhasil Di Tambahkan');;
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data Produk Berhasil Di Aktifkan');;
     }
 
     public function getUkuran(Request $request)

@@ -15,8 +15,6 @@
 <div class="card-body d-sm-flex justify-content-between">
     <h6 class="col-md-12 mb-0">
 
-
-
     </h6>
 </div>
 
@@ -35,13 +33,13 @@
     }
 </script>
 
-<div class="row col-12">
-    <div class="col-8 shadow-sm rounded bg-white">
+<div class="row ">
+    <div class="col-7 shadow-sm rounded bg-white">
         <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
             <i class="fa fa-plus"></i>
             <span><small>Tambah Data Metode Pembayaran</small></span>
         </a>
-        <div class="col-12 mt-1">
+        <div class=" mt-1">
             <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
                 <div class="card">
                     <div class="card-body">
@@ -71,9 +69,9 @@
                                         <td>{{ $data->kapem }}</td>
                                         <td>
                                             <a href="/ubah-metode-pembayaran/{{ $data->id }}" title="Ubah Data"
-                                                class="bi bi-pencil-square btn btn-warning col-md-5 py-2"></a>
+                                                class="bi bi-pencil-square btn btn-warning py-2"></a>
                                             <a href="/prosesubahstatusproduk/nonaktif/" title="Non-Aktifkan Data"
-                                                class="bi bi-slash-circle-fill btn btn-danger col-md-5 py-2"></a>
+                                                class="bi bi-slash-circle-fill btn btn-danger py-2"></a>
                                         </td>
                                 @endforeach
                             </tbody>
@@ -84,7 +82,7 @@
         </div>
     </div>
 
-    <div class="col-4 shadow-sm rounded bg-white">
+    <div class="col-5 shadow-sm rounded bg-white">
         <button class="btn btn-warning text-white py-2 ml-2 mb-3" onclick="eventBtnt();">
             <i class="bi bi-eye-fill"></i>
             <span><small style="color: black">Ubah Kategori Pembayaran</small></span>
@@ -96,7 +94,7 @@
                         onclick="eventCloset()"></button>
                 </div>
                 <div class="card-body">
-                    <small class="card-title ml-3">Ubah Data Kategori Produk</small>
+                    <small class="card-title ml-3">Ubah Kategori Produk</small>
 
                     <!-- Horizontal Form -->
                     @foreach ($kapemid as $item)
@@ -148,7 +146,7 @@
                                 <td>{{ $data->kategori_pembayaran }}</td>
                                 <td>
                                     <a class="bi bi-pencil-square btn btn-warning col-md-5 py-2"
-                                        href="/ubah-metode-pembayaran/" title="Ubah Data"></a>
+                                        href="/ubah-metode-pembayaran/{{ $data->kategori_pembayaran }}" title="Ubah Data"></a>
                                     <a href="/hapus/kategoripembayaran/{{ $data->kategori_pembayaran }}"
                                         title="Hapus Data" class="bi bi-trash-fill btn btn-danger col-md-5 py-2"></a>
                                 </td>
