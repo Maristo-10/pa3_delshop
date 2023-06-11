@@ -71,7 +71,7 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @if ($jumlah->total == 0)
+                                @if (count($pesanan_kapem) == 0)
                                 <tr>
                                     <td colspan="8" class="text-muted mt-3">
                                         <i class="bi bi-cart-fill fs-1 "></i>

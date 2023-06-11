@@ -325,7 +325,7 @@ class PesananController extends Controller
             ->where('status', '!=', 'checkout')
             ->get();
 
-        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as UNSIGNED) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', '!=', 'keranjang')->first();
+        $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as UNSIGNED) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status','!=', 'keranjang')->orWhere('status','!=', 'checkout')->first();
         $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
