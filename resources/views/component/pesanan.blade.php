@@ -3,6 +3,47 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <style>
+    @media
+    only screen 
+    and (max-width: 760px), (min-device-width: 768px) 
+    and (max-device-width: 1024px)  {
+
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+    margin: 0 0 1rem 0;
+    }
+    
+    tr:nth-child(odd) {
+    background: #ccc;
+    }
+    
+        td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            position: absolute;
+            top: 0;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+	}
+</style> --}}
 <!-- Page Header Start -->
 <div class="container-fluid ">
     <div class="row px-xl-5 mt-3">
@@ -56,57 +97,59 @@
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar col-md-11 text-center">
             <div class="card">
                 <div class="card-body">
-                    <table class="table  table-bordered" id="list" style="min-height: 300px">
-                        <thead>
-                            <tr>
-                                <!-- <th scope="col">Pilihan</th> -->
-                                <th scope="col" class="">No</th>
-                                <th scope="col" class="">Tanggal Pesanan</th>
-                                <th scope="col" class="">Total Harga</th>
-                                <th scope="col" class="">Nama Pengambil</th>
-                                <th scope="col" class="">Metode Pembayaran</th>
-                                <th scope="col" class="">Nama Layanan</th>
-                                <th scope="col" class="">Status</th>
-                                <th scope="col" class="">Aksi</th>
-                                <!-- <th scope="col">Lampiran</th> -->
-                            </tr>
-                        </thead>
-                        <tbody id="table-pesanan" name="table-pesanan">
-                            @php
-                                $no = 1;
-                            @endphp
-                            @if ($jumlah->total == 0)
-                            <tr>
-                                <td colspan="8" class="text-muted mt-3">
-                                    <i class="bi bi-cart-fill fs-1 "></i>
-                                    <p class="fs-1">Data Pesanan Anda Kosong</p></td>
-                            </tr>
-
-                            @else
-                                @foreach ($pesanan_kapem as $data)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $data->tanggal }}</td>
-                                        <td>Rp. <?php
-                                        $angka = $data->total_harga;
-                                        echo number_format($angka, 0, ',', '.');
-                                        ?></td>
-                                        <td>{{ $data->nama_pengambil }}</td>
-                                        <td>{{ $data->kapem }}</td>
-                                        <td>{{ $data->layanan }}</td>
-                                        <td><b>{{ $data->status }}</b></td>
-                                        <td>
-                                            <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
-                                                class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-                                            <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
-                                                class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table  table-bordered" id="list">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col">Pilihan</th> -->
+                                    <th scope="col" class="">No</th>
+                                    <th scope="col" class="">Tanggal Pesanan</th>
+                                    <th scope="col" class="">Total Harga</th>
+                                    <th scope="col" class="">Nama Pengambil</th>
+                                    <th scope="col" class="">Metode Pembayaran</th>
+                                    <th scope="col" class="">Nama Layanan</th>
+                                    <th scope="col" class="">Status</th>
+                                    <th scope="col" class="">Aksi</th>
+                                    <!-- <th scope="col">Lampiran</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="table-pesanan" name="table-pesanan">
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @if ($jumlah->total == 0)
+                                <tr>
+                                    <td colspan="8" class="text-muted mt-3">
+                                        <i class="bi bi-cart-fill fs-1 "></i>
+                                        <p class="fs-1">Data Pesanan Anda Kosong</p></td>
+                                </tr>
+    
+                                @else
+                                    @foreach ($pesanan_kapem as $data)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $data->tanggal }}</td>
+                                            <td>Rp. <?php
+                                            $angka = $data->total_harga;
+                                            echo number_format($angka, 0, ',', '.');
+                                            ?></td>
+                                            <td>{{ $data->nama_pengambil }}</td>
+                                            <td>{{ $data->kapem }}</td>
+                                            <td>{{ $data->layanan }}</td>
+                                            <td><b>{{ $data->status }}</b></td>
+                                            <td>
+                                                <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
+                                                    class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                                <a href="/prosesubahstatusproduk/nonaktif/" title="Batalkan Pesanan"
+                                                    class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+    
+                            </tbody>
+                        </table>
+                    </div>
                     {{-- <div class="row">
                             <div class="col-md-12">
                                 {{ $pesanan_kapem->links('pagination::tailwind') }}
