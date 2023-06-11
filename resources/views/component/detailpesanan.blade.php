@@ -85,7 +85,7 @@
                     <small><b>Institute Teknologi Del </b></small>
                     <small>{{ $kontak->no_telp }}</small>
                     <small>Institut Teknologi Del, Sitoluama, Kec. Balige, Toba, Sumatera Utara 22381</small>
-                    <a href="http://wa.me/{{ $kontak->no_telp }}" class="btn btn-success w-25 mt-4"> WhatshApp <i
+                    <a href="http://wa.me/{{ $kontak->no_telp }}" class="btn btn-success w-25 mt-4"> WhatsApp <i
                             class="bi bi-whatsapp"></i></a>
                 </div>
             @endif

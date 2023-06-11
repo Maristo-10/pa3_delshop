@@ -231,9 +231,6 @@
                                 <input class="form-control @error('image') is invalid @enderror" type="file" id="bukti" name="bukti">
                                 </div>
                             </div>
-
-
-
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Kirim</button>
                             </div>

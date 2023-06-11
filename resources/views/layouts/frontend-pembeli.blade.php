@@ -55,7 +55,7 @@
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none"
-                        href="mailto:info@company.com">itdel@gmail.com</a>
+                        href="mailto:itdel@gmail.com">itdel@gmail.com</a>
                     <i class="fa fa-phone mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
                 </div>
@@ -145,7 +145,7 @@
 
                         @else
                         <div class="dropdown mr-2">
-                            <a class="dropdown position-relative" href="#" role="button"
+                            <a class="dropdown " href="#" role="button"
                                 data-bs-toggle="dropdown" style="font-size: 20px" aria-expanded="false">
                                 <i class="fas fa-bell mr-3"></i>
                                 <span

@@ -45,7 +45,7 @@ class HomeController extends Controller
         }
 
         $produk = Produk::all()->where('status_produk', 'Aktif');
-        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan');
+        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status', "Aktif");
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
         $kategori = KategoriProdukModel::all();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
