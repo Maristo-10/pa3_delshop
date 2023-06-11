@@ -80,7 +80,7 @@ class BeritaController extends Controller
         $berita->save();
 
         return redirect()->route('admin.kelolaberita')
-                    ->with('success', 'Data berhasil dibuat');
+                    ->with('success', 'Data berita berhasil dibuat');
 
     }
 

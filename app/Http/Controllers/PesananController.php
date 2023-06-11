@@ -626,8 +626,8 @@ class PesananController extends Controller
         $akhir = $request->tanggal_akhir;
         $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
             ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->get();
-        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
-        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('CAST(SUM(pesanandetails.jumlah) as int) as total'))->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
+        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as UNSIGNED INTEGER) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
+        $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('CAST(SUM(pesanandetails.jumlah) as UNSIGNED INTEGER) as total'))->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('pesanans.status', 'Selesai')->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->where('status', 'Selesai')->first();
         return view('admin.laporanpenjualan', [
             'penjualan' => $penjualan,
@@ -654,7 +654,7 @@ class PesananController extends Controller
         $tahun = $date->format('Y');
         $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
             ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->get();
-        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as int) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
+        $jumlah = Pesanan::select(DB::raw('CAST(count(id) as UNSIGNED INTEGER) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
         $total_harga = DB::table('pesanans')->select(DB::raw('sum(total_harga) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('status', 'Selesai')->first();
         return view('admin.laporanpenjualan', [
