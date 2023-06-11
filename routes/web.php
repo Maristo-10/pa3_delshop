@@ -111,6 +111,7 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
 
     Route::get('/profile', [UserController::class, 'vprofile'])->name('pembeli.profile');
     Route::post('/profile/update', [UserController::class, 'uprofile'])->name('pembeli.updateprofile');
+    Route::post('/ganti-roles', [UserController::class, 'gantiRoles'])->name('pembeli.gantiroles');
 
     Route::get('/checkout', [PesananController::class, 'vcheckout'])->name('pembeli.checkout');
     Route::post('/proses-checkout', [PesananController::class, 'pcheckout'])->name('pembeli.pcheckout');
@@ -137,6 +138,7 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
 
     //Tempat Pengambilan
     Route::get('/pengambilanbarang', [PesananController::class,'tempat'])->name('pembeli.tempat');
+
 
 });
 
@@ -211,4 +213,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/aktifkan-corousel/{id}',[CorouselController::class, 'aktifkan'])->name('aktifkan');
     Route::get('/non-aktifkan-corousel/{id}',[CorouselController::class, 'non_aktifkan'])->name('non-aktifkan');
     Route::post('/ukuran',[ProdukController::class, 'getUkuran'])->name('get-ukuran');
+    Route::get('/detail-penjualan-produk',[ProdukController::class, 'detailpenjualanproduk'])->name('admin.detailpenjualanproduk');
+
+    //kelola ganti roles
+    Route::get('/kelola-permintaan-roles', [UserController::class, 'kelolaReq'])->name('admin.kelolagantirole');
+    Route::post('/setuju/ganti/role/{id}',[UserController::class, 'setuju'])->name('admin.setuju');
+    Route::post('/tolak/ganti/role/{id}',[UserController::class, 'tidakSetuju'])->name('admin.tolak');
 });

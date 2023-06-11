@@ -47,10 +47,10 @@
                         <button class="nav-link text-dark" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
                             Profile</button>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <button class="nav-link text-dark" data-bs-toggle="tab"
-                            data-bs-target="#profile-change-password">Change Password</button>
-                    </li> --}}
+                            data-bs-target="#profile-change-password">Request Role</button>
+                    </li>
                 </ul>
                 <div class="tab-content pt-2">
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -225,7 +225,52 @@
                         </div>
                         </form><!-- End Profile Edit Form -->
                     </div>
+
                     <div class="tab-pane fade pt-3" id="profile-settings">
+                    </div>
+                    <div class="tab-pane fade pt-3" id="profile-change-password">
+                        <!-- Change Password Form -->
+                        <form action="ganti-roles" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="email" type="email" class="form-control"
+                                        id="email" value="{{Auth::user()->email}}" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama Pengguna</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="name" type="text" class="form-control"
+                                        id="name" value="{{Auth::user()->name}}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="role" class="col-md-4 col-lg-3 col-form-label">Pilih Role</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="role" id="role" class="form-control">
+                                        <option selected disabled>Silahkan Pilih Role</option>
+                                        <option value="Mahasiswa">Mahasiswa</option>
+                                        <option value="Dosen/Staff">Dosen/Staff</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="bukti" class="col-md-4 col-lg-3 col-form-label">Bukti CIS</label>
+                                <div class="col-md-8 col-lg-9">
+                                <input class="form-control @error('image') is invalid @enderror" type="file" id="bukti" name="bukti">
+                                </div>
+                            </div>
+
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form><!-- End Change Password Form -->
+
                     </div>
                     {{-- <div class="tab-pane fade pt-3" id="profile-change-password">
                         <!-- Change Password Form -->

@@ -31,6 +31,11 @@
                     <i class="bi bi-person-gear fs-5"></i><span>Kelola Pengguna</span>
                 </a>
             </li>
+            <li>
+                <a href="/kelola-permintaan-roles">
+                    <i class="bi bi-person-fill-down fs-5"></i><span>Kelola Permintaan Role Pengguna</span>
+                </a>
+            </li>
         </ul>
     </li><!-- End Components Nav -->
 
@@ -52,6 +57,11 @@
             <li>
                 <a href="/kategoriproduk">
                     <i class="bi bi-box-seam-fill fs-5"></i><span>Kelola Kategori Produk</span>
+                </a>
+            </li>
+            <li>
+                <a href="/detail-penjualan-produk">
+                    <i class="bi bi-clipboard-pulse fs-5"></i><span>Detail Penjualan Produk</span>
                 </a>
             </li>
         </ul>
