@@ -303,12 +303,11 @@ class ProdukController extends Controller
         $produk = DB::table('produk')
             ->leftJoin('pesanandetails', function ($join) {
                 $join->on('produk.id_produk', '=', 'pesanandetails.produk_id')
-                    ->where('pesanandetails.created_at', '>=', Carbon::now()->subYear());
+                    ->where('pesanandetails.updated_at', '>=', Carbon::now()->subYear());
             })
             ->leftJoin('pesanans', function ($join) {
                 $join->on('pesanandetails.pesanan_id', '=', 'pesanans.id')
-                    ->where('pesanans.status', '=', 'Selesai')
-                    ->where(DB::raw("Year(pesanans.tanggal)"), Carbon::now()->format('Y'));
+                    ->where('pesanans.status', '=', 'Selesai');
             })
             ->select('produk.nama_produk','produk.harga', 'produk.jumlah_produk', 'produk.deskripsi', 'produk.kategori_produk', 'produk.ukuran_produk','produk.warna', 'produk.angkatan', 'produk.id_produk','produk.gambar_produk','produk.role_pembeli')
             ->selectRaw('SUM(CASE WHEN YEAR(pesanans.tanggal) = '.$now.' THEN COALESCE(pesanandetails.jumlah, 0) ELSE 0 END) AS total')
