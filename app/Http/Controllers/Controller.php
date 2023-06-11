@@ -40,6 +40,7 @@ class Controller extends BaseController
 
         $corousel_f = Corousel::where('status', 1)->first();
         $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('frontend.dashboard-pembeli',[
             'kategori'=>$kategori,
             'unggulan'=>$unggulan,
@@ -49,7 +50,8 @@ class Controller extends BaseController
             'berita' => $berita,
             'berita_2' => $berita_2,
             'corousel_f'=>$corousel_f,
-            'corousel'=>$corousel
+            'corousel'=>$corousel,
+            'header' => $header
         ]);
     }
 
@@ -61,12 +63,14 @@ class Controller extends BaseController
         $produk = Produk::where('status_produk', 'Aktif')->get();
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -89,6 +93,7 @@ class Controller extends BaseController
         }
 
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
@@ -99,7 +104,8 @@ class Controller extends BaseController
             'unggulan' => $unggulan,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
-            'total_ung' => $total_ung
+            'total_ung' => $total_ung,
+            'header'=>$header
         ]);
     }
 
@@ -116,12 +122,14 @@ class Controller extends BaseController
         }
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $products,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -136,12 +144,14 @@ class Controller extends BaseController
 
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -171,12 +181,14 @@ class Controller extends BaseController
         $kategori = KategoriProdukModel::all();
         $produk = $items->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 

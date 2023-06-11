@@ -7,25 +7,10 @@
     @include('layouts.inc.corousel')
 @endsection
 @section('content')
-<section class="">
-    <div class="container">
-        <div class="row justify-content-center text-center mt-5 kategori">
-            <h1 class="">KATEGORI <span class="text-primary text-uppercase">Produk</span></h1>
-        </div>
-        <div class="row">
-            <div class="kategoris">
-                @foreach ($kategori as $data)
-                    <div class="element-card">
-                        <div class="front-facing text-center">
-                            <a href="/list-produk/{{$data->kategori}}">
-                                <img src="/category-images/{{ $data->gambar_kategori }}" alt="" width="110px"
-                                    height="100px" class="mt-3">
-                                <p class="title">{{ $data->kategori }}</p>
-                            </a>
-
-                        </div>
-                    </div>
-                @endforeach
+    <section class="">
+        <div class="container">
+            <div class="row justify-content-center text-center mt-5 kategori">
+                <h1 class="">KATEGORI <span class="text-primary text-uppercase">Produk</span></h1>
             </div>
             <div class="row">
                 <div class="kategoris">
@@ -44,7 +29,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Start Banner Hero -->
         <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
@@ -95,17 +79,14 @@
                 @endforeach
 
             </div>
-            @if (count($berita_2) > 0)
-                <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
-                    role="button" data-bs-slide="prev">
-                    <i class="fas fa-chevron-left"></i>
-                </a>
-                <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
-                    role="button" data-bs-slide="next">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-            @endif
-
+            <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+                role="button" data-bs-slide="prev">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+                role="button" data-bs-slide="next">
+                <i class="fas fa-chevron-right"></i>
+            </a>
         </div>
         <!-- End Banner Hero -->
 

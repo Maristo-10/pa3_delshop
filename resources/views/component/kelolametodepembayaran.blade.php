@@ -83,14 +83,14 @@
                                                 class="bi bi-pencil-square btn btn-warning" style="font-size: 10px"></a>
                                             @if ($data->status_metpem == 'Aktif')
                                                 <a title="Non-Aktifkan Data"
-                                                    class="bi bi-slash-circle-fill btn btn-danger"
-                                                    style="font-size: 10px" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal2{{ $data->id_metpem }}"></a>
-                                            @else
-                                                <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-success"
-                                                    style="font-size: 10px" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal3{{ $data->id_metpem }}"></a>
-                                            @endif
+                                                        class="bi bi-slash-circle-fill btn btn-danger"
+                                                        style="font-size: 10px" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal2{{ $data->id_metpem }}"></a>
+                                                @else
+                                                    <a title="Aktifkan Data" class="bi bi-slash-circle-fill btn btn-success"
+                                                        style="font-size: 10px" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal3{{ $data->id_metpem }}"></a>
+                                                @endif
                                             {{-- <a title="Non-Aktifkan Data" class="bi bi-slash-circle-fill btn btn-danger" style="font-size: 8px" data-bs-toggle="modal" data-bs-target="#exampleModal2" ></a> --}}
 
                                             {{-- <a href="/prosesubahstatusmetpem/non-aktif/{{ $data->id_metpem}}" title="Non-Aktifkan Data"
@@ -218,16 +218,24 @@
                                     <td>{{ $data->kategori_pembayaran }}</td>
                                     <td>
                                         <a class="bi bi-pencil-square btn btn-warning "
-                                            href="/ubah-kategori-pembayaran/{{ $data->kategori_pembayaran }}"
+                                            href="/ubah-kategori-pembayaran/{{ $data->id_kapem }}"
                                             title="Ubah Data"></a>
-                                        <a type="button" title="Hapus Data"
+                                            @if ($data->id_kapem != 901)
+                                            <a type="button" title="Hapus Data"
                                             class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal{{ $data->kategori_pembayaran }}"></a>
+                                            data-bs-target="#exampleModal{{ $data->id_kapem }}"></a>
+                                            @else
+                                            <button type="button" title="Hapus Data"
+                                            class="bi bi-trash-fill btn btn-danger ml-2" style="font-size: 15px"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $data->id_kapem }}" disabled></button>
+                                            @endif
+
                                     </td>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal{{ $data->kategori_pembayaran }}"
+                                    <div class="modal fade" id="exampleModal{{ $data->id_kapem   }}"
                                         tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Mockery\Matcher\Not;
 use App\Models\Corousel;
+use App\Models\GantiRoles;
 
 class HomeController extends Controller
 {
@@ -45,13 +46,15 @@ class HomeController extends Controller
         }
 
         $produk = Produk::all()->where('status_produk', 'Aktif');
-        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status', "Aktif");
+        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status_produk', "Aktif");
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
         $kategori = KategoriProdukModel::all();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
         $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
         $corousel_f = Corousel::where('status', 1)->first();
         $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
+
+        $header = User::where('role_pengguna', "Admin")->first();
 
         return view('frontend.dashboard-pembeli', [
             'kategori' => $kategori,
@@ -64,7 +67,8 @@ class HomeController extends Controller
             'berita' => $berita,
             'berita_2' => $berita_2,
             'corousel_f'=>$corousel_f,
-            'corousel'=>$corousel
+            'corousel'=>$corousel,
+            'header'=>$header
         ]);
     }
 
@@ -92,6 +96,7 @@ class HomeController extends Controller
         }
 
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
 
         // $kategori = KategoriProdukModel::where('kategori', $produk->kategori_produk)->get();
         // dd($kategori);
@@ -103,7 +108,8 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'total_ung' => $total_ung
+            'total_ung' => $total_ung,
+            'header'=>$header
         ]);
     }
 
@@ -120,13 +126,15 @@ class HomeController extends Controller
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -157,6 +165,7 @@ class HomeController extends Controller
 
             // dd($arr[1]);
             // dd($arr);
+            $header = User::where('role_pengguna', "Admin")->first();
 
 
             return view('pembeli.viewproduk', [
@@ -165,9 +174,11 @@ class HomeController extends Controller
                 'kategori' => $kategori,
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
-                'pengguna_prof' => $pengguna_prof
+                'pengguna_prof' => $pengguna_prof,
+                'header'=>$header
             ]);
         } else {
+            $header = User::where('role_pengguna', "Admin")->first();
             $produk = Produk::where('status_produk', 'Aktif')->get();
             return view('pembeli.viewproduk', [
                 'produk' => $produk,
@@ -175,7 +186,8 @@ class HomeController extends Controller
                 'kategori' => $kategori,
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
-                'pengguna_prof' => $pengguna_prof
+                'pengguna_prof' => $pengguna_prof,
+                'header'=> $header
             ]);
         }
 
@@ -199,13 +211,15 @@ class HomeController extends Controller
         $kategori = KategoriProdukModel::all();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -222,12 +236,14 @@ class HomeController extends Controller
 
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.detailproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
+            'header'=>$header
         ]);
     }
 
@@ -246,12 +262,14 @@ class HomeController extends Controller
             ->where('kategoriproduk.kategori', $id)
             ->where('produk.status_produk', 'Aktif')
             ->get();
+            $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'pesanan' => $pesanan,
             'produk' => $produk,
             'kategori' => $kategori,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
@@ -291,6 +309,12 @@ class HomeController extends Controller
         //Pesanan Harian
         $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->where('pesanans.status', '!=', 'checkout')->paginate(10);
 
+        $konfirmasi_pengguna = GantiRoles::where('status', 'Menunggu')->count();
+
+        $barang_habis = Produk::where('jumlah_produk', "<=", 5)->where('status_produk', 'Aktif')->count();
+
+        $pesanan_datang = Pesanan::where('status', 'Sedang Diproses')->orWhere('status', 'Ditangguhkan')->count();
+
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
             'totalpemasukan' => $totalpemasukan,
@@ -305,7 +329,10 @@ class HomeController extends Controller
             'jumlahTangguh'=>$jumlahTangguh,
             'jumlahBatal'=>$jumlahBatal,
             'date'=>$date,
-            'pesanan_harian'=>$pesanan_harian
+            'pesanan_harian'=>$pesanan_harian,
+            'konfirmasi_pengguna'=>$konfirmasi_pengguna,
+            'barang_habis'=>$barang_habis,
+            'pesanan_datang'=>$pesanan_datang
         ]);
     }
 }

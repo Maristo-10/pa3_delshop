@@ -1,4 +1,6 @@
-@if (Auth::user()->role_pengguna == 'Publik' || Auth::user()->role_pengguna == 'Dosen/Staff' || Auth::user()->role_pengguna == 'Mahasiswa')
+@if (Auth::user()->role_pengguna == 'Publik' ||
+        Auth::user()->role_pengguna == 'Dosen/Staff' ||
+        Auth::user()->role_pengguna == 'Mahasiswa')
     <div class="container-fluid ">
         <div class="row px-xl-5 mt-3">
             <div class="col-lg">
@@ -47,10 +49,12 @@
                         <button class="nav-link text-dark" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
                             Profile</button>
                     </li>
+                    @if(Auth::user()->role_pengguna != "Admin")
                     <li class="nav-item">
                         <button class="nav-link text-dark" data-bs-toggle="tab"
                             data-bs-target="#profile-change-password">Request Role</button>
                     </li>
+                    @endif
                 </ul>
                 <div class="tab-content pt-2">
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -188,6 +192,38 @@
                                 <textarea name="tentang" class="form-control" id="tentang" style="height: 100px">{{ $data->tentang }}</textarea>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter
+                                Profile</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="twitter" type="text" class="form-control" id="Twitter"
+                                    value="{{ $data->twitter }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
+                                Profile</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="facebook" type="text" class="form-control" id="Facebook"
+                                    value="{{ $data->facebook }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="instagram" class="col-md-4 col-lg-3 col-form-label">Instagram
+                                Profile</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="instagram" type="text" class="form-control" id="instagram"
+                                    value="{{ $data->instagram }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin
+                                Profile</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="linkedin" type="text" class="form-control" id="Linkedin"
+                                    value="{{ $data->linkedin }}">
+                            </div>
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
@@ -196,47 +232,51 @@
 
                     <div class="tab-pane fade pt-3" id="profile-settings">
                     </div>
-                    <div class="tab-pane fade pt-3" id="profile-change-password">
-                        <!-- Change Password Form -->
-                        <form action="ganti-roles" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <input name="email" type="email" class="form-control"
-                                        id="email" value="{{Auth::user()->email}}" disabled>
+                    @if (Auth::user()->role_pengguna != 'Admin')
+                        <div class="tab-pane fade pt-3" id="profile-change-password">
+                            <!-- Change Password Form -->
+                            <form action="ganti-roles" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="email" type="email" class="form-control" id="email"
+                                            value="{{ Auth::user()->email }}" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama Pengguna</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <input name="name" type="text" class="form-control"
-                                        id="name" value="{{Auth::user()->name}}" disabled>
+                                <div class="row mb-3">
+                                    <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama
+                                        Pengguna</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="name" type="text" class="form-control" id="name"
+                                            value="{{ Auth::user()->name }}" disabled>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
-                                <label for="role" class="col-md-4 col-lg-3 col-form-label">Pilih Role</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <select name="role" id="role" class="form-control">
-                                        <option selected disabled>Silahkan Pilih Role</option>
-                                        <option value="Mahasiswa">Mahasiswa</option>
-                                        <option value="Dosen/Staff">Dosen/Staff</option>
-                                    </select>
+                                <div class="row mb-3">
+                                    <label for="role" class="col-md-4 col-lg-3 col-form-label">Pilih Role</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select name="role" id="role" class="form-control">
+                                            <option selected disabled>Silahkan Pilih Role</option>
+                                            <option value="Mahasiswa">Mahasiswa</option>
+                                            <option value="Dosen/Staff">Dosen/Staff</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="bukti" class="col-md-4 col-lg-3 col-form-label">Bukti CIS</label>
-                                <div class="col-md-8 col-lg-9">
-                                <input class="form-control @error('image') is invalid @enderror" type="file" id="bukti" name="bukti">
+                                <div class="row mb-3">
+                                    <label for="bukti" class="col-md-4 col-lg-3 col-form-label">Bukti CIS</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input class="form-control @error('image') is invalid @enderror"
+                                            type="file" id="bukti" name="bukti">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Kirim</button>
-                            </div>
-                        </form><!-- End Change Password Form -->
+                       <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </div>
+                            </form><!-- End Change Password Form -->
 
-                    </div>
+                        </div>
+                    @endif
                     {{-- <div class="tab-pane fade pt-3" id="profile-change-password">
                         <!-- Change Password Form -->
                         <form>

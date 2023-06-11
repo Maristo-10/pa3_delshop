@@ -11,7 +11,8 @@
             <div class="col-lg-12">
                 <div class="row justify-content-center">
                     <!-- Sales Card -->
-                    <div class="col-xxl-6 col-md-4">
+                    @if($pesanan_datang > 0 )
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card">
                             <div class="card-body my-3">
                                 <div class="d-flex align-items-center">
@@ -21,16 +22,17 @@
                                     <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6">
-                                    <p> 3 Pesanan Baru</p>
+                                    <p> {{$pesanan_datang}} Pesanan Baru</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                    <a href="" class="btn btn-primary">Detail</a>
+                                    <a href="kelola-pesanan" class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xxl-6 col-md-4">
+                    @endif
+                    @if($barang_habis > 0 )
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card">
                             <div class="card-body my-3">
                                 <div class="d-flex align-items-center">
@@ -40,16 +42,17 @@
                                     <i class="bi bi-exclamation-diamond fs-1 text-warning blink-icon"></i>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6">
-                                    <p>Baju Sudah Mau Habis</p>
+                                    <p>Ada {{$barang_habis}} Barang Sudah Mau Habis</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                    <a href="" class="btn btn-primary">Detail</a>
+                                    <a href="/produks" class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xxl-6 col-md-4">
+                    @endif
+                    @if($konfirmasi_pengguna >0 )
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card">
                             <div class="card-body my-3">
                                 <div class="d-flex align-items-center">
@@ -59,7 +62,10 @@
                                     <i class="bi bi-broadcast-pin fs-1 text-info blink-icon"></i>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6">
-                                    <p>1 Perlu Konfirmasi Pengguna</p>
+
+                                    <p>{{ $konfirmasi_pengguna}} Perlu Konfirmasi Pengguna</p>
+
+
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
                                     <a href="" class="btn btn-primary">Detail</a>
@@ -67,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -75,7 +82,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Sales Card -->
-                    <div class="col-xxl-6 col-md-4">
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card sales-card">
                             <div class="card-body">
                                 <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
@@ -96,7 +103,7 @@
                     </div><!-- End Sales Card -->
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-6 col-md-4">
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
                                 <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
@@ -118,7 +125,7 @@
 
                         </div>
                     </div><!-- End Revenue Card -->
-                    <div class="col-xxl-6 col-md-4">
+                    <div class="col-xxl-4 col-md-4">
                         <div class="card info-card">
                             <div class="card-body my-3">
                                 <div class="d-flex align-items-center">

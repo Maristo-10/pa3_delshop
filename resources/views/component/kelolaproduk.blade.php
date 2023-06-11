@@ -51,6 +51,25 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="search-bar">
+                {{-- <form class="search-form d-flex align-items-center" method="GET" action="/kelola-pesanan/search">
+                    <input type="text" name="sidPes" id="sidPes" placeholder="Cari Berdasarkan ID Pesanan" title="Masukkan ID Pesanan" class="form-control w-25" >
+                    <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-3">Reset</a>
+                </form> --}}
+                <form class="search-form d-flex align-items-center" method="GET" action="/produks/cari">
+                    <input type="text" name="cari" id="sidPes" placeholder="Cari Berdasarkan nama produk" title="Masukkan nama produk" class="form-control w-25" >
+                    <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    <a href="/produks" class="btn btn-secondary text-light ml-3">Reset</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1">
         <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar">
@@ -227,96 +246,6 @@
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $data->deskripsi}}</textarea>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Nama
-                                                            Produk</label>
-                                                        <input type="text" id="disabledTextInput"
-                                                            class="form-control"
-                                                            placeholder="{{ $data->nama_produk }}" disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <img src="/product-images/{{ $data->gambar_produk }}"
-                                                            alt="Product Image" width="150" class="">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="form-label">Harga</label>
-                                                        <input type="text" id="disabledTextInput"
-                                                            class="form-control" placeholder="Rp. <?php $angka = $data->harga;
-                                                            echo number_format($angka, 0, ',', '.');
-                                                            ?>"
-                                                            disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="form-label">Kategori</label>
-                                                        <input type="text" id="disabledTextInput"
-                                                            class="form-control"
-                                                            placeholder="{{ $data->kategori_produk }}" disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="form-label">Kategori</label>
-                                                        <input type="text" id="disabledTextInput"
-                                                            class="form-control"
-                                                            placeholder="{{ $data->role_pembeli }}" disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="form-label">Jumlah Produk</label>
-                                                        <input type="text" id="disabledTextInput"
-                                                            class="form-control" placeholder="<?php $angka = $data->jumlah_produk;
-                                                            echo number_format($angka, 0, ',', '.');
-                                                            ?>"
-                                                            disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Warna</label>
-                                                        @if ($data->warna != null)
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="{{ $data->warna }}">
-                                                        @else
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="-">
-                                                        @endif
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Ukuran</label>
-                                                        @if ($data->ukuran_produk != null)
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="{{ $data->ukuran_produk }}">
-                                                        @else
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="-">
-                                                        @endif
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Angkatan</label>
-                                                        @if ($data->angkatan != null)
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="{{ $data->angkatan }}">
-                                                        @else
-                                                            <input type="text" class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"
-                                                                disabled value="-">
-                                                        @endif
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Example textarea</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $data->deskripsi }}</textarea>
-                                                    </div>
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-primary"

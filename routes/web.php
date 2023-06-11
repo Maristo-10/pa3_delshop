@@ -155,6 +155,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
     Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');
+    Route::get('/produks/cari', [ProdukController::class, 'cariKelolaProduk'])->name('admin.carikelolaproduk');
     Route::get('/tambahproduk', [ProdukController::class, 'viewtambahproduk'])->name('admin.tambahproduk');
     Route::post('/prosestambahproduk', [ProdukController::class, 'tambahproduk'])->name('admin.storeproduk');
     Route::get('/ubahproduk/{id}', [ProdukController::class, 'viewubahproduk'])->name('admin.ubahproduk');

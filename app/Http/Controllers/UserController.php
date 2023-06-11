@@ -27,7 +27,7 @@ class UserController extends Controller
         $file->move('UsersData', $fileName);
         Excel::import(new UsersImport, \public_path('/UsersData/' . $fileName));
 
-        return redirect()->route("admin.kelolapengguna")->with('success', 'Data imported successfully!');
+        return redirect()->route("admin.kelolapengguna")->with('success', 'Data berhasil diimport!');
     }
 
     public function user()
@@ -115,11 +115,13 @@ class UserController extends Controller
 
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         $pengguna = User::where('id', Auth::user()->id)->get();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.profile', [
             'pesanan' => $pesanan,
             'pengguna' => $pengguna,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 

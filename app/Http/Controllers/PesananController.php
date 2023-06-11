@@ -177,6 +177,7 @@ class PesananController extends Controller
         }
         $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
         // return $pesanan_detail;
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.keranjang', [
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
@@ -186,7 +187,8 @@ class PesananController extends Controller
             'pengguna_prof' => $pengguna_prof,
             'pesanan_c' => $pesanan_c,
             'detail' => $detail,
-            'lama' => $lama
+            'lama' => $lama,
+            'header'=>$header
         ]);
     }
 
@@ -229,7 +231,7 @@ class PesananController extends Controller
         $total = DetailPesanan::select(DB::raw('sum(jumlah) as total'))->get();
         $metpem = MetodePembayaran::all();
         $kapem = KategoriPembayaran::all();
-
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.checkout', [
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
@@ -238,7 +240,8 @@ class PesananController extends Controller
             'pesanan_detail' => $pesanan_detail,
             'total' => $total,
             'metpem' => $metpem,
-            'kapem' => $kapem
+            'kapem' => $kapem,
+            'header'=> $header
         ]);
     }
 
@@ -323,13 +326,14 @@ class PesananController extends Controller
             ->get();
 
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as UNSIGNED) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', '!=', 'keranjang')->first();
-
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=> $header
         ]);
     }
 
@@ -366,6 +370,7 @@ class PesananController extends Controller
             ->select(DB::raw('SUM(pesanandetails.jumlah) as total'))
             ->groupBy("pesanandetails.pesanan_id")
             ->first();
+            $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.detailpesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
@@ -374,7 +379,8 @@ class PesananController extends Controller
             'detail_pesanan' => $detail_pesanan,
             'pembayaran' => $pembayaran,
             'jumlah_pesanan' => $jumlah_pesanan,
-            'kontak' => $kontak
+            'kontak' => $kontak,
+            'header'=>$header
         ]);
     }
 
@@ -387,6 +393,7 @@ class PesananController extends Controller
             ->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')
             ->where('status', '!=', 'keranjang')
             ->where('status', '!=', 'checkout')
+            ->orderBy('tanggal', 'desc')
             ->paginate(5);
 
         return view('admin.kelolapesanan', [
@@ -497,12 +504,14 @@ class PesananController extends Controller
             ->where('status', 'Ditangguhkan')
             ->paginate(5);
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Ditangguhkan')->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=>$header
         ]);
     }
 
@@ -522,12 +531,14 @@ class PesananController extends Controller
             ->where('status', 'Siap Diambil')
             ->paginate(5);
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Siap Diambil')->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=>$header
         ]);
     }
 
@@ -547,12 +558,14 @@ class PesananController extends Controller
             ->where('status', 'Selesai')
             ->paginate(5);
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Selesai')->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=>$header
         ]);
     }
 
@@ -572,12 +585,14 @@ class PesananController extends Controller
             ->where('status', 'Sedang Diproses')
             ->paginate(5);
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Sedang Diproses')->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=>$header
         ]);
     }
 
@@ -597,12 +612,14 @@ class PesananController extends Controller
             ->where('status', 'Dibatalkan')
             ->paginate(5);
         $jumlah = Pesanan::select(DB::raw('Cast(Count(id) as int) as total'))->where('pesanans.user_id', Auth::user()->id)->where('status', 'Dibatalkan')->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.pesanan', [
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
             'pesanan' => $pesanan,
             'pesanan_kapem' => $pesanan_kapem,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'header'=>$header
         ]);
     }
 

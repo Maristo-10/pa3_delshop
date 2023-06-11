@@ -32,7 +32,7 @@ class ProdukController extends Controller
         $file->move('ProductsData', $fileName);
         Excel::import(new ProductsImport, \public_path('/ProductsData/' . $fileName));
 
-        return redirect()->route('admin.kelolaproduk')->with('success', 'Data sukses diimport!');
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data berhasil diimport!');
     }
 
     public function viewImportProduct()
@@ -49,6 +49,14 @@ class ProdukController extends Controller
 
         return view('admin.kelolaproduk', compact('produk'));
     }
+
+    public function cariKelolaProduk(Request $request) {
+        $data = $request->cari;
+        $produk = Produk::where('nama_produk', 'like', '%' . $data . '%')->paginate(10);
+
+        return view('admin.kelolaproduk', compact('produk'));
+
+    }
     // filter category
     public function filterByCategory($category)
     {
@@ -63,13 +71,15 @@ class ProdukController extends Controller
         }
         $kategori = KategoriProdukModel::all();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $products,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
     // sorting produk
@@ -99,13 +109,15 @@ class ProdukController extends Controller
         $kategori = KategoriProdukModel::all();
         $produk = $items->get();
         $ukuran = UkuranModel::all();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'produk' => $produk,
             'ukuran' => $ukuran,
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
-            'pengguna_prof' => $pengguna_prof
+            'pengguna_prof' => $pengguna_prof,
+            'header'=>$header
         ]);
     }
 
