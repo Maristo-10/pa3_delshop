@@ -32,7 +32,7 @@ class ProdukController extends Controller
         $file->move('ProductsData', $fileName);
         Excel::import(new ProductsImport, \public_path('/ProductsData/' . $fileName));
 
-        return redirect()->route('admin.kelolaproduk')->with('success', 'Data sukses diimport!');
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data berhasil diimport!');
     }
 
     public function viewImportProduct()
@@ -48,6 +48,14 @@ class ProdukController extends Controller
         // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
 
         return view('admin.kelolaproduk', compact('produk'));
+    }
+
+    public function cariKelolaProduk(Request $request) {
+        $data = $request->cari;
+        $produk = Produk::where('nama_produk', 'like', '%' . $data . '%')->paginate(10);
+
+        return view('admin.kelolaproduk', compact('produk'));
+
     }
     // filter category
     public function filterByCategory($category)
