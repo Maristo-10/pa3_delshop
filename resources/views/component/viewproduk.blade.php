@@ -28,7 +28,7 @@
                         <label class="custom-control-label" for="size-{{ $index }}">{{ $ukurans->ukuran }}</label>
                     </div>
                     @endforeach
-                    <button type="submit">Filter</button>
+                    <button type="submit" class="btn btn-primary text-light">Filter</button>
                 </form>
 
 

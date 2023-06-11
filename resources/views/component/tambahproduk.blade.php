@@ -4,7 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<a href="/produks" class="btn btn-warning mb-4">Kembali</a>
+<a href="/produks" class="btn btn-secondary mb-4">Kembali</a>
 {{-- TODO: Controller not ready yet --}}
 <form class="mb-5" action="/prosestambahproduk" method="post" enctype="multipart/form-data">
     @csrf

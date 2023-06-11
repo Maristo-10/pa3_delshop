@@ -227,8 +227,7 @@
                         @endif
                     @else
                         <div class="btn-group">
-                            <a type="button" class="text-dark ml-2 mr-3" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a type="button" class="text-dark ml-2 mr-3" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                 @foreach ($pengguna_prof as $profile)
                                     @php
                                         $profile = $profile->gambar_pengguna;
@@ -239,7 +238,7 @@
 
                                 <span class="d-none ">{{ Auth::user()->name }}</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                                 <a class="dropdown-item d-flex align-items-center" href="/profile">
                                     <i class="bi bi-person mb-2 mt-2"></i>
                                     <span>My Profile</span>
@@ -387,7 +386,7 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> custom js
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
     {{-- custom.js adding to cart ajax --}}

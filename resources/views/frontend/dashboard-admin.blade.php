@@ -1,24 +1,88 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-<h1 class="fs-1">Dashboard</h1>
+    <h1 class="fs-1">Dashboard</h1>
 @endsection
 
 @section('content')
-    <section class="section dashboard">
+<section class="section dashboard">
         <div class="row">
             <!-- Left side columns -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <!-- Sales Card -->
+                    <div class="col-xxl-6 col-md-4">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p> 3 Pesanan Baru</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-6 col-md-4">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-exclamation-diamond fs-1 text-warning blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p>Baju Sudah Mau Habis</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-6 col-md-4">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-broadcast-pin fs-1 text-info blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p>1 Perlu Konfirmasi Pengguna</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-12">
                 <div class="row">
                     <!-- Sales Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-xxl-6 col-md-4">
                         <div class="card info-card sales-card">
                             <div class="card-body">
                                 <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart " ></i>
+                                        <i class="bi bi-cart "></i>
                                     </div>
                                     <div class="ps-3">
                                         @foreach ($jumlahproduk as $item)
@@ -32,7 +96,7 @@
                     </div><!-- End Sales Card -->
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-xxl-6 col-md-4">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
                                 <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
@@ -54,6 +118,29 @@
 
                         </div>
                     </div><!-- End Revenue Card -->
+                    <div class="col-xxl-6 col-md-4">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle text-primary fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-bell fs-1"></i>
+                                    {{-- <p class="fs-2">3</p> --}}
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p> 3 Pesanan Baru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
 
                     <!-- Reports -->
                     <div class="col-12">
@@ -142,21 +229,6 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card info-card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <p class="bi bi-info-circle text-primary fs-5"> Informasi</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <p class="fs-2 rounced-circle hr">3</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center fs-6">
-                            <p>Pesanan Baru</p>
-                        </div>
-                        
-                    </div>
-                </div>
-
                 <!-- Recent Activity -->
                 <div class="card info-card">
                     <div class="card-body">
@@ -197,7 +269,7 @@
                         </div>
                     </div>
                 </div><!-- End Recent Activity -->
-                
+
                 <!-- Budget Report -->
                 <div class="card">
                     <div class="card-body pb-0" style="min-height: 400px">
@@ -213,8 +285,8 @@
                             <tbody>
                                 @empty($pesanan_harian)
                                     <tr>
-                                        <td colspan="4" class="card-title text-center fs-5" >
-                                            <span  style="font-style: italic">Pesanan Kosong</span>
+                                        <td colspan="4" class="card-title text-center fs-5">
+                                            <span style="font-style: italic">Pesanan Kosong</span>
                                         </td>
                                     </tr>
                                 @else
@@ -224,17 +296,20 @@
                                     @foreach ($pesanan_harian as $index => $data)
                                         <tr>
                                             <td>{{ $index + $pesanan_harian->firstItem() }}</td>
-                                            <td>{{ $data->name}}</td>
+                                            <td>{{ $data->name }}</td>
                                             <td>
-                                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}">
+                                                <a class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{ $data->id }}">
                                                     <i class="bi bi-info-square fs-6"></i>
                                                 </a>
                                             </td>
-                                            
+
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
+<<<<<<< Updated upstream
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">ID Pesanan</h1>
                                                     </div>
@@ -242,30 +317,54 @@
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlInput1" class="form-label">ID Pesanan</label>
                                                             <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kode}}" disabled>
+=======
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">ID Pesanan</h1>
+>>>>>>> Stashed changes
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1" class="form-label">Nama Pesanan</label>
-                                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->name}}" disabled>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlInput1" class="form-label">ID
+                                                                    Pesanan</label>
+                                                                <input type="text" id="disabledTextInput"
+                                                                    class="form-control" placeholder="{{ $data->kode }}"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlInput1" class="form-label">Nama
+                                                                    Pesanan</label>
+                                                                <input type="text" id="disabledTextInput"
+                                                                    class="form-control" placeholder="{{ $data->name }}"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlInput1" class="form-label">Nama
+                                                                    Pengambil</label>
+                                                                <input type="text" id="disabledTextInput"
+                                                                    class="form-control"
+                                                                    placeholder="{{ $data->nama_pengambil }}" disabled>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlInput1" class="form-label">Total
+                                                                    Pesanan</label>
+                                                                <input type="text" id="disabledTextInput"
+                                                                    class="form-control" placeholder="Rp. <?php $angka = $data->total_harga;
+                                                                    echo number_format($angka, 0, ',', '.');
+                                                                    ?>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlInput1"
+                                                                    class="form-label">Status</label>
+                                                                <input type="text" id="disabledTextInput"
+                                                                    class="form-control" placeholder="{{ $data->status }}"
+                                                                    disabled>
+                                                            </div>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1" class="form-label">Nama Pengambil</label>
-                                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->nama_pengambil}}" disabled>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-bs-dismiss="modal">Close</button>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1" class="form-label">Total Pesanan</label>
-                                                            <input type="text" id="disabledTextInput" class="form-control"
-                                                                placeholder="Rp. <?php $angka = $data->total_harga;
-                                                                        echo number_format($angka, 0, ',', '.');
-                                                                        ?>" disabled>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1" class="form-label">Status</label>
-                                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->status}}" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -276,6 +375,6 @@
                         {{ $pesanan_harian->links() }}
                     </div>
                 </div><!-- End Budget Report -->
-                
+
             </div><!-- End Right side columns -->
         @endsection
