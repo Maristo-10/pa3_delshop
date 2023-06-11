@@ -26,7 +26,7 @@
     <link href="{{ asset('css/simple-datatables/style.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylebaru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/a.css') }}" rel="stylesheet">
     {{-- font awesome --}}
     <link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.11.2/css/all.css') }}">
