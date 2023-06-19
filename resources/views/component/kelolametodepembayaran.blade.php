@@ -145,11 +145,11 @@
     </div>
         <div class="col col-md-5 shadow-sm rounded bg-white">
             <button class="btn btn-success text-white mb-3" onclick="eventBtnt();">
-                <i class="bi bi-eye-fill"></i>
+                <i class="fa fa-plus"></i>
                 <span><small>Tambah Kategori Pembayaran</small></span>
             </button>
             <div class="card" id="tambah_kapem" name="tambah_kapem" hidden>
-                <div class="row">
+                <div class="row p-3">
                     <div class="btn-close-form">
                         <button class="btn btn-danger bi bi-x-lg float-right ml-1" style="font-size: 10px"
                             onclick="eventCloset()"></button>

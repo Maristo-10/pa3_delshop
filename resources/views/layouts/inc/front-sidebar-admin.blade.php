@@ -28,7 +28,7 @@
             <a class="dropdown-item" href="/produks"><i class="bi bi-box2-fill fs-5"></i><span> Kelola Produk</span></a>
             <a class="dropdown-item" href="/kategoriproduk"><i class="bi bi-box-seam-fill fs-5 "></i><span> Kelola
                     Kategori Produk</span></a>
-            <a class="dropdown-item" href="/kelola-permintaan-roles"><i class="bi bi-clipboard-pulse fs-5 "></i><span>
+            <a class="dropdown-item" href="/detail-penjualan-produk"><i class="bi bi-clipboard-pulse fs-5 "></i><span>
                     Detail Penjualan Produk</span></a>
         </div>
     </div>

@@ -20,7 +20,10 @@
                             {{ $massage }}
                         </div>
                     @enderror
-                    <img src="/berita-images/{{ $berita->image }}" alt="">
+                    <div class="col-3 mt-3">
+                        <img src="/berita-images/{{ $berita->image }}" alt="">
+                    </div>
+
                 </div>
                 <div class="form-group col-12 col-md-6 mt-3">
                     <label for="description">Deskripsi</label>

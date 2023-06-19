@@ -71,13 +71,13 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @if ($jumlah->total == 0)
+                                @if (count($pesanan_kapem) == 0)
                                 <tr class="demo-table justify-content-center teks-kosong">
-                                    <td colspan="8" class="col-sm text-muted mt-3">
-                                        <p class="bi bi-cart-fill  mt-3"></p>
-                                        <p class="">Data Pesanan Kosong</p></td>
+                                    <td colspan="8" class="text-muted mt-3">
+                                        <i class="bi bi-cart-fill fs-1 "></i>
+                                        <p class="fs-1">Data Pesanan Anda Kosong</p></td>
                                 </tr>
-    
+
                                 @else
                                     @foreach ($pesanan_kapem as $data)
                                         <tr>
@@ -98,7 +98,7 @@
                                         </tr>
                                     @endforeach
                                 @endif
-    
+
                             </tbody>
                         </table>
                     </div>

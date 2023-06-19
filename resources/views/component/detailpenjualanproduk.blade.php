@@ -14,13 +14,13 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <div class="container">
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-4">
             <div class="search-bar">
                 <form class="search-form d-flex align-items-center" method="GET" action="/detail-penjualan-produk/cari">
                     <input type="text" name="cari" id="sidPes" placeholder="Cari Berdasarkan nama produk"
                         title="Masukkan ID Pesanan" class="form-control col-4">
                     <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                    <a href="/kelola-pesanan" class="btn btn-secondary text-light">Reset</a>
+                    <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-2">Reset</a>
                 </form>
             </div>
         </div>
