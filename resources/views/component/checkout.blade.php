@@ -19,7 +19,7 @@
     </div>
 </div>
 <!-- Page Header End -->
-<!-- Navbar Start -->
+
 <!--Chekout-->
 <div class="container py-5 h-100 col-11">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -39,7 +39,6 @@
                             <div class="mb-3">
                                 @foreach ($pesanan as $a)
                                     <p class="mb-0">Anda mempunyai <b>{{ $a->total }}</b> Barang di Keranjang</p>
-                                    {{-- <span class="h6">Total ( {{ $a->total }} Produk): </span> --}}
                                 @endforeach
 
                             </div>
@@ -97,7 +96,7 @@
                                 </form>
 
                                 <!--Modal-->
-                                <div class="modal fade" id="exampleModal{{ $ite m->id }}" tabindex="-1"
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

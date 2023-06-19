@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <h1>Kelola Permintaan Role Pengguna</h1>
+    <p class="fs-1">Kelola Permintaan Role Pengguna</p>
 @endsection
 
 @section('content')

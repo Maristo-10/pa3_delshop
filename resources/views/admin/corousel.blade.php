@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-   <h1 class="fs-1">Kelola Corousel</h1>
+    <p class="fs-1">Kelola Corousel</p>
 @endsection
 
 @section('content')

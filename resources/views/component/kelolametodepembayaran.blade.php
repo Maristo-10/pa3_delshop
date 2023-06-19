@@ -28,7 +28,7 @@
 </script>
 
 <div class="row">
-    <div class="col col-7">
+    <div class="col col-md-7">
         <small>
             <a href="/tambah-metode-pembayaran" class="btn btn-success text-white py-2 ml-2 mb-3">
                 <i class="fa fa-plus"></i>
@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-        <div class="col col-5 shadow-sm rounded bg-white">
+        <div class="col col-md-5 shadow-sm rounded bg-white">
             <button class="btn btn-success text-white mb-3" onclick="eventBtnt();">
                 <i class="bi bi-eye-fill"></i>
                 <span><small>Tambah Kategori Pembayaran</small></span>
