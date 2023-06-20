@@ -263,12 +263,14 @@
                                                 </h5>
                                             </th>
                                             <th scope="col" colspan="2">
+                                                <h5 class="fw-bold">
                                                 Rp. <?php
                                                 $angka1 = $total_harga->harga_terjual;
                                                 $angka2= $total_modal->jumlah_modal;
                                                 $angka = $angka1 - $angka2;
                                                 echo number_format($angka, 0, ',', '.');
                                                 ?>
+                                                </h5>
                                             </th>
                                         </tr>
                                     </tfoot>

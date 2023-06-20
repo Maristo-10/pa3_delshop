@@ -177,6 +177,7 @@ class ProdukController extends Controller
         $tambahproduk->kategori_produk = $request->kategori_produk;
         $tambahproduk->produk_unggulan = $request->produk_unggulan;
         $tambahproduk->deskripsi = $request->deskripsi;
+        $tambahproduk->modal = $request->modal;
         if ($request->input('ukuran') != null) {
             $selectedUkuran = implode(',', $request->input('ukuran'));
             $tambahproduk->ukuran_produk = $selectedUkuran;
@@ -244,6 +245,7 @@ class ProdukController extends Controller
         $kategori_produk = $request->kategori_produk;
         $produk_unggulan = $request->produk_unggulan;
         $deskripsi = $request->deskripsi;
+        $modal = $request->modal;
         $ukuran_produk = "";
         $warna = "";
         $angkatan = "";
@@ -278,7 +280,8 @@ class ProdukController extends Controller
             'deskripsi' => $deskripsi,
             'ukuran_produk' => $ukuran_produk,
             'warna' => $warna,
-            'angkatan' => $angkatan
+            'angkatan' => $angkatan,
+            'modal' => $modal
         ]);
 
         return redirect()->route('admin.kelolaproduk')->with('success', 'Data Produk Berhasil di Ubah');

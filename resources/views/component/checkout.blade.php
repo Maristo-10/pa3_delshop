@@ -58,21 +58,21 @@
                                                         <h5 class="fw-bold">{{ $item->nama_produk }}</h5>
                                                         @if ($item->ukurans != null)
                                                             <p class="">Size: {{ $item->ukurans }}
-                                                                </p>
-                                                                @else
-                                                                    <p class="">Size: -</p>
+                                                            </p>
+                                                        @else
+                                                            <p class="">Size: -</p>
                                                         @endif
                                                         @if ($item->warna_produk != null)
                                                             <p class="">Warna: {{ $item->warna_produk }}
-                                                                </p>
-                                                                @else
-                                                                    <p class="">Warna: -</p>
+                                                            </p>
+                                                        @else
+                                                            <p class="">Warna: -</p>
                                                         @endif
                                                         @if ($item->angkatans != null)
                                                             <p class="">Angkatan: {{ $item->angkatans }}
-                                                                </p>
-                                                                @else
-                                                                    <p class="">Angkatan: -</p>
+                                                            </p>
+                                                        @else
+                                                            <p class="">Angkatan: -</p>
                                                         @endif
 
                                                     </div>
@@ -87,8 +87,11 @@
                                                         echo number_format($angka, 0, ',', '.');
                                                         ?></h6>
                                                     </div>
-                                                    <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
-                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i class="fas fa-trash-alt text-danger mr-4"></i></label>
+                                                    <button type="submit" name="remove-{{ $item->id }}"
+                                                        id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                    <label for="remove-{{ $item->id }}"
+                                                        title="Hapus Produk dari Checkout"><i
+                                                            class="fas fa-trash-alt text-danger mr-4"></i></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +113,8 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" name="remove-{{ $item->id }}"
-                                                    id="remove-{{ $item->id }}" method="post" class="btn btn-danger">Ya</button>
+                                                    id="remove-{{ $item->id }}" method="post"
+                                                    class="btn btn-danger">Ya</button>
                                                 <button type="button" class="btn btn-primary"
                                                     data-bs-dismiss="modal">Batal</button>
                                             </div>
@@ -154,7 +158,7 @@
                                                 style="border-radius: 5px">
                                                 <option value="0" selected disabled>
                                                     <small>Pilih Metode Pembayaran</small>
-                                                    </option>
+                                                </option>
                                                 @foreach ($kapem as $data)
                                                     <option value="{{ $data->id_kapem }}">
                                                         {{ $data->kategori_pembayaran }}
@@ -163,7 +167,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-outline form-white mb-4" name="f-metpem" id="f-metpem" hidden>
+                                        <div class="form-outline form-white mb-4" name="f-metpem" id="f-metpem"
+                                            hidden>
                                             <label class="form-label" for="metode_pembayaran"
                                                 style="font-weight: bold">Pilih Layanan</label>
                                             <select name="metode_pembayaran" id="metode_pembayaran"
@@ -174,21 +179,32 @@
                                         <div class="form-outline form-white mb-3 pb-2" name="layanan" id="layanan"
                                             hidden>
                                             <strong style="font-weight: bold">Detail Layanan Pembayaran</strong>
-                                            <table>
-                                                <tr>
-                                                    <td>Nama Layanan</td>
-                                                    <td class="col-2">:</td>
-                                                    <td name="namaLayanan" id="namaLayanan"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nomor Pembayaran</td>
-                                                    <td class="col-2">:</td>
-                                                    <td name="nomorLayanan" id="nomorLayanan"></td>
-                                                </tr>
-                                            </table>
+
+                                            <div class="row col-12">
+                                                <div class="col col-6">
+                                                    Nama Layanan
+                                                </div>
+                                                <div class="col col-1">
+                                                    :
+                                                </div>
+                                                <div class="col" name="namaLayanan" id="namaLayanan">
+                                                </div>
+                                            </div>
+                                            <div class="row col-12">
+                                                <div class="col col-6">
+                                                    Nomor Pembayaran
+                                                </div>
+                                                <div class="col col-1">
+                                                    :
+                                                </div>
+                                                <div class="col" name="nomorLayanan" id="nomorLayanan">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-4" name="error" id="error" style="font-weight: bold" hidden>
-                                            Silahkan Pilih Metode Pembayaran Terlebih Dahulu Untuk Melanjutkan Proses Tranksaksi</div>
+                                        <div class="mb-4" name="error" id="error" style="font-weight: bold"
+                                            hidden>
+                                            Silahkan Pilih Metode Pembayaran Terlebih Dahulu Untuk Melanjutkan Proses
+                                            Tranksaksi</div>
                                         <div class="form-outline form-white mb-3 pb-2" name="form-bukti-pembayaran"
                                             id="form-bukti-pembayaran" hidden>
                                             <strong style="font-weight: bold">Upload Bukti Pembayaran</strong><br>

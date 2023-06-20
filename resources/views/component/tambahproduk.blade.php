@@ -84,7 +84,7 @@
                 </select>
 
             </div>
-            
+
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="kategori_produk">Kategori Produk</label>
                 {{-- <select name="kategori_produk" id="kategori_produk" class="form-control form-select">
@@ -120,6 +120,10 @@
                         {{ $massage }}
                     </div>
                 @enderror
+            </div>
+            <div class="form-group col-12 col-md-6 mt-3">
+                <label for="modal">Harga Beli</label>
+                <input type="number" name="modal" id="modal" class="form-control">
             </div>
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="deskripsi">Deskripsi</label>

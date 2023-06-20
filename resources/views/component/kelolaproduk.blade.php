@@ -205,18 +205,25 @@
                                                         <img src="/product-images/{{ $data->gambar_produk }}" alt="Product Image" width="150" class="">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Harga</label>
+                                                        <label for="exampleFormControlInput1" class="form-label">Harga Jual</label>
                                                         <input type="text" id="disabledTextInput" class="form-control"
                                                             placeholder="Rp. <?php $angka = $data->harga;
                                                                     echo number_format($angka, 0, ',', '.');
                                                                     ?>" disabled>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Kategori</label>
+                                                        <label for="exampleFormControlInput1" class="form-label">Harga Beli</label>
+                                                        <input type="text" id="disabledTextInput" class="form-control"
+                                                            placeholder="Rp. <?php $angka = $data->modal;
+                                                                    echo number_format($angka, 0, ',', '.');
+                                                                    ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleFormControlInput1" class="form-label">Kategori Produk</label>
                                                         <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_produk}}" disabled>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Kategori</label>
+                                                        <label for="exampleFormControlInput1" class="form-label">Kategori Pembeli</label>
                                                         <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->role_pembeli}}" disabled>
                                                     </div>
                                                     <div class="mb-3">

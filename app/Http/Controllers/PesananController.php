@@ -69,6 +69,7 @@ class PesananController extends Controller
         $pesanan_detail->pesanan_id = $pesanan_baru->id;
         $pesanan_detail->jumlah = $request->jumlah;
         $pesanan_detail->jumlah_harga = $produk->harga * $request->jumlah;
+        $pesanan_detail->modal_details = $produk->modal * $request->jumlah;
         $pesanan_detail->save();
 
         return redirect()->route("pembeli.detailproduk");
@@ -81,7 +82,7 @@ class PesananController extends Controller
         $now = Carbon::now()->format('dmY');
 
         if ($request->jumlah > $produk->jumlah_produk) {
-            return redirect('detail-produk/' . $id);
+            return redirect('detail-produk/' . $id)->with('ok', 'Stok Produk Tidak Mencukupi');
         }
 
         $cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
@@ -116,6 +117,7 @@ class PesananController extends Controller
             $pesanan_detail->ukurans = $request->ukuran;
             $pesanan_detail->warna_produk = $request->warna;
             $pesanan_detail->angkatans = $request->angkatan;
+            $pesanan_detail->modal_details = $produk->modal * $request->jumlah;
             $pesanan_detail->save();
         }
         if ($cek_pesanan_detail != null) {
@@ -124,13 +126,16 @@ class PesananController extends Controller
             $pesanan_detail->jumlah = $pesanan_detail->jumlah + $jumlah_pesanan_detail_baru;
             $harga_pesanan_detail_baru = $produk->harga * $request->jumlah;
             $pesanan_detail->jumlah_harga = $pesanan_detail->jumlah_harga + $harga_pesanan_detail_baru;
+            $modal_pesanan_detail_baru = $produk->modal * $request->jumlah;
+            $pesanan_detail->modal_details = $pesanan_detail->modal_details + $modal_pesanan_detail_baru;
             $pesanan_detail->update();
         }
 
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pesanan->total_harga = $pesanan->total_harga + $produk->harga * $request->jumlah;
+        $pesanan->modal_pesanan = $pesanan->modal_pesanan + $produk->modal * $request->jumlah;
         $pesanan->update();
-        return redirect()->route("pembeli.viewproduk");
+        return redirect()->route("pembeli.viewproduk")->with('pesan','Pesanan Sudah Masuk ke Keranjang Anda');
     }
 
     public function vkeranjang()
@@ -289,7 +294,7 @@ class PesananController extends Controller
         $pesanan->save();
 
         User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
-        return redirect()->route('frontend.dashboard-pembeli');
+        return redirect()->route('frontend.dashboard-pembeli')->with('checkout', 'Pesanan Berhasil di Checkout');
     }
 
     public function markAsRead()
@@ -927,8 +932,10 @@ class PesananController extends Controller
         // dd($pesanan_baru->total_harga);
         $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
         $pesanan_baru->total_harga = $harga;
+        $pesanan_baru->modal_pesanan = $pesanan_baru->modal_pesanan - $pesanan_detail->modal_details;
         $pesanan_baru->update([
-            'total_harga' => $harga
+            'total_harga' => $harga,
+            'modal_pesanan'=> $pesanan_baru->modal_pesanan - $pesanan_detail->modal_details
         ]);
         $pesanan_detail_baru = DetailPesanan::where('pesanan_id', $pes->id)->where('produk_id', $pesanan_detail->produk_id)->where('ukurans', $pesanan_detail->ukurans)->where('warna_produk', $pesanan_detail->warna_produk)->where('angkatans', $pesanan_detail->angkatans)->first();
         if (empty($pesanan_detail_baru)) {
@@ -942,6 +949,7 @@ class PesananController extends Controller
             $pesanan_detail_baru = DetailPesanan::where('produk_id', $pesanan_detail->produk_id)->where('pesanan_id', $pes->id)->where('ukurans', $pesanan_detail->ukurans)->where('warna_produk', $pesanan_detail->warna_produk)->where('angkatans', $pesanan_detail->angkatans)->first();
             $pesanan_detail_baru->jumlah = $pesanan_detail->jumlah + $pesanan_detail_baru->jumlah;
             $pesanan_detail_baru->jumlah_harga = $pesanan_detail->jumlah_harga + $pesanan_detail_baru->jumlah_harga;
+            $pesanan_detail_baru->modal_details = $pesanan_detail->modal_details + $pesanan_detail_baru->modal_details;
             $pesanan_detail_baru->update();
             $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id', '=', 'produk.id_produk')->where('pesanandetails.id', $id)->first();
             $stok = $produk->jumlah_produk - $pesanan_detail->jumlah;
@@ -961,6 +969,7 @@ class PesananController extends Controller
 
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
         $pesanan->total_harga = $pesanan->total_harga + $detail->jumlah_harga;
+        $pesanan->modal_pesanan = $pesanan->modal_pesanan + $detail->modal_details;
         $pesanan->update();
         return redirect()->route('pembeli.keranjang');
     }
@@ -987,21 +996,26 @@ class PesananController extends Controller
             $pesanan_detail->update();
             $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
             $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->modal_pesanan = $pesanan_baru->modal_pesanan - $pesanan_detail->modal_details;
             $pesanan_baru->update();
         }
 
         if (!empty($pesanan_detail_lama)) {
             $pesanan_detail_lama->jumlah = $pesanan_detail_lama->jumlah + $pesanan_detail->jumlah;
             $pesanan_detail_lama->jumlah_harga = $pesanan_detail_lama->jumlah_harga + $pesanan_detail->jumlah_harga;
+            $pesanan_detail_lama->modal_details = $pesanan_detail_lama->modal_details + $pesanan_detail->modal_details;
             $pesanan_detail_lama->update();
             $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
+            $modals = $pesanan_baru->modal_pesanan - $pesanan_detail->modal_details;
             $pesanan_baru->total_harga = $harga;
+            $pesanan_baru->modal_pesanan = $modals;
             $pesanan_baru->update();
             $pesanan_detail->delete();
         }
         $harga_remove = $pesanan_lama->total_harga + $pesanan_detail->jumlah_harga;
         $pesanan_lama->total_harga =  $harga_remove;
         $pesanan_lama->kode = "DEL$now$pesanan_lama->id";
+        $pesanan_lama->modal_pesanan =  $pesanan_lama->modal_pesanan + $pesanan_detail->modal_details;
         $pesanan_lama->update();
 
         if (route('pembeli.keranjang')) {
