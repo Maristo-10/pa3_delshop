@@ -118,7 +118,6 @@ Route::middleware(['auth', 'isPembeli'])->group(function () {
 
     // mark notif as read
     Route::get('/mark-as-read', [PesananController::class, 'markAsRead'])->name('mark-as-read');
-    Route::get('/mark-as-read-by-id/{id}', [PesananController::class, 'markAsReadByID'])->name('mark-as-read-by-id');
 
     Route::get('/pesanan', [PesananController::class,'vpesanan'])->name('pembeli.pesanan');
     Route::get('/detail-pesanan/{id}', [PesananController::class,'detail_pesanan'])->name('pembeli.detailpesanan');
@@ -227,4 +226,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/setuju/ganti/role/{id}',[UserController::class, 'setuju'])->name('admin.setuju');
     Route::post('/tolak/ganti/role/{id}',[UserController::class, 'tidakSetuju'])->name('admin.tolak');
 
+    // mark as read notification
+    Route::get('/mark-as-read-by-id/{id}', [PesananController::class, 'markAsReadByID'])->name('mark-as-read-by-id');
+
+    // route to delete multiple users
+    Route::delete('/users/delete', [UserController::class, 'deleteMultipleRows'])->name('users.delete');
+    Route::delete('/items/delete', [ProdukController::class, 'deleteMultipleRows'])->name('items.delete');
 });

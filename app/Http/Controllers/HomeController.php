@@ -16,6 +16,8 @@ use Illuminate\Support\Carbon;
 use Mockery\Matcher\Not;
 use App\Models\Corousel;
 use App\Models\GantiRoles;
+use App\Models\Notification;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -46,13 +48,30 @@ class HomeController extends Controller
         }
 
         $produk = Produk::all()->where('status_produk', 'Aktif');
-        $unggulan = Produk::all()->where('produk_unggulan', 'Unggulan')->where('status_produk', "Aktif");
-        $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan', 'Unggulan')->get();
+        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(7)->get();
+
+        // dd(count($unggulan));
+        $total_ung = Produk::select(DB::raw('count(id_produk) as total'))
+            ->groupBy("produk_unggulan")
+            ->where('produk_unggulan', 'Unggulan')
+            ->get();
+
+        // $total_ung = Produk::select(DB::raw('count(id_produk) as total'))
+        //     ->from(DB::raw('(SELECT id_produk FROM produk WHERE produk_unggulan = "Unggulan" LIMIT 5) as subquery'))
+        //     ->whereIn('id_produk', function ($query) {
+        //         $query->select('id_produk')
+        //             ->from('produk')
+        //             ->where('produk_unggulan', 'Unggulan');
+        //     })
+        //     ->where('status_produk', 'Aktif')
+        //     ->get();
+
+
         $kategori = KategoriProdukModel::all();
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
-        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id', '!=', $berita->id)->get();
         $corousel_f = Corousel::where('status', 1)->first();
-        $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
+        $corousel = Corousel::where('id', '!=', $corousel_f->id)->where('status', 1)->get();
 
         $header = User::where('role_pengguna', "Admin")->first();
 
@@ -66,9 +85,9 @@ class HomeController extends Controller
             'total_ung' => $total_ung,
             'berita' => $berita,
             'berita_2' => $berita_2,
-            'corousel_f'=>$corousel_f,
-            'corousel'=>$corousel,
-            'header'=>$header
+            'corousel_f' => $corousel_f,
+            'corousel' => $corousel,
+            'header' => $header
         ]);
     }
 
@@ -109,7 +128,7 @@ class HomeController extends Controller
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
             'total_ung' => $total_ung,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -134,11 +153,12 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
-    public function produkFilterUkuran(Request $request) {
+    public function produkFilterUkuran(Request $request)
+    {
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 'keranjang')->first();
         $pengguna_prof = User::where('id', Auth::user()->id)->get();
         if (empty($pesanan_baru)) {
@@ -152,11 +172,11 @@ class HomeController extends Controller
         $ukuran = UkuranModel::all();
 
 
-        if($request->input('ukuran') != null){
+        if ($request->input('ukuran') != null) {
             $selectedUkuran = implode(',', $request->input('ukuran'));
             $arr = explode(',', $selectedUkuran);
             // dd(count($arr));
-            for($i = 0; $i < count($arr); $i++) {
+            for ($i = 0; $i < count($arr); $i++) {
                 $produk = Produk::where('ukuran_produk', 'like', '%' . $arr[$i] . '%')->where('status_produk', 'Aktif')->get();
                 // $produk = Produk::where('ukuran_produk', $arr[$i])->where('status_produk', 'Aktif')
                 // ->get();
@@ -175,7 +195,7 @@ class HomeController extends Controller
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
                 'pengguna_prof' => $pengguna_prof,
-                'header'=>$header
+                'header' => $header
             ]);
         } else {
             $header = User::where('role_pengguna', "Admin")->first();
@@ -187,10 +207,9 @@ class HomeController extends Controller
                 'pesanan' => $pesanan,
                 'pesanan_baru' => $pesanan_baru,
                 'pengguna_prof' => $pengguna_prof,
-                'header'=> $header
+                'header' => $header
             ]);
         }
-
     }
 
     public function cariProduk2(Request $request)
@@ -219,7 +238,7 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -243,7 +262,7 @@ class HomeController extends Controller
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
             'pesanan_baru' => $pesanan_baru,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -262,14 +281,14 @@ class HomeController extends Controller
             ->where('kategoriproduk.kategori', $id)
             ->where('produk.status_produk', 'Aktif')
             ->get();
-            $header = User::where('role_pengguna', "Admin")->first();
+        $header = User::where('role_pengguna', "Admin")->first();
         return view('pembeli.viewproduk', [
             'pesanan' => $pesanan,
             'produk' => $produk,
             'kategori' => $kategori,
             'pesanan_baru' => $pesanan_baru,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -284,30 +303,30 @@ class HomeController extends Controller
 
         $totalpemasukan = Pesanan::select("total_harga", DB::raw('CAST(SUM(total_harga) as UNSIGNED INTEGER ) as totalp'))
             ->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')
-            ->whereYear('tanggal', $now)->where('pesanans.status','Selesai')->pluck('totalp');
+            ->whereYear('tanggal', $now)->where('pesanans.status', 'Selesai')->pluck('totalp');
 
-        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->where('pesanans.status','Selesai')->pluck('totalpr');
+        $totalproduk = DB::table('pesanans')->select(DB::raw('CAST(count(id) as UNSIGNED INTEGER ) as totalpr'))->groupBy(DB::raw('MonthName(tanggal)'))->OrderBy('tanggal', 'ASC')->whereYear('tanggal', $now)->where('pesanans.status', 'Selesai')->pluck('totalpr');
 
         $tahun = $now->format('Y');
         $date = $now->format('l, d F Y');
 
         //total
 
-        $jumlahproduk = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as totalproduk'))->where('pesanans.status','!=','keranjang')->whereYear('tanggal', $now)->get();
+        $jumlahproduk = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as totalproduk'))->where('pesanans.status', '!=', 'keranjang')->whereYear('tanggal', $now)->get();
 
-        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->where('pesanans.status','Selesai')->whereYear('tanggal', $now)->get();
+        $jumlahpendapatan = Pesanan::select("total_harga", DB::raw('SUM(total_harga) as totalpes'))->where('pesanans.status', 'Selesai')->whereYear('tanggal', $now)->get();
 
-        $jumlahpengguna = User::select("id",DB::raw('count(id) as totalpeng'))->whereYear('created_at', $now)->get();
+        $jumlahpengguna = User::select("id", DB::raw('count(id) as totalpeng'))->whereYear('created_at', $now)->get();
 
         //pesanan
-        $jumlahSelesai = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Selesai')->get();
-        $jumlahDiambil = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Siap Diambil')->get();
-        $jumlahProses = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Sedang Diproses')->get();
-        $jumlahTangguh = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Ditangguhkan')->get();
-        $jumlahBatal = Pesanan::select("id",DB::raw('count(id) as total'))->where('status', 'Batalkan')->get();
+        $jumlahSelesai = Pesanan::select("id", DB::raw('count(id) as total'))->where('status', 'Selesai')->get();
+        $jumlahDiambil = Pesanan::select("id", DB::raw('count(id) as total'))->where('status', 'Siap Diambil')->get();
+        $jumlahProses = Pesanan::select("id", DB::raw('count(id) as total'))->where('status', 'Sedang Diproses')->get();
+        $jumlahTangguh = Pesanan::select("id", DB::raw('count(id) as total'))->where('status', 'Ditangguhkan')->get();
+        $jumlahBatal = Pesanan::select("id", DB::raw('count(id) as total'))->where('status', 'Batalkan')->get();
 
         //Pesanan Harian
-        $pesanan_harian = DB::table('pesanans')->join('users','users.id','=','pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status','!=','keranjang')->where('pesanans.status', '!=', 'checkout')->paginate(10);
+        $pesanan_harian = DB::table('pesanans')->join('users', 'users.id', '=', 'pesanans.user_id')->whereDate('pesanans.tanggal', $now)->where('pesanans.status', '!=', 'keranjang')->where('pesanans.status', '!=', 'checkout')->paginate(10);
 
         $konfirmasi_pengguna = GantiRoles::where('status', 'Menunggu')->count();
 
@@ -316,6 +335,39 @@ class HomeController extends Controller
         $pesanan_datang = Pesanan::where('status', 'Sedang Diproses')->orWhere('status', 'Ditangguhkan')->count();
 
         $pengguna = User::count();
+        // send notifications
+        $notificationsAll = Notification::all();
+        $mergedValue = "";
+
+        foreach ($notificationsAll as $notification) {
+            $data = json_decode($notification->data, true);
+
+            // if (isset($data['data'])) {
+            //     $dataPesanan = $data['data'];
+            //     $array = explode(" ", $dataPesanan);
+            //     $mergedValue = implode(" ", array_slice($array, 0, 2));
+            //     $arrayBaru = explode(" ", $mergedValue);
+            //     $dataToShow = "ada " . $arrayBaru[0] . " baru id " . $arrayBaru[1];
+            //     // dd($dataToShow);
+            // }
+            if (isset($data['data'])) {
+                if (strpos($data['data'], 'Diproses') !== false) {
+                    $dataPesanan = $data['data'];
+                    $array = explode(" ", $dataPesanan);
+                    $mergedValue = implode(" ", array_slice($array, 2, 2));
+                    $arrayBaru = explode(" ", $mergedValue);
+                    // $dataToShow = "ada " . $arrayBaru[0] . " baru id " . $arrayBaru[1];
+                    // dd($mergedValue);
+                }
+            }
+        }
+        // dd($mergedValue);
+        $notifications = Notification::where('data->data', 'like', '%' . $mergedValue . '%')
+            ->whereNull('read_at')
+            ->get();
+
+        // dd($notifications);
+        $count = count($notifications);
 
         return view('frontend.dashboard-admin', [
             'bulan' => $bulan,
@@ -323,19 +375,21 @@ class HomeController extends Controller
             'totalproduk' => $totalproduk,
             'tahun' => $tahun,
             'jumlahproduk' => $jumlahproduk,
-            'jumlahpendapatan'=>$jumlahpendapatan,
-            'jumlahpengguna'=>$jumlahpengguna,
-            'jumlahSelesai'=>$jumlahSelesai,
-            'jumlahDiambil'=>$jumlahDiambil,
-            'jumlahProses'=>$jumlahProses,
-            'jumlahTangguh'=>$jumlahTangguh,
-            'jumlahBatal'=>$jumlahBatal,
-            'date'=>$date,
-            'pesanan_harian'=>$pesanan_harian,
-            'konfirmasi_pengguna'=>$konfirmasi_pengguna,
-            'barang_habis'=>$barang_habis,
-            'pesanan_datang'=>$pesanan_datang,
-            'pengguna'=> $pengguna
+            'jumlahpendapatan' => $jumlahpendapatan,
+            'jumlahpengguna' => $jumlahpengguna,
+            'jumlahSelesai' => $jumlahSelesai,
+            'jumlahDiambil' => $jumlahDiambil,
+            'jumlahProses' => $jumlahProses,
+            'jumlahTangguh' => $jumlahTangguh,
+            'jumlahBatal' => $jumlahBatal,
+            'date' => $date,
+            'pesanan_harian' => $pesanan_harian,
+            'konfirmasi_pengguna' => $konfirmasi_pengguna,
+            'barang_habis' => $barang_habis,
+            'pesanan_datang' => $pesanan_datang,
+            'pengguna' => $pengguna,
+            'notifications' => $notifications,
+            'count' => $count,
         ]);
     }
 }

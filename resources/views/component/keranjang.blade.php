@@ -118,11 +118,11 @@
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body text-start">
-                                                                    Apakah anda ingin membatalkan pembelian ini??
+                                                                    Apakah anda ingin menghapus produk dari keranjang??
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                     <a href="/hapus/pesanan-keranjang/{{ $item->id }}" class="btn btn-danger" title="Hapus Produk dari Keranjang">Ya</a>
-                                                                    <button type="button" class="btn btn-secondary">Batalkan</button>
+                                                                    <button type="button" class="btn btn-primaryA">Batalkan</button>
                                                                     </div>
                                                                 </div>
                                                                 </div>

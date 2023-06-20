@@ -29,28 +29,41 @@ class Controller extends BaseController
 
     public function index2()
     {
-            $pesanan = [0];
-            $pengguna_prof =[0];
+        $pesanan = [0];
+        $pengguna_prof = [0];
 
-        $unggulan=Produk::all()->where('produk_unggulan','Unggulan');
+        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(7)->get();
         $kategori = KategoriProdukModel::all();
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan','Unggulan')->get();
+        // $total_ung = Produk::select(DB::raw('count(id_produk) as total'))
+        //     ->from(DB::raw('(SELECT id_produk FROM produk WHERE produk_unggulan = "Unggulan" LIMIT 5) as subquery'))
+        //     ->whereIn('id_produk', function ($query) {
+        //         $query->select('id_produk')
+        //             ->from('produk')
+        //             ->where('produk_unggulan', 'Unggulan')
+        //             ->where('status_produk', 'Aktif');
+        //     })
+        //     ->groupBy(DB::raw('(SELECT "Unggulan")'))
+        //     ->get();
+
+        // dd($total_ung);
+
         $berita = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->first();
-        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id','!=',$berita->id)->get();
+        $berita_2 = Berita::where('status', 'Aktif')->orderBy('created_at', 'ASC')->where('id', '!=', $berita->id)->get();
 
         $corousel_f = Corousel::where('status', 1)->first();
-        $corousel = Corousel::where('id','!=', $corousel_f->id)->where('status', 1)->get();
+        $corousel = Corousel::where('id', '!=', $corousel_f->id)->where('status', 1)->get();
         $header = User::where('role_pengguna', "Admin")->first();
-        return view('frontend.dashboard-pembeli',[
-            'kategori'=>$kategori,
-            'unggulan'=>$unggulan,
-            'pesanan'=>$pesanan,
-            'pengguna_prof'=>$pengguna_prof,
-            'total_ung'=>$total_ung,
+        return view('frontend.dashboard-pembeli', [
+            'kategori' => $kategori,
+            'unggulan' => $unggulan,
+            'pesanan' => $pesanan,
+            'pengguna_prof' => $pengguna_prof,
+            'total_ung' => $total_ung,
             'berita' => $berita,
             'berita_2' => $berita_2,
-            'corousel_f'=>$corousel_f,
-            'corousel'=>$corousel,
+            'corousel_f' => $corousel_f,
+            'corousel' => $corousel,
             'header' => $header
         ]);
     }
@@ -58,7 +71,7 @@ class Controller extends BaseController
     public function produk()
     {
         $pesanan = [0];
-            $pengguna_prof =[0];
+        $pengguna_prof = [0];
 
         $produk = Produk::where('status_produk', 'Aktif')->get();
         $kategori = KategoriProdukModel::all();
@@ -70,7 +83,7 @@ class Controller extends BaseController
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -78,7 +91,7 @@ class Controller extends BaseController
     {
         $cari = $request->cari;
         $pesanan = [0];
-            $pengguna_prof =[0];
+        $pengguna_prof = [0];
 
         $produk = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('status_produk', 'Aktif')->get();
         // dd($produk);
@@ -105,7 +118,7 @@ class Controller extends BaseController
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
             'total_ung' => $total_ung,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -114,7 +127,7 @@ class Controller extends BaseController
         $products = Produk::where('kategori_produk', $category)->get();
 
         $pesanan = [0];
-            $pengguna_prof =[0];
+        $pengguna_prof = [0];
         if (empty($pesanan_baru)) {
             $pesanan = 0;
         } else {
@@ -129,7 +142,7 @@ class Controller extends BaseController
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -138,7 +151,7 @@ class Controller extends BaseController
         $cari = $request->cari;
 
         $pesanan = [0];
-            $pengguna_prof =[0];
+        $pengguna_prof = [0];
 
         $produk = Produk::where('nama_produk', 'like', '%' . $cari . '%')->where('status_produk', 'Aktif')->get();
 
@@ -151,7 +164,7 @@ class Controller extends BaseController
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
 
@@ -172,7 +185,7 @@ class Controller extends BaseController
             }
         }
         $pesanan = [0];
-            $pengguna_prof =[0];
+        $pengguna_prof = [0];
         if (empty($pesanan_baru)) {
             $pesanan = 0;
         } else {
@@ -188,8 +201,7 @@ class Controller extends BaseController
             'kategori' => $kategori,
             'pesanan' => $pesanan,
             'pengguna_prof' => $pengguna_prof,
-            'header'=>$header
+            'header' => $header
         ]);
     }
-
 }

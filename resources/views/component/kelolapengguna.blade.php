@@ -1,3 +1,4 @@
+
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -73,24 +74,27 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
-                    <table class="table table-striped table-bordered" id="list">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="checkAll master"> Select All</th>
-                                <th scope="col" class="col-md-1">No</th>
-                                <th scope="col" class="col-md-3">Nama Pengguna</th>
-                                <th scope="col" class="col-md-3">Email</th>
-                                <th scope="col" class="col-md-2">Role Pengguna</th>
-                                <th scope="col" class="col-md-2">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <form method="POST" action="{{route('admin.hapusallpengguna')}}">
-                                @if($pengguna->count())
+                    <form action="{{ route('users.delete') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="remove-button" style="display: none;">Remove Selected Items</button>
+                        <table class="table table-striped table-bordered" id="list">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th scope="col" class="col-md-1">No</th>
+                                    <th scope="col" class="col-md-3">Nama Pengguna</th>
+                                    <th scope="col" class="col-md-3">Email</th>
+                                    <th scope="col" class="col-md-2">Role Pengguna</th>
+                                    <th scope="col" class="col-md-2">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach ($pengguna as $index => $data)
-                                    <tr id="sid{{$data->id}}">
-                                        <td><input type="checkbox" name='ids[]' id="checkBoxClass" 
-                                            value="{{$data->id}}"></td>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="selectedItems[]" value="{{ $data->id }}">
+                                        </td>
                                         <td>{{ $index + $pengguna->firstItem() }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->email }}</td>
@@ -103,7 +107,6 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $data->id }}"></a>
                                         </td>
-    
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,7 +118,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Apakah anda yakun untuk menghapus data ini?
+                                                        Apakah anda yakin untuk menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a href="/hapus/pengguna/{{ $data->id }}"
@@ -127,10 +130,10 @@
                                             </div>
                                         </div>
                                 @endforeach
-                                @endif
-                            </form>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-danger">Hapus data yang dipilih</button>
+                    </form>
                     <div class="row">
                         <div class="col-md-12">
                             {{ $pengguna->links('pagination::tailwind') }}
@@ -141,123 +144,3 @@
         </div>
 </div>
 </div>
-{{-- <script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#master').on('click', function(e) {
-        if($(this).is(':checked',true))  
-        {
-            $(".sub_chk").prop('checked', true);  
-        } else {  
-            $(".sub_chk").prop('checked',false);  
-        }  
-        });
-
-        $('.delete_all').on('click', function(e) {
-
-            var allVals = [];  
-            $(".sub_chk:checked").each(function() {  
-                allVals.push($(this).attr('data-id'));
-            });  
-
-            if(allVals.length <=0)  
-            {  
-                alert("Please select row.");  
-            }  else {  
-
-                var check = confirm("Are you sure you want to delete this row?");  
-                if(check == true){  
-
-                    var join_selected_values = allVals.join(","); 
-
-                    $.ajax({
-                        url: $(this).data('url'),
-                        type: 'DELETE',
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        data: 'ids='+join_selected_values,
-                        success: function (data) {
-                            if (data['success']) {
-                                $(".sub_chk:checked").each(function() {  
-                                    $(this).parents("tr").remove();
-                                });
-                                alert(data['success']);
-                            } else if (data['error']) {
-                                alert(data['error']);
-                            } else {
-                                alert('Whoops Something went wrong!!');
-                            }
-                        },
-                        error: function (data) {
-                            alert(data.responseText);
-                        }
-                    });
-
-                $.each(allVals, function( index, value ) {
-                    $('table tr').filter("[data-row-id='" + value + "']").remove();
-                });
-                }  
-            }  
-        });
-
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event, element) {
-                element.trigger('confirm');
-            }
-        });
-
-        $(document).on('confirm', function (e) {
-            var ele = e.target;
-            e.preventDefault();
-
-            $.ajax({
-                url: ele.href,
-                type: 'DELETE',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                success: function (data) {
-                    if (data['success']) {
-                        $("#" + data['tr']).slideUp("slow");
-                        alert(data['success']);
-                    } else if (data['error']) {
-                        alert(data['error']);
-                    } else {
-                        alert('Whoops Something went wrong!!');
-                    }
-                },
-                error: function (data) {
-                    alert(data.responseText);
-                }
-            });
-
-            return false;
-        });
-    });
-</script> --}}
-    <script language="javascript">
-        $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-
-        $("#deleteAllSelectedRecord").click(function(e){
-            e.preventDefault();
-            var allids = [];
-
-            $("input:checkbox[name=ids]:checked").each(function(){
-                allids.push($(this).val());
-            });
-
-            $.ajax({
-                url:"{{route('admin.hapusallpengguna')}}",
-                type:"DELETE",
-                data:{
-                    _token:$("input[name=_token]").val(),
-                    ids:allids
-                },
-                success:function(response){
-                    $.each(allids, function(key,val){
-                        $("#sid"+val).remove();
-                    })
-                }
-            })
-        })
-    </script>
