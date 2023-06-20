@@ -8,76 +8,60 @@
     <section class="section dashboard">
         <div class="row">
             <!-- Left side columns -->
-            <div class="col-lg-12">
-                <div class="row">
-                    <!-- Sales Card -->
-                    <div class="col-xxl-4 col-md-4">
-                        <div class="card info-card sales-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart "></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        @foreach ($jumlahproduk as $item)
-                                            <p class="fs-3">{{ $item->totalproduk }}</p>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Sales Card -->
 
-                    <!-- Revenue Card -->
-                    <div class="col-xxl-4 col-md-4">
-                        <div class="card info-card revenue-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cash"></i>
-                                    </div>
-                                    <div class="ml-3">
-                                        @foreach ($jumlahpendapatan as $item)
-                                            <p class="fs-3">Rp.<?php
-                                            $angka = $item->totalpes;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></p>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Revenue Card -->
-                    @if ($pesanan_datang > 0)
-                        <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card">
-                                <div class="card-body my-3">
-                                    <div class="d-flex align-items-center">
-                                        <p class="bi bi-info-circle fs-5"> Informasi</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6">
-                                        <p> {{ $pesanan_datang }} Pesanan Baru</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                        <a href="kelola-pesanan" class="btn btn-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
         </div>
         <div class="row">
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <!-- Sales Card -->
+                            <div class="col-xxl-6 col-md-6">
+                                <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-cart "></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                @foreach ($jumlahproduk as $item)
+                                                    <p class="fs-3">{{ $item->totalproduk }}</p>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End Sales Card -->
+
+                            <!-- Revenue Card -->
+                            <div class="col-xxl-6 col-md-6">
+                                <div class="card info-card revenue-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pendapatan <span>|{{ $tahun }}</span></h5>
+
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-cash"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                @foreach ($jumlahpendapatan as $item)
+                                                    <p class="fs-3">Rp.<?php
+                                                    $angka = $item->totalpes;
+                                                    echo number_format($angka, 0, ',', '.');
+                                                    ?></p>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End Revenue Card -->
+
+                        </div>
+                    </div>
 
                     <!-- Reports -->
                     <div class="col-12">
@@ -167,41 +151,104 @@
             </div>
             <div class="col-lg-4">
                 <!-- Recent Activity -->
+                @if ($pesanan_datang > 0)
+                    <div class="col-xxl-12 col-md-12">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p> {{ $pesanan_datang }} Pesanan Baru</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="kelola-pesanan" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($barang_habis > 0)
+                    <div class="col-xxl-12 col-md-12">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-exclamation-diamond fs-1 text-warning blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+                                    <p>Ada {{ $barang_habis }} Barang Sudah Mau Habis</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="/produks" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($konfirmasi_pengguna > 0)
+                    <div class="col-xxl-12 col-md-12">
+                        <div class="card info-card">
+                            <div class="card-body my-3">
+                                <div class="d-flex align-items-center">
+                                    <p class="bi bi-info-circle fs-5"> Informasi</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-broadcast-pin fs-1 text-info blink-icon"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6">
+
+                                    <p>{{ $konfirmasi_pengguna }} Perlu Konfirmasi Pengguna</p>
+
+
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                    <a href="" class="btn btn-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="card info-card">
-                    <div class="card-body">
+                    <div class="card-body col-12 ml-5">
                         <h5 class="card-title">Pesanan <span>| Semua</span></h5>
-                        <div class="d-flex align-items-center">
-                            <p class="fs-6 bi bi-check2-all text-success ml-2"> Selesai</p>
+                        <div class="d-flex align-items-center col-12">
+                            <p class="fs-6 bi bi-check2-all text-success ml-5 col-8"> Selesai</p>
                             @foreach ($jumlahSelesai as $item)
-                                <p class="col text-right mr-5 text-success fs-6 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-center mr-5 text-success fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
-                        <div class="d-flex align-items-center">
-                            <p class="fs-6 bi bi bi-handbag-fill text-primary ml-2"> Dapat Diambil</p>
+                        <div class="d-flex align-items-center col-12">
+                            <p class="fs-6 bi bi bi-handbag-fill text-primary ml-5 col-8"> Dapat Diambil</p>
                             @foreach ($jumlahDiambil as $item)
-                                <p class="col text-right mr-5 text-primary fs-6 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-center mr-5 text-primary fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
-                        <div class="d-flex align-items-center">
-                            <p class="fs-6 bi bi-hourglass-split text-info ml-2"> Sedang Diproses</p>
+                        <div class="d-flex align-items-center col-12">
+                            <p class="fs-6 bi bi-hourglass-split text-info ml-5 col-8"> Sedang Diproses</p>
                             @foreach ($jumlahProses as $item)
-                                <p class="col text-right mr-5 text-info fs-6 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-center mr-5 text-info fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
-                        <div class="d-flex align-items-center">
-                            <p class="fs-6 bbi bi-exclamation-triangle text-warning ml-2"> Ditangguhkan</p>
+                        <div class="d-flex align-items-center col-12">
+                            <p class="fs-6 bbi bi-exclamation-triangle text-warning ml-5 col-8"> Ditangguhkan</p>
                             @foreach ($jumlahTangguh as $item)
-                                <p class="col text-right mr-5 text-warning fs-6 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-center mr-5 text-warning fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                         <hr class="p-1 m-1">
-                        <div class="d-flex align-items-center">
-                            <p class="fs-6 bi bi-x-square-fill text-danger ml-2"> Dibatalkan</p>
+                        <div class="d-flex align-items-center col-12">
+                            <p class="fs-6 bi bi-x-square-fill text-danger ml-5 col-8"> Dibatalkan</p>
                             @foreach ($jumlahBatal as $item)
-                                <p class="col text-right mr-5 text-danger fs-6 fw-bold"> {{ $item->total }}</p>
+                                <p class="col text-center mr-5 text-danger fs-6 fw-bold"> {{ $item->total }}</p>
                             @endforeach
                         </div>
                     </div>

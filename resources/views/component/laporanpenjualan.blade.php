@@ -19,7 +19,7 @@
             <a class="btn" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3"><p class="fs-6 fw-bold">Pencarian Laporan Tahunan <i class="bi bi-chevron-down"></i></p></a>
         </div>
     </div>
-    
+
     <form action="/laporan-custom" method="GET" enctype="multipart/form-data" class="justify-content-center align-items-center  ">
         <hr>
         <div class="collapse multi-collapse" id="multiCollapseExample1">
@@ -33,7 +33,7 @@
                     <h6>Tanggal Akhir</h6>
                     <input type="date" class="form-control form-control-md" id="tanggal_akhir"
                         name="tanggal_akhir">
-                    
+
                 </div>
                 <div class="col-2">
                     <button class="btn btn-primary mt-4" name="cari-penjualan" id="cari-penjualan"> Cari</button>
@@ -72,7 +72,7 @@
     </form>
     <hr style="border: double">
     <div class="row justify-content-center">
-            <div class="row col-md-9 d-flex mt-5">
+            <div class="row col-md-12 d-flex mt-5">
                 <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar text-center">
                     <div class="card">
                         <div class="card-body">
@@ -102,11 +102,11 @@
                                                     </h6>
                                                 </div>
                                                 <div class="col col-12">
-                                                    <h3 class="text-center fw-bold" style="color: white">Laporan
+                                                    <h3 class="text-center fw-bold">Laporan
                                                         Penjualan</h3>
                                                 </div>
                                                 <div class="col col-12">
-                                                    <h6 class="" style="color: white">
+                                                    <h6 class="">
                                                         @empty($awal || $month || $tahunl)
                                                             -
                                                         @else
@@ -138,11 +138,11 @@
                                     <tr>
                                         <!-- <th scope="col">Pilihan</th> -->
                                         <th scope="col" class="fw-bold">No</th>
+                                        <th scope="col" class="fw-bold">Kode Pesanan</th>
                                         <th scope="col" class="fw-bold">Tanggal Pesanan</th>
-                                        <th scope="col" class="fw-bold">Nama Pengambil</th>
-                                        <th scope="col" class="fw-bold">Jumlah Produk</th>
+                                        <th scope="col" class="fw-bold">Nama Pemesan</th>
                                         <th scope="col" class="fw-bold">Metode Pembayaran</th>
-                                        <th scope="col" class="fw-bold">Nama Layanan</th>
+                                        <th scope="col" class="fw-bold">Jumlah Produk</th>
                                         <th scope="col" class="fw-bold">Total Harga</th>
 
                                     </tr>
@@ -156,8 +156,8 @@
                                             <td>-</td>
                                             <td>-</td>
                                             <td>-</td>
-                                            <td>0</td>
                                             <td>-</td>
+                                            <td>0</td>
                                             <td>-</td>
                                             <td style="text-align: right">Rp. 0</td>
                                         </tr>
@@ -167,8 +167,8 @@
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
-                                                <td>0</td>
                                                 <td>-</td>
+                                                <td>0</td>
                                                 <td>-</td>
                                                 <td style="text-align: right">Rp. 0</td>
                                             </tr>
@@ -176,11 +176,11 @@
                                             @foreach ($penjualan as $index => $data)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
+                                                    <td>{{ $data->kode }}</td>
                                                     <td>{{ $data->tanggal }}</td>
-                                                    <td>{{ $data->nama_pengambil }}</td>
-                                                    <td>{{ $data->jumlah }}</td>
-                                                    <td>{{ $data->kapem }}</td>
+                                                    <td>{{ $data->name }}</td>
                                                     <td>{{ $data->layanan }}</td>
+                                                    <td>{{ $data->jumlah }}</td>
                                                     <td style="text-align: right">Rp. <?php
                                                     $angka = $data->total_harga;
                                                     echo number_format($angka, 0, ',', '.');
@@ -193,8 +193,10 @@
                             <tfoot style="background-color: #17a2b8">
                                 <tr>
                                     @empty($penjualan)
-                                        <th scope="col" colspan="4">
-                                            <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                    <th scope="col" colspan="4">
+                                    </th>
+                                        <th scope="col">
+                                            <h6 class="text-right fw-bold mr-3">Jumlah Produk
                                                 Terjual:
                                                 0 Produk
                                             </h6>
@@ -202,16 +204,26 @@
                                     @else
                                         @if ($jumlah->total == 0)
                                             <th scope="col" colspan="4">
-                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
+                                                <h6 class="text-right fw-bold mr-3">Jumlah Produk
                                                     Terjual:
                                                     0 Produk
                                                 </h6>
                                             </th>
                                         @else
-                                            <th scope="col" colspan="4">
-                                                <h6 class="text-right fw-bold mr-3" style="color: white">Jumlah Produk
-                                                    Terjual:
-                                                    {{ $jlh_pesanan->total }} Produk
+                                        <th scope="col" colspan="5">
+                                            <h5 class="fw-bold">Total</h5>
+                                        </th>
+                                            <th scope="col">
+                                                <h6 class="text-center fw-bold">
+                                                    {{ $jlh_pesanan->total }}
+                                                </h6>
+                                            </th>
+                                            <th scope="col">
+                                                <h6 class="text-right fw-bold">Rp.
+                                                    <?php
+                                                    $angka = $total_harga->total;
+                                                    echo number_format($angka, 0, ',', '.');
+                                                    ?>
                                                 </h6>
                                             </th>
                                         @endif
@@ -219,14 +231,7 @@
                                     @endempty
 
 
-                                    <th scope="col" colspan="3">
-                                        <h6 class="text-right fw-bold" style="color: white">Total Pendapatan: Rp.
-                                            <?php
-                                            $angka = $total_harga->total;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?>
-                                        </h6>
-                                    </th>
+
                                 </tr>
                             </tfoot>
                         </table>

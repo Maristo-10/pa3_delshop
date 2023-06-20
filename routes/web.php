@@ -154,6 +154,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/laporan-tahunan', [PesananController::class, 'laporanpenjualanTahunan'])->name('admin.laporanpenjualanTahunan');
     Route::get('/laporan/export', [LaporanPenjualanController::class, 'exportLaporanPenjualan'])->name('laporan.export');
 
+    Route::get('/laporan-labarugi', [PesananController::class, 'laporanlabarugiCustom'])->name('admin.laporanlabarugi');
+    Route::get('/laporan-labarugi-bulanan', [PesananController::class, 'laporanlabarugiBulanan'])->name('admin.laporanlabarugiBulanan');
+    Route::get('/laporan-labarugi-tahunan', [PesananController::class, 'laporanlabarugiTahunan'])->name('admin.laporanlabarugiTahunan');
+    Route::get('/laporan/export/labarugi', [LaporanPenjualanController::class, 'exportLabarugi'])->name('laporan.exportlabarugi');
+
     Route::get('/get-penjualan', [PesananController::class, 'lPenjualan'])->name('getPenjualan');
     Route::get('/kelola-pesanan/search', [PesananController::class, 'cariPesanan'])->name('admin.cariPesanan');
     Route::get('/produks', [ProdukController::class, 'produk'])->name('admin.kelolaproduk');

@@ -23,6 +23,11 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-11">
+            @if(Auth::user()->role_pengguna != 'Admin')
+            <a href="/pesanan" class="btn btn-secondary mb-4">Kembali</a>
+        @else
+            <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
+        @endif
             <br>
             @foreach ($pembayaran as $data)
                 @if (Route::is('admin.ubahstatus', $data->id))
@@ -77,12 +82,15 @@
                 </div>
             @endif
 
+<<<<<<< HEAD
+=======
             @if(Auth::user()->role_pengguna != 'Admin')
                 <a href="/pesanan" class="btn btn-secondary mb-4">Kembali</a>
             @else
                 <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
             @endif
 
+>>>>>>> origin/master
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">
                     <h3>Alamat Pengambilan </h3>

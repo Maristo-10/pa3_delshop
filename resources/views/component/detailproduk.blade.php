@@ -28,6 +28,12 @@
         </div>
 
         <div class="col-lg-7">
+            @if ($message = Session::get('ok'))
+                            <div class="alert alert-warning alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
             <div class="card">
                 <div class="card-body">
                     <h1 class="h2">{{ $item->nama_produk }}</h1>
