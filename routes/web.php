@@ -176,6 +176,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/hapus/pengguna/{id}', [UserController::class, 'hapuspengguna'])->name('admin.hapuspengguna');
     Route::get('/ubahpengguna/{id}', [UserController::class, 'viewubahuser'])->name('admin.ubahpengguna');
     Route::post('/updatepengguna/{id}', [UserController::class, 'ubahpengguna'])->name('admin.updatepengguna');
+    Route::post('hapusall', [UserController::class, 'hapusallpengguna'])->name('admin.hapusallpengguna');
+    Route::get('myproductsDeleteAll', 'ProductController@deleteAll');
     // add import file
     Route::get('/tambahpengguna/import', [UserController::class, 'viewimport']);
     Route::post('/prosestambahpengguna/import', [UserController::class, 'import'])->name('tambahpengguna.import');

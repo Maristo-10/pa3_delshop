@@ -1,4 +1,4 @@
-<a href="/kelolapengguna" class="btn btn-warning mb-4">Kembali</a>
+<a href="/kelolapengguna" class="btn btn-secondary mb-4">Kembali</a>
 <div class="col-12 p-3 bg-white shadow rounded">
     {{-- TODO: Controller not ready yet --}}
     <form class="" action="/prosestambahuser" method="post" enctype="multipart/form-data">

@@ -20,6 +20,10 @@
             <i class="fa fa-plus"></i>
             <span>Tambah Data Pengguna</span>
         </a>
+        <a href="/hapusall" class="btn btn-danger text-white py-2 delete_all" id="deleteAllSelectedRecord">
+            <i class="fa fa-plus"></i>
+            <span>Hapus Data Pengguna</span>
+        </a>
     </h6>
     <h6 class="col-md-4 mb-0">
         <a href="" class="btn btn-info text-white" data-bs-target="#components-laporan-bulanan"
@@ -103,7 +107,6 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $data->id }}"></a>
                                         </td>
-
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,6 +142,5 @@
                 </div>
             </div>
         </div>
-    </center>
 </div>
 </div>

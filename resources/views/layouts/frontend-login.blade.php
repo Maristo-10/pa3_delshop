@@ -6,10 +6,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <title>Del Shop</title>
 
     <!-- Favicon -->
     <link href="{{ asset('profile-images/logo.png') }}" class="rounded-circle" rel="icon">
-    
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">

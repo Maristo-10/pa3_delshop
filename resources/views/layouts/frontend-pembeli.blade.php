@@ -301,9 +301,9 @@
                     <div class="col-md-6 mb-5">
                         <h5 class="font-weight-bold text-light mb-2">Partner Del</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-light mb-1" href="/home"><i class="fa fa-angle-right mr-2"></i>IT
+                            <a class="text-light mb-1" href="https://www.del.ac.id/"><i class="fa fa-angle-right mr-2"></i>IT
                                 Del</a>
-                            <a class="text-light mb-1" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Yayasan
+                            <a class="text-light mb-1" href="https://del.or.id/"><i class="fa fa-angle-right mr-2"></i>Yayasan
                                 Del</a>
                         </div>
                     </div>

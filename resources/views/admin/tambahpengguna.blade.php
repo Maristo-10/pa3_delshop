@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <p class="fs-1 fw-bolder">Tambah Pengguna</p>
+    <p class="fs-1">Tambah Pengguna</p>
 @endsection
 
 @section('content')

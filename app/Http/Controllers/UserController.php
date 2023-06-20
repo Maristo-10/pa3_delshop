@@ -35,7 +35,9 @@ class UserController extends Controller
 
     public function user()
     {
+
         $pengguna = User::where('id', "!=", 1)->paginate(15);
+
         return view('admin.kelolapengguna', compact('pengguna'));
     }
 
@@ -101,7 +103,15 @@ class UserController extends Controller
         $pengguna = User::find($id);
         $pengguna->delete();
 
-        return redirect()->route('admin.kelolapengguna')->with('success', 'Data Produk Berhasil di hapus');;
+        return redirect()->route('admin.kelolapengguna')->with('success', 'Data Produk Berhasil di hapus');
+    }
+
+    public function hapusallpengguna(Request $request)
+    {
+        $ids = $request->input('ids');
+        User::whereIn('id', $ids)->delete();
+		// User::whereIn('id',explode(",",$ids))->delete();
+		return redirect()->back()->with('success', 'Selected users have been deleted.');
     }
 
     public function viewubahuser($id)

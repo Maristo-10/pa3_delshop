@@ -12,7 +12,9 @@
         href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     <div class="container">
+        <a href="/kelola-metode-pembayaran" class="btn btn-secondary mb-4">Kembali</a>
         <div class="row">
             <div class="col-md-6 mt-3 bg-white">
                 <div class="col-12 mt-1">
@@ -22,12 +24,9 @@
                                 <table class="table table-striped table-bordered" id="list">
                                     <thead>
                                         <tr>
-                                            <!-- <th scope="col">Pilihan</th> -->
                                             <th scope="col"class="col-md-1">No</th>
                                             <th scope="col" class="col-md-4">Gambar Kategori</th>
                                             <th scope="col" class="col-md-4">Nama Kategori</th>
-                                            {{-- <th scope="col"class="col-md-3">Aksi</th> --}}
-                                            <!-- <th scope="col">Lampiran</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -41,14 +40,6 @@
                                                     <img src="/category-images/{{ $data->gambar_kategori }}" alt="" style="max-height: 50px">
                                                 </td>
                                                 <td>{{ $data->kategori }}</td>
-                                                {{-- <td>
-                                                    <a href="/ubahkategoriproduk/{{ $data->kategori }}"
-                                                        title="Ubah Data"
-                                                        class=" bi bi-pencil-square btn btn-warning col-md-4 ml-3 py-2"></a>
-                                                    <a href="/hapuskategoriproduk/{{ $data->kategori }}"
-                                                        title="Hapus Data"
-                                                        class="bi bi-trash-fill btn btn-danger col-md-4 ml-3 py-2 "></a>
-                                                </td> --}}
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -93,11 +84,10 @@
                                 <button type="submit" class="btn btn-warning">Ubah</button>
                                 <button type="reset" class="btn btn-primary">Reset</button>
                             </div>
-                        </form><!-- End Horizontal Form -->
-
+                        </form>
+                        <!-- End Horizontal Form -->
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
