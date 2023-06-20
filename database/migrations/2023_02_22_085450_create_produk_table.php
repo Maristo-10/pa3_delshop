@@ -23,6 +23,7 @@ class CreateProdukTable extends Migration
             // $table->string('ukuran')->nullable();
             $table->string("status_produk")->default("Aktif");
             $table->string("produk_unggulan")->default("Non-Unggulan");
+            $table->float("modal")->default(0);
             $table->timestamps();
 
             $table->string("role_pembeli");

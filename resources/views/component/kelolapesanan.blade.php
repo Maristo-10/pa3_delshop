@@ -1,4 +1,5 @@
-<link href="{{ asset('/css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
@@ -22,7 +23,7 @@
                     <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-3  ">Reset</a>
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
 

@@ -37,7 +37,8 @@
     <script defer src="{{ asset('https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js') }}"></script>
     <script type="text/javascript"
         src="{{ asset('https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.js') }}"></script>
-    @stack('styles')   
+        <link href="{{ asset('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 
 <body id="main">

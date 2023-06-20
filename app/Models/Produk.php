@@ -22,6 +22,7 @@ class Produk extends Model
         'kategori_produk',
         'ukuran_produk',
         'warna',
-        'angkatan'
+        'angkatan',
+        'modal'
     ];
 }

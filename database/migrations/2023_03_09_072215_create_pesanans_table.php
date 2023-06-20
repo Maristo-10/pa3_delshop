@@ -21,6 +21,7 @@ class CreatePesanansTable extends Migration
             $table->string('status')->default('keranjang');
             $table->string('nama_pengambil')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->float("modal_pesanan")->default(0);
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id");

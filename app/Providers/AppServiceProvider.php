@@ -58,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('notifications', $notifications);
             $view->with('count', $count);
         });
+
         Paginator::useTailwind();
         Schema::defaultStringLength(500);
     }
