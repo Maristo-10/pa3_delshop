@@ -137,7 +137,11 @@ class PesananController extends Controller
         $pesanan->total_harga = $pesanan->total_harga + $produk->harga * $request->jumlah;
         $pesanan->modal_pesanan = $pesanan->modal_pesanan + $produk->modal * $request->jumlah;
         $pesanan->update();
-        return redirect()->route("pembeli.viewproduk")->with('pesan','Pesanan Sudah Masuk ke Keranjang Anda');
+
+        Alert::success('Success!', 'Berhasil Menambahkan Produk Ke Keranjang!');
+        return redirect()->route('pembeli.viewproduk');
+
+        // return redirect()->route("pembeli.viewproduk")->with('pesan','Pesanan Sudah Masuk ke Keranjang Anda');
     }
 
     public function vkeranjang()
