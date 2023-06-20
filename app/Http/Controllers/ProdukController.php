@@ -243,7 +243,7 @@ class ProdukController extends Controller
         $kategori_produk = $request->kategori_produk;
         $produk_unggulan = $request->produk_unggulan;
         $deskripsi = $request->deskripsi;
-        $modal = $request->modal;
+        $modal = (float) $request->modal;
         $ukuran_produk = "";
         $warna = "";
         $angkatan = "";

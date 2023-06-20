@@ -131,7 +131,7 @@
 
                 </div>
                 <div class="form-group col-12 col-md-6 mt-3">
-                    <label for="Modal">Harga Beli</label>
+                    <label for="modal">Harga Beli</label>
                     <input type="number" name="modal" id="modal" class="form-control"
                         value="{{ $produk->modal }}">
                 </div>

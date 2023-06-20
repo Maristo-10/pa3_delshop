@@ -17,6 +17,7 @@ class CreatePesanandetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('jumlah');
             $table->integer('jumlah_harga');
+            $table->float("modal_details")->default(0);
             $table->timestamps();
 
             $table->unsignedBigInteger('produk_id');

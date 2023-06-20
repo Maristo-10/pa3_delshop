@@ -1,4 +1,5 @@
-<link href="{{ asset('/css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
@@ -93,11 +94,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Harga</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="Rp. <?php $angka = $data->harga;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
-                                                </div>  
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Kategori</label>
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->kategori_produk}}" disabled>
@@ -108,7 +109,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlInput1" class="form-label">Jumlah Produk</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" 
+                                                    <input type="text" id="disabledTextInput" class="form-control"
                                                         placeholder="<?php $angka = $data->jumlah_produk;
                                                                 echo number_format($angka, 0, ',', '.');
                                                                 ?>" disabled>
