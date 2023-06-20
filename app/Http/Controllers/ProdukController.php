@@ -23,8 +23,6 @@ class ProdukController extends Controller
         $this->middleware('auth');
     }
 
-
-
     public function importProduk(Request $request)
     {
 
@@ -55,7 +53,7 @@ class ProdukController extends Controller
 
         $produk = Produk::orderByRaw("status_produk = 'Aktif' desc")
         ->orderByDesc('id_produk')
-        ->paginate(10);
+        ->paginate(2);
 
         // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
 

@@ -1823,10 +1823,6 @@ background-color: #2980b9;
     .sidenav a {font-size: 18px;}
     }
 
-    @media (max-width: 1200px) {
-    /* .sidebar {
-        display: none;
-    } */
 
     .main-content {
         margin-left: 0;
