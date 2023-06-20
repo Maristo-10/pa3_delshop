@@ -82,15 +82,12 @@
                 </div>
             @endif
 
-<<<<<<< HEAD
-=======
             @if(Auth::user()->role_pengguna != 'Admin')
                 <a href="/pesanan" class="btn btn-secondary mb-4">Kembali</a>
             @else
                 <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
             @endif
 
->>>>>>> origin/master
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">
                     <h3>Alamat Pengambilan </h3>
