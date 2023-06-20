@@ -390,6 +390,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
     <script src="{{asset('js/sweetalert.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         @if (session('status'))
             // alert('{{session('status')}}');

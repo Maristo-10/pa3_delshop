@@ -14,6 +14,7 @@
 </div>
 
 <!-- Shop Start -->
+@include('sweetalert::alert')
 <div class="container-fluid pt-4">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
