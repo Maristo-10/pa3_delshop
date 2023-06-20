@@ -53,7 +53,7 @@ class ProdukController extends Controller
 
         $produk = Produk::orderByRaw("status_produk = 'Aktif' desc")
         ->orderByDesc('id_produk')
-        ->paginate(2);
+        ->paginate(10);
 
         // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
 
