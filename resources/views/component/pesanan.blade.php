@@ -52,11 +52,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered demo-table responsive" id="list">
+                        <table class="table table-bordered demo-table responsive wrap excol" id="list">
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">Pilihan</th> -->
-                                    <th scope="col" class="">No</th>
+                                    <th scope="col" class="column-primary">No</th>
                                     <th scope="col" class="">Tanggal Pesanan</th>
                                     <th scope="col" class="">Total Harga</th>
                                     <th scope="col" class="">Nama Pengambil</th>
@@ -81,7 +81,7 @@
                                 @else
                                     @foreach ($pesanan_kapem as $data)
                                         <tr>
-                                            <td data-header="No" class="td">{{ $no++ }}</td>
+                                            <td data-header="No" class="td title">{{ $no++ }}<a href="#" class="more"><i class="fa fa-chevron-down"></i></a></td>
                                             <td data-header="Tanggal Pesanan" class="td">{{ $data->tanggal }}</td>
                                             <td data-header="Total Harga" class="td">Rp. <?php
                                             $angka = $data->total_harga;
@@ -92,8 +92,10 @@
                                             <td data-header="Nama Layanan" class="td">{{ $data->layanan }}</td>
                                             <td data-header="Status" class="td"><b>{{ $data->status }}</b></td>
                                             <td data-header="Aksi" class="td">
-                                                <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
-                                                    class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                                <div class="toolbox">
+                                                    <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
+                                                        class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -115,3 +117,23 @@
 </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('a.more').click(function() {
+        
+            //  ini bagian toggle class
+            $tr = $(this).parent().parent();
+            $tr.toggleClass('expanded');
+            
+            // tampilkan - sembunyikan baris
+            $i = $(this).children('i');
+            $i.removeClass('fa-chevron-down', 'fa-chevron-up');
+            var arrow = $tr.hasClass('expanded') ? 'fa-chevron-up' : 'fa-chevron-down';
+            $i.addClass(arrow);
+            
+            return false;
+        });
+    })
+</script>

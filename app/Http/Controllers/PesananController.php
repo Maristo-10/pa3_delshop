@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\MetodePembayaran;
 use App\Models\KategoriPembayaran;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\OrderNotification;
 
 class PesananController extends Controller
@@ -290,8 +291,9 @@ class PesananController extends Controller
         $pesanan->save();
 
         User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
-        Session::flash('statuscode','success');
-        return redirect()->route('pembeli.viewproduk')->with('success', 'Anda berhasil melakukan pemesanan');
+        Alert::success('Success!', 'Pesanan Berhasil dibuat!');
+
+        return redirect()->route('pembeli.viewproduk');
     }
 
     public function markAsRead()
