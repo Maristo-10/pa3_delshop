@@ -10,6 +10,7 @@ use App\Models\GantiRoles;
 use App\Models\Pesanan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -26,14 +27,27 @@ class UserController extends Controller
         $fileName = $file->getClientOriginalName();
         $file->move('UsersData', $fileName);
         Excel::import(new UsersImport, \public_path('/UsersData/' . $fileName));
-
+        if (Session::has('error')) {
+            return redirect()->route("admin.kelolapengguna")->with('error', Session::get('error'));
+        }
         return redirect()->route("admin.kelolapengguna")->with('success', 'Data berhasil diimport!');
     }
 
     public function user()
     {
-        $pengguna = User::paginate(15);
+        $pengguna = User::where('id', "!=", 1)->paginate(15);
         return view('admin.kelolapengguna', compact('pengguna'));
+    }
+
+    // function to delete multiple rows
+    public function deleteMultipleRows(Request $request) {
+        $selectedItems = $request->input('selectedItems');
+        // dd($selectedItems);
+        if($selectedItems) {
+            User::whereIn('id', $selectedItems)->delete();
+        }
+
+        return redirect()->route("admin.kelolapengguna")->with('success', 'Data berhasil dihapus');
     }
 
     public function viewtambahuser()

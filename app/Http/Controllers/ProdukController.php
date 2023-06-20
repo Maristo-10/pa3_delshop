@@ -27,12 +27,22 @@ class ProdukController extends Controller
 
     public function importProduk(Request $request)
     {
-        $file = $request->file('file');
-        $fileName = $file->getClientOriginalName();
-        $file->move('ProductsData', $fileName);
-        Excel::import(new ProductsImport, \public_path('/ProductsData/' . $fileName));
+
+        Excel::import(new ProductsImport, request()->file('file'));
+
 
         return redirect()->route('admin.kelolaproduk')->with('success', 'Data berhasil diimport!');
+    }
+
+    // fungsi untuk deleteMultipleRows
+    public function deleteMultipleRows(Request $request) {
+        $selectedItems = $request->input('selectedItems');
+        // dd($selectedItems);
+        if($selectedItems) {
+            Produk::whereIn('id_produk', $selectedItems)->update(['status_produk' => 'Non-Aktif']);
+        }
+
+        return redirect()->route('admin.kelolaproduk')->with('success', 'Data berhasil dinonaktifkan');
     }
 
     public function viewImportProduct()
@@ -43,7 +53,9 @@ class ProdukController extends Controller
     public function produk()
     {
 
-        $produk = Produk::orderByDesc('id_produk')->paginate(10);
+        $produk = Produk::orderByRaw("status_produk = 'Aktif' desc")
+        ->orderByDesc('id_produk')
+        ->paginate(10);
 
         // $produk = Produk::where('status_produk', 'Aktif')->orderByDesc('id_produk')->paginate(10);
 

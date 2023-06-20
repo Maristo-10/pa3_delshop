@@ -300,11 +300,12 @@ class PesananController extends Controller
 
     public function markAsReadByID($id)
     {
+        // dd($id);
         DB::table('notifications')
             ->where('id', $id)
             ->update(['read_at' => now()]);
 
-        return redirect()->route('frontend.dashboard-pembeli');
+        return redirect()->route('frontend.dashboard-admin');
     }
 
     public function vpesanan()

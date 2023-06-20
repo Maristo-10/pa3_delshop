@@ -40,7 +40,7 @@
                                         @endforeach
                                         <option value="Ditangguhkan">Ditangguhkan</option>
                                         <option value="Dibatalkan">Dibatalkan</option>
-                                        <option value="Sedang Diproses" selected>Sedang Diproses</option>
+                                        <option value="Sedang Diproses">Sedang Diproses</option>
                                         <option value="Siap Diambil">Siap Diambil</option>
                                         <option value="Selesai">Selesai</option>
                                     </select>
