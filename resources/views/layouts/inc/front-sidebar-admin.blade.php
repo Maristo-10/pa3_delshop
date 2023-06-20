@@ -35,5 +35,6 @@
     <a href="/kelola-metode-pembayaran" class="fs-6"><i class="bi bi-wallet2 fs-5"></i> Kelola Metode Pembayaran</a>
     <a href="/kelola-pesanan" class="fs-6"><i class="bi bi-wallet2 fs-5"></i> Kelola Pesanan</a>
     <a href="/laporan-custom" class="fs-6"><i class="bi bi-journal-text fs-5"></i> Laporan Penjualan</a>
+    <a href="/laporan-labarugi" class="fs-6"><i class="bi bi-cash-stack fs-5"></i> Laporan Laba Rugi</a>
 </div>
 

@@ -558,6 +558,8 @@ class ComposerStaticInitde100123ec7f6040647a84ac969f4076
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\LaporanPejualanMultiple' => __DIR__ . '/../..' . '/app/Exports/LaporanPejualanMultiple.php',
+        'App\\Exports\\LaporanPendapatanExport' => __DIR__ . '/../..' . '/app/Exports/LaporanPendapatanExport.php',
         'App\\Exports\\LaporanPenjualanExport' => __DIR__ . '/../..' . '/app/Exports/LaporanPenjualanExport.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -594,6 +596,7 @@ class ComposerStaticInitde100123ec7f6040647a84ac969f4076
         'App\\Models\\Berita' => __DIR__ . '/../..' . '/app/Models/Berita.php',
         'App\\Models\\Corousel' => __DIR__ . '/../..' . '/app/Models/Corousel.php',
         'App\\Models\\DetailPesanan' => __DIR__ . '/../..' . '/app/Models/DetailPesanan.php',
+        'App\\Models\\GantiRoles' => __DIR__ . '/../..' . '/app/Models/GantiRoles.php',
         'App\\Models\\KategoriPembayaran' => __DIR__ . '/../..' . '/app/Models/KategoriPembayaran.php',
         'App\\Models\\KategoriProdukModel' => __DIR__ . '/../..' . '/app/Models/KategoriProdukModel.php',
         'App\\Models\\MetodePembayaran' => __DIR__ . '/../..' . '/app/Models/MetodePembayaran.php',

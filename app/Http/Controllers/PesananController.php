@@ -659,6 +659,194 @@ class PesananController extends Controller
         ]);
     }
 
+    public function laporanlabarugiCustom(Request $request)
+    {
+        $tahunl = $request->tahun_laporan;
+        $month = $request->bulan_laporan;
+        $year = Carbon::now()->format('Y');
+        $awal = $request->tanggal_awal;
+        $akhir = $request->tanggal_akhir;
+        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+        ->select('produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as jumlah_harga')
+        ->groupBy('produk.id_produk','produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->get();
+
+        $total = $produk->count();
+
+        $total_terjual = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_modal = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_harga = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereBetween('pesanans.tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as harga_terjual')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        return view('admin.laporanlabarugi', [
+            'total_harga' => $total_harga,
+            'awal' => $awal,
+            'akhir' => $akhir,
+            'year' => $year,
+            'month' => $month,
+            'tahunl' => $tahunl,
+            'produk'=>$produk,
+            'total_terjual'=>$total_terjual,
+            'total_harga'=>$total_harga,
+            'total_modal' => $total_modal,
+            'total' => $total
+        ]);
+    }
+
+    public function laporanlabarugiBulanan(Request $request)
+    {
+        $tahunl = $request->tahun_laporan;
+        $year = Carbon::now()->format('Y');
+        $awal = $request->tanggal_awal;
+        $akhir = $request->tanggal_akhir;
+        $month = $request->bulan_laporan;
+        $date = Carbon::createFromFormat('Y-m', $month);
+        $bulan = $date->format('m');
+        $tahun = $date->format('Y');
+        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)
+        ->select('produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as jumlah_harga')
+        ->groupBy('produk.id_produk','produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->get();
+
+        $total = $produk->count();
+
+        $total_terjual = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_modal = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_harga = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as harga_terjual')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        return view('admin.laporanlabarugi', [
+            'total_harga' => $total_harga,
+            'awal' => $awal,
+            'akhir' => $akhir,
+            'year' => $year,
+            'month' => $month,
+            'tahunl' => $tahunl,
+            'produk'=>$produk,
+            'total_terjual'=>$total_terjual,
+            'total_harga'=>$total_harga,
+            'total_modal' => $total_modal,
+            'total' => $total
+        ]);
+    }
+    public function laporanlabarugiTahunan(Request $request)
+    {
+        $year = Carbon::now()->format('Y');
+        $awal = $request->tanggal_awal;
+        $akhir = $request->tanggal_akhir;
+        $month = $request->bulan_laporan;
+        $tahunl = $request->tahun_laporan;
+        $produk = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereYear('tanggal', $tahunl)
+        ->select('produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as jumlah_harga')
+        ->groupBy('produk.id_produk','produk.nama_produk', 'produk.modal', 'produk.harga','pesanandetails.jumlah')
+        ->get();
+
+        $total = $produk->count();
+
+        $total_terjual = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereYear('tanggal', $tahunl)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah) as jumlah_pesanan')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_modal = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereYear('tanggal', $tahunl)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.modal_details) as jumlah_modal')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        $total_harga = DB::table('produk')->join('pesanandetails', 'pesanandetails.produk_id','=', 'produk.id_produk')
+        ->join('pesanans', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        ->where('pesanans.status', 'Selesai')
+        ->whereYear('tanggal', $tahunl)
+        ->select('pesanans.status')
+        ->selectRaw('SUM(pesanandetails.jumlah_harga) as harga_terjual')
+        ->groupBy('pesanans.status')
+        ->first();
+
+        return view('admin.laporanlabarugi', [
+            'total_harga' => $total_harga,
+            'awal' => $awal,
+            'akhir' => $akhir,
+            'year' => $year,
+            'month' => $month,
+            'tahunl' => $tahunl,
+            'produk'=>$produk,
+            'total_terjual'=>$total_terjual,
+            'total_harga'=>$total_harga,
+            'total_modal' => $total_modal,
+            'total' => $total
+        ]);
+    }
+
     public function laporanpenjualanBulanan(Request $request)
     {
         $tahunl = $request->tahun_laporan;
@@ -669,7 +857,7 @@ class PesananController extends Controller
         $date = Carbon::createFromFormat('Y-m', $month);
         $bulan = $date->format('m');
         $tahun = $date->format('Y');
-        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')
+        $penjualan = DB::table('pesanans')->join('metodepembayarans', 'metodepembayarans.id_metpem', '=', 'pesanans.nama_layanan')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->join('users', 'users.id','=', 'pesanans.user_id')
             ->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->get();
         $jumlah = Pesanan::select(DB::raw('CAST(count(id) as UNSIGNED INTEGER) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
         $jlh_pesanan = DB::table('pesanans')->join('pesanandetails', 'pesanandetails.pesanan_id', '=', 'pesanans.id')->select(DB::raw('SUM(pesanandetails.jumlah) as total'))->WhereMonth('tanggal', '=', $bulan)->whereYear('tanggal', '=', $tahun)->where('pesanans.status', 'Selesai')->first();
