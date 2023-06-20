@@ -28,6 +28,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('css/stylebaru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/a.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     {{-- font awesome --}}
     <link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.11.2/css/all.css') }}">
     <link rel="stylesheet"

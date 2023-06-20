@@ -48,11 +48,11 @@
 <!-- Page Header End -->
 <div class="col-12 shadow-sm rounded mt-3 bg-white p-3">
     <div class="col-12 mt-1" style="justify-content:center;align-items:center;display:flex">
-        <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar col-md-11 text-center">
+        <div class="table-responsive-sm table-wrapper-scroll-y my-custom-scrollbar col-md-11 pesan">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table  table-bordered" id="list">
+                        <table class="table table-bordered demo-table responsive" id="list">
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">Pilihan</th> -->
@@ -72,7 +72,7 @@
                                     $no = 1;
                                 @endphp
                                 @if (count($pesanan_kapem) == 0)
-                                <tr>
+                                <tr class="demo-table justify-content-center teks-kosong">
                                     <td colspan="8" class="text-muted mt-3">
                                         <i class="bi bi-cart-fill fs-1 "></i>
                                         <p class="fs-1">Data Pesanan Anda Kosong</p></td>
@@ -81,21 +81,19 @@
                                 @else
                                     @foreach ($pesanan_kapem as $data)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $data->tanggal }}</td>
-                                            <td>Rp. <?php
+                                            <td data-header="No" class="td">{{ $no++ }}</td>
+                                            <td data-header="Tanggal Pesanan" class="td">{{ $data->tanggal }}</td>
+                                            <td data-header="Total Harga" class="td">Rp. <?php
                                             $angka = $data->total_harga;
                                             echo number_format($angka, 0, ',', '.');
                                             ?></td>
-                                            <td>{{ $data->nama_pengambil }}</td>
-                                            <td>{{ $data->kapem }}</td>
-                                            <td>{{ $data->layanan }}</td>
-                                            <td><b>{{ $data->status }}</b></td>
-                                            <td>
+                                            <td data-header="Nama Pengambil" class="td">{{ $data->nama_pengambil }}</td>
+                                            <td data-header="Metode Pembayaran" class="td">{{ $data->kapem }}</td>
+                                            <td data-header="Nama Layanan" class="td">{{ $data->layanan }}</td>
+                                            <td data-header="Status" class="td"><b>{{ $data->status }}</b></td>
+                                            <td data-header="Aksi" class="td">
                                                 <a href="/detail-pesanan/{{ $data->id }}" title="Lihat Detail Pesanan"
                                                     class="bi bi-eye btn btn-secondary" style="font-size: 15px"></a>
-                                                <a href="/batalkan-pesanan-pembeli/{{$data->id}}" title="Batalkan Pesanan"
-                                                    class="bi bi-x-lg btn btn-danger ml-2" style="font-size: 15px"></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -1,7 +1,7 @@
 @extends('layouts.frontend-admin')
 
 @section('title')
-    <h1>Import Data Produk</h1>
+    <p class="fs-1">Import Data Produk</p>
 @endsection
 
 @section('content')

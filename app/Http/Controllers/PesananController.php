@@ -300,11 +300,12 @@ class PesananController extends Controller
 
     public function markAsReadByID($id)
     {
+        // dd($id);
         DB::table('notifications')
             ->where('id', $id)
             ->update(['read_at' => now()]);
 
-        return redirect()->route('frontend.dashboard-pembeli');
+        return redirect()->route('frontend.dashboard-admin');
     }
 
     public function vpesanan()
@@ -923,7 +924,7 @@ class PesananController extends Controller
         }
 
         $pes = Pesanan::where('user_id', Auth::user()->id)->where('status', 'checkout')->first();
-
+        // dd($pesanan_baru->total_harga);
         $harga = $pesanan_baru->total_harga - $pesanan_detail->jumlah_harga;
         $pesanan_baru->total_harga = $harga;
         $pesanan_baru->update([

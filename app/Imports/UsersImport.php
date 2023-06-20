@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,7 +16,12 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new User([
+        $isExistingUser = User::where('email', $row['email'])->first();
+        if ($isExistingUser) {
+            // Store an error message in the session
+            Session::flash('error', 'Data Sudah Terdaftar!');
+            return null; // Return null for the existing user, so it won't be saved
+        }        return new User([
             'name' => $row['nama'],
             'email' => $row['email'],
             'role_pengguna' => $row['role_pengguna']

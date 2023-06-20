@@ -40,7 +40,7 @@
                                         @endforeach
                                         <option value="Ditangguhkan">Ditangguhkan</option>
                                         <option value="Dibatalkan">Dibatalkan</option>
-                                        <option value="Sedang Diproses" selected>Sedang Diproses</option>
+                                        <option value="Sedang Diproses">Sedang Diproses</option>
                                         <option value="Siap Diambil">Siap Diambil</option>
                                         <option value="Selesai">Selesai</option>
                                     </select>
@@ -78,7 +78,15 @@
                 </div>
             @endif
 
+<<<<<<< HEAD
+            @if(Auth::user()->role_pengguna != 'Admin')
+                <a href="/pesanan" class="btn btn-secondary mb-4">Kembali</a>
+            @else
+                <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
+            @endif
+=======
 
+>>>>>>> origin/master
 
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">

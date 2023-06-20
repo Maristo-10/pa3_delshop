@@ -4,7 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<a href="/produks" class="btn btn-secondary mb-4">Kembali</a>
+<a href="/produks" class="btn btn-secondary mb-4">Kembali <i class="bi bi-caret-down-fill"></i></a>
 {{-- TODO: Controller not ready yet --}}
 <form class="mb-5" action="/prosestambahproduk" method="post" enctype="multipart/form-data">
     @csrf
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="ukuran" class="col-12">Ukuran Produk</label>
-                <select class="selectpicker form-control-md col-12" multiple data-live-search="true" name="ukuran[]" id="ukuran">
+                <select class="selectpicker form-control col-12" multiple data-live-search="true" name="ukuran[]" id="ukuran">
                     @foreach ($ukuran as $ukurans)
                         <option value="{{ $ukurans->ukuran }}" class="">{{ $ukurans->ukuran }}</option>
                     @endforeach
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 p-5bg-white shadow rounded">
+    <div class="col-12 p-5 bg-white shadow rounded">
         <div class="row">
             <div class="form-group col-12 col-md-6">
                 <label for="nama_produk">Nama Produk</label>
@@ -77,17 +77,24 @@
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="role_pembeli">Kategori Pembeli</label>
                 <select lect name="role_pembeli" id="role_pembeli" class="form-control">
-                    <option selected>Silahkan Pilih Kategori Pembeli</option>
+                    <option selected class="selectpiker">Silahkan Pilih Kategori Pembeli </option>
                     @foreach ($role as $data)
                         <option value="{{ $data->role }}">{{ $data->role }}</option>
                     @endforeach
                 </select>
 
             </div>
+            
             <div class="form-group col-12 col-md-6 mt-3">
                 <label for="kategori_produk">Kategori Produk</label>
-                <select name="kategori_produk" id="kategori_produk" class="form-control">
-                    <option selected>Silahkan Pilih Kategori Produk</option>
+                {{-- <select name="kategori_produk" id="kategori_produk" class="form-control form-select">
+                    <option selected class="dropdown-toggle">Silahkan Pilih Kategori Produk</option>
+                    @foreach ($kategori_produk as $kategori)
+                        <option value="{{ $kategori->kategori }}">{{ $kategori->kategori }}</option>
+                    @endforeach
+                </select> --}}
+                <select name="kategori_produk" id="kategori_produk" class="form-control form-select-xl" aria-label="Default select example">
+                    <option selected>Silahkan Pilih Kategori Produk<i class="bi bi-caret-down-fill"></i></option>
                     @foreach ($kategori_produk as $kategori)
                         <option value="{{ $kategori->kategori }}">{{ $kategori->kategori }}</option>
                     @endforeach
