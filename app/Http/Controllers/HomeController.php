@@ -48,7 +48,7 @@ class HomeController extends Controller
         }
 
         $produk = Produk::all()->where('status_produk', 'Aktif');
-        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(5)->get();
+        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(7)->get();
 
         // dd(count($unggulan));
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))

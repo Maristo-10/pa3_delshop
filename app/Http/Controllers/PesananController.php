@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Produk;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DetailPesanan;
 use Illuminate\Support\Facades\DB;
@@ -294,7 +295,8 @@ class PesananController extends Controller
         $pesanan->save();
 
         User::find(Auth::user()->id)->notify(new OrderNotification("Sedang Diproses", $pesanan_baru->id, $pesanan_baru->kode));
-        return redirect()->route('frontend.dashboard-pembeli')->with('checkout', 'Pesanan Berhasil di Checkout');
+        Session::flash('statuscode','success');
+        return redirect()->route('pembeli.viewproduk')->with('success', 'Anda berhasil melakukan pemesanan');
     }
 
     public function markAsRead()

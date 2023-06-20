@@ -75,13 +75,22 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img src="/pembayaran-images/{{ $harga->bukti_pembayaran }}" alt="">
+                                <img style="max-width:450px" src="/pembayaran-images/{{ $harga->bukti_pembayaran }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
 
+<<<<<<< HEAD
+=======
+            @if(Auth::user()->role_pengguna != 'Admin')
+                <a href="/pesanan" class="btn btn-secondary mb-4">Kembali</a>
+            @else
+                <a href="/kelola-pesanan" class="btn btn-secondary mb-4">Kembali</a>
+            @endif
+
+>>>>>>> origin/master
             @if ($data->status == 'Selesai' && Auth::user()->role_pengguna != 'Admin')
                 <div class="card p-3">
                     <h3>Alamat Pengambilan </h3>
@@ -92,7 +101,6 @@
                             class="bi bi-whatsapp"></i></a>
                 </div>
             @endif
-
             <div class="card card-registration card-registration-2 mt-4" style="border-radius: 15px;">
                 <div class="card-body p-0">
                     <div class="row g-0">
@@ -102,61 +110,57 @@
                                     <h1 class="fw-bold mb-0 text-black p-4 fs-3">Detail Produk</h1>
                                     <h6 class="mb-0 text-muted">{{ $jumlah_pesanan->total }} Produk</h6>
                                 </div>
-                                {{-- <hr style="height:2px;border-width:0;background-color:white"> --}}
-                                <div class="row d-flex justify-content-between align-items-center"
-                                    style="font-weight: bold">
-                                    <div class="col-md-1 col-lg-2 col-xl-3">
-                                        <h6></h6>
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-3 fw-bold">
-                                        Produk
-                                    </div>
-                                    <div class="col-md-1 col-lg-3 col-xl-2 d-flex fw-bold">
-                                        Jumlah
-                                    </div>
-                                    <div class="col-md-6 col-lg-2 col-xl-3 offset-lg-1 fw-bold">
-                                        Harga
-                                    </div>
-                                </div>
-                                <hr style="height:2px;border-width:0;background-color:white">
                                 @foreach ($detail_pesanan as $data)
-                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <div class="w-25">
-                                            <img src="/product-images/{{ $data->gambar_produk }}"
-                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                        </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="/product-images/{{ $data->gambar_produk }}"
+                                                        class="img-fluid rounded-3" alt="Cotton T-shirt" style="width: 200px;">
+                                                    </div>
+                                                    <div class="ms-3 ml-3">
+                                                        <h5 class="fw-bold">{{ $data->nama_produk }}</h5>
+                                                        @if ($data->ukurans != null)
+                                                            <p class="">Size: {{ $data->ukurans }}
+                                                                </p>
+                                                            @else
+                                                                <p class="">Size: -</p>
+                                                        @endif
+                                                        @if ($data->warna_produk != null)
+                                                            <p class="">Warna: {{ $data->warna_produk }}
+                                                                </p>
+                                                            @else
+                                                                <p class="">Warna: -</p>
+                                                        @endif
+                                                        @if ($data->angkatans != null)
+                                                            <p class="">Angkatan: {{ $data->angkatans }}
+                                                                </p>
+                                                                @else
+                                                                    <p class="">Angkatan: -</p>
+                                                        @endif
 
-                                            <p class="fw-medium fst-italic">{{ $data->nama_produk }}</p>
-                                            @if ($data->ukurans != null)
-                                                <p class="fw-semibold">Size: <p class="fw-medium fst-italic">{{ $data->ukurans }}</p> </p>
-                                            @else
-                                                <p class="fw-semibold">Size: -</p>
-                                            @endif
-                                            @if ($data->warna_produk != null)
-                                                <p class="fw-semibold">Warna: <p class="fw-medium fst-italic">{{ $data->warna_produk }}</p></p>
-                                            @else
-                                                <p class="fw-semibold">Warna: -</p>
-                                            @endif
-                                            @if ($data->angkatans != null)
-                                                <p class="fw-semibold">Angkatan: <p class="fw-medium fst-italic">{{ $data->angkatans }}</p></p>
-                                            @else
-                                                <p class="fw-semibold">Angkatan: -</p>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-2 col-lg-3 col-xl-2 d-flex">
-                                            <h6 class="ml-3">{{ $data->jumlah }}</h6>
-                                        </div>
-                                        <div class="col-md-5 col-lg-2 col-xl-3 offset-lg-1">
-                                            <h6 class="mb-0">Rp. <?php
-                                            $angka = $data->jumlah_harga;
-                                            echo number_format($angka, 0, ',', '.');
-                                            ?></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center text-left">
+                                                    <div style="width: 10px;" class="mr-5">
+                                                        <h5 class="fw-normal mb-0">{{ $data->jumlah }}</h5>
+                                                    </div>
+                                                    <div style="width: 130px;">
+                                                        <h6 class="mb-0">Rp. <?php
+                                                        $angka = $data->jumlah_harga;
+                                                        echo number_format($angka, 0, ',', '.');
+                                                        ?></h6>
+                                                    </div>
+                                                    {{-- <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                    <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"><i class="fas fa-trash-alt text-danger mr-4"></i></a> --}}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <hr style="height:2px;border-width:0;background-color:white">
-                                @endforeach
-                                <div class="pt-4 text-right">
+                                </form>
+                            @endforeach
+                                <div class="pt-4 text-right mb-5">
                                     <h4 class="mb-0"><b>Total Harga : </b> Rp. <?php
                                     $angka = $data->total_harga;
                                     echo number_format($angka, 0, ',', '.');

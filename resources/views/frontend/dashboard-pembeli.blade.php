@@ -130,8 +130,7 @@
                                                     echo number_format($angka, 0, ',', '.');
                                                     ?>
                                                 </span></p>
-                                            <a href="/detail-produk/{{ $data->id_produk }}" class="btn btn-secondary">Lihat
-                                                Produk</a>
+                                            <a href="/detail-produk/{{ $data->id_produk }}" class="btn btn-primary">Lihat Produk</a>
                                         </div>
                                     </div>
                                 </div>

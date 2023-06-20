@@ -35,8 +35,7 @@ class UserController extends Controller
 
     public function user()
     {
-
-        $pengguna = User::where('id', "!=", 1)->paginate(15);
+        $pengguna = User::where('id', "!=", 1)->paginate(10);
 
         return view('admin.kelolapengguna', compact('pengguna'));
     }

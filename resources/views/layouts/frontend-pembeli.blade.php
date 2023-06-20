@@ -389,6 +389,17 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
+    <script src="{{asset('js/sweetalert.js')}}"></script>
+    <script>
+        @if (session('status'))
+            // alert('{{session('status')}}');
+            swal({
+                title: '{{Session('status')}}',
+                icon: '{{Session('statuscode')}}',
+                button: "ok",
+            });
+        @endif
+    </script>
     {{-- custom.js adding to cart ajax --}}
     {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}
     {{-- <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script> --}}

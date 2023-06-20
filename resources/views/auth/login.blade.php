@@ -86,7 +86,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-secondary w-100">
+                                        <button type="submit" class="btn btn-primary w-100">
                                             {{ __('Login') }}
                                         </button>
                                     </div>

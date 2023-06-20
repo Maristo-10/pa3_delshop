@@ -111,8 +111,7 @@
                         @endif
                         @csrf
                         <div class="row mb-3">
-                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
-                                Image</label>
+                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                             <div class="col-md-8 col-lg-9">
                                 <img class="rounded-circle" id="uploadPreview"
                                     src="/profile-images/{{ $data->gambar_pengguna }}" alt="Profile"

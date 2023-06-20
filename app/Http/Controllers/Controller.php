@@ -32,7 +32,7 @@ class Controller extends BaseController
         $pesanan = [0];
         $pengguna_prof = [0];
 
-        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(5)->get();
+        $unggulan = Produk::where('produk_unggulan', 'Unggulan')->take(7)->get();
         $kategori = KategoriProdukModel::all();
         $total_ung = Produk::select(DB::raw('count(id_produk) as total'))->groupBy("produk_unggulan")->where('produk_unggulan','Unggulan')->get();
         // $total_ung = Produk::select(DB::raw('count(id_produk) as total'))

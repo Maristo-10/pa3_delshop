@@ -109,7 +109,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Apakah anda yakun untuk menghapus data ini?
+                                                Apakah anda yakin untuk menghapus data ini?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" name="remove-{{ $item->id }}"
