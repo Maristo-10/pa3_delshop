@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-between">
     <a href="/dashboard-admin" class="logo d-flex align-items-center">
         <div class="col-4">
-            <img src={{ asset('imageStatis/del-shop.png') }} alt="" style="width: 80px; max-height:80px; ">
+            <img src={{ asset('imageStatis/del-shop.png') }} alt="">
         </div>
         <div class="col-4">
-            <span class="d-none d-lg-block mt-1 ml-4">
+            <span class="d-none d-lg-block pt-3 mx-3">
                 <p style="text-align:center">DELSHOP</p>
             </span>
         </div>
     </a>
-    <span style="font-size:30px;cursor:pointer" class="mt-1 align-items-center" onclick="openNav()" onclick="closeNav()">&#9776;</span>
+    <span style="font-size:30px;cursor:pointer" class="mt-1 ml-3 align-items-center" onclick="openNav()" onclick="closeNav()">&#9776;</span>
 </div><!-- End Logo -->
 
 <nav class="header-nav ms-auto">

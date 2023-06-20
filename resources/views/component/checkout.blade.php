@@ -59,14 +59,14 @@
                                                         @if ($item->ukurans != null)
                                                             <p class="">Size: {{ $item->ukurans }}
                                                                 </p>
-                                                                @else
-                                                                    <p class="">Size: -</p>
+                                                            @else
+                                                                <p class="">Size: -</p>
                                                         @endif
                                                         @if ($item->warna_produk != null)
                                                             <p class="">Warna: {{ $item->warna_produk }}
                                                                 </p>
-                                                                @else
-                                                                    <p class="">Warna: -</p>
+                                                            @else
+                                                                <p class="">Warna: -</p>
                                                         @endif
                                                         @if ($item->angkatans != null)
                                                             <p class="">Angkatan: {{ $item->angkatans }}
@@ -87,8 +87,8 @@
                                                         echo number_format($angka, 0, ',', '.');
                                                         ?></h6>
                                                     </div>
-                                                    <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
-                                                    <label for="remove-{{ $item->id }}" title="Hapus Produk dari Checkout"><i class="fas fa-trash-alt text-danger mr-4"></i></label>
+                                                    {{-- <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                    <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"><i class="fas fa-trash-alt text-danger mr-4"></i></a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -106,11 +106,11 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Apakah anda yakun untuk menghapus data ini?
+                                                Apakah anda yakin untuk menghapus data ini?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" name="remove-{{ $item->id }}"
-                                                    id="remove-{{ $item->id }}" method="post" class="btn btn-danger">Ya</button>
+                                                <button type="submit" name="remove-{{ $item->id }}" id="remove-{{ $item->id }}" method="post" hidden></button>
+                                                <a href="" type="button"><i class="fas fa-trash-alt text-danger mr-4"></i></a>
                                                 <button type="button" class="btn btn-primary"
                                                     data-bs-dismiss="modal">Batal</button>
                                             </div>

@@ -32,11 +32,7 @@ class UserController extends Controller
 
     public function user()
     {
-<<<<<<< HEAD
-        $pengguna = User::paginate(10);
-=======
         $pengguna = User::paginate(15);
->>>>>>> origin/master
         return view('admin.kelolapengguna', compact('pengguna'));
     }
 

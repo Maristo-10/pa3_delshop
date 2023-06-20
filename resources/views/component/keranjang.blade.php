@@ -62,18 +62,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                {{-- <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fas fa-minus"></i>
-                                    </button> --}}
                                     <input min="0" name="jumlah" id="jumlah"
                                         value="{{ $item->jumlah }}" type="number"
                                         class="form-control form-control-sm text-center" disabled/>
-
-                                                {{-- <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fas fa-plus"></i>
-                                    </button> --}}
                                             </div>
                                             <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
                                                 <h5 class="mb-0">Rp. <?php
@@ -114,10 +105,28 @@
                                                                     class="text-success fs-3 bi bi-bag-plus-fill"></i></label>
                                                         </div>
                                                         <div class="mt-2 ml-1">
-                                                            <a href="/hapus/pesanan-keranjang/{{ $item->id }}"
-                                                                class="text-danger ml-2 mr-2"
-                                                                title="Hapus Produk dari Keranjang"><i
-                                                                    class="fas fa-trash fa-lg"></i></a>
+                                                            <a class="text-danger ml-2 mr-2" title="Hapus Produk dari Keranjang" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                <i class="fas fa-trash fa-lg"></i>
+                                                            </a>
+                                                            
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus dari Keranjang</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-start">
+                                                                    Apakah anda ingin membatalkan pembelian ini??
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                    <a href="/hapus/pesanan-keranjang/{{ $item->id }}" class="btn btn-danger" title="Hapus Produk dari Keranjang">Ya</a>
+                                                                    <button type="button" class="btn btn-secondary">Batalkan</button>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </form>
                                                 @endif

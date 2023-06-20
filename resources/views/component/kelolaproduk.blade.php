@@ -91,18 +91,14 @@
                     <table class="table table-striped table-bordered text-center" id="list">
                         <thead>
                             <tr>
-                                <!-- <th scope="col">Pilihan</th> -->
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Produk</th>
                                 <th scope="col">Harga(Rp)</th>
                                 <th scope="col">Jumlah Produk</th>
-                                {{-- <th scope="col">Kategori Pembeli</th> --}}
-                                {{-- <th scope="col">Kategori Produk</th> --}}
                                 <th scope="col">Produk Unggulan</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
-                                <!-- <th scope="col">Lampiran</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -121,10 +117,7 @@
                                     $angka = $data->jumlah_produk;
                                     echo number_format($angka, 0, ',', '.');
                                     ?></td>
-                                    {{-- <td>{{ $data->role_pembeli }}</td> --}}
-                                    {{-- <td>{{ $data->kategori_produk }}</td> --}}
                                     <td>{{ $data->produk_unggulan }}</td>
-                                    {{-- <td>{{ $data->deskripsi }}</td> --}}
                                     <td>{{ $data->status_produk }}</td>
                                     <td>
                                         <a type="button" class="bi bi-exclamation-circle btn btn-info"

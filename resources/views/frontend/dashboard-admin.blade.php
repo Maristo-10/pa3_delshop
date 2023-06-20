@@ -9,84 +9,12 @@
         <div class="row">
             <!-- Left side columns -->
             <div class="col-lg-12">
-                <div class="row justify-content-center">
-                    <!-- Sales Card -->
-                    @if ($pesanan_datang > 0)
-                        <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card">
-                                <div class="card-body my-3">
-                                    <div class="d-flex align-items-center">
-                                        <p class="bi bi-info-circle fs-5"> Informasi</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6">
-                                        <p> {{ $pesanan_datang }} Pesanan Baru</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                        <a href="kelola-pesanan" class="btn btn-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    @if ($barang_habis > 0)
-                        <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card">
-                                <div class="card-body my-3">
-                                    <div class="d-flex align-items-center">
-                                        <p class="bi bi-info-circle fs-5"> Informasi</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-exclamation-diamond fs-1 text-warning blink-icon"></i>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6">
-                                        <p>Ada {{ $barang_habis }} Barang Sudah Mau Habis</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                        <a href="/produks" class="btn btn-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    @if ($konfirmasi_pengguna > 0)
-                        <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card">
-                                <div class="card-body my-3">
-                                    <div class="d-flex align-items-center">
-                                        <p class="bi bi-info-circle fs-5"> Informasi</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-broadcast-pin fs-1 text-info blink-icon"></i>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6">
-
-                                        <p>{{ $konfirmasi_pengguna }} Perlu Konfirmasi Pengguna</p>
-
-
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
-                                        <a href="" class="btn btn-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Left side columns -->
-            <div class="col-lg-12">
                 <div class="row">
                     <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-4">
                         <div class="card info-card sales-card">
                             <div class="card-body">
                                 <h5 class="card-title">Produk Terjual <span>| {{ $tahun }}</span></h5>
-
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart "></i>
@@ -123,21 +51,26 @@
                             </div>
                         </div>
                     </div><!-- End Revenue Card -->
-                    <div class="col-xxl-4 col-md-4">
-                        <div class="card info-card customers-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Pengguna</h5>
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people-fill"></i>
+                    @if ($pesanan_datang > 0)
+                        <div class="col-xxl-4 col-md-4">
+                            <div class="card info-card">
+                                <div class="card-body my-3">
+                                    <div class="d-flex align-items-center">
+                                        <p class="bi bi-info-circle fs-5"> Informasi</p>
                                     </div>
-                                    <div class="ps-3">
-                                        <p class="fs-3">{{ $pengguna }}</p>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-bell fs-1 text-primary blink-icon"></i>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center fs-6">
+                                        <p> {{ $pesanan_datang }} Pesanan Baru</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center fs-6 mt-2">
+                                        <a href="kelola-pesanan" class="btn btn-primary">Detail</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

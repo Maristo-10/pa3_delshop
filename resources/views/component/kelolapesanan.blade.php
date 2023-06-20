@@ -19,7 +19,7 @@
                 <form class="search-form d-flex align-items-center" method="GET" action="/kelola-pesanan/search">
                     <input type="text" name="sidPes" id="sidPes" placeholder="Cari Berdasarkan ID Pesanan" title="Masukkan ID Pesanan" class="form-control w-25" >
                     <button title="Cari Pesanan" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                    <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-3">Reset</a>
+                    <a href="/kelola-pesanan" class="btn btn-secondary text-light ml-3  ">Reset</a>
                 </form>
             </div>
         </div> 
@@ -110,10 +110,8 @@
                                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->layanan }}" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="gambar" class="form-label">Bukti Pembayaran</label>
-                                                    <a href="/pembayaran-images/{{ $data->bukti_pembayaran }}" title="Lihat Bukti Pembayaran"> <img name="gambar" id="gambar" src="/pembayaran-images/{{$data->bukti_pembayaran}}" width="150px" class="" alt="" />
-                                                    </a>
-                                                    {{-- <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ $data->layanan }}" disabled> --}}
+                                                    <label for="gambar" class="form-label">Bukti Pembayaran</label><br>
+                                                    <img name="gambar" id="gambar" src="/pembayaran-images/{{$data->bukti_pembayaran}}" width="150px" class="" alt="" />
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
